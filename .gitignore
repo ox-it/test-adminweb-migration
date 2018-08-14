@@ -1,8 +1,11 @@
 # CakePHP specific files #
 ##########################
+/cgi/*
+/cron/*
 /home/config/app.php
 /home/config/.env
 /logs/*
+/webstats/*
 /home/tmp/*
 /home/vendor/*
 
