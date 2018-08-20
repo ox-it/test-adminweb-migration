@@ -33,8 +33,8 @@
 				</tr>
 				<tr>
 				<td class="gradeAndSalaryText">
-				<?= $grade[0] ?>:</td>
-				<td colspan="3" class="gradeAndSalaryText"><?= $grade[1] ?>
+				<?= count($grade)>1 ? $grade[0] : 'Pay' ?>:</td>
+				<td colspan="3" class="gradeAndSalaryText"><?= count($grade)==1 ? $grade[0] : $grade[1] ?>
 				</td>
 				</tr>
 				<tr>
@@ -55,8 +55,8 @@
 
 		<?=	$this->Form->end(); ?>
 
-		<?php print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
-		<?php print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($file,true) . '</textarea>'; ?>
+		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
+		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($file,true) . '</textarea>'; ?>
 
 	  </div>
 	</div>

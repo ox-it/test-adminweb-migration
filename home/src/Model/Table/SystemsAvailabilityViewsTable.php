@@ -16,10 +16,7 @@ class SystemsAvailabilityViewsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-
 		$this->setTable('views');
-		$this->table('views');    			// Prior to 3.4.0
-
 		$this->belongsToMany('SystemsAvailabilitySystems',[
       'through' => 'SystemsAvailabilityRelations',
       //'foreignKey' => 'view_id',
