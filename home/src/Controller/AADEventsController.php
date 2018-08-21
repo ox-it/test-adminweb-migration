@@ -88,17 +88,6 @@ class AADEventsController extends AppController
 		$this->set('bookings', $this->AADEventsBookings->getByOxfordID());
 	}
 
-  // Allows the script file to be called individually
-	public function script()
-	{
-	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . 'AADEvents/script.js');
-    $script = $file->read();
-    $response = $this->response;
-    $response->body($script);
-    $response = $response->withType('js');
-    return $response;
-	}
-
 	private function emailConfirmation($person, $booked)
 	{
 	  $message  = "<p>Dear ".$person->title." ".$person->forename." ".$person->surname.",</p>\n";
