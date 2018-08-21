@@ -1,5 +1,5 @@
 @font-face{font-family:"PT Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;font-weight:normal;font-style:normal}
-*{font-family:"PT Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;font-size:14px;line-height:27px}
+*{font-family:"PT Sans",'Helvetica Neue',Arial,Helvetica,sans-serif}
 a{color:#0071BC;-webkit-transition:all 0.2s;-moz-transition:all 0.2s;-ms-transition:all 0.2s;-o-transition:all 0.2s;transition:all 0.2s}
 a:hover,a:active{color:#d33d44;-webkit-transition:all 0.2s;-moz-transition:all 0.2s;-ms-transition:all 0.2s;-o-transition:all 0.2s;transition:all 0.2s}
 ul,ol,dl,p{font-size:0.85rem}
@@ -71,6 +71,7 @@ input[type=checkbox],input[type=radio]{margin:0 0.5em 0.2em 0}
 .date select,.time select,.datetime select{display:inline;width:auto;margin-right:10px}
 .error label,.error label.error{color:#C3232D;font-weight:bold}
 .error textarea,.error input{background-color:#fee}
+.error .error-message{color:#C3232D;font-size:0.8em;margin:0 0 0.5em}
 .view h2{color:#6F6F6F}
 .view .columns.strings{border-radius:3px;box-shadow:1px 2px 4px rgba(0, 0, 0, 0.24);margin-right:0.7rem}
 .view .numbers{background-color:#B7E3EC;color:#FFF;border-radius:3px;box-shadow:1px 2px 4px rgba(0, 0, 0, 0.24);margin-right:0.7rem}

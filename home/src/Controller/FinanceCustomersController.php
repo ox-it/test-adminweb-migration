@@ -42,17 +42,6 @@ class FinanceCustomersController extends AppController
 
 	}
 
-  // Allows the script file to be called individually
-	public function script()
-	{
-	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . 'FinanceCustomers/script.js');
-    $script = $file->read();
-    $response = $this->response;
-    $response->body($script);
-    $response = $response->withType('js');
-    return $response;
-	}
-
 	private function emailConfirmation($customer)
 	{
 	  $message  = "<p>Dear ".$person->title." ".$person->forename." ".$person->surname.",</p>\n";
