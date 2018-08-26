@@ -10,18 +10,11 @@ use Cake\Utility\Exception\XmlException;
 class PrasController extends AppController
 {
 
-	// public static function defaultConnectionName() { return 'pras-web-dev-tst'; }
-
 	public function index()
 	{
     $pras = new PrasForm();
     $this->set('hierarchy', $pras->getHierarchyArray());
     $this->set('change_type_options', $pras->getChangeTypeOptions());
-    //$this->set('entity_type_options', $pras->getEntityTypeOptions());
-    //$this->set('division_options', $pras->getDivisionsOptions());
-    //$this->set('unit_options', $pras->getUnitsOptions());
-    //$this->set('sub_unit_options', $pras->getSubUnitsOptions());
-    //$this->set('cost_centre_options', $pras->getCostCentresOptions());
 		if ($this->request->is('post')) {
 			if ($pras->execute($this->request->getData())) {
 				$this->Flash->success('Thank you for your submission.');
