@@ -4,10 +4,12 @@ jQuery(document).ready(function($) {
 	makeCondition('#application-type', ['single','joint','couple/family'], ['#applicant1','#accommodation','#buttons'], '');
 	makeCondition('#application-type', ['joint','couple/family'], '#family', '');
 	makeCondition('#application-type', ['joint'], '#applicant2', '');
-	makeCondition('#application-type', ['couple/family'], '#partner', '');
+	makeCondition('#application-type', ['couple/family'], '#spouse', '');
 
 	makeCondition('#title', 'other', '#title-other-wrapper', '#title-other');
-	makeCondition('#spouse-title', 'other', '#spouse-title-other-wrapper', '#spouse-title-other');
+	makeCondition('#degree', 'other', '#degree-other-wrapper', '#degree-other');
+	makeCondition('#partner-title', 'other', '#partner-title-other-wrapper', '#partner-title-other');
+	makeCondition('#partner-degree', 'other', '#partner-degree-other-wrapper', '#partner-degree-other');
 
 	makeCondition('#select-child-1', ['male','female'], '#child-2', ['#child-dob-1','#select-child-2','#child-dob-2','#select-child-3','#child-dob-3','#select-child-4','#child-dob-4','#select-child-5','#child-dob-5','#select-child-6','#child-dob-6']);
 	makeCondition('#select-child-2', ['male','female'], '#child-3', ['#child-dob-2','#select-child-3','#child-dob-3','#select-child-4','#child-dob-4','#select-child-5','#child-dob-5','#select-child-6','#child-dob-6']);
@@ -19,8 +21,7 @@ jQuery(document).ready(function($) {
 	$('#application-type').change(function() { updateSectionNumbers(); });
 
   // Date picker
-	$('#degree-start,#spouse-degree-start,#child-dob-1,#child-dob-2,#child-dob-3,#child-dob-4,#child-dob-5,#child-dob-6').datepicker({ dateFormat: "dd/mm/yy" });
-	$('#tenancy-accept').datepicker({ dateFormat: "mm/yy" });
+	$('#degree-start,#partner-degree-start,#child-dob-1,#child-dob-2,#child-dob-3,#child-dob-4,#child-dob-5,#child-dob-6,#tenancy-accept').datepicker({ dateFormat: "dd/mm/yy" });
 
 	updateSectionNumbers();
 

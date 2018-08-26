@@ -60,7 +60,10 @@ $cakeDescription = 'WAF: Web-Application Framework';
 		</div>
 	</div>
 
-	<?= $this->Flash->render() ?>
+	<div class="row" id="waf-message">
+	  <?= $this->Flash->render() ?>
+	</div>
+
 	<div class="container clearfix">
 			<?= $this->fetch('content') ?>
 	</div>
