@@ -16,14 +16,16 @@ class HarassmentDepartmentsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('department');
+		$this->setTable('harassment_department');
 		$this->setPrimaryKey('deptcode');
 		$this->setDisplayField('deptalpha');
+		/*
 		$this->belongsToMany('HarassmentUsers',[
       'through' => 'HarassmentUsersDepartments',
       'foreignKey' => 'deptcode',
       'targetForeignKey' => 'userID'
     ]);
+    //*/
 	}
 
 	public function getByCode($deptcode = null) {
@@ -49,7 +51,8 @@ class HarassmentDepartmentsTable extends Table
 		$query = $this->find('all', [ 'order' => [ 'deptalpha' => 'ASC' ] ]);
 		$query = $this->findList($query, []);
 		$departments = $query->toArray();
-		//$departments['00'] = '-- Not Listed --';
+		$departments['00'] = '-- Not Listed --';
+		$departments['XX'] = '-- Not Known --';
 		return $departments;
 	}
 

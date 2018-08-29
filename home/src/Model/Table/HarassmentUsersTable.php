@@ -18,19 +18,20 @@ class HarassmentUsersTable extends Table
 	{
 		$this->addBehavior('Timestamp');
 
-		$this->setTable('user');
+		$this->setTable('harassment_user');
 		$this->setPrimaryKey('userID');
-		//$this->belongsTo('AADEventsColleges') ->setForeignKey('collcode') ->setBindingKey('collcode');
-		//$this->belongsTo('AADEventsDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
+		$this->belongsToMany('HarassmentDepartments', [
+		  'joinTable' => 'harassment_user_dept',
+		  'foreignKey' => 'userID',
+		  'targetForeignKey' => 'deptcode'
+		]);
 	}
 
 	public function getByOxfordID()
 	{
     $oxfordID = !empty($_SERVER['HTTP_WAF_WEBAUTH']) ? trim($_SERVER['HTTP_WAF_WEBAUTH']) : 'notgiven';
-    $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]); // -> contain(['AADEventsColleges','AADEventsDepartments']);
+    $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]) -> contain(['HarassmentDepartments']);
     $user = $query->first();
-    //$user->department = (!empty($person->a_a_d_events_department)) ? $person->a_a_d_events_department->deptalpha : $person->depttext;
-    //$user->college = (!empty($person->a_a_d_events_college)) ? $person->a_a_d_events_college->college : '';
     return $user;
 	}
 

@@ -46,6 +46,7 @@ class AppController extends Controller
 				'enableBeforeRedirect' => false,
 		]);
 		$this->loadComponent('Flash');
+		$this->loadComponent('Waf');
 
 		/*
 		 * Enable the following component for recommended CakePHP security settings.
@@ -54,8 +55,7 @@ class AppController extends Controller
 		$this->loadComponent('Security');
 	}
 
-
-  // Allows easy access to the script file
+  // Allows easy access to any script file
 	public function script()
 	{
 	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/script.js');
@@ -63,6 +63,17 @@ class AppController extends Controller
     $response = $this->response;
     $response->body($script);
     $response = $response->withType('js');
+    return $response;
+	}
+
+  // Allows easy access to the universal css file
+	public function css()
+	{
+	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
+    $css = $file->read();
+    $response = $this->response;
+    $response->body($css);
+    $response = $response->withType('css');
     return $response;
 	}
 
