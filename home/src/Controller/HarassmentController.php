@@ -7,6 +7,7 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
 use Cake\Mailer\Email;
 
+
 class HarassmentController extends AppController
 {
 
@@ -16,16 +17,7 @@ class HarassmentController extends AppController
 
 	public function index()
 	{
-	  // For development only
-	  $_SERVER['HTTP_WAF_WEBAUTH'] = 'ashgjp'; //'alls0027';
-
-		$this->loadModel('HarassmentUsers');
-		$user = $this->HarassmentUsers->getByOxfordID();
-		$this->set('user', $user);
-
-		$this->loadModel('HarassmentDepartments');
-		$this->set('userdepts', $this->HarassmentDepartments->getByOxfordID());
-
+		$user = $this->getOxfordUserAndValidate();
 		if ($this->request->is(['post', 'put'])) {
 			$user = $this->HarassmentUsers->patchEntity($user, $this->request->getData());
       if (!empty($user->action)) {
@@ -36,79 +28,106 @@ class HarassmentController extends AppController
         }
       }
 		}
-
 	}
 
-	public function report()
+	public function report($userID, $deptcode, $acyear)
 	{
+		$user = $this->getOxfordUserAndValidate();
+		$this->loadModel('HarassmentSurveys');
+		$survey = $this->HarassmentSurveys->newEntity(['personID'=>$userID, 'deptcode'=>$deptcode, 'year'=>$acyear]);
+
 		$this->loadModel('HarassmentDepartments');
 		$this->set('departments', $this->HarassmentDepartments->getSelectOptions());
 
-		$this->loadModel('HarassmentUsers');
-		$this->set('user', $this->HarassmentUsers->getUserFromOxfordID());
-
-		$this->loadModel('HarassmentSurveys');
-		$survey = $this->HarassmentSurveys->newEntity();
-
 		if ($this->request->is(['post', 'put'])) {
-			$user = $this->HarassmentSurveys->patchEntity($survey, $this->request->getData(), ['validate'=>'register']);
+			$survey = $this->HarassmentSurveys->patchEntity($survey, $this->request->getData(), ['validate'=>'report']);
 			if ($this->HarassmentSurveys->save($survey)) {
 				$this->Flash->success(__('Saved.'));
-				return $this->redirect(['action' => 'confirm', $survey->surveyID]);
+				return $this->redirect(['action' => 'success', $survey->surveyID]);
+			} else {
+			  $this->Flash->error(__('Sorry. Your survey contains errors.'));
 			}
-			$this->Flash->error(__('Sorry. Your survey contains errors.'));
 		}
 		$this->set('survey', $survey);
 	}
 
-	public function confirm($surveyID)
+	public function confirm($userID, $deptcode, $acyear)
 	{
+		$user = $this->getOxfordUserAndValidate();
 		$this->loadModel('HarassmentSurveys');
-		$this->set('survey', $this->FinanceTravelAgents->getByID($surveyID));
+		$survey = $this->HarassmentSurveys->getByDeptAndYear($deptcode, $acyear);
+		//$this->Flash->success('SURVEY: '.json_encode($survey));
+		$this->set('survey', $survey);
+		//$surveys = $this->HarassmentSurveys->getByDept($deptcode);
+		//$this->Flash->success('SURVEYS: '.json_encode($surveys));
+		$this->set('surveys', []);
+		if (empty($survey)) {
+		  $nilreport = $this->HarassmentSurveys->newEntity([
+		    'personID' => $userID,
+		    'deptcode' => $deptcode,
+		    'year' => $acyear,
+		    '0nilreturn' => 1
+		  ]);
+		  $this->HarassmentSurveys->save($nilreport);
+  		$this->set('report', $nilreport);
+		}
 	}
 
-  // Allows the script file to be called individually
-	public function script()
+	public function success($surveyID)
 	{
-	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/script.js');
-    $script = $file->read();
-    $response = $this->response;
-    $response->body($script);
-    $response = $response->withType('js');
-    return $response;
+		$user = $this->getOxfordUserAndValidate();
+		$this->loadModel('HarassmentSurveys');
+
+		$survey = $this->HarassmentSurveys->getByID($surveyID);
+		if (empty($user) || empty($survey->personID) || $survey->personID!=$user->userID) {
+		  $this->render('nouser');
+		  return null;
+		}
+
+    $this->loadModel('HarassmentDepartments');
+    $survey->inqdept = $this->HarassmentDepartments->getByCode($survey->{'12inqdeptcode'});
+
+		//$this->Flash->success('SURVEY: '.json_encode($survey));
+		$this->set('survey', $survey);
+		$this->set('waf', $this->Waf);
+	}
+
+	private function getOxfordUserAndValidate()
+	{
+	  // TODO: Remove the development OSS value
+		$_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
+		// 'sloblock' - non existant
+		// 'alls0027' - inactive
+		// 'bioc0236' - single dept
+		// 'ashgjp'   - multiple depts
+
+		if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
+		  // TODO: Force Oxford SSO Login
+		}
+
+	  $this->loadModel('HarassmentUsers');
+		$user = $this->HarassmentUsers->getByOxfordID();
+    //$this->Flash->success('USER: '.json_encode($user));
+		if (empty($user) || !empty($user->inactive)) {
+		  $this->render('nouser');
+		  return null;
+		}
+		$this->set('user', $user);
+		return $user;
 	}
 
 	private function emailConfirmation($applicant)
 	{
 	  $message  = "<p>Dear ".$applicant->title." ".$applicant->forename." ".$applicant->surname.",</p>\n";
-    $message .= "<p>Your event registration has been recorded. You are now confirmed to attend the following AAD events:</p>\n";
-
-    $message .= '<ul><li>' . implode("</li><li>\n", $booked) . "</li></ul>\n";
-
-		$message .= "<p>To cancel a booking, please call the AAD Communications team on 284847 or email us at ";
-		$message .= '<a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a>.</p>' . "\n";
-		$message .= "<p>You may log back in to the AAD events registration form via the AAD Staff Events page ";
-		$message .= '(<a href="http://www.admin.ox.ac.uk/aad/communications/events/">http://www.admin.ox.ac.uk/aad/communications/events/</a>)' . "\n";
-		$message .= "to register for new events as they become available.</p>\n";
-
-		$message .= "<p>Kind Regards,</p>\n";
-		$message .= "<p><strong>Academic Administration Division Communications</strong>,<br>\n";
-		$message .= "University of Oxford,<br>\n";
-		$message .= "Examination Schools,<br>\n";
-		$message .= "75-81 High Street,<br>\n";
-		$message .= "Oxford<br>\n";
-		$message .= "OX1 4BG</p>\n";
-		$message .= "<p>Tel: 01865 (2)84847<br>\n";
-		$message .= 'Email: <a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a><br>' . "\n";
-		$message .= 'Web: <a href="http://www.admin.ox.ac.uk/aad">www.admin.ox.ac.uk/aad</a></p>' . "\n";
-
 		// Send the email
 		$email = new Email('default');
-  	$email->from(['AcademicAdmin.Comms@admin.ox.ac.uk' => 'Academic Administration Division Communications'])
-			->to($person->email)
-			->subject('AAD Event Registration')
-			->emailFormat('html')
-			->send($message);
+  	$email->from(['AcademicAdmin.Comms@admin.ox.ac.uk' => 'Academic Administration Division Communications']);
+		//$email->to($person->email);
+		// TODO: Remove test email
+		$email->to(['al@cache.co.uk'=>'Al Pirrie', 'al.pirrie@it.ox.ac.uk'=>'Al Pirrie']);
+		$email->subject('AAD Event Registration');
+		$email->emailFormat('html');
+		$email->send($message);
 	}
 
 }

@@ -35,6 +35,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
 	<?= $this->Html->meta('icon') ?>
 	<?= $this->Html->css('base.css') ?>
 	<?= $this->Html->css('style.css') ?>
+	<?= $this->Html->css('waf.css') ?>
 	<?= $this->Html->css('//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css') ?>
 
 	<?= $this->Html->script('http://code.jquery.com/jquery-latest.min.js') ?>
@@ -65,7 +66,9 @@ $cakeDescription = 'WAF: Web-Application Framework';
 	</div>
 
 	<div class="container clearfix">
+	  <div class="web-app-wrapper"><?php // This is used to mimic the wrapper class in Mosaic ?>
 			<?= $this->fetch('content') ?>
+		</div>
 	</div>
 
 	<footer>

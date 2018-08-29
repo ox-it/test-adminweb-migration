@@ -1,0 +1,29 @@
+.web-app-wrapper .waf-include {border-top:6px solid #777;border-bottom:6px solid #777;margin-bottom:50px}
+.web-app-wrapper .waf-date{font-weight:bold;margin:0 0.2em}
+.web-app-wrapper .waf-time{margin:0 0.2em}
+.web-app-wrapper .waf-time:before{content:"("}
+.web-app-wrapper .waf-time:after{content:")"}
+.web-app-wrapper .waf-location{font-style:italic;margin:0 0.2em}
+.web-app-wrapper .waf-menu-select button{margin:0}
+.web-app-wrapper .required > label:after{content:' *';color:#C3232D}
+.web-app-wrapper .required.radio > label[for]{font-weight:normal}
+.web-app-wrapper .input.radio{margin:0 0 1rem}
+.web-app-wrapper button+button{margin-left:20px}
+.web-app-wrapper .small_text{font-size:0.85em}
+.web-app-wrapper .description{background:#eee;padding:0 0.9375rem}
+.web-app-wrapper .spacer{padding:0;margin:0;line-height:0.7em}
+.web-app-wrapper .notes{padding:0;margin:0 0 1em;font-size:0.9em;font-style:italic}
+.web-app-wrapper .with-notes{margin-bottom:0 !important}
+.web-app-wrapper .gapabove{margin-top:1em !important}
+.web-app-wrapper .nomargin{margin:0 !important}
+.web-app-wrapper .center{text-align:center}
+.web-app-wrapper .indent{margin-left:1em}
+.web-app-wrapper .display-p{padding-left:1.1rem;margin-bottom:0.2rem}
+.web-app-wrapper .display-ul{margin-bottom:0.2rem}
+.web-app-wrapper .display-label{color:#444;display:inline-block;min-width:200px}
+.web-app-wrapper .display-notes{color:#000;font-style:italic}
+.web-app-wrapper .inline_wrapper>*{display:inline-block;margin-right:0.5em;margin-bottom:0.5em}
+.web-app-wrapper tr.highlight td{background-color:#262;color:#fff}
+.web-app-wrapper tr.highlight td a{color:#4af}
+.web-app-wrapper tr.highlight td a:hover{color:#fee}
+

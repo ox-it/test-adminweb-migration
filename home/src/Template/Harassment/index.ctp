@@ -26,7 +26,7 @@
 
     <!-- Information -->
     <p>Welcome to the Harrasment Survey reporting form.</p>
-    <?php if (count($userdepts)>1) : ?>
+    <?php if (count($user->harassment_departments)>1) : ?>
       <p>
         Please select the department, faculty or college you are reporting for and then press
         the appropriate button to indicate whether you have a report to enter or whether
@@ -44,17 +44,17 @@
     <!-- Form -->
 		<?= $this->Form->create($user) ?>
 
-			<?php if (count($userdepts)>1) : ?>
+			<?php if (count($user->harassment_departments)>1) : ?>
 				<h4><?= $user->name ?></h4>
 			  <?php
 			    $departmentsOptions = [];
-			    foreach($userdepts as $d) $departmentsOptions[$d->deptcode] = $d->deptalpha;
+			    foreach($user->harassment_departments as $d) $departmentsOptions[$d->deptcode] = $d->deptalpha;
 			  ?>
 			  <?= $this->Form->input('deptcode', [ 'type'=>'select', 'options'=>$departmentsOptions, 'label'=>'Please select the appropriate department, faculty or college' ], [ 'val'=>$user->deptcode ]) ?>
 			<?php
 			  else :
-			  if (count($userdepts)==1) {
-			    $department = $userdepts->first();
+			  if (count($user->harassment_departments)==1) {
+			    $department = $user->harassment_departments[0];
 			    $display = '<strong><em>'.$department->deptalpha.'</em></strong>';
 			    $deptcode = $department->deptcode;
 			  } else {

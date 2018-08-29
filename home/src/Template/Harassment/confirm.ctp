@@ -1,87 +1,75 @@
-<!-- File: src/Template/FinanceTravel/confirm.ctp -->
-
-<?php
-
-  function postValueWithLabel($value, $label) {
-    if (!empty($value)) echo '
-			<p>
-				<span class="'.(empty($label)?'':'label').'"><strong>'.$label.(empty($label)?'':':').'</strong></span>
-				<span class="value">'.h($value).'</span>
-			</p>
-';
-  }
-
-?>
+<!-- File: src/Template/Harassment/confirm.ctp -->
 
 <div class="row">
 	<div class="waf-include">
 
 		<h3>
-		  Thank you!
+		  Harassment Statement
 		</h3>
 
-    <!-- Initial instructions -->
-    <p>Thank you for entering your details, a copy of which is shown below.</p>
-    <p><strong>Please print this page if you wish to keep a permanent record of your application.</strong></p>
+		<?php
+		  if (!empty($survey)) :
+		    $userid = $survey->personID;
+		    $acyear = $survey->year;
+		?>
 
-		<h3>Traveller details</h3>
-    <?= postValueWithLabel($applicant->name, 'Name') ?>
-    <?= postValueWithLabel($applicant->phone, 'Telephone') ?>
-    <?= postValueWithLabel($applicant->email, 'Email') ?>
-    <?= postValueWithLabel($applicant->department, 'Department') ?>
+      <p><strong>
+        You have already entered a
+        <?php if ($survey->{'0nilreturn'} == 0) : ?>
+          case report
+        <?php else : ?>
+          'no reports' statement
+        <?php endif; ?>
+        for the academic year <?= $survey->year . '/' . substr($survey->year+1,-2) ?>.
+      <strong></p>
 
-    <?php if (!empty($applicant->reqphone) || !empty($applicant->reqemail)) : ?>
-    	<h4>Contact Details</h4>
-    	<?= postValueWithLabel($applicant->reqphone, 'Telephone') ?>
-    	<?= postValueWithLabel($applicant->reqemail, 'Email') ?>
-    <?php endif; ?>
+    <?php
+      else :
+		    $userid = $report->personID;
+        $acyear = $report->year;
+    ?>
 
-    <?php if (!empty($applicant->air) && $applicant->air=='Y') : ?>
-    	<h3>Air Travel</h3>
-    	<?= postValueWithLabel($applicant->airportout, 'Outbound from') ?>
-    	<?= postValueWithLabel($applicant->airportback, 'Destination') ?>
-    	<?= postValueWithLabel($applicant->airdeparting, 'Departing') ?>
-    	<?= postValueWithLabel($applicant->airdirectverbose, 'Direct flight needed?') ?>
-    	<?= postValueWithLabel($applicant->airreturnverbose, 'Return flight?') ?>
-    	<?= postValueWithLabel($applicant->airreturning, 'Returning') ?>
-    	<?= postValueWithLabel($applicant->destaddress, 'Other information') ?>
-    	<?= postValueWithLabel($applicant->airline, 'Preferred airline') ?>
-    	<?= postValueWithLabel($applicant->airclassverbose, 'Travel class') ?>
-    <?php endif; ?>
+      <p><strong>
+        Thank you. You have confirmed that there are no reports to submit for the year
+        <?= $report->year . '/' . substr($report->year+1,-2) ?>.
+      <strong></p>
 
-    <?php if (!empty($applicant->train) && $applicant->train=='Y') : ?>
-    	<h3>Train Journey</h3>
-    	<?= postValueWithLabel($applicant->stationout, 'Outbound from') ?>
-    	<?= postValueWithLabel($applicant->stationback, 'Destination') ?>
-    	<?= postValueWithLabel($applicant->traindeparting, 'Departing') ?>
-    	<?= postValueWithLabel($applicant->trainreturning, 'Returning') ?>
-    	<?= postValueWithLabel($applicant->trainclassverbose, 'Travel class') ?>
-    <?php endif; ?>
+    <?php
+      endif;
+    ?>
 
-    <?php if (!empty($applicant->car) && $applicant->car=='Y') : ?>
-    	<h3>Overseas Hire Car</h3>
-    	<?= postValueWithLabel($applicant->carpickup, 'Pick-up location') ?>
-    	<?= postValueWithLabel($applicant->cardatestart, 'Start date') ?>
-    	<?= postValueWithLabel($applicant->cardropoff, 'Drop-off point') ?>
-    	<?= postValueWithLabel($applicant->cardateend, 'Return date') ?>
-    <?php endif; ?>
+    <?php
+		  if (count($surveys)>1 && $user->userID==$userid) :
+		?>
+      <p>&nbsp;</p>
 
-    <?php if (!empty($applicant->hotel) && $applicant->hotel=='Y') : ?>
-    	<h3>Hotel</h3>
-    	<?= postValueWithLabel($applicant->hotellocation, 'Location') ?>
-    	<?= postValueWithLabel($applicant->hoteldatestart, 'Arrival date') ?>
-    	<?= postValueWithLabel($applicant->hoteldateend, 'Departure date') ?>
-    	<?= postValueWithLabel($applicant->hoteladditional, 'Additional Details') ?>
-    <?php endif; ?>
+		  <h4>Statements Summary</h4>
+		  <table>
+		    <thead>
+		      <tr>
+		        <th>Academic Year</th><th>Reports information</td>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <?php
+		        foreach ($surveys as $s) {
+		      ?>
+		        <tr<?= ($acyear == $s->year) ? ' class="highlight"' : '' ?>>
+		          <td><?= $s->year . '/' . substr($s->year+1,-2) ?></td><td><?= ($s->{'0nilreturn'}==1) ? 'No reports' : $this->Html->link('Report filed', ['action' => 'view', $s->surveyID]) ?></td>
+		        </tr>
+		      <?php
+		        }
+		      ?>
+		    </tbody>
+		  </table>
+    <?php
+      endif;
+    ?>
 
-    <?php if (!empty($applicant->additional)) : ?>
-    	<h3>Additional Information</h3>
-    	<?= postValueWithLabel($applicant->additional, '') ?>
-    <?php endif; ?>
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Travel Booking Form', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $this->Html->link('Return to Harassement Form', ['action' => 'index'], ['class'=>'button']) ?>
     </p>
 
 	</div>

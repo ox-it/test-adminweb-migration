@@ -16,8 +16,9 @@ class HarassmentUsersDepartmentsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('user_dept');
+		$this->setTable('harassment_user_dept');
 		$this->setPrimaryKey('user_deptID');
+		$this->belongsTo('HarassmentDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 	}
 
 }
