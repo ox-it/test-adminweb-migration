@@ -17,10 +17,8 @@ class AADEventsEventsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('event');
-		$this->table('event');    			// Prior to 3.4.0
+		$this->setTable('aad_events_event');
 		$this->setPrimaryKey('eventID');
-		$this->primaryKey('eventID');		// Prior to 3.4.0
 		$this->hasMany('AADEventsBookings') ->setForeignKey('eventID');
 		$this->belongsTo('AADEventsLocations') ->setForeignKey('locationID');
 	}

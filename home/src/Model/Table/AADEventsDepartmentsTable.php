@@ -16,13 +16,8 @@ class AADEventsDepartmentsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-
-		$this->setTable('department');
-		$this->table('department');    			// Prior to 3.4.0
-
+		$this->setTable('aad_events_department');
 		$this->setPrimaryKey('deptcode');
-		$this->primaryKey('deptcode');		// Prior to 3.4.0
-
 		$this->setDisplayField('deptalpha');
 	}
 

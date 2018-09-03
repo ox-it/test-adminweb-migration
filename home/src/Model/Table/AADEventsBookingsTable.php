@@ -17,14 +17,8 @@ class AADEventsBookingsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-
-		$this->setTable('booking');
-		$this->table('booking');    			// Prior to 3.4.0
-
+		$this->setTable('aad_events_booking');
 		$this->setPrimaryKey('bookingID');
-		$this->primaryKey('bookingID');		// Prior to 3.4.0
-
-		//$this->belongsTo('AADEventsEvents') ->setForeignKey('eventID') ->setJoinType('LEFT');
 		$this->hasOne('AADEventsEvents') ->setBindingKey('eventID') ->setForeignKey('eventID') ->setJoinType('INNER');
 	}
 
