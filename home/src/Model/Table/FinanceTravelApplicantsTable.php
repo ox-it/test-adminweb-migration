@@ -22,7 +22,7 @@ class FinanceTravelApplicantsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('applicant');
+		$this->setTable('finance_travel_applicant');
 		$this->setPrimaryKey('applicantID');
 		$this->belongsTo('FinanceTravelDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 	}
