@@ -18,10 +18,10 @@ jQuery(document).ready(function($) {
 	makeCondition('#select-child-5', ['male','female'], '#child-6', ['#child-dob-5','#select-child-6','#child-dob-6']);
 	makeCondition('#select-child-6', ['male','female'], '', '#child-dob-6');
 
-	$('#application-type').change(function() { updateSectionNumbers(); });
+	jQuery('#application-type').change(function() { updateSectionNumbers(); });
 
   // Date picker
-	$('#degree-start,#partner-degree-start,#child-dob-1,#child-dob-2,#child-dob-3,#child-dob-4,#child-dob-5,#child-dob-6,#tenancy-accept').datepicker({ dateFormat: "dd/mm/yy" });
+	jQuery('#degree-start,#partner-degree-start,#child-dob-1,#child-dob-2,#child-dob-3,#child-dob-4,#child-dob-5,#child-dob-6,#tenancy-accept').datepicker({ dateFormat: "dd/mm/yy" });
 
 	updateSectionNumbers();
 
@@ -34,33 +34,33 @@ jQuery(document).ready(function($) {
  */
 function makeCondition(watch, value, wrapper, target) {
   if (!Array.isArray(value)) value = [value];
-	$(watch).change(function() {
-		if (value.indexOf($(this).val().toLowerCase())!=-1) displayElements(wrapper,true);
+	jQuery(watch).change(function() {
+		if (value.indexOf(jQuery(this).val().toLowerCase())!=-1) displayElements(wrapper,true);
 		else {
 		  displayElements(wrapper,false);
 		  if (target!='') {
 		    if (!Array.isArray(target)) target = [target];
-		    for (var t in target) $(target[t]).val('').trigger("change");
+		    for (var t in target) jQuery(target[t]).val('').trigger("change");
 		  }
 		}
 	});
-	if ($(watch).val()==undefined || value.indexOf($(watch).val().toLowerCase())==-1) displayElements(wrapper,false);
+	if (jQuery(watch).val()==undefined || value.indexOf(jQuery(watch).val().toLowerCase())==-1) displayElements(wrapper,false);
 }
 
 function displayElements(elements,show) {
   //console.log((show?"Show":'Hide') + ' ' + elements);
   if (!Array.isArray(elements)) elements = [elements];
   for (var e in elements) {
-    if (show) $(elements[e]).show();
-    else 			$(elements[e]).hide();
+    if (show) jQuery(elements[e]).show();
+    else 			jQuery(elements[e]).hide();
   }
 }
 
 function updateSectionNumbers() {
   var count=1;
-  $('.section-number').each(function(index) {
-    if ($(this).is(":visible")) {
-      $(this).html(count);
+  jQuery('.section-number').each(function(index) {
+    if (jQuery(this).is(":visible")) {
+      jQuery(this).html(count);
       count++;
     }
   });
