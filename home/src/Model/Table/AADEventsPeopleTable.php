@@ -17,7 +17,7 @@ class AADEventsPeopleTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('person');
+		$this->setTable('aad_events_person');
 		$this->setPrimaryKey('personID');
 		$this->belongsTo('AADEventsColleges') ->setForeignKey('collcode') ->setBindingKey('collcode');
 		$this->belongsTo('AADEventsDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');

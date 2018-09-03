@@ -16,13 +16,8 @@ class AADEventsCollegesTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-
-		$this->setTable('college');
-		$this->table('college');    			// Prior to 3.4.0
-
+		$this->setTable('aad_events_college');
 		$this->setPrimaryKey('collcode');
-		$this->primaryKey('collcode');		// Prior to 3.4.0
-
 		$this->setDisplayField('college');
 	}
 

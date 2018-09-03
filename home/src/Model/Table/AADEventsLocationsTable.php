@@ -16,13 +16,8 @@ class AADEventsLocationsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-
-		$this->setTable('location');
-		$this->table('location');    			// Prior to 3.4.0
-
+		$this->setTable('aad_events_location');
 		$this->setPrimaryKey('locationID');
-		$this->primaryKey('locationID');		// Prior to 3.4.0
-
 		$this->setDisplayField('location');
 	}
 
