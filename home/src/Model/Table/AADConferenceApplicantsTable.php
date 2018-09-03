@@ -17,7 +17,7 @@ class AADConferenceApplicantsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('applicant');
+		$this->setTable('aad_conference_applicant');
 		$this->setPrimaryKey('applicantID');
 	}
 

@@ -50,7 +50,7 @@ class AADConferenceConferencesTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('eventdetails');
+		$this->setTable('aad_conference_eventdetails');
 	}
 
 	public function getLatest()
