@@ -17,7 +17,7 @@ class FinanceTravelAgentsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('agent');
+		$this->setTable('finance_travel_agent');
 		$this->setPrimaryKey('agentID');
 		$this->setDisplayField('agentname');
 
