@@ -77,7 +77,7 @@ class AADEventsController extends AppController
 	public function success($personID)
 	{
 		// For development only
-	  $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
+	  if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
 
 		$this->loadModel('AADEventsPeople');
 		$person = $this->AADEventsPeople->getByOxfordID();
