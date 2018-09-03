@@ -16,7 +16,7 @@ class FinanceCustomersDepartmentsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('department');
+		$this->setTable('finance_customer_department');
 		$this->setPrimaryKey('deptcode');
 		$this->setDisplayField('deptalpha');
 	}

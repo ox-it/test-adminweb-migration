@@ -40,7 +40,7 @@
 
 
     <!-- Form -->
-		<?= $this->Form->create($customer, [ 'type'=>'file', 'context'=>[ 'validator'=>'register' ] ]) ?>
+		<?= $this->Form->create($customer, [ 'type'=>'file', 'context'=>[ 'validator'=>'register' ], 'novalidate'=>true ]) ?>
 
 			<h4>
 				Your Details
@@ -50,7 +50,7 @@
 			<?= $this->Form->control('phone', [ 'label'=>'Telephone', 'default'=>$customer->phone]) ?>
 			<?= $this->Form->control('email', [ 'label'=>'Email', 'default'=>$customer->email]) ?>
 			<?= $this->Form->input('deptcode', [ 'type'=>'select', 'options'=>$departments, 'empty'=>'-- Please select if appropriate --', 'label'=>'Department/Faculty' ], [ 'val'=>$customer->deptcode]) ?>
-			<?= $this->Form->control('depttext', [ 'label'=>'Department/Faculty Details', 'templates'=>template_wrappers('depttext') ]) ?>
+			<?= $this->Form->control('depttext', [ 'label'=>'Department/Faculty Details (please specify)', 'templates'=>template_wrappers('depttext') ]) ?>
 
 			<hr class="line">
 
