@@ -38,8 +38,8 @@ $cakeDescription = 'WAF: Web-Application Framework';
 	<?= $this->Html->css('waf.css') ?>
 	<?= $this->Html->css('//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css') ?>
 
-	<?= $this->Html->script('http://code.jquery.com/jquery-latest.min.js') ?>
-	<?= $this->Html->script('http://code.jquery.com/ui/1.12.1/jquery-ui.js') ?>
+	<?= $this->Html->script('//code.jquery.com/jquery-latest.min.js') ?>
+	<?= $this->Html->script('//code.jquery.com/ui/1.12.1/jquery-ui.js') ?>
 
 	<?= $this->fetch('meta') ?>
 	<?= $this->fetch('css') ?>
