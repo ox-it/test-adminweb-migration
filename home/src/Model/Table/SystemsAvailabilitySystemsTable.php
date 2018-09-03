@@ -188,25 +188,21 @@ class System {
 class SystemsAvailabilitySystemsTable extends Table
 {
 
-		public static function defaultConnectionName() {
-				return 'systems_availability-test';
-		}
+	public static function defaultConnectionName() {
+		return 'systems_availability-test';
+	}
 
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-
-		$this->setTable('systems');
-		$this->table('systems');    			// Prior to 3.4.0
-
+		$this->setTable('systems_availability_systems');
+		$this->setPrimaryKey('id');
 		$this->belongsToMany('SystemsAvailabilityViews',[
       'through' => 'SystemsAvailabilityRelations',
-      //'foreignKey' => 'system_id',
+      'joinTable' => 'systems_availability_relations',
+      'foreignKey' => 'system_id',
       'targetForeignKey' => 'view_id'
     ]);
-
-    //$this->hasMany('SystemsAvailabilityRelations')->setForeignKey('system_id');
-
 	}
 
 	public function getSystemsForViewID($viewID = null) {
