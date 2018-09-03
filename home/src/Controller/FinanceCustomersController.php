@@ -26,7 +26,7 @@ class FinanceCustomersController extends AppController
 		$customer = $this->FinanceCustomersCustomers->newEntity();
 
 		if ($this->request->is(['post', 'put'])) {
-			$customer = $this->FinanceCustomersCustomers->patchEntity($customer, $this->request->getData());
+			$customer = $this->FinanceCustomersCustomers->patchEntity($customer, $this->request->getData(), ['validate'=>'register']);
 			if ($this->FinanceCustomersCustomers->save($customer)) {
 				$this->Flash->success(__('Saved.'));
 				return $this->redirect(['action' => 'success', $customer->customerID]);

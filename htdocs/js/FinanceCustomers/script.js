@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
 
+	makeCondition('#deptcode', '00', '#depttext_wrapper', '#depttext');
 	makeCondition('input[type=radio][name=category]', 'p', '#custtitle_wrapper', '#custtitle');
 	$('#custtitle_wrapper').hide();
 	makeCondition('#accounttype', ['a','e'], '#accountnum_wrapper', '#accountnum');

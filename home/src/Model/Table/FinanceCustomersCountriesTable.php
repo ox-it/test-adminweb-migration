@@ -16,7 +16,7 @@ class FinanceCustomersCountriesTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('country');
+		$this->setTable('finance_customer_country');
 		$this->setPrimaryKey('domcode');
 		$this->setDisplayField('domicile');
 	}
