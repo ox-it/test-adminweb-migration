@@ -95,7 +95,7 @@ class HarassmentController extends AppController
 	private function getOxfordUserAndValidate()
 	{
 	  // TODO: Remove the development OSS value
-		$_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
+		if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
 		// 'sloblock' - non existant
 		// 'alls0027' - inactive
 		// 'bioc0236' - single dept
