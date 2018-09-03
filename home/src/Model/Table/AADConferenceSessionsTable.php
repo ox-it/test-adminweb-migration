@@ -27,10 +27,8 @@ class AADConferenceSessionsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('event');
-		$this->table('event');    			// Prior to 3.4.0
+		$this->setTable('aad_conference_event');
 		$this->setPrimaryKey('eventID');
-		$this->primaryKey('eventID');		// Prior to 3.4.0
 		$this->hasMany('AADConferenceApplicants')
 		     ->setForeignKey([
 						'event1'//,'event1a','event1b','event2','event2a','event2b','event3','event3a','event3b','event4','event4a','event4b','event5','event5a','event5b','event6','event6a','event6b','event7','event7a','event7b','event8','event8a','event8b','event9','event9a','event9b'
