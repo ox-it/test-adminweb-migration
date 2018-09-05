@@ -26,4 +26,6 @@
 .web-app-wrapper tr.highlight td{background-color:#262;color:#fff}
 .web-app-wrapper tr.highlight td a{color:#4af}
 .web-app-wrapper tr.highlight td a:hover{color:#fee}
+/* Mosaic Overrides */
+#wrapper-main .web-app-wrapper.webform-client-form .webform-component select{max-width:none}
 
