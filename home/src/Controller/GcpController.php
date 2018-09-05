@@ -26,7 +26,7 @@ class GcpController extends AppController
 		}
 		$this->set('applicant', $applicant);
 		$this->set('waf', $this->Waf);
-		$this->set('organisations', $this->GcpApplicants::organisationsOptions());
+		$this->set('organisations', $this->GcpApplicants->organisationsOptions());
 	}
 
 

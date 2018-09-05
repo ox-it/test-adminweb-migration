@@ -29,7 +29,7 @@
 			<?= $this->Form->control('forename', [ 'label'=>'First Name' ]) ?>
 			<?= $this->Form->control('title', [ 'label'=>'Title' ]) ?>
 			<?= $this->Form->control('employer', [ 'type'=>'select', 'options'=>$organisations, 'empty'=>'-- Please select --', 'label'=>'Employing Organisation' ] ) ?>
-			<?= $this->Form->control('otheremp', [ 'label'=>'Please specify' ]) ?>
+			<?php // $this->Form->control('otheremp', [ 'label'=>'Please specify' ]) ?>
 			<?= $this->Form->control('position', [ 'label'=>'Position' ]) ?>
 			<?= $this->Form->control('email', [ 'label'=>'Email' ]) ?>
 			<?= $this->Form->control('phone', [ 'label'=>'Telephone' ]) ?>

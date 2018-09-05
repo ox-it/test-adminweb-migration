@@ -42,22 +42,8 @@ class GcpApplicantsTable extends Table
 		return $applicant;
 	}
 
-	public function validationReport($validator) {
-    $validator ->notEmpty(['official_role','12inqdeptcode','same_dept','eoo_satisfaction']);
-
-    $validator ->notEmpty('application_type');
-		$validator ->notEmpty(['title','surname','firstname','contact_number','preferred_email','nationality','college','degree','subject','term','term_year','acc_prefer_1','acc_prefer_2','tenancy_accept']);
-
-		// Conditional validation
-		foreach(['partner_title','partner_lastname','partner_firstname','partner_relationship','partner_nationality','partner_preferred_email','partner_contact_no','partner_college','partner_degree','partner_subject','partner_degree_start'] as $target) {
-		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['application_type']) && $context['data']['application_type']==self::$joint); });
-		}
-		foreach(['spouse_title','spouse_firstname','spouse_lastname','spouse_relationship','spouse_nationality'] as $target) {
-		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['application_type']) && $context['data']['application_type']==self::$family); });
-		}
-
-    $validator->notEmpty('degree_other', null, function ($context) { return (!empty($context['data']['application_type']) && !empty($context['data']['degree']) && $context['data']['degree']=='Other'); });
-
+	public function validationApply($validator) {
+    $validator ->notEmpty(['surname','forename','title','employer','position','email','phone']);
 		return $validator;
 	}
 
