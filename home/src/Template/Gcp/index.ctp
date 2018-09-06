@@ -23,7 +23,7 @@
     <?php //echo '<textarea rows="10" style="line-height:1.1em">' . print_r($userdepts, true) . '</textarea>'; ?>
 
     <!-- Form -->
-		<?= $this->Form->create($applicant, [ 'novalidate' => true ]) ?>
+		<?= $this->Form->create($applicant, [ 'context'=>[ 'validator'=>'register' ], 'novalidate' => true ]) ?>
 
 			<?= $this->Form->control('surname', [ 'label'=>'Surname' ]) ?>
 			<?= $this->Form->control('forename', [ 'label'=>'First Name' ]) ?>

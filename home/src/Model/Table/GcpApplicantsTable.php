@@ -42,7 +42,7 @@ class GcpApplicantsTable extends Table
 		return $applicant;
 	}
 
-	public function validationApply($validator) {
+	public function validationRegister($validator) {
     $validator ->notEmpty(['surname','forename','title','employer','position','email','phone','role']);
     foreach(['study','investigator', 'REC','project'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['employer']) && $context['data']['employer']=='O'); });
@@ -55,9 +55,9 @@ class GcpApplicantsTable extends Table
 
 			$entity->made_stamp = time();
 
-			$entity->download_date = date('d/m/Y');
-			$entity->download_time = date('H:i');
-			$entity->download_stamp = time();
+			//$entity->download_date = date('d/m/Y');
+			//$entity->download_time = date('H:i');
+			//$entity->download_stamp = time();
 
 			// Make CSV
 		  //$this->createCSVFile($entity);

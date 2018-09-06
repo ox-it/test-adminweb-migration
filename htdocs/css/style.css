@@ -52,9 +52,6 @@ label{font-weight:bold}
 select[multiple]{min-height:150px;background:none}
 input[type=checkbox],input[type=radio],.error input[type="checkbox"],.error input[type="radio"]{margin:0 0.5em 0.2em 0}
 .date select,.time select,.datetime select{display:inline;width:auto;margin-right:10px}
-.error label,.error label.error{color:#C3232D;font-weight:bold}
-.error textarea,.error input{background-color:#fee}
-.error .error-message{color:#C3232D;font-size:0.8em;margin:0 0 0.5em}
 .view h2{color:#6F6F6F}
 .view .columns.strings{border-radius:3px;box-shadow:1px 2px 4px rgba(0, 0, 0, 0.24);margin-right:0.7rem}
 .view .numbers{background-color:#B7E3EC;color:#FFF;border-radius:3px;box-shadow:1px 2px 4px rgba(0, 0, 0, 0.24);margin-right:0.7rem}
