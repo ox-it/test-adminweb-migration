@@ -8,4 +8,5 @@
 		'inputContainerError' => '<div class="webform-component form-item form-type-input form-type-{{type}} {{type}}{{required}} error">{{content}}{{error}}</div>',
 		'legend' => '<legend class="panel-heading">{{text}}</legend>',
 		'select' => '<select name="{{name}}" class="form-control form-select select" {{attrs}}>{{content}}</select>',
+    'textarea' => '<textarea class="form-control form-textarea" name="{{name}}"{{attrs}}>{{value}}</textarea>',
 	];
