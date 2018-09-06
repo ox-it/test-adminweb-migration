@@ -58,6 +58,21 @@ class WafComponent extends Component
     }
   }
 
-
+  public function renderWafAction($controller) {
+    if (!empty($_GET['waf'])) {
+      $parts = explode('/',$_GET['waf']);
+      $action = $parts[0];
+      $data = [];
+      if (count($parts)>1) {
+        for ( $i=1; $i<count($parts); $i++ ) {
+          $data[] = $parts[$i];
+        }
+      }
+      call_user_func_array([$controller, $action], $data);
+      $controller->render($action);
+      return true;
+    }
+    return false;
+  }
 
 }
