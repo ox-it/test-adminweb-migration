@@ -31,12 +31,28 @@
 			<?= $this->Form->control('employer', [ 'type'=>'select', 'options'=>$organisations, 'empty'=>'-- Please select --', 'label'=>'Employing Organisation' ] ) ?>
 			<?php // $this->Form->control('otheremp', [ 'label'=>'Please specify' ]) ?>
 			<?= $this->Form->control('position', [ 'label'=>'Position' ]) ?>
-			<?= $this->Form->control('email', [ 'label'=>'Email' ]) ?>
-			<?= $this->Form->control('phone', [ 'label'=>'Telephone' ]) ?>
+			<?= $this->Form->control('email', [ 'type'=>'text', 'label'=>'Email' ]) ?>
+			<?= $this->Form->control('phone', [ 'type'=>'text', 'label'=>'Telephone' ]) ?>
+			<?= $this->Form->control('role', ['type'=>'textarea', 'label' => 'Give a brief description of your role in research', 'rows' => 3]); ?>
+			<?= $this->Form->control('additional', ['type'=>'textarea', 'label' => 'Please provide any relevant, additional information which you think may be useful to help us determine your eligibility', 'rows' => 3]); ?>
+
+			<!-- External Applicants -->
+      <div id="waf-gcp-external">
+        <p>
+          If you have not provided an Oxford University or Oxford University Hospitals
+          NHS Trust email address, please provide the following information for one
+          Oxford University or Oxford University Hospitals NHS Trust clinical research
+          project you are working on so that we can confirm your eligibility.
+        </p>
+  			<?= $this->Form->control('study', [ 'label'=>'Name of Study' ]) ?>
+	  		<?= $this->Form->control('investigator', [ 'label'=>'Chief Investigator' ]) ?>
+		  	<?= $this->Form->control('REC', [ 'label'=>'REC Reference' ]) ?>
+			  <?= $this->Form->control('project', [ 'label'=>'Project ID' ]) ?>
+      </div>
 
 			<!-- Submit -->
 			<?php
-					echo $this->Form->button(__('Submit Request'));
+					echo $this->Form->button(__('Register'));
 					echo $this->Form->button('Clear From', [ 'type'=>'reset' ]);
 			?>
 
