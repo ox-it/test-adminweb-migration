@@ -32,6 +32,9 @@ class GcpController extends AppController
 
 	public function success($applicantID)
 	{
+		$this->loadModel('GcpApplicants');
+		$this->set('applicant', $this->GcpApplicants->getByID($applicantID));
+		$this->set('waf', $this->Waf);
 	}
 
 }

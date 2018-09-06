@@ -18,7 +18,8 @@ class WafComponent extends Component
     if (!empty($value)) echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>
-				<span class="value">'.h($value).'</span>
+				<span class="display-value">'.h($value).'</span>
+				<span class="display-end"></span>
 			</p>
 ';
   }
@@ -27,7 +28,8 @@ class WafComponent extends Component
     if (!empty($value) && $value!=0) echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>
-				<span class="value">'.h($value).'</span>
+				<span class="display-value">'.h($value).'</span>
+				<span class="display-end"></span>
 			</p>
 ';
   }

@@ -20,7 +20,9 @@
 .web-app-wrapper .indent{margin-left:1em}
 .web-app-wrapper .display-p{padding-left:1.1rem;margin-bottom:0.2rem}
 .web-app-wrapper .display-ul{margin-bottom:0.2rem}
-.web-app-wrapper .display-label{color:#444;display:inline-block;min-width:200px}
+.web-app-wrapper .display-label{color:#666;display:block;float:left;min-width:200px;clear:left}
+.web-app-wrapper .display-value{color:#000;display:block;float:left;min-width:200px;clear:right}
+.web-app-wrapper .display-end{display:block;clear:both}
 .web-app-wrapper .display-notes{color:#000;font-style:italic}
 .web-app-wrapper .inline_wrapper>*{display:inline-block;margin-right:0.5em;margin-bottom:0.5em}
 .web-app-wrapper tr.highlight td{background-color:#262;color:#fff}
