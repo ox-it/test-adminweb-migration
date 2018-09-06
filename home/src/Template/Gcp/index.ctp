@@ -52,7 +52,7 @@
 
 			<!-- Submit -->
 			<?php
-					echo $this->Form->button(__('Register'));
+					echo $this->Form->button(__('Register'), [ 'class'=>'btn button btn-primary' ]);
 					echo $this->Form->button('Clear From', [ 'type'=>'reset' ]);
 			?>
 
