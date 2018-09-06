@@ -14,7 +14,7 @@ class WafComponent extends Component
     ];
   }
 
-  public function postValueWithLabel($value, $label) {
+  public static function postValueWithLabel($value, $label) {
     if (!empty($value)) echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>
