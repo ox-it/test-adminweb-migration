@@ -17,7 +17,7 @@ class GcpController extends AppController
 		$this->loadModel('GcpApplicants');
 		$applicant = $this->GcpApplicants->newEntity();
 		if ($this->request->is(['post', 'put'])) {
-			$applicant = $this->GcpApplicants->patchEntity($applicant, $this->request->getData(), ['validate'=>'apply']);
+			$applicant = $this->GcpApplicants->patchEntity($applicant, $this->request->getData(), ['validate'=>'register']);
 			if ($this->GcpApplicants->save($applicant)) {
 				$this->Flash->success(__('Saved.'));
 				return $this->redirect(['action' => 'success', $applicant->applicantID]);
