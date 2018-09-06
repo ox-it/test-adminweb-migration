@@ -14,27 +14,31 @@ class GcpController extends AppController
 
 	public function index()
 	{
+		$this->set('waf', $this->Waf);
+	  //if ($this->Waf->renderGetAction($this)) return;
+
 		$this->loadModel('GcpApplicants');
+		$this->set('organisations', $this->GcpApplicants->organisationsOptions());
 		$applicant = $this->GcpApplicants->newEntity();
 		if ($this->request->is(['post', 'put'])) {
 			$applicant = $this->GcpApplicants->patchEntity($applicant, $this->request->getData(), ['validate'=>'register']);
 			if ($this->GcpApplicants->save($applicant)) {
 				$this->Flash->success(__('Saved.'));
-				return $this->redirect(['action' => 'success', $applicant->applicantID]);
+				$this->set('applicant', $applicant);
+				$this->render('success');
+				return;
 			}
 			$this->Flash->error(__('Sorry. Your application contains errors.'));
 		}
 		$this->set('applicant', $applicant);
-		$this->set('waf', $this->Waf);
-		$this->set('organisations', $this->GcpApplicants->organisationsOptions());
 	}
 
 
 	public function success($applicantID)
 	{
+		$this->set('waf', $this->Waf);
 		$this->loadModel('GcpApplicants');
 		$this->set('applicant', $this->GcpApplicants->getByID($applicantID));
-		$this->set('waf', $this->Waf);
 	}
 
 }

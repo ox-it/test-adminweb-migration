@@ -47,7 +47,7 @@
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to GCP Online Page', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $this->Html->link('Return to GCP Online Page', $this->request->referer(), ['class'=>'button']) ?>
     </p>
 
 	</div>
