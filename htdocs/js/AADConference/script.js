@@ -1,16 +1,16 @@
 jQuery(document).ready(function($) {
 
   // Date picker
-	//$('#changedate').datepicker({ dateFormat: "dd/mm/yy" });
+	//jQuery('#changedate').datepicker({ dateFormat: "dd/mm/yy" });
 
 	$('#lunchSelect').change(function() {
-		if ($(this).val().toLowerCase().slice(0,1) != 'n') $('#lunchDietary').show();
-		else                                               $('#lunchDietary').hide();
+		if (jQuery(this).val().toLowerCase().slice(0,1) != 'n') jQuery('#lunchDietary').show();
+		else                                               jQuery('#lunchDietary').hide();
 	});
 
 	function disableAttendance(disable) {
-		if (disable) $('.attendInput').attr('disabled', 'disabled');
-		else $('.attendInput').removeAttr('disabled');
+		if (disable) jQuery('.attendInput').attr('disabled', 'disabled');
+		else jQuery('.attendInput').removeAttr('disabled');
 	}
 
 });
