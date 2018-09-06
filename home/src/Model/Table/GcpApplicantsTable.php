@@ -39,6 +39,9 @@ class GcpApplicantsTable extends Table
 	public function getByID($applicantID = null) {
 		$query = $this->find('all') ->where(['applicantID'=>$applicantID]);
     $applicant = $query->first();
+    $applicant->name = (!empty($applicant->title)?$applicant->title.' ':'') . (!empty($applicant->forename)?$applicant->forename.' ':'') . (!empty($applicant->surname)?$applicant->surname:'');
+    $orgs = self::organisationsOptions();
+    $applicant->organisation = !empty($orgs[$applicant->employer]) ? $orgs[$applicant->employer] : '';
 		return $applicant;
 	}
 
