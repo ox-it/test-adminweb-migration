@@ -43,7 +43,10 @@ class GcpApplicantsTable extends Table
 	}
 
 	public function validationApply($validator) {
-    $validator ->notEmpty(['surname','forename','title','employer','position','email','phone']);
+    $validator ->notEmpty(['surname','forename','title','employer','position','email','phone','role']);
+    foreach(['study','investigator', 'REC','project'] as $target) {
+		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['employer']) && $context['data']['employer']=='O'); });
+		}
 		return $validator;
 	}
 
