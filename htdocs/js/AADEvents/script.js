@@ -1,14 +1,14 @@
 jQuery(document).ready(function($) {
 
-	$('#deptcode').change(function() {
-		if ($(this).val().toLowerCase() == '00') $('#depttext_wrapper').show();
+	jQuery('#deptcode').change(function() {
+		if (jQuery(this).val().toLowerCase() == '00') jQuery('#depttext_wrapper').show();
 		else {
-		  $('#depttext_wrapper').hide();
-		  $('#depttext').val('');
+		  jQuery('#depttext_wrapper').hide();
+		  jQuery('#depttext').val('');
 		}
 	});
 
-	if ($('#deptcode').val().toLowerCase() != '00') $('#depttext_wrapper').hide();
+	if (jQuery('#deptcode').val().toLowerCase() != '00') jQuery('#depttext_wrapper').hide();
 
 });
 

@@ -24,28 +24,28 @@ jQuery(document).ready(function($) {
  */
 function makeCondition(watch, value, wrapper, target) {
   if (!Array.isArray(value)) value = [value];
-	$(watch).change(function() {
+	jQuery(watch).change(function() {
 	  var active = false;
-	  if ($(this).is(':checkbox')) active = $(this).is(':checked');
-	  else active = value.indexOf($(this).val().toLowerCase())!=-1;
+	  if (jQuery(this).is(':checkbox')) active = jQuery(this).is(':checked');
+	  else active = value.indexOf(jQuery(this).val().toLowerCase())!=-1;
 		if (active) displayElements(wrapper,true);
 		else {
 		  displayElements(wrapper,false);
 		  if (target!='') {
 		    if (!Array.isArray(target)) target = [target];
 		    for (var t in target) {
-		      if ($(target[t]).is(':checkbox')) $(target[t]).attr('checked', false);
-		      else if ($(target[t]).is(':radio')) $(target[t]).attr('checked', false);
-		      else $(target[t]).val('').trigger("change");
+		      if (jQuery(target[t]).is(':checkbox')) jQuery(target[t]).attr('checked', false);
+		      else if (jQuery(target[t]).is(':radio')) jQuery(target[t]).attr('checked', false);
+		      else jQuery(target[t]).val('').trigger("change");
 		    }
 		  }
 		}
 	});
-	if ($(watch).val()==undefined) displayElements(wrapper,false);
+	if (jQuery(watch).val()==undefined) displayElements(wrapper,false);
 	else {
 	  var active = true;
-	  if ($(watch).is(':checkbox')) active = $(watch).is(':checked');
-	  else active = value.indexOf($(watch).val().toLowerCase())!=-1;
+	  if (jQuery(watch).is(':checkbox')) active = jQuery(watch).is(':checked');
+	  else active = value.indexOf(jQuery(watch).val().toLowerCase())!=-1;
 		if (!active) displayElements(wrapper,false);
 	}
 }
@@ -53,7 +53,7 @@ function makeCondition(watch, value, wrapper, target) {
 function displayElements(elements,show) {
   if (!Array.isArray(elements)) elements = [elements];
   for (var e in elements) {
-    if (show) $(elements[e]).show();
-    else 			$(elements[e]).hide();
+    if (show) jQuery(elements[e]).show();
+    else 			jQuery(elements[e]).hide();
   }
 }

@@ -6,14 +6,14 @@ jQuery(document).ready(function($) {
 	makeCondition('#hotel', '#hotel_wrapper');
 
   // Date pickers
-	$('#airdateout,#airdateback,#traindateout,#traindateback,#cardatestart,#cardateend,#hoteldatestart,#hoteldateend').datepicker({ dateFormat: "dd/mm/yy" });
+	jQuery('#airdateout,#airdateback,#traindateout,#traindateback,#cardatestart,#cardateend,#hoteldatestart,#hoteldateend').datepicker({ dateFormat: "dd/mm/yy" });
 
 });
 
 function makeCondition(watch, wrapper, target) {
-	$(watch).change(function() {
-		if ($(this).is(':checked')) $(wrapper).show();
-		else $(wrapper).hide();
+	jQuery(watch).change(function() {
+		if (jQuery(this).is(':checked')) jQuery(wrapper).show();
+		else jQuery(wrapper).hide();
 	});
-	if (!$(watch).is(':checked')) $(wrapper).hide();
+	if (!jQuery(watch).is(':checked')) jQuery(wrapper).hide();
 }
