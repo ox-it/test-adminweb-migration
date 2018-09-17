@@ -41,13 +41,13 @@ class TracController extends AppController
 
 	private function getLatestSurveyOrInvalidate()
 	{
-	  // TODO: Remove the development OSS value
-		if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'orie1954';
+	  // DONE: Remove the development OSS value
+		// if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'corp0382';
 		// 'sloblock' - non existant
-		// 'bsog0184' - notready
 		// 'phpc0364' - green - expired
 		// 'orie1954' - green
 		// 'bras2682' - blue - expired - empty
+		// 'corp0382' - blue - expired
 
 		if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
 		  // TODO: Force Oxford SSO Login
@@ -73,20 +73,6 @@ class TracController extends AppController
 
 		$survey->old_date = $this->Waf->date_to_stamp($survey->date_submitted);
 		return $survey;
-	}
-
-	private function emailConfirmation($applicant)
-	{
-	  $message  = "<p>Dear ".$applicant->title." ".$applicant->forename." ".$applicant->surname.",</p>\n";
-		// Send the email
-		$email = new Email('default');
-  	$email->from(['AcademicAdmin.Comms@admin.ox.ac.uk' => 'Academic Administration Division Communications']);
-		//$email->to($person->email);
-		// TODO: Remove test email
-		$email->to(['al@cache.co.uk'=>'Al Pirrie', 'al.pirrie@it.ox.ac.uk'=>'Al Pirrie']);
-		$email->subject('AAD Event Registration');
-		$email->emailFormat('html');
-		$email->send($message);
 	}
 
 }

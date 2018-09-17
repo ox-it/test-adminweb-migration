@@ -21,7 +21,7 @@ class TracGroupsTable extends Table
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('tbl_group');
+		$this->setTable('trac_group');
 		$this->setPrimaryKey('weekly_group');
 		//$this->hasOne('HarassmentUsers') ->setForeignKey('userID') ->setBindingKey('personID');
 		//$this->hasOne('HarassmentDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');

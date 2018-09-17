@@ -31,6 +31,7 @@
 .web-app-wrapper .column_wrapper{display:flex;align-items:flex-start}
 .web-app-wrapper .column_wrapper>*{flex:1}
 .web-app-wrapper .column_wrapper .column_wrapper{align-items:center}
+.web-app-wrapper .column_wrapper .column_wrapper.zero *{color:#aaa}
 .web-app-wrapper .column_wrapper .column_wrapper .form-type-header{padding:0 1em 0 0;line-height:1.2em;font-size:0.9em;font-weight:bold}
 .web-app-wrapper .row_item{border-top:1px dotted #eee;padding:5px 0 0 0}
 .web-app-wrapper .row_item.total{border-top:2px solid #ddd;border-bottom:2px solid #ddd}
