@@ -14,7 +14,8 @@ class WafComponent extends Component
     ];
   }
 
-  public static function postValueWithLabel($value, $label) {
+  public static function postValueWithLabel($value, $label, $lookup=null) {
+    if (isset($lookup) && is_array($lookup)) $value = $lookup[$value];
     if (!empty($value)) echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>
@@ -34,6 +35,15 @@ class WafComponent extends Component
 ';
   }
 
+  public function postHeadersWithLabel($headers=[],$label='') {
+    if (!is_array($headers)) $headers = [$headers];
+    echo '  				<div class="column_wrapper">'  . "\n" . '					<div class="label_wrapper"><p>'.$label.'</p></div>' . "\n" . '					<div class="column_wrapper">' . "\n";
+    foreach ($headers as $header) {
+      echo '						<div class="webform-component form-item form-type-header">'.$header.'</div>' . "\n";
+    }
+    echo '					</div>' . "\n" . '				</div>' . "\n";
+  }
+
   public function monthFromNumber($n) {
     if (empty($n) || !is_numeric($n) || $n<1 || $n>12) return '';
     $months = ["1" => "January", "2" => "February", "3" => "March", "4" => "April",
@@ -41,6 +51,24 @@ class WafComponent extends Component
     "10" => "October", "11" => "November", "12" => "December"];
     return $months[strval($n)];
   }
+
+  // Function to convert a date in dd/mm/yyyy format to a unix timestamp.
+  // The time flag should be "start" or "end" to indicate what point in the
+  // day the timestamp should represent
+	public function date_to_stamp($date_string, $time_flag='start') {
+	  if (strlen($date_string)<10) return 0;
+	  if (substr($date_string,2,1)=='/') {
+			$day = substr($date_string,0,2);
+			$month = substr($date_string,3,2);
+			$year = substr($date_string,6,4);
+			if (strtolower(trim($time_flag)) == 'end') $result = mktime(23, 59, 59, $month, $day, $year);
+			else $result = mktime(0, 0, 0, $month, $day, $year);
+		} else {
+		  $result = strtotime($date_string);
+		  if (strtolower(trim($time_flag)) == 'end') $result = mktime(23, 59, 59, date('m',$result), date('d',$result), date('Y',$result));
+		}
+		return $result;
+	}
 
   public function postObjectFieldsAsList($object, $fields) {
     $results = [];
