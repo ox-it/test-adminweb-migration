@@ -1,8 +1,8 @@
 @font-face{font-family:"PT Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;font-weight:normal;font-style:normal}
-*{font-family:"PT Sans",'Helvetica Neue',Arial,Helvetica,sans-serif}
+*{color:#444;font-family:"PT Sans",'Helvetica Neue',Arial,Helvetica,sans-serif}
 a{color:#0071BC;-webkit-transition:all 0.2s;-moz-transition:all 0.2s;-ms-transition:all 0.2s;-o-transition:all 0.2s;transition:all 0.2s}
 a:hover,a:active{color:#d33d44;-webkit-transition:all 0.2s;-moz-transition:all 0.2s;-ms-transition:all 0.2s;-o-transition:all 0.2s;transition:all 0.2s}
-ul,ol,dl,p{font-size:0.85rem}
+ul,ol,dl,p{font-size:1rem}
 p{line-height:1.6em;margin-bottom:0.5rem}
 header{height:auto;line-height:1em;padding:0;box-shadow:none;border-bottom:1px solid #e7e7e7;display:flex;background:#AC8A39}
 header .header-image{float:left;padding:0.9375rem}
@@ -26,6 +26,9 @@ ul{list-style-type:disc;margin:0 0 30px 0;padding-left:0.9375rem}
 li{margin-left:1.8em}
 li p{margin-bottom:0.25rem}
 ul li ul,ul li ul li{margin:0;padding:0}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea
+{padding:0 0.2rem}
+input[align='right']{text-align:right}
 .bullet:before{font-family:'cakefont',sans-serif;font-size:18px;display:inline-block;margin-left:-1.3em;width:1.2em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;vertical-align:-1px}
 .success:before{color:#88c671;content:"\0056"}
 .problem:before{color:#d33d44;content:"\0057"}

@@ -44,17 +44,6 @@ class FinanceTravelController extends AppController
 		$this->set('applicant', $this->FinanceTravelApplicants->getByID($applicantID));
 	}
 
-  // Allows the script file to be called individually
-	public function script()
-	{
-	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/script.js');
-    $script = $file->read();
-    $response = $this->response;
-    $response->body($script);
-    $response = $response->withType('js');
-    return $response;
-	}
-
 	private function emailConfirmation($applicant)
 	{
 	  $message  = "<p>Dear ".$applicant->title." ".$applicant->forename." ".$applicant->surname.",</p>\n";

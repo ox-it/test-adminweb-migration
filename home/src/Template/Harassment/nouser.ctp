@@ -4,7 +4,7 @@
 	<div class="waf-include">
 
     <?php
-      if (!$user) :
+      if (!isset($user)) :
     ?>
 
   		<h3>Unknown User<?= empty($_SERVER['HTTP_WAF_WEBAUTH']) ?  '' : ' : ' . $_SERVER['HTTP_WAF_WEBAUTH'] ?></h3>

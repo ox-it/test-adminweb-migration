@@ -9,6 +9,7 @@
 .web-app-wrapper .required.radio > label[for]{font-weight:normal}
 .web-app-wrapper .input.radio{margin:0 0 1rem}
 .web-app-wrapper button+button{margin-left:20px}
+.web-app-wrapper .toggle{display:inline-block;border:1px solid #aaa;border-radius:5px;cursor:pointer;padding:2px 6px;margin:0 0 1em;font-size:0.8em;box-shadow:0 1px #eee}
 .web-app-wrapper .small_text{font-size:0.85em}
 .web-app-wrapper .description{background:#eee;padding:0 0.9375rem}
 .web-app-wrapper .spacer{padding:0;margin:0;line-height:0.7em}
@@ -24,7 +25,17 @@
 .web-app-wrapper .display-value{color:#000;display:block;float:left;min-width:250px;clear:right}
 .web-app-wrapper .display-end{display:block;clear:both}
 .web-app-wrapper .display-notes{color:#000;font-style:italic}
-.web-app-wrapper .inline_wrapper>*{display:inline-block;margin-right:0.5em;margin-bottom:0.5em}
+.web-app-wrapper .inline_wrapper>*{display:inline-block;margin-right:0.5em;margin-bottom:5px;width:auto}
+.web-app-wrapper .inline_wrapper input,.web-app-wrapper .column_wrapper input{margin:0}
+.web-app-wrapper .column_wrapper .notes{color:#555;font-size:0.9em;margin:0 0 0 0.5em}
+.web-app-wrapper .column_wrapper{display:flex;align-items:flex-start}
+.web-app-wrapper .column_wrapper>*{flex:1}
+.web-app-wrapper .column_wrapper .column_wrapper{align-items:center}
+.web-app-wrapper .column_wrapper .column_wrapper .form-type-header{padding:0 1em 0 0;line-height:1.2em;font-size:0.9em;font-weight:bold}
+.web-app-wrapper .row_item{border-top:1px dotted #eee;padding:5px 0 0 0}
+.web-app-wrapper .row_item.total{border-top:2px solid #ddd;border-bottom:2px solid #ddd}
+.web-app-wrapper .row_item>*{margin-bottom:5px}
+.web-app-wrapper .label_wrapper>*{color:#555;margin:0;padding-right:1em;fomt-weight:300}
 .web-app-wrapper tr.highlight td{background-color:#262;color:#fff}
 .web-app-wrapper tr.highlight td a{color:#4af}
 .web-app-wrapper tr.highlight td a:hover{color:#fee}
