@@ -15,7 +15,7 @@ class WafComponent extends Component
   }
 
   public static function postValueWithLabel($value, $label, $lookup=null) {
-    if (isset($lookup) && is_array($lookup)) $value = $lookup[$value];
+    if (isset($lookup) && is_array($lookup) && !empty($lookup[$value])) $value = $lookup[$value];
     if (!empty($value)) echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>

@@ -143,7 +143,7 @@ class TracSurvey extends Entity
 				<div class="label_wrapper">
 				  <div>' . $label . '</div>
 				</div>
-        <div class="column_wrapper">
+        <div class="column_wrapper'.($value==0?' zero':'').'">
 			    <div>' . round($value / 7.5, 2) . '<span class="notes">days</span></div>
 				  <div>' . round($value, 2) . '<span class="notes">hours</span></div>
 				  <div>' . round(100*($value/$max),1) . '<span class="notes">%</span></div>
@@ -161,7 +161,7 @@ class TracSurvey extends Entity
 				<div class="label_wrapper">
 				  <div>' . $label . '</div>
 				</div>
-        <div class="column_wrapper">
+        <div class="column_wrapper'.(($d+$a)==0?' zero':'').'">
 			    <div>' . $d . '<span class="notes">hours</span></div>
 			    <div>' . $a . '<span class="notes">hours</span></div>
 				  <div>' . round($d+$a,2) . '<span class="notes">hours</span></div>
@@ -180,7 +180,7 @@ class TracSurvey extends Entity
 				<div class="label_wrapper">
 				  <div>' . $label . '</div>
 				</div>
-        <div class="column_wrapper">
+        <div class="column_wrapper'.($h==0?' zero':'').'">
 			    <div>&nbsp;</div>
 			    <div>' . $h . '<span class="notes">hours</span></div>
 			    <div>&nbsp;</div>
@@ -199,7 +199,7 @@ class TracSurvey extends Entity
 				<div class="label_wrapper">
 				  <div>' . $label . '</div>
 				</div>
-        <div class="column_wrapper">
+        <div class="column_wrapper'.($h==0?' zero':'').'">
 			    <div>' . $h . '<span class="notes">hours</span></div>
 				  <div>' . $p . '<span class="notes">%</span></div>
 				</div>

@@ -6,7 +6,7 @@
 
 	<div class="waf-include">
 
-      <p class="error">
+      <p>
         <strong>We were not able to find any survey records for you</strong>
       </p>
 			<p>

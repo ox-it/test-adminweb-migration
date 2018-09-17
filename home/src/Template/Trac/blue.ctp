@@ -117,8 +117,8 @@
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a53', 'A53: Seminars and classes (college)') ?>
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a04', 'A04: Laboratory practicals and other laboratory teaching') ?>
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a07', 'A07: Other teaching including fieldwork and supervision of project work') ?>
-				<?= $survey::contactPrepHoursPercentageInput($this, 'a48', 'A48: Assessment, examining, admissions, student welfare and other support for UG teaching (dept/faculty)') ?>
-				<?= $survey::contactPrepHoursPercentageInput($this, 'a58', 'A58: Assessment, examining, admissions, student welfare and other support for UG teaching (college)') ?>
+				<?= $survey::prepHoursPercentage($this, 'a48', 'A48: Assessment, examining, admissions, student welfare and other support for UG teaching (dept/faculty)') ?>
+				<?= $survey::prepHoursPercentage($this, 'a58', 'A58: Assessment, examining, admissions, student welfare and other support for UG teaching (college)') ?>
   			<hr class="line" />
 
 			  <h4>Postgraduate Teaching</h4>
@@ -138,8 +138,8 @@
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a73', 'A73: Seminars and classes (college)') ?>
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a24', 'A24: Laboratory practicals and other laboratory teaching') ?>
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a27', 'A27: Other teaching including fieldwork and supervision of project work') ?>
-				<?= $survey::contactPrepHoursPercentageInput($this, 'a68', 'A68: Assessment, examining, admissions, student welfare and other support for PG teaching (dept/faculty)') ?>
-				<?= $survey::contactPrepHoursPercentageInput($this, 'a78', 'A78: Assessment, examining, admissions, student welfare and other support for PG teaching (college)') ?>
+				<?= $survey::prepHoursPercentage($this, 'a68', 'A68: Assessment, examining, admissions, student welfare and other support for PG teaching (dept/faculty)') ?>
+				<?= $survey::prepHoursPercentage($this, 'a78', 'A78: Assessment, examining, admissions, student welfare and other support for PG teaching (college)') ?>
   			<hr class="line" />
 
 			  <h4>Postgraduate Researchers Teaching</h4>
@@ -156,8 +156,8 @@
 				</div>
 				<?= $survey::contactPrepHoursPercentageInput($this, 'b17', 'B17: Supervision of PGR students') ?>
 				<?= $survey::contactPrepHoursPercentageInput($this, 'a33', 'A33: Lectures, seminars and classes for PGR students') ?>
-				<?= $survey::contactPrepHoursPercentageInput($this, 'b88', 'B88: Assessment, examining, admissions, student welfare and other support for PGR teaching (dept/faculty)') ?>
-				<?= $survey::contactPrepHoursPercentageInput($this, 'b98', 'B98 Assessment, examining, admissions, student welfare and other support for PGR teaching (college)') ?>
+				<?= $survey::prepHoursPercentage($this, 'b88', 'B88: Assessment, examining, admissions, student welfare and other support for PGR teaching (dept/faculty)') ?>
+				<?= $survey::prepHoursPercentage($this, 'b98', 'B98 Assessment, examining, admissions, student welfare and other support for PGR teaching (college)') ?>
   			<hr class="line" />
 
 			  <h4>Special Courses</h4>
