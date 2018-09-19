@@ -16,8 +16,6 @@
     we will issue a username and password for access to the course.
   </p>
 
-	<?= $this->Html->script($this->name . '/script.js') ?>
-
 	<div class="waf-include">
 
     <?php //echo '<textarea rows="10" style="line-height:1.1em">' . print_r($userdepts, true) . '</textarea>'; ?>

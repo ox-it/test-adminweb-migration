@@ -70,6 +70,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/safety/courses/*', ['controller' => 'Safety', 'action' => 'view']);
     $routes->connect('/safety/success/*', ['controller' => 'Safety', 'action' => 'success']);
 
+    // UAS Events Routing
+    $routes->connect('/uas-events/',  				['controller' => 'UASEvents', 'action' => 'index']);
+    $routes->connect('/uas-events/success/*', ['controller' => 'UASEvents', 'action' => 'success']);
+
     /**
      * Connect catchall routes for all controllers.
      *

@@ -26,7 +26,7 @@ class AADEventsEventsTable extends Table
 	public function getAvailable()
 	{
 	  $cutoff = date('Ymd');
-    $cutoff = '20170101';
+    //$cutoff = '20170101';
     $query = $this->find('all') ->where(['sortdate >=' => $cutoff]) ->order(['sortdate' => 'ASC', 'eventname' => 'ASC']) ->contain('AADEventsLocations');
     $events = $query->all();
     foreach($events as $event) {

@@ -1,17 +1,8 @@
 <!-- File: src/Template/Jobs/index.ctp -->
 
-<?php
-  //$yesNoOptions = ['yes'=>'Yes', 'no'=>'No'];
-?>
-
 <div class="row">
 	<div class="waf-include">
 	  <div id="job-vacancies-app">
-
-		<!-- Form -->
-		<?php
-			echo $this->Form->create($jobs, ['type'=>'get']);
-		?>
 
     <hr>
     <?php foreach ($feed['currentVacancies']['vacancy'] as $vacancy) { ?>
@@ -52,8 +43,6 @@
 
     <?php } ?>
     </ul>
-
-		<?=	$this->Form->end(); ?>
 
 		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
 		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($file,true) . '</textarea>'; ?>

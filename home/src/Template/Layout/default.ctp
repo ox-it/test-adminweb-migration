@@ -67,6 +67,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
 
 	<div class="container clearfix">
 	  <div class="web-app-wrapper"><?php // This is used to mimic the wrapper class in Mosaic ?>
+	  	<?= $this->Html->script($this->name . '/script.js') ?>
 			<?= $this->fetch('content') ?>
 		</div>
 	</div>

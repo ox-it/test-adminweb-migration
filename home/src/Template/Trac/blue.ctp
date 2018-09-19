@@ -4,8 +4,6 @@
 
   <h3>University of Oxford - Academic Activity Survey :  BLUE</h3>
 
-	<?= $this->Html->script($this->name . '/script.js') ?>
-
 	<div class="waf-include">
   <div class="<?= $survey->group_colour ?>">
 

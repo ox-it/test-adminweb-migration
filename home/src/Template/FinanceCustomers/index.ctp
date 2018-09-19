@@ -22,8 +22,6 @@
 		Customer Set-up Form
 	</h3>
 
-	<?= $this->Html->script($this->name . '/script.js') ?>
-
 	<div class="waf-include">
 
     <!-- Information -->

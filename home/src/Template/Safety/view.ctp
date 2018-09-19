@@ -1,22 +1,14 @@
 <!-- File: src/Template/SafetyCourses/view.ctp -->
 
-	<div class="row">
-		<div class="description">
-			<?php // print_r($events);  ?>
-		</div>
-	</div>
-
 <div class="row">
 	<div class="waf-include">
 
 		<h3>
-		  <!-- WAF.SafetyCourses.course -->
 		  <?= h($course->course) ?>
 		</h3>
 
     <?php if (!empty($course->availability)) : ?>
 		<h4>Who should attend</h4>
-		<!-- WAF.SafetyCourses.availability -->
 		<?= $course->availability ?>
 		<hr />
 		<?php endif; ?>

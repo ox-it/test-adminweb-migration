@@ -1,4 +1,4 @@
-<!-- File: src/Template/AADEvents/index.ctp -->
+<!-- File: src/Template/UASEvents/index.ctp -->
     <?php
       $b = [];
       $c = [];
@@ -17,7 +17,7 @@
 	<?php
 		if (!empty($person->mismatch)) {
 		  echo '<p><em>ID mismatch</em></p>';
-		  echo $this->Html->link('Return to booking form', ['action' => 'index']);
+		  echo $waf->postLinkToControllerRoot($this, 'Return to booking form');
 		  return;
 		}
 	?>
@@ -26,7 +26,7 @@
 
     <p>Thank you for registering, the following details have been recorded. Booking
     details have been emailed to you at the email address you provided.</p>
-    <p>You can amend your details on the <?= $this->Html->link('booking form', $_SERVER['HTTP_REFERER']) ?>
+    <p>You can amend your details on the <?= $waf->postLinkToControllerRoot($this, 'booking form') ?>
     until the time of the event.</p>
 
     <h4>Personal Details</h4>
@@ -57,7 +57,7 @@
       <ul>
 			<?php
 				foreach ($b as $booking) {
-				  $display = '<strong>' . $booking->a_a_d_events_event->eventname . '</strong> (<em>' . date("d F Y", $booking->a_a_d_events_event->startstamp) . ', ' . $booking->a_a_d_events_event->starttime . '</em>; &nbsp; ' . $booking->a_a_d_events_event->a_a_d_events_location->location . ')';
+				  $display = '<strong>' . $booking->u_a_s_events_event->eventname . '</strong> (<em>' . date("d F Y", $booking->u_a_s_events_event->startstamp) . ', ' . $booking->u_a_s_events_event->starttime . '</em>; &nbsp; ' . $booking->u_a_s_events_event->u_a_s_events_location->location . ')';
           echo '<li>' . $display . '</li>';
 				}
 			?>
@@ -74,7 +74,7 @@
       <ul>
 			<?php
 				foreach ($c as $booking) {
-				  $display = '<strong>' . $booking->a_a_d_events_event->eventname . '</strong> (<em>' . date("d F Y", $booking->a_a_d_events_event->startstamp) . ', ' . $booking->a_a_d_events_event->starttime . '</em>; &nbsp; ' . $booking->a_a_d_events_event->a_a_d_events_location->location . ')';
+				  $display = '<strong>' . $booking->u_a_s_events_event->eventname . '</strong> (<em>' . date("d F Y", $booking->u_a_s_events_event->startstamp) . ', ' . $booking->u_a_s_events_event->starttime . '</em>; &nbsp; ' . $booking->u_a_s_events_event->u_a_s_events_location->location . ')';
           echo '<li>' . $display . '</li>';
 				}
 			?>
