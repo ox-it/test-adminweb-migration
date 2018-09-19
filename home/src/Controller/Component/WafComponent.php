@@ -9,8 +9,8 @@ class WafComponent extends Component
 
 	public function template_wrappers($field, $notes='', $classes=[]) {
     return [
-			'inputContainer'=>'<div id="'.$field.'_wrapper" class="input {{type}}{{required}} '.implode(' ',$classes).'">{{content}}'.$notes.'</div>',
-			'inputContainerError'=>'<div id="'.$field.'_wrapper" class="input {{type}}{{required}} '.implode(' ',$classes).' error">{{content}}{{error}}'.$notes.'</div>'
+			'inputContainer'=>'<div id="'.$field.'_wrapper" class="webform-component form-item form-type-input form-type-{{type}} {{type}}{{required}} '.implode(' ',$classes).'">{{content}}'.$notes.'</div>',
+			'inputContainerError'=>'<div id="'.$field.'_wrapper" class="webform-component form-item form-type-input form-type-{{type}} {{type}}{{required}} '.implode(' ',$classes).' error">{{content}}{{error}}'.$notes.'</div>'
     ];
   }
 
@@ -42,6 +42,14 @@ class WafComponent extends Component
       echo '						<div class="webform-component form-item form-type-header">'.$header.'</div>' . "\n";
     }
     echo '					</div>' . "\n" . '				</div>' . "\n";
+  }
+
+  public function postButtonToReferer($context, $text='Back') {
+    echo $context->Html->link($text, $context->request->referer(), ['class'=>'button']);
+  }
+
+  public function postLinkToControllerRoot($context, $text='Back') {
+    echo $context->Html->link($text, ['action' => 'index']);
   }
 
   public function monthFromNumber($n) {

@@ -14,9 +14,6 @@ class GcpController extends AppController
 
 	public function index()
 	{
-		$this->set('waf', $this->Waf);
-	  //if ($this->Waf->renderGetAction($this)) return;
-
 		$this->loadModel('GcpApplicants');
 		$this->set('organisations', $this->GcpApplicants->organisationsOptions());
 		$applicant = $this->GcpApplicants->newEntity();
@@ -36,7 +33,6 @@ class GcpController extends AppController
 
 	public function success($applicantID)
 	{
-		$this->set('waf', $this->Waf);
 		$this->loadModel('GcpApplicants');
 		$this->set('applicant', $this->GcpApplicants->getByID($applicantID));
 	}

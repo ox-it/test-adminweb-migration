@@ -1,11 +1,5 @@
 <!-- File: src/Template/SafetyCourses/book.ctp -->
 
-	<div class="row">
-		<div class="description">
-			<?php //print_r($departments);  ?>
-		</div>
-	</div>
-
 <div class="row">
 	<div class="waf-include">
 

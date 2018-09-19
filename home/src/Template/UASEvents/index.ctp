@@ -1,4 +1,4 @@
-<!-- File: src/Template/AADEvents/index.ctp -->
+<!-- File: src/Template/UASEvents/index.ctp -->
 
 <div class="row">
 
@@ -6,9 +6,11 @@
 		Events Booking Form
 	</h3>
 
-	<p>To register for AAD events, please complete the following Events Booking Form.</p>
-  <p>Please Note: This event booking form is linked to your single sign on, please therefore only book a place for yourself and not on behalf of someone else.</p>
-
+	<p>To register for UAS events, please complete the following form.</p>
+	<p>
+	  <strong>Please note:</strong> This event booking form is linked to your Single Sign-On, therefore only book a place for yourself and not on behalf of someone else.
+		If you wish to register on behalf of someone else, contact <a href="mailto:uas.communications@admin.ox.ac.uk">uas.communications@admin.ox.ac.uk</a>.
+	</p>
 	<div class="waf-include">
 
     <!-- Form -->
@@ -21,19 +23,16 @@
 			</h4>
 
 			<?php
-					echo $this->Form->control('surname', ['label' => 'Surname']);
-					echo $this->Form->control('forename', ['label' => 'First name']);
 					echo $this->Form->control('title', ['label' => 'Title']);
-					echo $this->Form->control('jobtitle', ['label' => 'Job title', 'default'=>$person->jobtitle]);
-					echo $this->Form->control('phone', ['label' => 'Telephone', 'default'=>$person->phone]);
-					echo $this->Form->control('email', ['label' => 'Email', 'default'=>$person->email]);
+					echo $this->Form->control('forename', ['label' => 'First name']);
+					echo $this->Form->control('surname', ['label' => 'Surname']);
+					echo $this->Form->control('jobtitle', ['label' => 'Job title']);
+					echo $this->Form->control('phone', ['label' => 'Telephone']);
+					echo $this->Form->control('email', ['label' => 'Email']);
 					echo $this->Form->control('email2', ['label' => 'Confirm email', 'default'=>$person->email]);
-					echo $this->Form->input('deptcode', ['type' => 'select', 'options' => $departments, 'empty' => '-- Please select if appropriate --', 'label' => 'Department/Faculty'], ['val'=>$person->deptcode]);
-					echo $this->Form->control('depttext', ['label' => 'Department/Faculty Details', 'templates' => [
-            'inputContainer' => '<div id="depttext_wrapper" class="input {{type}}{{required}}">{{content}}</div>',
-            'inputContainerError' => '<div id="depttext_wrapper" class="input {{type}}{{required}} error">{{content}}{{error}}</div>'
-          ]]);
-					echo $this->Form->input('collcode', ['type' => 'select', 'options' => $colleges, 'empty' => '-- Please select if appropriate --', 'label' => 'College'],['val'=>$person->collcode]);
+					echo $this->Form->control('deptcode', ['type' => 'select', 'options' => $departments, 'empty' => '-- Please select if appropriate --', 'label' => 'Department/Faculty']);
+					echo $this->Form->control('depttext', ['label' => 'Department/Faculty Details', 'templates' => $waf->template_wrappers('depttext')]);
+					echo $this->Form->control('collcode', ['type' => 'select', 'options' => $colleges, 'empty' => '-- Please select if appropriate --', 'label' => 'College']);
 			?>
 
 			<hr class="line">
@@ -65,7 +64,7 @@
 			      if ($fully_booked) $options['disabled'] = true;
 			      if ($booking_status == 'B') $options['checked'] = true;
 			      $this->Form->unlockField('event_' . $event->eventID);
-						echo $this->Form->input('event_' . $event->eventID, $options,['val'=>$booking_status]);
+						echo $this->Form->control('event_' . $event->eventID, $options,['val'=>$booking_status]);
 			    echo '</div>' . "\n";
 				}
 				echo '<hr class="line">';
@@ -74,9 +73,9 @@
 			?>
 
 			<p>
-				If you wish to cancel a booking, or be added to the waiting list for
-				an event that is fully booked, please call the AAD Communications team on 284847 or email us
-				at <a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a>.
+				If you wish to cancel a booking, or be added to the waiting list for an event
+				that is fully booked, please email the UAS Communications team at
+				<a href="mailto:uas.communications@admin.ox.ac.uk">uas.communications@admin.ox.ac.uk</a>.
 			</p>
 
 			<!-- Submit -->
@@ -87,8 +86,10 @@
 
 		<?php else : ?>
 		  <p>There are no events available for booking.</p>
-		  <p>If you were expecting to book an event, please call the AAD Communications team on 284847 or email us
-      at <a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a>.</p>
+		  <p>
+		    If you were expecting to book an event, please call the UAS Communications team on 284847 or email us at
+				<a href="mailto:uas.communications@admin.ox.ac.uk">uas.communications@admin.ox.ac.uk</a>.
+      </p>
 		<?php endif; ?>
 
 		<?php

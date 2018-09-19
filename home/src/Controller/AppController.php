@@ -53,6 +53,9 @@ class AppController extends Controller
 		 * see https://book.cakephp.org/3.0/en/controllers/components/security.html
 		 */
 		$this->loadComponent('Security');
+
+		// Always make WafComponent available to views
+		$this->set('waf', $this->Waf);
 	}
 
   // Allows easy access to any script file

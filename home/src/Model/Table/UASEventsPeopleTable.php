@@ -1,5 +1,5 @@
 <?php
-// src/Model/Table/AADEventsPeopleTable.php
+// src/Model/Table/UASEventsPeopleTable.php
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
@@ -7,37 +7,33 @@ use Cake\I18n\Time;
 use Cake\I18n\Date;
 use Cake\Validation\Validator;
 
-class AADEventsPeopleTable extends Table
+class UASEventsPeopleTable extends Table
 {
 
 	public static function defaultConnectionName() {
-		return 'aad_events-test';
+		return 'uas_events-test';
 	}
 
 	public function initialize(array $config)
 	{
 		$this->addBehavior('Timestamp');
-		$this->setTable('aad_events_person');
+		$this->setTable('uas_events_person');
 		$this->setPrimaryKey('personID');
-		$this->belongsTo('AADEventsColleges') ->setForeignKey('collcode') ->setBindingKey('collcode');
-		$this->belongsTo('AADEventsDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
+		$this->belongsTo('UASEventsColleges') ->setForeignKey('collcode') ->setBindingKey('collcode');
+		$this->belongsTo('UASEventsDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 	}
 
 	public function getByOxfordID()
 	{
     $oxfordID = !empty($_SERVER['HTTP_WAF_WEBAUTH']) ? trim($_SERVER['HTTP_WAF_WEBAUTH']) : 'notgiven';
-    $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]) ->order(['timestamp'=>'DESC']) -> contain(['AADEventsColleges','AADEventsDepartments']);
+    $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]) ->order(['timestamp'=>'DESC']) -> contain(['UASEventsColleges','UASEventsDepartments']);
     $person = $query->first();
-    $person->department = (!empty($person->a_a_d_events_department)) ? $person->a_a_d_events_department->deptalpha : $person->depttext;
-    $person->college = (!empty($person->a_a_d_events_college)) ? $person->a_a_d_events_college->college : '';
+    if ($person) {
+			$person->department = (!empty($person->u_a_s_events_department)) ? $person->u_a_s_events_department->deptalpha : (!empty($person->depttext) ? $person->depttext : '');
+			$person->college = (!empty($person->u_a_s_events_college)) ? $person->u_a_s_events_college->college : '';
+    }
     return $person;
 	}
-
-    public function getByID($bookingID = null)
-    {
-      $booking = $this->get($bookingID);
-      return $booking;
-    }
 
 	public function validationRegister()
 	{

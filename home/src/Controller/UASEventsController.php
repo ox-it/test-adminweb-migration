@@ -1,5 +1,5 @@
 <?php
-// src/Controller/AADEventsController.php
+// src/Controller/UASEventsController.php
 
 namespace App\Controller;
 
@@ -7,43 +7,43 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
 use Cake\Mailer\Email;
 
-class AADEventsController extends AppController
+class UASEventsController extends AppController
 {
 
 	public static function defaultConnectionName() {
-			return 'aad_events-test';
+			return 'uas_events-test';
 	}
 
 	public function index()
 	{
-	  // For development only
-	  $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
+	  // DONE: Remove test SSO
+	  // $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
     $oxfordID = empty($_SERVER['HTTP_WAF_WEBAUTH']) ? 'unknown' : $_SERVER['HTTP_WAF_WEBAUTH'];
 
-		$this->loadModel('AADEventsLocations');
-		$this->set('locations', $this->AADEventsLocations->getSelectOptions());
+		$this->loadModel('UASEventsLocations');
+		$this->set('locations', $this->UASEventsLocations->getSelectOptions());
 
-		$this->loadModel('AADEventsColleges');
-		$this->set('colleges', $this->AADEventsColleges->getSelectOptions());
+		$this->loadModel('UASEventsColleges');
+		$this->set('colleges', $this->UASEventsColleges->getSelectOptions());
 
-		$this->loadModel('AADEventsDepartments');
-		$this->set('departments', $this->AADEventsDepartments->getSelectOptions());
+		$this->loadModel('UASEventsDepartments');
+		$this->set('departments', $this->UASEventsDepartments->getSelectOptions());
 
-		$this->loadModel('AADEventsEvents');
-		$events = $this->AADEventsEvents->getAvailable();
+		$this->loadModel('UASEventsEvents');
+		$events = $this->UASEventsEvents->getAvailable();
 		$this->set('events', $events);
 
-		$this->loadModel('AADEventsBookings');
-		$bookings = $this->AADEventsBookings->getByOxfordIDForEvents($events);
+		$this->loadModel('UASEventsBookings');
+		$bookings = $this->UASEventsBookings->getByOxfordIDForEvents($events);
 		$this->set('bookings', $bookings);
 
-		$this->loadModel('AADEventsPeople');
-		$person = $this->AADEventsPeople->getByOxfordID();
-		if (empty($person)) $person = $this->AADEventsPeople->newEntity();
+		$this->loadModel('UASEventsPeople');
+		$person = $this->UASEventsPeople->getByOxfordID();
+		if (empty($person)) $person = $this->UASEventsPeople->newEntity();
 
 		if ($this->request->is(['post', 'put'])) {
-			$person = $this->AADEventsPeople->patchEntity($person, $this->request->getData());
-			if ($this->AADEventsPeople->save($person)) {
+			$person = $this->UASEventsPeople->patchEntity($person, $this->request->getData(), ['validate'=>'register']);
+			if ($this->UASEventsPeople->save($person)) {
 				$this->Flash->success(__('Saved.'));
 				$booked = [];
 				foreach($events as $event) {
@@ -52,7 +52,7 @@ class AADEventsController extends AppController
             $booking = null;
             foreach ($bookings as $booking) if ($booking->eventID == $event->eventID) break;
             if (empty($booking)) {
-              $booking = $this->AADEventsBookings->newEntity();
+              $booking = $this->UASEventsBookings->newEntity();
   						$booking->oxfordID = $oxfordID;
   						$booking->eventID = $event->eventID;
   						$booking->webdate = date('d/m/Y');
@@ -60,9 +60,9 @@ class AADEventsController extends AppController
   						$booking->webtime = date('H:i');
             }
 						$booking->bookstatus = $person->$key;
-            $booking = $this->AADEventsBookings->updateWithPerson($booking, $person);
+            $booking = $this->UASEventsBookings->updateWithPerson($booking, $person);
             if ($person->$key=='B') $booked[] = $event->display;
-						$this->AADEventsBookings->save($booking);
+						$this->UASEventsBookings->save($booking);
           }
 				}
 			  if (count($booked)>0) $this->emailConfirmation($person, $booked);
@@ -70,8 +70,9 @@ class AADEventsController extends AppController
     		$this->set('bookings', $this->UASEventsBookings->getByOxfordID());
 				$this->render('success');
 				return;
+			} else {
+			  $this->Flash->error(__('Unable to process your changes at this time.'));
 			}
-			$this->Flash->error(__('Unable to process your changes at this time.'));
 		}
 		$this->set('person', $person);
 
@@ -80,15 +81,15 @@ class AADEventsController extends AppController
 	public function success($personID)
 	{
 		// For development only
-	  if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
+	  //if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
 
-		$this->loadModel('AADEventsPeople');
-		$person = $this->AADEventsPeople->getByOxfordID();
+		$this->loadModel('UASEventsPeople');
+		$person = $this->UASEventsPeople->getByOxfordID();
 		$person->mismatch = (empty($person) || $person->personID!=$personID);
 		$this->set('person', $person);
 
-		$this->loadModel('AADEventsBookings');
-		$this->set('bookings', $this->AADEventsBookings->getByOxfordID());
+		$this->loadModel('UASEventsBookings');
+		$this->set('bookings', $this->UASEventsBookings->getByOxfordID());
 	}
 
 	private function emailConfirmation($person, $booked)
@@ -105,14 +106,14 @@ class AADEventsController extends AppController
 		$message .= "to register for new events as they become available.</p>\n";
 
 		$message .= "<p>Kind Regards,</p>\n";
-		$message .= "<p><strong>Academic Administration Division Communications</strong>,<br>\n";
+		$message .= "<p><strong>UAS</strong>,<br>\n";
 		$message .= "University of Oxford,<br>\n";
 		$message .= "Examination Schools,<br>\n";
 		$message .= "75-81 High Street,<br>\n";
 		$message .= "Oxford<br>\n";
 		$message .= "OX1 4BG</p>\n";
 		$message .= "<p>Tel: 01865 (2)84847<br>\n";
-		$message .= 'Email: <a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a><br>' . "\n";
+		$message .= 'Email: <a href="mailto:uas.communications@admin.ox.ac.uk">uas.communications@admin.ox.ac.uk</a><br>' . "\n";
 		$message .= 'Web: <a href="http://www.admin.ox.ac.uk/aad">www.admin.ox.ac.uk/aad</a></p>' . "\n";
 
 		// Send the email

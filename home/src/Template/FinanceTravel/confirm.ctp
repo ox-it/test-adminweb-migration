@@ -1,18 +1,5 @@
 <!-- File: src/Template/FinanceTravel/confirm.ctp -->
 
-<?php
-
-  function postValueWithLabel($value, $label) {
-    if (!empty($value)) echo '
-			<p>
-				<span class="'.(empty($label)?'':'label').'"><strong>'.$label.(empty($label)?'':':').'</strong></span>
-				<span class="value">'.h($value).'</span>
-			</p>
-';
-  }
-
-?>
-
 <div class="row">
 	<div class="waf-include">
 
@@ -25,58 +12,58 @@
     <p><strong>Please print this page if you wish to keep a permanent record of your application.</strong></p>
 
 		<h3>Traveller details</h3>
-    <?= postValueWithLabel($applicant->name, 'Name') ?>
-    <?= postValueWithLabel($applicant->phone, 'Telephone') ?>
-    <?= postValueWithLabel($applicant->email, 'Email') ?>
-    <?= postValueWithLabel($applicant->department, 'Department') ?>
+    <?= $waf->postValueWithLabel($applicant->name, 'Name') ?>
+    <?= $waf->postValueWithLabel($applicant->phone, 'Telephone') ?>
+    <?= $waf->postValueWithLabel($applicant->email, 'Email') ?>
+    <?= $waf->postValueWithLabel($applicant->department, 'Department') ?>
 
     <?php if (!empty($applicant->reqphone) || !empty($applicant->reqemail)) : ?>
     	<h4>Contact Details</h4>
-    	<?= postValueWithLabel($applicant->reqphone, 'Telephone') ?>
-    	<?= postValueWithLabel($applicant->reqemail, 'Email') ?>
+    	<?= $waf->postValueWithLabel($applicant->reqphone, 'Telephone') ?>
+    	<?= $waf->postValueWithLabel($applicant->reqemail, 'Email') ?>
     <?php endif; ?>
 
     <?php if (!empty($applicant->air) && $applicant->air=='Y') : ?>
     	<h3>Air Travel</h3>
-    	<?= postValueWithLabel($applicant->airportout, 'Outbound from') ?>
-    	<?= postValueWithLabel($applicant->airportback, 'Destination') ?>
-    	<?= postValueWithLabel($applicant->airdeparting, 'Departing') ?>
-    	<?= postValueWithLabel($applicant->airdirectverbose, 'Direct flight needed?') ?>
-    	<?= postValueWithLabel($applicant->airreturnverbose, 'Return flight?') ?>
-    	<?= postValueWithLabel($applicant->airreturning, 'Returning') ?>
-    	<?= postValueWithLabel($applicant->destaddress, 'Other information') ?>
-    	<?= postValueWithLabel($applicant->airline, 'Preferred airline') ?>
-    	<?= postValueWithLabel($applicant->airclassverbose, 'Travel class') ?>
+    	<?= $waf->postValueWithLabel($applicant->airportout, 'Outbound from') ?>
+    	<?= $waf->postValueWithLabel($applicant->airportback, 'Destination') ?>
+    	<?= $waf->postValueWithLabel($applicant->airdeparting, 'Departing') ?>
+    	<?= $waf->postValueWithLabel($applicant->airdirectverbose, 'Direct flight needed?') ?>
+    	<?= $waf->postValueWithLabel($applicant->airreturnverbose, 'Return flight?') ?>
+    	<?= $waf->postValueWithLabel($applicant->airreturning, 'Returning') ?>
+    	<?= $waf->postValueWithLabel($applicant->destaddress, 'Other information') ?>
+    	<?= $waf->postValueWithLabel($applicant->airline, 'Preferred airline') ?>
+    	<?= $waf->postValueWithLabel($applicant->airclassverbose, 'Travel class') ?>
     <?php endif; ?>
 
     <?php if (!empty($applicant->train) && $applicant->train=='Y') : ?>
     	<h3>Train Journey</h3>
-    	<?= postValueWithLabel($applicant->stationout, 'Outbound from') ?>
-    	<?= postValueWithLabel($applicant->stationback, 'Destination') ?>
-    	<?= postValueWithLabel($applicant->traindeparting, 'Departing') ?>
-    	<?= postValueWithLabel($applicant->trainreturning, 'Returning') ?>
-    	<?= postValueWithLabel($applicant->trainclassverbose, 'Travel class') ?>
+    	<?= $waf->postValueWithLabel($applicant->stationout, 'Outbound from') ?>
+    	<?= $waf->postValueWithLabel($applicant->stationback, 'Destination') ?>
+    	<?= $waf->postValueWithLabel($applicant->traindeparting, 'Departing') ?>
+    	<?= $waf->postValueWithLabel($applicant->trainreturning, 'Returning') ?>
+    	<?= $waf->postValueWithLabel($applicant->trainclassverbose, 'Travel class') ?>
     <?php endif; ?>
 
     <?php if (!empty($applicant->car) && $applicant->car=='Y') : ?>
     	<h3>Overseas Hire Car</h3>
-    	<?= postValueWithLabel($applicant->carpickup, 'Pick-up location') ?>
-    	<?= postValueWithLabel($applicant->cardatestart, 'Start date') ?>
-    	<?= postValueWithLabel($applicant->cardropoff, 'Drop-off point') ?>
-    	<?= postValueWithLabel($applicant->cardateend, 'Return date') ?>
+    	<?= $waf->postValueWithLabel($applicant->carpickup, 'Pick-up location') ?>
+    	<?= $waf->postValueWithLabel($applicant->cardatestart, 'Start date') ?>
+    	<?= $waf->postValueWithLabel($applicant->cardropoff, 'Drop-off point') ?>
+    	<?= $waf->postValueWithLabel($applicant->cardateend, 'Return date') ?>
     <?php endif; ?>
 
     <?php if (!empty($applicant->hotel) && $applicant->hotel=='Y') : ?>
     	<h3>Hotel</h3>
-    	<?= postValueWithLabel($applicant->hotellocation, 'Location') ?>
-    	<?= postValueWithLabel($applicant->hoteldatestart, 'Arrival date') ?>
-    	<?= postValueWithLabel($applicant->hoteldateend, 'Departure date') ?>
-    	<?= postValueWithLabel($applicant->hoteladditional, 'Additional Details') ?>
+    	<?= $waf->postValueWithLabel($applicant->hotellocation, 'Location') ?>
+    	<?= $waf->postValueWithLabel($applicant->hoteldatestart, 'Arrival date') ?>
+    	<?= $waf->postValueWithLabel($applicant->hoteldateend, 'Departure date') ?>
+    	<?= $waf->postValueWithLabel($applicant->hoteladditional, 'Additional Details') ?>
     <?php endif; ?>
 
     <?php if (!empty($applicant->additional)) : ?>
     	<h3>Additional Information</h3>
-    	<?= postValueWithLabel($applicant->additional, '') ?>
+    	<?= $waf->postValueWithLabel($applicant->additional, '') ?>
     <?php endif; ?>
 
     <p>&nbsp;</p>

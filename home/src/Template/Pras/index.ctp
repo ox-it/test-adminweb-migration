@@ -1,13 +1,7 @@
 <!-- File: src/Template/Pras/index.ctp -->
 
-<?php
-  $yesNoOptions = ['yes'=>'Yes', 'no'=>'No'];
-?>
-
 <div class="row">
 	<div class="waf-include">
-
-	  <?php echo $this->Html->script('Pras/script.js'); ?>
 
 		<h3>Change Organisational Structure</h3>
 
@@ -61,13 +55,10 @@
     <?php } ?>
     </ul>
 
-
     <?= $this->Form->button('Change'); ?>
 		<?=	$this->Form->end(); ?>
 
-    <textarea rows="50" style="line-height:1.2em;font-size:11px"><?php
-				print_r($hierarchy);
-		?></textarea>
+    <?php echo '<textarea rows="50" style="line-height:1.2em;font-size:11px">' . print_r($hierarchy,true) . '</textarea>' ?>
 
 	</div>
 </div>

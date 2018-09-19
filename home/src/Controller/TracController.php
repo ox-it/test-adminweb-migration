@@ -17,8 +17,6 @@ class TracController extends AppController
 
 	public function index()
 	{
-		$this->set('waf', $this->Waf);
-
 		$survey = $this->getLatestSurveyOrInvalidate();
 		if ($survey) {
 			if ($this->request->is(['post', 'put'])) {

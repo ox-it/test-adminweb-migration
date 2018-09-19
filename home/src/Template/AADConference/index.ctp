@@ -8,8 +8,6 @@
 
 	<div class="waf-include">
 
-	  <?php echo $this->Html->script('AADConference/script.js'); ?>
-
     <!-- Initial instructions -->
     <?php
       if (!$applicant->newUser)

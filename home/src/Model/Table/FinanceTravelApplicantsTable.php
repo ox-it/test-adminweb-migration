@@ -34,12 +34,12 @@ class FinanceTravelApplicantsTable extends Table
     $applicant->department = (!empty($applicant->finance_travel_department)) ? $applicant->finance_travel_department->deptalpha : '';
     $applicant->airdeparting = $applicant->airdateout . ( empty($applicant->airtimeout) ? '' : ', ' . $applicant->airtimeout );
     $applicant->airreturning = $applicant->airdateback . ( empty($applicant->airtimeback) ? '' : ', ' . $applicant->airtimeback );
-    $applicant->airdirectverbose = $this->yesnoOptions[$applicant->airdirect];
-    $applicant->airreturnverbose = $this->yesnoOptions[$applicant->airreturn];
-    $applicant->airclassverbose = $this->airclassOptions[$applicant->airclass];
+    $applicant->airdirectverbose = !empty($applicant->airdirect) ?    $this->yesnoOptions[$applicant->airdirect] : '';
+    $applicant->airreturnverbose = !empty($applicant->airreturn) ?    $this->yesnoOptions[$applicant->airreturn] : '';
+    $applicant->airclassverbose =  !empty($applicant->airclass)  ? $this->airclassOptions[$applicant->airclass]  : '';
     $applicant->traindeparting = $applicant->traindateout . ( empty($applicant->traintimeout) ? '' : ', ' . $applicant->traintimeout );
     $applicant->trainreturning = $applicant->traindateback . ( empty($applicant->traintimeback) ? '' : ', ' . $applicant->traintimeback );
-    $applicant->trainclassverbose = $this->trainclassOptions[$applicant->trainclass];
+    $applicant->trainclassverbose = (!empty($applicant->trainclass) && !empty($this->trainclassOptions[$applicant->trainclass])) ? $this->trainclassOptions[$applicant->trainclass] : '';
 		return $applicant;
 	}
 
