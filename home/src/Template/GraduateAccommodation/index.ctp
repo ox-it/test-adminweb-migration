@@ -3,7 +3,6 @@
 
 <div class="row">
 
-	<?php echo $this->Html->script($this->name . '/script.js'); ?>
 	<?php //if (!empty($form->errors())) echo '<p>ERRORS</p><textarea rows="5" style="font-size:0.6em;line-height:1.1em">' . print_r($form->errors(), true) . '</textarea>'; ?>
 	<?php // echo '<textarea rows="5" style="font-size:0.6em;line-height:1.1em">' . print_r($form, true) . '</textarea>'; ?>
 
