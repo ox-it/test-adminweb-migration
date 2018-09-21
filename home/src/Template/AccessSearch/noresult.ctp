@@ -14,7 +14,7 @@
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Search', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $waf->postButtonToReferer($this, 'Search Again') ?>
     </p>
 
 	</div>
