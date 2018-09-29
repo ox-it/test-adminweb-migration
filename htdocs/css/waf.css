@@ -4,16 +4,29 @@
 .web-app-wrapper .waf-time:before{content:"("}
 .web-app-wrapper .waf-time:after{content:")"}
 .web-app-wrapper .waf-location{font-style:italic;margin:0 0.2em}
-.web-app-wrapper .waf-menu-select button{margin:0}
+.web-app-wrapper .waf-menu-select.ui-widget.ui-widget-content{position:relative;width:100%;margin-top:1em;border:none}
+.web-app-wrapper .waf-menu-select .ui-widget.ui-widget-content{border:none}
+.web-app-wrapper .waf-menu-select button{color:#333;font-size:0.875rem;text-align:left;margin:0;background:none;border:none;width:100%;padding:7px 25px 7px 5px;position:relative}
+.web-app-wrapper .waf-menu-select button:hover,
+.web-app-wrapper .waf-menu-select button.ui-state-active{color:#fff;background:#999}
+.web-app-wrapper .waf-menu-select button .ui-icon{color:#333;position:absolute;top:5px;right:0;bottom:auto}
+.web-app-wrapper .waf-menu-select li{margin:0;width:25%}
+.web-app-wrapper .waf-menu-select li ul{width:72%}
+.web-app-wrapper .waf-menu-select li ul li{margin:0;width:33%}
+.web-app-wrapper .waf-menu-select li ul li ul{width:65%}
+.web-app-wrapper .waf-menu-select li ul li ul li{margin:0;width:50%}
+.web-app-wrapper .waf-menu-select li ul li ul li ul{width:49%}
+.web-app-wrapper .waf-menu-select li ul li ul li ul li{margin:0;width:100%}
 .web-app-wrapper .required > label:after{content:' *';color:#C3232D}
-.web-app-wrapper .required.radio > label[for]{font-weight:normal}
-.web-app-wrapper .input.radio{margin:0 0 1rem}
+.web-app-wrapper .radio > label[for]{font-weight:normal}
+.web-app-wrapper .form-type-radio,.web-app-wrapper .input.radio,.web-app-wrapper .spaced{margin:0 0 1rem}
 .web-app-wrapper button+button{margin-left:20px}
 .web-app-wrapper .toggle{display:inline-block;border:1px solid #aaa;border-radius:5px;cursor:pointer;padding:2px 6px;margin:0 0 1em;font-size:0.8em;box-shadow:0 1px #eee}
 .web-app-wrapper .small_text{font-size:0.85em}
 .web-app-wrapper .description{background:#eee;padding:0 0.9375rem}
 .web-app-wrapper .spacer{padding:0;margin:0;line-height:0.7em}
 .web-app-wrapper .notes{padding:0;margin:0 0 1em;font-size:0.9em;font-style:italic}
+.web-app-wrapper .notes button{font-size:0.875rem;color:#fff;background:#999;padding:7px 15px 7px 15px;margin:0 1em;font-style:normal}
 .web-app-wrapper .with-notes{margin-bottom:0 !important}
 .web-app-wrapper .gapabove{margin-top:1em !important}
 .web-app-wrapper .nomargin{margin:0 !important}

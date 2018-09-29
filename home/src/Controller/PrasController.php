@@ -13,142 +13,52 @@ class PrasController extends AppController
 	public function index()
 	{
     $pras = new PrasForm();
-    $this->set('hierarchy', $pras->getHierarchyArray());
-    $this->set('change_type_options', $pras->getChangeTypeOptions());
 		if ($this->request->is('post')) {
-			if ($pras->execute($this->request->getData())) {
-				$this->Flash->success('Thank you for your submission.');
-			} else {
-				$this->Flash->error('There was a problem submitting your form.');
+		  $post = $this->request->getData();
+		  $data = $pras->execute($post);
+		  //$this->Flash->success('POST: ' . print_r($post,true));
+		  //$this->Flash->success('DATA: ' . print_r($data,true));
+			$this->set('pras', $pras);
+			$this->set('data', $data);
+
+		  if ($post['stage']==1) {
+		  	if ($data) {
+					if ( !empty( $data['entity'] ) && $data['safeType'] ) {
+						$this->set('changeType', $data['changeType']);
+						$this->set('entity', $data['entity']);
+						return $this->render($data['changeType']);
+					}
+
+				  if ( !empty($data['entityType']) && $data['safeType'] ) {
+						$this->set('changeType', $data['changeType']);
+						$this->set('entityType', $data['entityType']);
+						return $this->render($data['changeType']);
+				  }
+				}
+		  }
+
+		  if ($post['stage']==2) {
+				if ($data) {
+					if ( (!empty($data['entity']) || !empty($data['entityType'])) && $data['safeType'] ) {
+						$this->Flash->success('Thank you for your submission.');
+						// To debug use this
+  					//return $this->render($post['changeType']);
+						return $this->render('success');
+					} else {
+						$this->Flash->error('Unknown error.');
+						return $this->render('index');
+					}
+				} else {
+    			$this->set('data', $post);
+				  $this->Flash->error('Please check the form for errors.');
+					return $this->render($post['changeType']);
+				}
 			}
+
+      // No success in stage 1
+			$this->Flash->error('Please select a change type.');
 		}
 		$this->set('pras', $pras);
 	}
-
-  /*
-	public function view($courseID = null)
-	{
-			$this->loadModel('SafetyCourses');
-			$course = $this->SafetyCourses->getByID($courseID);
-			$this->set(compact('course'));
-
-			$this->loadModel('SafetyEvents');
-      $events = $this->SafetyEvents->futureEventsForCourseID($courseID);
-      $this->set('events', $events);
-	}
-
-	public function book($eventID = null)
-	{
-			$this->loadModel('SafetyDepartments');
-      $departments = $this->SafetyDepartments->getSelectOptions();
-      $this->set('departments', $departments);
-
-			$this->loadModel('SafetyColleges');
-      $colleges = $this->SafetyColleges->getSelectOptions();
-      $this->set('colleges', $colleges);
-
-			$this->loadModel('SafetyEvents');
-      $event = $this->SafetyEvents->getByID($eventID);
-      $this->set('event', $event);
-
-      if (!empty($event->courseID)) {
-			  $this->loadModel('SafetyCourses');
-			  $course = $this->SafetyCourses->get($event->courseID);
-			  $this->set(compact('course'));
-			}
-
-			$this->loadModel('SafetyApplicants');
-			$applicant = $this->SafetyApplicants->newEntity();
-      if ($this->request->is('post')) {
-        $applicant = $this->SafetyApplicants->patchEntity($applicant, $this->request->getData());
-				$applicant->eventID = $eventID;
-				$applicant->statuscode = ($event->waiting) ? 'L' : 'A';
-				if ($this->SafetyApplicants->save($applicant)) {
-					$this->Flash->success(__('Your application has been saved.'));
-					return $this->redirect(['action' => 'success', $applicant->applicantID]);
-				}
-				$this->Flash->error(__('Unable to process your application.'));
-			}
-			$this->set('applicant', $applicant);
-	}
-
-	public function success($applicantID = null)
-	{
-			$this->loadModel('SafetyApplicants');
-      $applicant = $this->SafetyApplicants->getByID($applicantID);
-			$this->set(compact('applicant'));
-
-			if (!empty($applicant->eventID)) {
-				$this->loadModel('SafetyEvents');
-				$event = $this->SafetyEvents->getByID($applicant->eventID);
-				$this->set(compact('event'));
-			}
-
-      if (!empty($event->courseID)) {
-			  $this->loadModel('SafetyCourses');
-			  $course = $this->SafetyCourses->get($event->courseID);
-			  $this->set(compact('course'));
-			}
-
-      if (!empty($applicant->deptcode)) {
-				$this->loadModel('SafetyDepartments');
-				$department = $this->SafetyDepartments->getByCode($applicant->deptcode);
-			  $this->set(compact('department'));
-			}
-
-      if (!empty($applicant->collcode)) {
-				$this->loadModel('SafetyColleges');
-				$college = $this->SafetyColleges->getByCode($applicant->collcode);
-			  $this->set(compact('college'));
-			}
-
-	}
-
-	public function cancel($eventID = null)
-	{
-			$this->loadModel('SafetyEvents');
-			$events = $this->SafetyEvents->cancellableEvents();
-			$this->set('events', $events);
-
-      $this->loadModel('SafetyApplicants');
-			$applicant = $this->SafetyApplicants->newEntity();
-      if ($this->request->is('post')) {
-        $applicant = $this->SafetyApplicants->patchEntity($applicant, $this->request->getData());
-				$eventID = $applicant->eventID;
-	      if (!empty($eventID)) {
-					$event = $this->SafetyEvents->getByID($eventID);
-					$this->set('event', $event);
-				}
-				$applicant->statuscode = 'X';
-				if ($this->SafetyApplicants->save($applicant)) {
-					$this->Flash->success(__('Your cancellation has been logged.'));
-					return $this->redirect(['action' => 'cancelled', $applicant->applicantID]);
-				}
-				$this->Flash->error(__('Unable to process your cancellation.'));
-			}
-			$this->set('applicant', $applicant);
-
-	}
-
-	public function cancelled($applicantID = null)
-	{
-			$this->loadModel('SafetyApplicants');
-      $applicant = $this->SafetyApplicants->getByID($applicantID);
-			$this->set(compact('applicant'));
-
-			if (!empty($applicant->eventID)) {
-				$this->loadModel('SafetyEvents');
-				$event = $this->SafetyEvents->getByID($applicant->eventID);
-				$this->set(compact('event'));
-			}
-
-      if (!empty($event->courseID)) {
-			  $this->loadModel('SafetyCourses');
-			  $course = $this->SafetyCourses->get($event->courseID);
-			  $this->set(compact('course'));
-			}
-
-	}
-  //*/
 
 }

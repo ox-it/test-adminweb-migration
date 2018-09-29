@@ -9,34 +9,42 @@
 
 		<!-- Form -->
 		<?php
-			echo $this->Form->create($pras, ['type'=>'get']);
+			echo $this->Form->create($pras, [ 'novalidate' => true ]);
 		?>
 
 		<h4>Scope</h4>
-		<p>Select the scope of the proposed change.</p>
-		<?= $this->Form->input('changeType', ['type' => 'radio', 'options' => $change_type_options, 'label' => 'Change Type']); ?>
+		<p>Select the type of change</p>
+		<?= $this->Form->input('stage', ['type' => 'hidden', 'value' => 1 ]); ?>
+		<?= $this->Form->control('changeType', ['type' => 'radio', 'options' => $pras->changeTypeOptions(), 'label' => 'Change Type', 'templates'=>$waf->template_wrappers('generalPurposesConfirmed', '', 'spaced') ]); ?>
 
-    <ul id="pras-select-menu" class="waf-menu-select">
-    <?php foreach ($hierarchy as $d_key => $division) { ?>
+		<p>Select the affected organisation</p>
+		<p id="newdivision" class="notes">
+		  If creating a new entity select the parent entity, or
+		  <?= $this->Form->button('Create a new Division', [ 'name'=>'entityType', 'value'=>'level1' ]); ?>
+		</p>
+		<ul id="pras-select-menu" class="waf-menu-select">
+		<?php foreach ($pras->getHierarchyArray() as $d_key => $division) { ?>
 
-      <li>
-        <button value="<?= $d_key ?>" name="entity" type="submit"><?= $division['name'] ?></button>
+			<li>
+				<?= $this->Form->button($division['name'], [ 'name'=>'entity', 'value'=>$d_key ]); ?>
 				<?php if (!empty($division['units'])) : ?>
 					<ul>
 					<?php foreach ($division['units'] as $u_key => $unit) { ?>
 
 						<li>
-							<button value="<?= $d_key.'|'.$u_key ?>" name="entity" type="submit"><?= $unit['full'] ?></button>
+							<?= $this->Form->button($unit['full'], [ 'name'=>'entity', 'value'=>$d_key.'|'.$u_key ]); ?>
 							<?php if (!empty($unit['subunits'])) : ?>
 								<ul>
 								<?php foreach ($unit['subunits'] as $s_key => $subunit) { ?>
 
 									<li>
-										<button value="<?= $d_key.'|'.$u_key.'|'.$s_key ?>" name="entity" type="submit"><?= $subunit['full'] ?></button>
+										<?= $this->Form->button($subunit['full'], [ 'name'=>'entity', 'value'=>$d_key.'|'.$u_key.'|'.$s_key ]); ?>
 										<?php if (!empty($subunit['ccs'])) : ?>
 											<ul>
 											<?php foreach ($subunit['ccs'] as $c_key => $cc) { ?>
-												<li><button value="<?= $d_key.'|'.$u_key.'|'.$s_key.'|'.$c_key ?>" name="entity" type="submit"><?= $cc['name'] ?></button></li>
+												<li>
+													<?= $this->Form->button($cc['name'], [ 'name'=>'entity', 'value'=>$d_key.'|'.$u_key.'|'.$s_key.'|'.$c_key ]); ?>
+												</li>
 											<?php } ?>
 											</ul>
 										<?php endif; ?>
@@ -52,13 +60,12 @@
 				<?php endif; ?>
 			</li>
 
-    <?php } ?>
-    </ul>
+		<?php } ?>
+		</ul>
 
-    <?= $this->Form->button('Change'); ?>
 		<?=	$this->Form->end(); ?>
 
-    <?php echo '<textarea rows="50" style="line-height:1.2em;font-size:11px">' . print_r($hierarchy,true) . '</textarea>' ?>
+    <?php // echo '<textarea rows="50" style="line-height:1.2em;font-size:11px">' . print_r($pras->getHierarchyArray(),true) . '</textarea>' ?>
 
 	</div>
 </div>
