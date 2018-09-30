@@ -5,7 +5,8 @@
 .web-app-wrapper .waf-time:after{content:")"}
 .web-app-wrapper .waf-location{font-style:italic;margin:0 0.2em}
 .web-app-wrapper .waf-menu-select.ui-widget.ui-widget-content{position:relative;width:100%;margin-top:1em;border:none}
-.web-app-wrapper .waf-menu-select .ui-widget.ui-widget-content{border:none}
+.web-app-wrapper .waf-menu-select .ui-widget.ui-widget-content{border:none;padding:0;margin:0 0 1em 0;list-style:none}
+#wrapper-main .paragraphs-item-form.web-app-wrapper .webform-client-form .waf-menu-select button,
 .web-app-wrapper .waf-menu-select button{color:#333;font-size:0.875rem;text-align:left;margin:0;background:none;border:none;width:100%;padding:7px 25px 7px 5px;position:relative}
 .web-app-wrapper .waf-menu-select button:hover,
 .web-app-wrapper .waf-menu-select button.ui-state-active{color:#fff;background:#999}
