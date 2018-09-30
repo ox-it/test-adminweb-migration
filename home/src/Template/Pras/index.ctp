@@ -3,6 +3,8 @@
 <div class="row">
 	<div class="waf-include">
 
+	  <?= $this->Html->script($this->name . '/jquery-ui.widget.menu.min.js') ?>
+
 		<h3>Change Organisational Structure</h3>
 
 		<p>If you are experiencing difficulties accessing this form please email PRAS at <a href="mailto:orgstructure@admin.ox.ac.uk">orgstructure@admin.ox.ac.uk</a>.</p>
