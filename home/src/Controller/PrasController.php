@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Form\PrasForm;
+use Cake\Filesystem\File;
 use Cake\Utility\Xml;
 use Cake\Utility\Exception\XmlException;
 
@@ -59,6 +60,17 @@ class PrasController extends AppController
 			$this->Flash->error('Please select a change type.');
 		}
 		$this->set('pras', $pras);
+	}
+
+  // Easy access to jQuery Menu Widget script file
+	public function jquerymenu()
+	{
+	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/jquery-ui.widget.menu.min.js');
+    $script = $file->read();
+    $response = $this->response;
+    $response->body($script);
+    $response = $response->withType('js');
+    return $response;
 	}
 
 }
