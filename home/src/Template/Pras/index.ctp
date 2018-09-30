@@ -15,7 +15,7 @@
 		<h4>Scope</h4>
 		<p>Select the type of change</p>
 		<?= $this->Form->input('stage', ['type' => 'hidden', 'value' => 1 ]); ?>
-		<?= $this->Form->control('changeType', ['type' => 'radio', 'options' => $pras->changeTypeOptions(), 'label' => 'Change Type', 'templates'=>$waf->template_wrappers('generalPurposesConfirmed', '', 'spaced') ]); ?>
+		<?= $this->Form->control('changeType', ['type' => 'radio', 'options' => $pras->changeTypeOptions(), 'label' => 'Change Type', 'templates'=>$waf->template_wrappers('generalPurposesConfirmed', '', 'spaced','radios') ]); ?>
 
 		<p>Select the affected organisation</p>
 		<p id="newdivision" class="notes">

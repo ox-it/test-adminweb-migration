@@ -19,7 +19,7 @@
 .web-app-wrapper .waf-menu-select li ul li ul li ul li{margin:0;width:100%}
 .web-app-wrapper .required > label:after{content:' *';color:#C3232D}
 .web-app-wrapper .radio > label[for]{font-weight:normal}
-.web-app-wrapper .form-type-radio,.web-app-wrapper .input.radio,.web-app-wrapper .spaced{margin:0 0 1rem}
+.web-app-wrapper .input.radio,.web-app-wrapper .spaced{margin:0 0 1rem}
 .web-app-wrapper button+button{margin-left:20px}
 .web-app-wrapper .toggle{display:inline-block;border:1px solid #aaa;border-radius:5px;cursor:pointer;padding:2px 6px;margin:0 0 1em;font-size:0.8em;box-shadow:0 1px #eee}
 .web-app-wrapper .small_text{font-size:0.85em}
