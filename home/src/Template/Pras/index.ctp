@@ -1,9 +1,9 @@
 <!-- File: src/Template/Pras/index.ctp -->
 
+<?= $this->Html->script($this->name . '/jquery-ui.widget.menu.min.js') ?>
+
 <div class="row">
 	<div class="waf-include">
-
-	  <?= $this->Html->script($this->name . '/jquery-ui.widget.menu.min.js') ?>
 
 		<h3>Change Organisational Structure</h3>
 
