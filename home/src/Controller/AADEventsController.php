@@ -67,7 +67,7 @@ class AADEventsController extends AppController
 				}
 			  if (count($booked)>0) $this->emailConfirmation($person, $booked);
     		$this->set('person', $person);
-    		$this->set('bookings', $this->UASEventsBookings->getByOxfordID());
+    		$this->set('bookings', $this->AADEventsBookings->getByOxfordID());
 				$this->render('success');
 				return;
 			}
@@ -77,6 +77,7 @@ class AADEventsController extends AppController
 
 	}
 
+  /* Using render instead
 	public function success($personID)
 	{
 		// For development only
@@ -90,6 +91,7 @@ class AADEventsController extends AppController
 		$this->loadModel('AADEventsBookings');
 		$this->set('bookings', $this->AADEventsBookings->getByOxfordID());
 	}
+	//*/
 
 	private function emailConfirmation($person, $booked)
 	{

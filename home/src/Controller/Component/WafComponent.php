@@ -49,6 +49,10 @@ class WafComponent extends Component
     echo $context->Html->link($text, $context->request->referer(), ['class'=>'button']);
   }
 
+  public function postLinkToReferer($context, $text='Back') {
+    echo $context->Html->link($text, $context->request->referer());
+  }
+
   public function postLinkToControllerRoot($context, $text='Back') {
     echo $context->Html->link($text, ['action' => 'index']);
   }
