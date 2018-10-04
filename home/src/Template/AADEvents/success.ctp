@@ -17,7 +17,8 @@
 	<?php
 		if (!empty($person->mismatch)) {
 		  echo '<p><em>ID mismatch</em></p>';
-		  echo $this->Html->link('Return to booking form', ['action' => 'index']);
+		  echo $waf->postLinkToReferer($this, 'Return to booking form');
+
 		  return;
 		}
 	?>
@@ -26,7 +27,7 @@
 
     <p>Thank you for registering, the following details have been recorded. Booking
     details have been emailed to you at the email address you provided.</p>
-    <p>You can amend your details on the <?= $this->Html->link('booking form', $_SERVER['HTTP_REFERER']) ?>
+    <p>You can amend your details on the <?= $waf->postLinkToReferer($this, 'booking form') ?>
     until the time of the event.</p>
 
     <h4>Personal Details</h4>
