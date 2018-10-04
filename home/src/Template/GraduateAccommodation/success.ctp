@@ -28,7 +28,7 @@
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Application Form', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $waf->postButtonToReferer($this, 'Return to Application Form') ?>
     </p>
 
 	</div>
