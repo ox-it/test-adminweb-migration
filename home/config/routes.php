@@ -58,7 +58,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     // AAD Events Routing
     $routes->connect('/aad-events/',  				['controller' => 'AADEvents', 'action' => 'index']);
-    $routes->connect('/aad-events/success/*', ['controller' => 'AADEvents', 'action' => 'success']);
+    $routes->connect('/aad-events/:action/',  ['controller' => 'AADEvents']);
 
     // Finance Customers Routing
     $routes->connect('/finance-customers/',  				 ['controller' => 'FinanceCustomers', 'action' => 'index']);
