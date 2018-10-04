@@ -73,4 +73,15 @@ class PrasController extends AppController
     return $response;
 	}
 
+  // Easy access to jQuery Menu Widget css file
+	public function jquerymenucss()
+	{
+	  $file = new File(WWW_ROOT . env('jsBaseUrl','css/') . $this->name . '/jquery-ui.widget.menu.structure.css');
+    $css = $file->read();
+    $response = $this->response;
+    $response->body($css);
+    $response = $response->withType('css');
+    return $response;
+	}
+
 }

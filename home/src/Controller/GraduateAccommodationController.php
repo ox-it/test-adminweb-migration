@@ -18,17 +18,13 @@ class GraduateAccommodationController extends AppController
 
 			if ($result) {
 				$this->Flash->success('Thank you for your submission.');
-				return $this->redirect(['action' => 'success']);
+				return $this->render('success');
 			} else {
 				$this->Flash->error('There was a problem submitting your form. Please check for missing information.');
 			}
 
 		}
 		$this->set('form', $form);
-	}
-
-	public function success()
-	{
 	}
 
 }
