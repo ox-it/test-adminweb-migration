@@ -2,6 +2,7 @@
 
 	return [
 	  'button' => '<button{{attrs}} class="button btn">{{text}}</button>',
+	  'checkbox' => '<input type="checkbox" name="{{name}}" value="{{value}}"{{attrs}}><span class="control"></span>',
 	  'checkboxWrapper' => '<div class="form-item form-item-submitted-checkbox-{{name}} form-type-checkbox checkbox">{{label}}</div>',
 	  'fieldset' => '<fieldset{{attrs}}><div class="panel-body">{{content}}</div></fieldset>',
 		'input'=>'<input type="{{type}}" name="{{name}}" class="form-control form-input form-{{type}} {{type}}" {{attrs}} />',
