@@ -58,7 +58,6 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
             'Symfony\\Component\\Config\\' => 25,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
-            'Seld\\CliPrompt\\' => 15,
         ),
         'P' => 
         array (
@@ -73,10 +72,17 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
             'Migrations\\' => 11,
             'M1\\Env\\' => 7,
         ),
+        'L' => 
+        array (
+            'League\\Flysystem\\' => 17,
+        ),
         'J' => 
         array (
             'JsonSchema\\' => 11,
+            'Josegonzalez\\Upload\\Test\\Fixture\\' => 33,
+            'Josegonzalez\\Upload\\' => 20,
             'Jasny\\Twig\\' => 11,
+            'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
         'D' => 
         array (
@@ -85,6 +91,7 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
         ),
         'C' => 
         array (
+            'Composer\\XdebugHandler\\' => 23,
             'Composer\\Spdx\\' => 14,
             'Composer\\Semver\\' => 16,
             'Composer\\CaBundle\\' => 18,
@@ -173,10 +180,6 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
         array (
             0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
         ),
-        'Seld\\CliPrompt\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/seld/cli-prompt/src',
-        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src',
@@ -205,13 +208,29 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
         array (
             0 => __DIR__ . '/..' . '/m1/env/src',
         ),
+        'League\\Flysystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem/src',
+        ),
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
         ),
+        'Josegonzalez\\Upload\\Test\\Fixture\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/josegonzalez/cakephp-upload/tests/Fixture',
+        ),
+        'Josegonzalez\\Upload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/josegonzalez/cakephp-upload/src',
+        ),
         'Jasny\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/jasny/twig-extensions/src',
+        ),
+        'JakubOnderka\\PhpConsoleColor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
         ),
         'DebugKit\\Test\\Fixture\\' => 
         array (
@@ -220,6 +239,10 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
         'DebugKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/debug_kit/src',
+        ),
+        'Composer\\XdebugHandler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/xdebug-handler/src',
         ),
         'Composer\\Spdx\\' => 
         array (
@@ -311,10 +334,6 @@ class ComposerStaticInitbf1410e42737aa1215fe0cab314ec155
             'JakubOnderka\\PhpConsoleHighlighter' => 
             array (
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
-            ),
-            'JakubOnderka\\PhpConsoleColor' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
         'D' => 

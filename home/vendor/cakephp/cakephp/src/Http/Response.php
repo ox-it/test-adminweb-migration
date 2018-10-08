@@ -2708,7 +2708,9 @@ class Response implements ResponseInterface
         }
 
         $bufferSize = 8192;
-        set_time_limit(0);
+        if (strpos(ini_get('disable_functions'), 'set_time_limit') === false) {
+            set_time_limit(0);
+        }
         session_write_close();
         while (!feof($file->handle)) {
             if (!$this->_isActive()) {
@@ -2816,5 +2818,5 @@ class Response implements ResponseInterface
     }
 }
 
-// @deprecated Add backwards compat alias.
+// @deprecated 3.4.0 Add backwards compat alias.
 class_alias('Cake\Http\Response', 'Cake\Network\Response');

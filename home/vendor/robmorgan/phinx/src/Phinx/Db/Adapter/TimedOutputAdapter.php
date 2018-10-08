@@ -35,7 +35,7 @@ use Phinx\Db\Table\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Wraps any adpter to record the time spend executing its commands
+ * Wraps any adapter to record the time spend executing its commands
  */
 class TimedOutputAdapter extends AdapterWrapper implements DirectActionInterface
 {
@@ -136,6 +136,36 @@ class TimedOutputAdapter extends AdapterWrapper implements DirectActionInterface
         $end = $this->startCommandTimer();
         $this->writeCommand('createTable', [$table->getName()]);
         parent::createTable($table, $columns, $indexes);
+        $end();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function changePrimaryKey(Table $table, $newColumns)
+    {
+        $adapter = $this->getAdapter();
+        if (!$adapter instanceof DirectActionInterface) {
+            throw new \BadMethodCallException('The adapter needs to implement DirectActionInterface');
+        }
+        $end = $this->startCommandTimer();
+        $this->writeCommand('changePrimaryKey', [$table->getName()]);
+        $adapter->changePrimaryKey($table, $newColumns);
+        $end();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function changeComment(Table $table, $newComment)
+    {
+        $adapter = $this->getAdapter();
+        if (!$adapter instanceof DirectActionInterface) {
+            throw new \BadMethodCallException('The adapter needs to implement DirectActionInterface');
+        }
+        $end = $this->startCommandTimer();
+        $this->writeCommand('changeComment', [$table->getName()]);
+        $adapter->changeComment($table, $newComment);
         $end();
     }
 

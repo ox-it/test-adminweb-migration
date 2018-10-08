@@ -32,4 +32,12 @@ class FinanceCustomersCountriesTable extends Table
 		return $query->all();
 	}
 
+	public function getEUVATByCode($domcode = null) {
+	  if ($domcode) {
+	    $country = $this->get($domcode);
+	    return $country->EUVAT;
+	  }
+	  return 'N';
+	}
+
 }

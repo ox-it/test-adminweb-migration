@@ -956,7 +956,7 @@ trait EntityTrait
 
             // String messages are appended to the list,
             // while more complex error structures need their
-            // keys perserved for nested validator.
+            // keys preserved for nested validator.
             if (is_string($error)) {
                 $this->_errors[$f][] = $error;
             } else {
@@ -1093,7 +1093,7 @@ trait EntityTrait
     /**
      * Read the error(s) from one or many objects.
      *
-     * @param array|\Cake\Datasource\EntityTrait $object The object to read errors from.
+     * @param array|\Cake\Datasource\EntityInterface $object The object to read errors from.
      * @param string|null $path The field name for errors.
      * @return array
      */
