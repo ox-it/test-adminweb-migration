@@ -21,6 +21,9 @@ class FinanceCustomersCustomersTable extends Table
 		$this->setPrimaryKey('customerID');
 		$this->belongsTo('FinanceCustomersCountries') ->setForeignKey(['billdomcode','shipdomcode']) ->setBindingKey('domcode');
 		$this->belongsTo('FinanceCustomersDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
+		$this->addBehavior('Josegonzalez/Upload.Upload', [
+			'POfile' => []
+		]);
 	}
 
 	public function getByID($customerID = null)
@@ -29,29 +32,95 @@ class FinanceCustomersCustomersTable extends Table
 		return $customer;
 	}
 
+	public function beforeMarshal($event, $data, $options)
+	{
+	  // Save the result of the dept inputs in a convenient display parameter ->department
+	  if (!empty($data['deptcode'])) {
+   	  $departments = $this->FinanceCustomersDepartments->getSelectOptions();
+	    if ($data['deptcode']==='00' && !empty($data['depttext'])) $data['department'] = $data['depttext'] . ' (custom)';
+	    else {
+	      if (isset($departments[$data['deptcode']])) $data['department'] = $departments[$data['deptcode']];
+	      else $data['department'] = $data['deptcode'];
+	    }
+	  } else {
+	    $data['department'] = '';
+	  }
+
+	  if (!empty($data['billdomcode'])) {
+	    $countries = $this->FinanceCustomersCountries->getSelectOptions()->toArray();
+			if (isset($countries[$data['billdomcode']])) $data['billcountry'] = $countries[$data['billdomcode']] . ' (' . $data['billdomcode'] . ')';
+			else $data['billcountry'] = $data['billdomcode'];
+
+			$data['EUVAT'] = $this->FinanceCustomersCountries->getEUVATByCode($data['billdomcode']);
+	  }
+
+	  if (empty($data['shipaddress1'])) $data['shipaddress1'] = '';
+
+	  //print 'beforeMarshal' . print_r($data,true);
+
+	}
+
 	public function validationRegister()
 	{
-	  global $validationRegisterFinanceCustomersCustomersTable;
-	  $require = ['forename','surname','custname','category','accounttype','custtype','payterms','sendcon','transaction','POupload','billaddress1','billtown','billpostcode','billdomcode','VATflag','billcontact','billemail','billphone','billcopy'];
-	  $conditional = [ ['custtitle', 'category', 'P'], ['accountnum', 'accounttype', ['A','E']], ['POfile','POupload','Y'], ['invoiceemail','VATflag','Y'], ['shipaddress1','billcopy','N'], ['shiptown','billcopy','N'], ['shippostcode','billcopy','N'], ['shipdomcode','billcopy','N'] ];
 		$validator = new Validator();
-		foreach($require as $r) $validator ->requirePresence($r) ->notBlank($r, 'Please complete this field');
-		foreach($conditional as $c) {
-		  $validationRegisterFinanceCustomersCustomersTable = $c;
-		  $validator->add($c[0], 'not-blank', [
-				'rule' => 'not-blank',
-				'message' => 'Please enter a value',
-				'on' => function ($context) {
-				  global $validationRegisterFinanceCustomersCustomersTable;
-				  $c = $validationRegisterFinanceCustomersCustomersTable;
-					if (!is_array($c[2])) $c[2] = [$c[2]];
-					return !empty($context['data'][$c[1]]) && in_array($context['data'][$c[1]], $c[2]);
+
+	  $require = ['forename','surname','email','phone','custname','category','accounttype','custtype','payterms','sendcon','transaction','POupload','billaddress1','billtown','billpostcode','billdomcode','VATflag','billcontact','billemail','billphone','billcopy'];
+		foreach($require as $r) $validator ->notEmpty($r);
+
+	  $conditionals = [ ['custtitle', 'category', 'P'], ['accountnum', 'accounttype', ['A','E']], ['invoiceemail','VATflag','Y'], ['shipaddress1','billcopy','N'], ['shiptown','billcopy','N'], ['shippostcode','billcopy','N'], ['shipdomcode','billcopy','N'] ];
+		foreach($conditionals as $i=>$c) {
+			if (!is_array($c[2])) $c[2] = [$c[2]];
+		  //print 'CREATE: ' . $c[0] . ': ' . $c[1] . ' in ' . print_r($c[2],true) . '<br>';
+		  $validator->allowEmpty($c[0]);
+		  $validator->add($c[0], 'notEmpty', [
+				'rule' => 'notEmpty',
+				'on' => function ($context) use ($c) {
+					$result = (!empty($context['data'][$c[1]]) && in_array($context['data'][$c[1]], $c[2]));
+					//print 'CHECK: ' . $c[0] . ': ' . $c[1] . ' = ' . $context['data'][$c[1]] . ' in [' . implode(', ',$c[2]) . '] ' . ($result?'YES':'NO') . '<br>';
+          return $result;
 				}
 			]);
     }
-		$validator ->requirePresence('phone') ->add('phone', 'validValue', [ 'rule' => ['range', 1, 5], 'message' => 'Please enter a valid phone number' ]);
-		$validator ->requirePresence('email') ->add('email', 'validFormat', [ 'rule' => 'email', 'message' => 'Please enter a valid email' ]);
+
+		$validator ->add('email', 'validFormat', [ 'rule' => 'email', 'message' => 'Please enter a valid email' ]);
+
 		return $validator;
+	}
+
+	public static function uploadPOfile($customer, $maxfiles=1)
+	{
+
+	  $file = $customer->POtemp;
+
+	  // Quick checks
+	  if (empty($file) || !is_array($file) || $file['size'] == 0 || $file['error'] !== 0) return false;
+
+    // Set target location
+    $now = new Time();
+    $POfilename = strtolower('pofile_' . $now->format('ymdhisu') . '.' . pathinfo($file['name'], PATHINFO_EXTENSION));
+		$POfilepath = self::getPOFilepathForFilename($POfilename);
+
+    // Move file
+		if ( move_uploaded_file($file['tmp_name'], $POfilepath) ) {
+		  if (!empty($customer->POfiles) && is_array($customer->POfiles)) $customer->POfiles[] = $POfilename;
+		  else $customer->POfiles = [$POfilename];
+		  // Prevent limitless uploads
+		  while (count($customer->POfiles)>$maxfiles) {
+		    $unwanted_file = array_shift($customer->POfiles);
+		    // TODO: Delete $unwanted_file
+		  }
+		  $customer->POfile = $customer->POfiles[0];
+		  $customer->POfilepath = $POfilepath;
+		  return $POfilename;
+		}
+
+    // Or fail
+    return false;
+	}
+
+	public static function getPOFilepathForFilename($filename)
+	{
+	  return TMP . $filename;
 	}
 
 	public function beforeSave($event, $entity, $options)
@@ -60,6 +129,7 @@ class FinanceCustomersCustomersTable extends Table
 			$entity->webdate = date('d/m/Y');
 			$entity->webdatesort = date('Y/m/d');
 			$entity->webtime = date('H:i');
+			if (!empty($entity->POfiles) && count($entity->POfiles)>0) $entity->POfile = $entity->POfiles[0];
 		}
 	}
 

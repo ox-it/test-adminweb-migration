@@ -388,7 +388,7 @@ class RouteBuilder
      */
     public function resources($name, $options = [], $callback = null)
     {
-        if (is_callable($options) && $callback === null) {
+        if (is_callable($options)) {
             $callback = $options;
             $options = [];
         }
@@ -724,14 +724,9 @@ class RouteBuilder
     public function connect($route, $defaults = [], array $options = [])
     {
         $defaults = $this->parseDefaults($defaults);
-        if (!isset($options['action']) && !isset($defaults['action'])) {
-            $defaults['action'] = 'index';
-        }
-
         if (empty($options['_ext'])) {
             $options['_ext'] = $this->_extensions;
         }
-
         if (empty($options['routeClass'])) {
             $options['routeClass'] = $this->_routeClass;
         }
@@ -823,6 +818,9 @@ class RouteBuilder
                 }
             }
             $defaults += $this->_params + ['plugin' => null];
+            if (!isset($defaults['action']) && !isset($options['action'])) {
+                $defaults['action'] = 'index';
+            }
 
             $route = new $routeClass($route, $defaults, $options);
         }
@@ -982,7 +980,7 @@ class RouteBuilder
      */
     public function scope($path, $params, $callback = null)
     {
-        if ($callback === null) {
+        if (is_callable($params)) {
             $callback = $params;
             $params = [];
         }
@@ -1062,7 +1060,7 @@ class RouteBuilder
                 throw new RuntimeException($message);
             }
         }
-        $this->middleware = array_merge($this->middleware, $names);
+        $this->middleware = array_unique(array_merge($this->middleware, $names));
 
         return $this;
     }

@@ -267,7 +267,7 @@ class ServerRequest implements ArrayAccess, ServerRequestInterface
      * - `files` Uploaded file data formatted like $_FILES.
      * - `cookies` Cookies for this request.
      * - `environment` $_SERVER and $_ENV data.
-     * - ~~`url`~~ The URL without the base path for the request. This option is deprecated and will be removed in 4.0.0
+     * - `url` The URL without the base path for the request.
      * - `uri` The PSR7 UriInterface object. If null, one will be created.
      * - `base` The base URL for the request.
      * - `webroot` The webroot directory for the request.
@@ -308,7 +308,7 @@ class ServerRequest implements ArrayAccess, ServerRequestInterface
      */
     protected function _setConfig($config)
     {
-        if (!empty($config['url']) && $config['url'][0] === '/') {
+        if (strlen($config['url']) > 1 && $config['url'][0] === '/') {
             $config['url'] = substr($config['url'], 1);
         }
 
@@ -2446,5 +2446,5 @@ class ServerRequest implements ArrayAccess, ServerRequestInterface
     }
 }
 
-// @deprecated Add backwards compat alias.
+// @deprecated 3.4.0 Add backwards compat alias.
 class_alias('Cake\Http\ServerRequest', 'Cake\Network\Request');

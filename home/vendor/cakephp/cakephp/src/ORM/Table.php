@@ -494,7 +494,7 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
     /**
      * Sets the connection instance.
      *
-     * @param \Cake\Database\Connection|\Cake\Datasource\ConnectionInterface $connection The connection instance
+     * @param \Cake\Database\Connection $connection The connection instance
      * @return $this
      */
     public function setConnection(ConnectionInterface $connection)
@@ -773,7 +773,7 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
                 return $this->_entityClass = $default;
             }
 
-            $alias = Inflector::singularize(substr(array_pop($parts), 0, -5));
+            $alias = Inflector::classify(Inflector::underscore(substr(array_pop($parts), 0, -5)));
             $name = implode('\\', array_slice($parts, 0, -1)) . '\\Entity\\' . $alias;
             if (!class_exists($name)) {
                 return $this->_entityClass = $default;
@@ -1848,7 +1848,7 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
      *   listeners will receive the entity and the options array as arguments. The type
      *   of operation performed (insert or update) can be determined by checking the
      *   entity's method `isNew`, true meaning an insert and false an update.
-     * - Model.afterSaveCommit: Will be triggered after the transaction is commited
+     * - Model.afterSaveCommit: Will be triggered after the transaction is committed
      *   for atomic save, listeners will receive the entity and the options array
      *   as arguments.
      *
@@ -1894,7 +1894,7 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
             $options = $options->toArray();
         }
 
-        $options = new ArrayObject($options + [
+        $options = new ArrayObject((array)$options + [
             'atomic' => true,
             'associated' => true,
             'checkRules' => true,
@@ -2272,7 +2272,7 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
      */
     public function delete(EntityInterface $entity, $options = [])
     {
-        $options = new ArrayObject($options + [
+        $options = new ArrayObject((array)$options + [
             'atomic' => true,
             'checkRules' => true,
             '_primary' => true,

@@ -15,21 +15,24 @@ class WafComponent extends Component
     ];
   }
 
-  public static function postValueWithLabel($value, $label, $lookup=null) {
-    if (isset($lookup) && is_array($lookup) && !empty($lookup[$value])) $value = $lookup[$value];
+  public static function postValueWithLabel($value, $label='', $lookup=null) {
+    if (isset($lookup)) {
+      if (!is_array($lookup) && is_object($lookup) && method_exists($lookup, 'toArray')) $lookup = $lookup->toArray();
+      if (!empty($lookup[$value])) $value = $lookup[$value];
+    }
     if (!empty($value)) echo '
 			<p class="display-p">
-				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>
+				<span class="'.(empty($label)?'':'display-label').'">'.($label==' '?'&nbsp;':h($label)).(empty(trim($label))||empty(trim($value))?'':':').'</span>
 				<span class="display-value">'.h($value).'</span>
 				<span class="display-end"></span>
 			</p>
 ';
   }
 
-  public function postValueWithLabelIfNotZero($value, $label) {
+  public function postValueWithLabelIfNotZero($value, $label='') {
     if (!empty($value) && $value!=0) echo '
 			<p class="display-p">
-				<span class="'.(empty($label)?'':'display-label').'">'.h($label).(empty($label)?'':':').'</span>
+				<span class="'.(empty($label)?'':'display-label').'">'.($label==' '?'&nbsp;':h($label)).(empty($label)?'':':').'</span>
 				<span class="display-value">'.h($value).'</span>
 				<span class="display-end"></span>
 			</p>
