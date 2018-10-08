@@ -82,7 +82,8 @@ class FinanceCustomersCustomersTable extends Table
 			]);
     }
 
-		$validator ->add('email', 'validFormat', [ 'rule' => 'email', 'message' => 'Please enter a valid email' ]);
+		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
+		$validator ->add('creditcheck', 'mustCheck', [ 'rule'=>['comparison', '!=', 0], 'message'=>'Please agree to the credit check statement', 'allowEmpty' => false, 'required' => true, 'last' => true ]);
 
 		return $validator;
 	}

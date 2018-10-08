@@ -124,6 +124,15 @@
       </div>
       <?= $this->Form->control('additional', [ 'type'=>'textarea', 'label'=>'Additional Details', 'rows'=>'5' ]); ?>
 
+      <p>
+        Please be advised that Credit Control do not currently have the facility to carry
+        out credit checks on individuals, on this basis please confirm that you are happy
+        to proceed with the application and that the necessary measures have been taken
+        to reduce the University's risk exposure in this instance.
+      </p>
+      <?= $this->Form->control('creditcheck', [ 'type'=>'checkbox', 'label'=>'I agree' ] ); ?>
+      <p>&nbsp;</p>
+
 			<!-- Submit -->
 			<?php
 					echo $this->Form->button(__('Confirm'));
