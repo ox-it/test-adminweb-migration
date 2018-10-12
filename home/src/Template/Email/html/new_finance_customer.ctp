@@ -104,9 +104,8 @@
 	echo $waf->postValueWithLabel($customer->additional, 'Additional Information');
 ?>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
-$content = explode("\n", $content);
-
-foreach ($content as $line) :
-    echo '<p> ' . $line . "</p>\n";
-endforeach;

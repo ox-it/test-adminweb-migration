@@ -12,7 +12,7 @@
     <p><strong>Please print this page if you wish to keep a permanent record of your application.</strong></p>
 
 		<h3>Traveller details</h3>
-    <?= $waf->postValueWithLabel($applicant->name, 'Name') ?>
+    <?= $waf->postValueWithLabel(trim($applicant->title . ' ' . $applicant->forename . ' ' . $applicant->surname), 'Name') ?>
     <?= $waf->postValueWithLabel($applicant->phone, 'Telephone') ?>
     <?= $waf->postValueWithLabel($applicant->email, 'Email') ?>
     <?= $waf->postValueWithLabel($applicant->department, 'Department') ?>

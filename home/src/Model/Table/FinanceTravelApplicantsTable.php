@@ -62,7 +62,6 @@ class FinanceTravelApplicantsTable extends Table
 		foreach(['hotellocation','hoteldatestart','hoteldateend'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['hotel']) && $context['data']['hotel']=='Y'); });
 		}
-		$validator ->notEmpty(['additional']);
 		return $validator;
 	}
 

@@ -17,6 +17,7 @@
 <html>
 <head>
     <title><?= $this->fetch('title') ?></title>
+    <?php if (!empty($css)) echo '<style>'.$css.'</style>' ?>
 </head>
 <body>
     <?= $this->fetch('content') ?>
