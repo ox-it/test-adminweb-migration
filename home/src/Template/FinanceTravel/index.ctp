@@ -154,7 +154,8 @@
       </ul>
       <p>
         If you have urgent or complex requirements, and wish to contact them directly,
-        you can <a href="mailto:<?= $compound_email ?>">send an email to the above
+        you can <a href="mailto:<?= $compound_email ?>">send an email to
+        <?= (count($agents)>1 ? 'all of ' : '') ?>the above
         agent<?= (count($agents)>1 ? 's' : '') ?></a>.
       </p>
 

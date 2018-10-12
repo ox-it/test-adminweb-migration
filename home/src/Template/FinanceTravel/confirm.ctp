@@ -80,7 +80,7 @@
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Travel Booking Form', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $waf->postButtonToReferer($this, 'Return to Travel Booking Form') ?>
     </p>
 
 	</div>
