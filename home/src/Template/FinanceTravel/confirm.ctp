@@ -1,9 +1,8 @@
 <!-- File: src/Template/FinanceTravel/confirm.ctp -->
 
 <div class="row">
+  <?php //echo '<textarea rows="10" style="line-height:1.1em">' . print_r($applicant, true) . '</textarea>'; ?>
 	<div class="waf-include">
-
-    <?php echo '<textarea rows="10" style="line-height:1.1em">' . print_r($applicant, true) . '</textarea>'; ?>
 
 		<h3>
 		  Thank you!
