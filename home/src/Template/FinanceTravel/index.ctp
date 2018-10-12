@@ -137,6 +137,7 @@
 
 			<!-- Travel Agent information -->
       <a name="agents"></a>
+      <p>&nbsp;</p>
       <p>
         When you press Submit Request, these details will be sent to our regular travel agent<?= (count($agents)>1 ? 's' : ''); ?>:</a>
       <p>
