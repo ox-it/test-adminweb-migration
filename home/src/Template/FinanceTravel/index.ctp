@@ -135,6 +135,29 @@
 					echo $this->Form->button('Clear From', [ 'type'=>'reset' ]);
 			?>
 
+			<!-- Travel Agent information -->
+      <a name="agents"></a>
+      <p>
+        When you press Submit Request, these details will be sent to our regular travel agent<?= (count($agents)>1 ? 's' : ''); ?>:</a>
+      <p>
+      <ul>
+				<?php
+					$compound_email = '';
+					foreach ($agents as $i=>$agent) {
+						echo '<li><a href="mailto:'.$agent->agentemail.'">'.$agent->agentname.'</a>';
+						echo ' (Tel: '.$agent->agentphone.')</li>' . "\n";
+						// Add the address to compound string
+						$compound_email .= ($i==0 ? '' : ';') . $agent->agentemail;
+					}
+				?>
+      </ul>
+      <p>
+        If you have urgent or complex requirements, and wish to contact them directly,
+        you can <a href="mailto:<?= $compound_email ?>">send an email to the above
+        agent<?= (count($agents)>1 ? 's' : '') ?></a>.
+      </p>
+
+
 		<?php
 				echo $this->Form->end();
 		?>
