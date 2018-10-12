@@ -10,8 +10,8 @@ class WafComponent extends Component
 	public function template_wrappers($field, $notes='', $classes=[], $type='{{type}}') {
 	  if (!is_array($classes)) $classes = explode(' ', $classes);
     return [
-			'inputContainer'=>'<div id="'.$field.'_wrapper" class="webform-component form-item form-type-input form-type-'.$type.' '.$type.'{{required}} '.implode(' ',$classes).'">{{content}}'.$notes.'</div>',
-			'inputContainerError'=>'<div id="'.$field.'_wrapper" class="webform-component form-item form-type-input form-type-'.$type.' '.$type.'{{required}} '.implode(' ',$classes).' error">{{content}}{{error}}'.$notes.'</div>'
+			'inputContainer'=>'<div id="'.$field.'_wrapper" class="webform-component form-item form-type-input form-type-'.$type.' '.$type.'{{required}} '.implode(' ',$classes).(!empty($notes)?' with-notes':'').'">{{content}}'.$notes.'</div>',
+			'inputContainerError'=>'<div id="'.$field.'_wrapper" class="webform-component form-item form-type-input form-type-'.$type.' '.$type.'{{required}} '.implode(' ',$classes).(!empty($notes)?' with-notes':'').' error">{{content}}{{error}}'.$notes.'</div>'
     ];
   }
 

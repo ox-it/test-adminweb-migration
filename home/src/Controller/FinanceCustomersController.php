@@ -46,10 +46,12 @@ class FinanceCustomersController extends AppController
 
 	private function emailConfirmation($customer)
 	{
+	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
+    $css = str_replace('.web-app-wrapper ','',$file->read());
 		$email = new Email();
   	$email
   	  ->template('new_finance_customer')
-  	  ->viewVars(['customer' => $customer, 'waf' => $this->Waf ])
+  	  ->viewVars(['customer' => $customer, 'waf' => $this->Waf, 'css'=>$css ])
 			->subject('New Customer Account')
       ->from(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team'])
       // TODO: Remove test email

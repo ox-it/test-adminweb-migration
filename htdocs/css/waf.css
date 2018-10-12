@@ -28,7 +28,7 @@
 .web-app-wrapper .spacer{padding:0;margin:0;line-height:0.7em}
 .web-app-wrapper .notes{padding:0;margin:0 0 1em;font-size:0.9em;font-style:italic}
 .web-app-wrapper .notes button{font-size:0.875rem;color:#fff;background:#999;padding:7px 15px 7px 15px;margin:0 1em;font-style:normal}
-.web-app-wrapper .with-notes{margin-bottom:0 !important}
+.web-app-wrapper .with-notes,.web-app-wrapper .with-notes input,.web-app-wrapper .with-notes textarea,.web-app-wrapper .with-notes .error-message{margin-bottom:0 !important}
 .web-app-wrapper .gapabove{margin-top:1em !important}
 .web-app-wrapper .nomargin{margin:0 !important}
 .web-app-wrapper .center{text-align:center}
