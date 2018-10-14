@@ -16,7 +16,7 @@ class SafetyEventsTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->setTable('event');
+        $this->setTable('safety_event');
         $this->setPrimaryKey('eventID');
         $this->belongsTo('SafetyCourses')->setForeignKey('courseID');
         $this->hasMany('SafetyApplicants')->setForeignKey('applicantID');
