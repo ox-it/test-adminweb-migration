@@ -24,7 +24,7 @@
         circulated at each course. Failure to do so may be interpreted as a failure to
         attend and the penalty fee will be levied.</p>
 
-        <p> For further information about the safety courses on offer please contact the
+        <p>For further information about the safety courses on offer please contact the
         <a href="mailto:webmaster&#64;safety.ox.ac.uk">Safety Office</a>. The University
         provides extensive opportunities for training and development. Further details of
         other providers and the types of courses available can be found in the relevant section of the

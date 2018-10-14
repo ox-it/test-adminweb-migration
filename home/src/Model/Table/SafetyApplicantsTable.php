@@ -17,7 +17,7 @@ class SafetyApplicantsTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->setTable('applicant');
+        $this->setTable('safety_applicant');
         $this->setPrimaryKey('applicantID');
     }
 

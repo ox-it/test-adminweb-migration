@@ -16,7 +16,7 @@ class SafetyCollegesTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-        $this->setTable('college');
+        $this->setTable('safety_college');
         $this->setPrimaryKey('collcode');
         $this->setDisplayField('college');
     }
