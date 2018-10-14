@@ -73,8 +73,9 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('Finance Customers', ['controller' => 'FinanceCustomers']) ?><br>
           <?= $this->Html->link('Finance Travel', ['controller' => 'FinanceTravel']) ?><br>
           <?= $this->Html->link('Harassment', ['controller' => 'Harassment']) ?><br>
-          <?= $this->Html->link('Safety', ['controller' => 'Safety']) ?><br>
+          <?= $this->Html->link('Orientation', ['controller' => 'Orientation']) ?><br>
           <?= $this->Html->link('GCP Online', ['controller' => 'Gcp']) ?><br>
+          <?= $this->Html->link('Safety', ['controller' => 'Safety']) ?><br>
           <?= $this->Html->link('TRAC', ['controller' => 'Trac']) ?><br>
           <?= $this->Html->link('UAS Events', ['controller' => 'UASEvents']) ?><br>
           <?= $this->Html->link('Access Search', ['controller' => 'AccessSearch']) ?><br>
