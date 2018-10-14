@@ -86,6 +86,25 @@ class WafComponent extends Component
 		return $result;
 	}
 
+  // Function to convert a date in dd/mm/yyyy format and time in hh:mm format
+  // to a unix timestamp. If :ss is appended to the time this will be added
+	public function date_and_time_to_stamp($date_string, $time_string) {
+	  if (strlen($date_string)<10) return 0;
+	  if (substr($date_string,2,1)=='/') {
+			$day = substr($date_string,0,2);
+			$month = substr($date_string,3,2);
+			$year = substr($date_string,6,4);
+			$timebits = explode(':',$time_string);
+			$hour = intval($timebits[0]);
+			$mins = (count($timebits)>1) ? intval($timebits[1]) : 0;
+			$secs = (count($timebits)>2) ? intval($timebits[2]) : 0;
+			$result = mktime($hour, $mins, $secs, $month, $day, $year);
+		} else {
+		  $result = strtotime($date_string.' '.$time_string);
+		}
+		return $result;
+	}
+
   public function postObjectFieldsAsList($object, $fields) {
     $results = [];
     foreach ($fields as $k=>$f) {

@@ -60,6 +60,28 @@ class OrientationApplicantsTable extends Table
 		$entity->divcode = !empty($entity->dept) ? $entity->dept->divcode : '';
     if ($entity->course_type == 'P' && $entity->divcode == '3C') $entity->orient_course = 'S';
 		$entity->college = !empty($entity->collcode) ? $this->OrientationColleges->getByCode($entity->collcode)->college : '';
+		if (!empty($entity->arrive_date)) {
+			$time_string = !empty($entity->arrive_time) ? $entity->arrive_time : '00';
+			$entity->arrive_ts = $this->date_and_time_to_stamp($entity->arrive_date, $time_string);
+		}
+	}
+
+	private function date_and_time_to_stamp($date_string, $time_string) {
+	  if (empty($time_string)) $time_string = '00';
+	  if (strlen($date_string)<10) return 0;
+	  if (substr($date_string,2,1)=='/') {
+			$day = substr($date_string,0,2);
+			$month = substr($date_string,3,2);
+			$year = substr($date_string,6,4);
+			$timebits = explode(':',$time_string);
+			$hour = intval($timebits[0]);
+			$mins = (count($timebits)>1) ? intval($timebits[1]) : 0;
+			$secs = (count($timebits)>2) ? intval($timebits[2]) : 0;
+			$result = mktime($hour, $mins, $secs, $month, $day, $year);
+		} else {
+		  $result = strtotime($date_string.' '.$time_string);
+		}
+		return $result;
 	}
 
 }

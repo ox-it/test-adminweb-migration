@@ -33,9 +33,8 @@ class OrientationDepartmentsTable extends Table
 	}
 
 	public function getSelectOptions() {
-		$query = $this->find('all', [ 'order' => [ 'deptalpha' => 'ASC' ] ]);
-		$query = $this->findList($query, []);
-		$departments = $query->toList();
+		$query = $this->find('list', [ 'keyField' => 'deptcode', 'valueField' => 'deptalpha', 'order' => [ 'deptalpha' => 'ASC' ] ]);
+		$departments = $query->toArray();
 		$departments['00'] = '-- Not Listed --';
 		return $departments;
 	}

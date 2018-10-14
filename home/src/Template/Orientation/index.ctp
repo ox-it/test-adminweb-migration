@@ -1,10 +1,11 @@
 <!-- File: src/Template/Orientation/index.ctp -->
 
 <div class="row">
-
+  <?php //echo '<textarea rows="10" style="line-height:1.1em">' . print_r($departments, true) . '</textarea>'; ?>
 	<h3>
 		Orientation Programme
 	</h3>
+	<p class="notes"><strong>Note:</strong> REG CODE and 'Meet & Greet' option is set in src/Controller/OrientationController.php</p>
 
 	<div class="waf-include">
 

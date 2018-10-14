@@ -48,11 +48,11 @@ class OrientationApplicant extends Entity
 			'MST' => 'M.St.',
 			'MTH' => 'M.Th.',
 			'PGCE' => 'PGCE',
-			'PGCERT' => 'Certificate',
-			'PGDIP' => 'Diploma',
-			'ERASP' => 'Erasmus',
+			'PGCERT' => 'Certificate (Graduate)',
+			'PGDIP' => 'Diploma (Graduate)',
+			'ERASP' => 'Erasmus (Graduate)',
 			'RS' => 'Recognised Student',
-			'VSP' => 'Visiting Student'
+			'VSP' => 'Visiting Student (Graduate)'
     ];
   }
 
@@ -67,11 +67,11 @@ class OrientationApplicant extends Entity
 			'MMATH' => 'M.Math.',
 			'MPHYS' => 'M.Phys.',
 			'MPHYSPHIL' => 'M.Phys.Phil.',
-			'UGCERT' => 'Certificate',
-			'UGDIP' => 'Diploma',
-			'ERASU' => 'Erasmus',
+			'UGCERT' => 'Certificate (Undergraduate)',
+			'UGDIP' => 'Diploma (Undergraduate)',
+			'ERASU' => 'Erasmus (Undergraduate)',
 			'RS' => 'Recognised Student',
-			'VSU' => 'Visiting Student'
+			'VSU' => 'Visiting Student (Undergraduate)'
     ];
   }
 
