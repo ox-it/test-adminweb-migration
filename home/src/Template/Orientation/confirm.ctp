@@ -1,86 +1,43 @@
-<!-- File: src/Template/FinanceTravel/confirm.ctp -->
+<!-- File: src/Template/Orientation/confirm.ctp -->
 
 <div class="row">
-  <?php echo '<textarea rows="10" style="line-height:1.1em">' . print_r($applicant, true) . '</textarea>'; ?>
+  <?php //echo '<textarea rows="10" style="line-height:1.1em">' . print_r($applicant, true) . '</textarea>'; ?>
 	<div class="waf-include">
 
 		<h3>
-		  Thank you!
+		  Confirmation
 		</h3>
 
     <!-- Initial instructions -->
-    <p>Thank you for entering your details, a copy of which is shown below.</p>
-    <p><strong>Please print this page if you wish to keep a permanent record of your application.</strong></p>
-
-		<h3>Traveller details</h3>
-    <?= $waf->postValueWithLabel(trim($applicant->title . ' ' . $applicant->forename . ' ' . $applicant->surname), 'Name') ?>
-    <?= $waf->postValueWithLabel($applicant->phone, 'Telephone') ?>
-    <?= $waf->postValueWithLabel($applicant->email, 'Email') ?>
-    <?= $waf->postValueWithLabel($applicant->department, 'Department') ?>
-
-    <?php if (!empty($applicant->reqphone) || !empty($applicant->reqemail)) : ?>
-    	<h4>Contact Details</h4>
-    	<?= $waf->postValueWithLabel($applicant->reqphone, 'Telephone') ?>
-    	<?= $waf->postValueWithLabel($applicant->reqemail, 'Email') ?>
-    <?php endif; ?>
-
     <?php
-      if (!empty($applicant->air) && $applicant->air=='Y') {
-    	  echo '<h3>Air Travel</h3>' . "\n";
-				echo $waf->postValueWithLabel($applicant->airclass, 'Class', $applicant->airclassOptions());
-				echo $waf->postValueWithLabel($applicant->airdirect, 'Direct', $applicant->yesNoOptions());
-				echo $waf->postValueWithLabel($applicant->airportout, 'From');
-				echo $waf->postValueWithLabel($applicant->airportback, 'To');
-				echo $waf->postValueWithLabel($applicant->airdateout . (!empty($applicant->airtimeout) ? ' at ' . $applicant->airtimeout : ''), 'Departing');
-				if ($applicant->airreturn == 'Y') :
-					echo $waf->postValueWithLabel($applicant->airdateback . (!empty($applicant->airtimeback) ? ' at ' . $applicant->airtimeback : ''), 'Returning');
-				endif;
-				echo $waf->postValueWithLabel($applicant->airline, 'Preferred airline');
-				echo $waf->postValueWithLabel($applicant->destaddress, 'Other Information');
-  		}
+      switch($applicant->orient_course) {
+        case 'S':
+          echo '<p>You are registered for the graduate Orientation programme taking place on Thursday, 27 September.</p>';
+          break;
+        case 'P':
+          echo '<p>You are registered for the graduate Orientation programme taking place on Friday, 28 September.</p>';
+          break;
+        case 'U':
+          echo '<p>You are registered for the undergraduate and visiting student Orientation programme taking place on Monday, 1 October.</p>';
+          break;
+      }
     ?>
-
-		<?php
-			if (!empty($applicant->train) && $applicant->train == 'Y') :
-				echo '<h3>Train Travel</h3>' . "\n";
-				echo $waf->postValueWithLabel($applicant->trainclass, 'Class', $applicant->trainclassOptions());
-				echo $waf->postValueWithLabel($applicant->stationout, 'From');
-				echo $waf->postValueWithLabel($applicant->stationback, 'To');
-				echo $waf->postValueWithLabel($applicant->traindateout . (!empty($applicant->traintimeout) ? ' at ' . $applicant->traintimeout : ''), 'Departing');
-				if (!empty($applicant->traindateback)) :
-					echo $waf->postValueWithLabel($applicant->traindateback . (!empty($applicant->traintimeback) ? ' at ' . $applicant->traintimeback : ''), 'Returning');
-				endif;
-			endif;
-		?>
-
-		<?php
-			if (!empty($applicant->car) && $applicant->car=='Y') {
-				echo '<h3>Car Hire</h3>' . "\n";
-				echo $waf->postValueWithLabel($applicant->cardatestart, 'From');
-				echo $waf->postValueWithLabel($applicant->cardateend, 'To');
-				echo $waf->postValueWithLabel($applicant->carpickup, 'Pick-up from');
-				echo $waf->postValueWithLabel($applicant->cardropoff, 'Drop off at');
-			}
-		?>
-
-		<?php
-			if (!empty($applicant->hotel) && $applicant->hotel=='Y') {
-				echo '<h3>Hotel Accommodation</h3>' . "\n";
-				echo $waf->postValueWithLabel($applicant->hotellocation, 'Location');
-				echo $waf->postValueWithLabel($applicant->hoteldatestart, 'Arriving');
-				echo $waf->postValueWithLabel($applicant->hoteldateend, 'Departing');
-				echo $waf->postValueWithLabel($applicant->hoteladditional, 'Special Requirements');
-			}
-		?>
-
-    <?php if (!empty($applicant->additional)) : ?>
-    	<h3>Additional Information</h3>
-    	<?= $waf->postValueWithLabel($applicant->additional, '') ?>
-    <?php endif; ?>
+    <p>
+      A timetable booklet will be available from the Oxford Students website
+      three weeks before the programme starts, and you will also be sent an email
+      reminder one week before the programme starts.
+    </p>
+    <?php
+      if ($applicant->arrive_ts) {
+        echo '<p>A representative of the University will meet you at the Central
+        Bus Station in Heathrow Airport on '.date('l j F' ,$applicant->arrive_ts)
+        .' (arriving on flight '.$applicant->flight_num.' from '.$applicant->flight_from.').</p>' . "\n";
+      }
+    ?>
 
     <p>&nbsp;</p>
     <p>
-      <?= $waf->postButtonToReferer($this, 'Return to Travel Booking Form') ?>
+      <?= $waf->postButtonToReferer($this, 'Return to Orientation Form') ?>
     </p>
 
 	</div>
