@@ -35,66 +35,29 @@
 		  Your Details
 		</h4>
 
-		<p>
-		  <span class="label"><strong>Job Title:</strong></span>
-		  <span class="value"><?= $applicant->jobtitle; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>Telephone:</strong></span>
-		  <span class="value"><?= $applicant->phone; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>University Email:</strong></span>
-		  <span class="value"><?= $applicant->email; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>Department/Faculty:</strong></span>
-    	<?php if (!empty($applicant->deptcode)) : ?>
-				 <span class="value"><?= $department->deptalpha; ?></span>
-			<?php else : ?>
-				 <span class="value"><?= $applicant->depttext; ?></span>
-			<?php endif; ?>
-    </p>
-
-		<p>
-		  <span class="label"><strong>College:</strong></span>
-    	<?php if (!empty($applicant->collcode)) : ?>
-				 <span class="value"><?= $college->college; ?></span>
-			<?php else : ?>
-				 <span class="value">&nbsp;</span>
-			<?php endif; ?>
-    </p>
+		<?php
+			echo $waf->postValueWithLabel($applicant->jobtitle, 'Job Title');
+			echo $waf->postValueWithLabel($applicant->phone, 'Telephone');
+			echo $waf->postValueWithLabel($applicant->email, 'University Email');
+			echo $waf->postValueWithLabel($applicant->deptcode, 'Department/Faculty', $departments);
+			echo $waf->postValueWithLabel($applicant->collcode, 'College', $colleges);
+    ?>
 
 		<h4>
 		  Your Manager or Supervisor
 		</h4>
 
-		<p>
-		  <span class="label"><strong>Surname:</strong></span>
-		  <span class="value"><?= $applicant->managersurname; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>First Name:</strong></span>
-		  <span class="value"><?= $applicant->managerfirstname; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>Telephone:</strong></span>
-		  <span class="value"><?= $applicant->managerphone; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>Email:</strong></span>
-		  <span class="value"><?= $applicant->manageremail; ?></span>
-    </p>
+		<?php
+			echo $waf->postValueWithLabel($applicant->managersurname, 'Surname');
+			echo $waf->postValueWithLabel($applicant->managerfirstname, 'First Name');
+			echo $waf->postValueWithLabel($applicant->managerphone, 'Telephone');
+			echo $waf->postValueWithLabel($applicant->manageremail, 'Email');
+			echo $waf->postValueWithLabel($applicant->collcode, 'College', $colleges);
+    ?>
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Course List', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $waf->postButtonToReferer($this, 'Return to Course List', true) ?>
     </p>
 
 	</div>

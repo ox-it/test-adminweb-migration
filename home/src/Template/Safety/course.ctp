@@ -3,6 +3,14 @@
 <div class="row">
 	<div class="waf-include">
 
+		<?php
+	    if (empty($course)) {
+        echo '<h3>Sorry</h3><p>No matching course found</p>';
+        return;
+	    }
+	  ?>
+
+
 		<h3>
 		  <?= h($course->course) ?>
 		</h3>
@@ -62,7 +70,7 @@
 								<?php if ($event->eventstatuscode == 'N') : ?>
 									Places can be booked from <?= date('jS F', $event->openstamp); ?>
 								<?php elseif ($event->eventstatuscode == 'O') : ?>
-									<?= $this->Html->link('Book a place', ['action' => 'book', $event->eventID]) ?>
+									<?= $this->Html->link('Book a place', ['controller' => 'Safety', '?' => [ 'book' => $event->eventID ] ]) ?>
 								<?php elseif ($event->eventstatuscode == 'F') : ?>
 									<?php if (count($events)==1) : ?>
 										This course is now fully booked but you can still

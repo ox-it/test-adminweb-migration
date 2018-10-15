@@ -26,12 +26,16 @@ class SafetyCoursesTable extends Table
     }
 
     public function getByID($courseID = null) {
-      $course = $this->get($courseID);
+      //$course = $this->get($courseID);
+      $query = $this->find('all', ['conditions' => ['courseID' => $courseID]] );
+      $course = $query->first();
 
-      // Clean up the any \r \n
-      $from = array('\\r', '\\n');
-      $to   = array(''   , ''   );
-      $course->description = str_replace($from, $to, $course->description);
+      if (!empty($course->description)) {
+				// Clean up the any \r \n
+				$from = array('\\r', '\\n');
+				$to   = array(''   , ''   );
+				$course->description = str_replace($from, $to, $course->description);
+      }
 
       return $course;
     }

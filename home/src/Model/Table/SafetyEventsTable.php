@@ -23,12 +23,17 @@ class SafetyEventsTable extends Table
     }
 
     public function getByID($eventID = null) {
-      $event = $this->get($eventID);
+      //$event = $this->get($eventID);
+      $query = $this->find('all', ['conditions' => ['eventID' => $eventID]] );
+      $event = $query->first();
 
-      $event->waiting = ( $event->eventstatuscode=='F' || $event->category==4 );
-
-      $start_date = Time::createFromFormat('d/m/Y', $event->datestart);
-      $event->startstamp = $start_date->getTimestamp();
+      if (!empty($event->eventstatuscode) && !empty($event->category)) {
+        $event->waiting = ( $event->eventstatuscode=='F' || $event->category==4 );
+      }
+      if (!empty($event->datestart)) {
+        $start_date = Time::createFromFormat('d/m/Y', $event->datestart);
+        $event->startstamp = $start_date->getTimestamp();
+      }
 
       return $event;
     }
