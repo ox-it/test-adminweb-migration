@@ -37,7 +37,7 @@
 					<ul>
 					<?php foreach ($courses as $course): ?>
 							<li>
-									<?= $this->Html->link($course->course, ['action' => 'view', $course->courseID]) ?>
+									<?= $this->Html->link($course->course, ['controller' => 'Safety', '?' => [ 'course' => $course->courseID ] ]) ?>
 									<?php // print_r($course); ?>
 							</li>
 					<?php endforeach; ?>

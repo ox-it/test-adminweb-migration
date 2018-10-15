@@ -3,6 +3,13 @@
 <div class="row">
 	<div class="waf-include">
 
+	  <?php
+	    if (empty($event)) {
+        echo '<h3>Sorry</h3><p>No matching event found</p>';
+        return;
+	    }
+	  ?>
+
 		<h3>
 		  Course Booking Form
 		</h3>
@@ -27,9 +34,7 @@
 
     <!-- Form -->
 		<?php
-				echo $this->Form->create($applicant, [
-          'context' => ['validator' => 'register']
-        ]);
+				echo $this->Form->create($applicant, [ 'context' => ['validator' => 'register'], 'novalidate' => true ]);
 		?>
 
 		<h4>

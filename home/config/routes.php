@@ -60,16 +60,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/aad-events/',  				['controller' => 'AADEvents', 'action' => 'index']);
     $routes->connect('/aad-events/:action/',  ['controller' => 'AADEvents']);
 
-    // Finance Customers Routing
-    $routes->connect('/finance-customers/',  				 ['controller' => 'FinanceCustomers', 'action' => 'index']);
-    $routes->connect('/finance-customers/success/*', ['controller' => 'FinanceCustomers', 'action' => 'success']);
-
-    // Safety Routing
-    $routes->connect('/safety/',          ['controller' => 'Safety', 'action' => 'index']);
-    $routes->connect('/safety/courses/',  ['controller' => 'Safety', 'action' => 'index']);
-    $routes->connect('/safety/courses/*', ['controller' => 'Safety', 'action' => 'view']);
-    $routes->connect('/safety/success/*', ['controller' => 'Safety', 'action' => 'success']);
-
     // UAS Events Routing
     $routes->connect('/uas-events/',  				['controller' => 'UASEvents', 'action' => 'index']);
     $routes->connect('/uas-events/success/*', ['controller' => 'UASEvents', 'action' => 'success']);
