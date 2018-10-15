@@ -43,12 +43,12 @@
 
 		<?php
 				echo $this->Form->control('jobtitle', ['label' => 'Job Title']);
-				echo $this->Form->control('phone', ['label' => 'Telephone']);
+				echo $this->Form->control('phone', ['type' => 'text', 'label' => 'Telephone']);
 				echo $this->Form->control('email', ['label' => 'University Email', 'class' => 'with-notes', 'notes' => 'Please use the same email for all communications with the Safety Office)']);
 				echo '<p class="notes">Please use the same email for all communications with the Safety Office</p>';
-				echo $this->Form->input('deptcode', ['type' => 'select', 'options' => $departments, 'empty' => '-- Please Select --', 'label' => 'Department/Faculty']);
+				echo $this->Form->control('deptcode', ['type' => 'select', 'options' => $departments, 'empty' => '-- Please Select --', 'label' => 'Department/Faculty']);
 				echo $this->Form->control('depttext', ['label' => 'Department/Faculty']);
-				echo $this->Form->input('collcode', ['type' => 'select', 'options' => $colleges, 'empty' => '-- Please Select --', 'label' => 'College']);
+				echo $this->Form->control('collcode', ['type' => 'select', 'options' => $colleges, 'empty' => '-- Please Select --', 'label' => 'College']);
 		?>
 
 		<h4>
