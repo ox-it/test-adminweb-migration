@@ -66,8 +66,7 @@ class SafetyController extends AppController
 			$applicant->statuscode = ($event->waiting) ? 'L' : 'A';
 			if ($this->SafetyApplicants->save($applicant)) {
 				$this->Flash->success(__('Your application has been saved.'));
-				//return $this->redirect(['action' => 'success', $applicant->applicantID]);
-				$this->Flash->success(print_r('APPLICANT: ' . $applicant, true));
+				//$this->Flash->success(print_r('APPLICANT: ' . $applicant, true));
 				$this->set('applicant', $applicant);
 				$this->render('success');
 				return;
