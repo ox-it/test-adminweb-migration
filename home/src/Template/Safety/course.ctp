@@ -24,7 +24,6 @@
 
     <?php if (!empty($course->description)) : ?>
 		<h4>Description</h4>
-		<!-- WAF.SafetyCourses.description -->
 		<?= $course->description ?>
 		<hr />
 		<?php endif; ?>
@@ -38,31 +37,22 @@
 			<?php $event_count = $events->count(); ?>
 			<?php if (!empty($events) && $event_count>0 ) { ?>
 
-				<?php //print "Found " . $event_count . " event" . ($event_count==1?"":"s"); ?>
-				<?php //print_r($events); ?>
-
 				<ul>
 				<?php foreach ($events as $event): ?>
 					<li>
   					<span class="waf-date">
-							<!-- WAF.SafetyEvents.datestart -->
 							<?= $event->datestart ?>
 						</span>
 
             <span class="waf-time">
-							<!-- WAF.SafetyEvents.timestart -->
 							<?= $event->timestart ?>
 							-
-							<!-- WAF.SafetyEvents.timeend -->
 							<?= $event->timeend ?>
 						</span>
 
             <span class="waf-location">
-							<!-- WAF.SafetyEvents.location -->
 							<?= $event->location ?>
 						</span>
-
-						<?php //print_r($event); ?>
 
 						<?php if ($course->category == 1) : // Add booking ?>
 
@@ -70,7 +60,7 @@
 								<?php if ($event->eventstatuscode == 'N') : ?>
 									Places can be booked from <?= date('jS F', $event->openstamp); ?>
 								<?php elseif ($event->eventstatuscode == 'O') : ?>
-									<?= $this->Html->link('Book a place', ['controller' => 'Safety', '?' => [ 'book' => $event->eventID ] ]) ?>
+									<?= $this->Html->link('Book a place', '?book=' . $event->eventID) ?>
 								<?php elseif ($event->eventstatuscode == 'F') : ?>
 									<?php if (count($events)==1) : ?>
 										This course is now fully booked but you can still
@@ -96,7 +86,6 @@
 
 				<?php if (($course->category == 1 || $course->category == 2) && !empty($course->dateinfo)) : ?>
         <p>
-					<!-- WAF.SafetyCourses.dateinfo -->
 					<?= $course->dateinfo ?>
         </p>
         <?php endif; ?>
@@ -107,7 +96,6 @@
 		<!-- Booking section -->
     <?php if (!($course->category == 1 || ($course->category == 2 && count($events)))) : ?>
 		  <p>
-  			<!-- WAF.SafetyCourses.bookinginfo -->
 				<?= $course->bookinginfo ?>
 
 				<?php if ($course->category == 4) : ?>
@@ -123,10 +111,8 @@
 
 		<h4>Contact Information</h4>
   		<p>For further information contact
-				<!-- WAF.SafetyCourses.contactemail -->
 				<a href="mailto:<?= $course->contactemail ?>">
 				<?php if (!empty($course->contact)): ?>
-  				<!-- WAF.SafetyCourses.contact -->
 					<?= $course->contact ?>
 				<?php else: ?>
 					<?= $course->contactemail ?>
@@ -137,7 +123,6 @@
 			<?php if (!empty($course->contact)): ?>
 				<h4>Contact Information</h4>
   		  <p>For further information contact
-					<!-- WAF.SafetyCourses.contact -->
 					<?= $course->contact ?>
 				</p>
 			<?php endif; ?>
