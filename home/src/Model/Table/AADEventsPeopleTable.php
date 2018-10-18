@@ -28,7 +28,8 @@ class AADEventsPeopleTable extends Table
     $oxfordID = !empty($_SERVER['HTTP_WAF_WEBAUTH']) ? trim($_SERVER['HTTP_WAF_WEBAUTH']) : 'notgiven';
     $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]) ->order(['timestamp'=>'DESC']) -> contain(['AADEventsColleges','AADEventsDepartments']);
     $person = $query->first();
-    $person->department = (!empty($person->a_a_d_events_department)) ? $person->a_a_d_events_department->deptalpha : $person->depttext;
+    if (empty($person)) $person = (object)[];
+    $person->department = (!empty($person->a_a_d_events_department)) ? $person->a_a_d_events_department->deptalpha : (!empty($person->depttext) ? $person->depttext : '');
     $person->college = (!empty($person->a_a_d_events_college)) ? $person->a_a_d_events_college->college : '';
     return $person;
 	}

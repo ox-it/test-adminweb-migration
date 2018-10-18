@@ -24,16 +24,13 @@
 					echo $this->Form->control('surname', ['label' => 'Surname']);
 					echo $this->Form->control('forename', ['label' => 'First name']);
 					echo $this->Form->control('title', ['label' => 'Title']);
-					echo $this->Form->control('jobtitle', ['label' => 'Job title', 'default'=>$person->jobtitle]);
-					echo $this->Form->control('phone', ['label' => 'Telephone', 'default'=>$person->phone]);
-					echo $this->Form->control('email', ['label' => 'Email', 'default'=>$person->email]);
-					echo $this->Form->control('email2', ['label' => 'Confirm email', 'default'=>$person->email]);
-					echo $this->Form->input('deptcode', ['type' => 'select', 'options' => $departments, 'empty' => '-- Please select if appropriate --', 'label' => 'Department/Faculty'], ['val'=>$person->deptcode]);
-					echo $this->Form->control('depttext', ['label' => 'Department/Faculty Details', 'templates' => [
-            'inputContainer' => '<div id="depttext_wrapper" class="input {{type}}{{required}}">{{content}}</div>',
-            'inputContainerError' => '<div id="depttext_wrapper" class="input {{type}}{{required}} error">{{content}}{{error}}</div>'
-          ]]);
-					echo $this->Form->input('collcode', ['type' => 'select', 'options' => $colleges, 'empty' => '-- Please select if appropriate --', 'label' => 'College'],['val'=>$person->collcode]);
+					echo $this->Form->control('jobtitle', ['label' => 'Job title']);
+					echo $this->Form->control('phone', ['label' => 'Telephone']);
+					echo $this->Form->control('email', ['label' => 'Email']);
+					echo $this->Form->control('email2', ['label' => 'Confirm email', 'default' => (empty($person->email) ? '' : $person->email) ]);
+					echo $this->Form->input('deptcode', ['type' => 'select', 'options' => $departments, 'empty' => '-- Please select if appropriate --', 'label' => 'Department/Faculty' ]);
+					echo $this->Form->control('depttext', ['label' => 'Department/Faculty Details', 'templates' => $waf->template_wrappers('depttext') ]);
+					echo $this->Form->input('collcode', ['type' => 'select', 'options' => $colleges, 'empty' => '-- Please select if appropriate --', 'label' => 'College' ]);
 			?>
 
 			<hr class="line">
