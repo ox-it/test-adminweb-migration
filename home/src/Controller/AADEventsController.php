@@ -40,7 +40,7 @@ class AADEventsController extends AppController
 		if (empty($person)) $person = $this->AADEventsPeople->newEntity();
 
 		if ($this->request->is(['post', 'put'])) {
-			$person = $this->AADEventsPeople->patchEntity($person, $this->request->getData());
+			$person = $this->AADEventsPeople->patchEntity($person, $this->request->getData(), ['validate'=>'register']);
 			if ($this->AADEventsPeople->save($person)) {
 				$this->Flash->success(__('Saved.'));
 				$booked = [];
