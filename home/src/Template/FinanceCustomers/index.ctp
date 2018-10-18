@@ -40,13 +40,13 @@
 			<h4>
 				Customer Details
 			</h4>
-			<?= $this->Form->control('category', [ 'type'=>'radio', 'class'=>'with-notes', 'options'=>$customer->categoryOptions(), 'label'=>'Customer Category', 'templates'=>$waf->template_wrappers('category', $customer->spacer()) ] ) ?>
+			<?= $this->Form->control('category', [ 'type'=>'radio', 'options'=>$customer->categoryOptions(), 'label'=>'Customer Category', 'templates'=>$waf->template_wrappers('category', $customer->spacer(), 'spaced','radios') ] ) ?>
 			<?php	$custname_notes = '<div class="notes">(Full trading name and legal status for Organisation responsible for payment, e.g. A Customer PLC. If an Individual, please provide their full name)</div>'; ?>
-			<?= $this->Form->control('custname', [ 'label'=>'Name', 'class'=>'with-notes', 'default'=>$customer->custname, 'templates'=>$waf->template_wrappers('custname',$custname_notes) ]) ?>
+			<?= $this->Form->control('custname', [ 'label'=>'Name', 'default'=>$customer->custname, 'templates'=>$waf->template_wrappers('custname',$custname_notes) ]) ?>
 			<?= $this->Form->control('custtitle', [ 'label'=>'Title', 'default'=>$customer->title, 'templates'=>$waf->template_wrappers('custtitle') ]) ?>
 			<?= $this->Form->control('accounttype', [ 'type'=>'select', 'options'=>$customer->accounttypeOptions(), 'label'=>'Account Type' ] ) ?>
 			<?php $accountnum_notes = '<div class="notes">(Additional or Existing sites)</div>'; ?>
-			<?= $this->Form->control('accountnum', [ 'label'=>'Customer Account No.', 'class'=>'with-notes', 'templates' => $waf->template_wrappers('accountnum',$accountnum_notes) ]) ?>
+			<?= $this->Form->control('accountnum', [ 'label'=>'Customer Account No.', 'templates' => $waf->template_wrappers('accountnum',$accountnum_notes) ]) ?>
 			<?= $this->Form->control('custURL', [ 'label'=>'Company Website'] ) ?>
 			<?= $this->Form->control('custparent', [ 'label'=>'Parent Company (if applicable)' ]) ?>
 			<?= $this->Form->control('custtype', [ 'type'=>'select', 'options'=>$customer->custtypeOptions(), 'empty'=>'-- Please select --', 'label'=>'Customer Type' ] ) ?>
@@ -58,10 +58,10 @@
       <?= $this->Form->control('payterms', [ 'type'=>'select', 'options'=>$customer->paytermsOptions(), 'empty'=>'-- Please select --', 'label'=>'Payment Terms' ] ) ?>
 			<?= $this->Form->control('paytermsother', [ 'label'=>'Please specify custom payment terms', 'default'=>$customer->paytermsother, 'templates'=>$waf->template_wrappers('paytermsother') ]) ?>
 			<?php $sendcon_notes = '<div class="notes">(Departments are responsible for ensuring customers receive a copy of the University\'s Standard Conditions of Sale and Supply)</div>'; ?>
-      <?=  $this->Form->control('sendcon', [ 'type'=>'radio', 'class'=>'with-notes', 'options'=>$customer->yesnoOptions(), 'label'=>'Have Conditions of Sale and Supply been provided to your Customer?', 'templates'=>$waf->template_wrappers('sendcon',$sendcon_notes) ] ) ?>
+      <?=  $this->Form->control('sendcon', [ 'type'=>'radio', 'options'=>$customer->yesnoOptions(), 'label'=>'Have Conditions of Sale and Supply been provided to your Customer?', 'templates'=>$waf->template_wrappers('sendcon',$sendcon_notes, 'spaced','radios') ] ) ?>
 			<?php	$transaction_notes = '<div class="notes">(Approximate value of 6 week\'s supply. Required for Credit Checking where appropriate.)</div>'; ?>
-			<?= $this->Form->control('transaction', [ 'type'=>'number', 'label'=>'Value of proposed Transaction(s) in Pounds Sterling (£)', 'class'=>'with-notes', 'templates'=>$waf->template_wrappers('transaction',$transaction_notes) ]) ?>
-      <?= $this->Form->control('POupload', [ 'type'=>'radio', 'class'=>'with-notes', 'options'=>$customer->yesnoOptions(), 'label'=>'Copy of Customer PO sent to AR?' ] ) ?>
+			<?= $this->Form->control('transaction', [ 'type'=>'number', 'label'=>'Value of proposed Transaction(s) in Pounds Sterling (£)', 'templates'=>$waf->template_wrappers('transaction',$transaction_notes) ]) ?>
+      <?= $this->Form->control('POupload', [ 'type'=>'radio', 'options'=>$customer->yesnoOptions(), 'label'=>'Copy of Customer PO sent to AR?', 'templates'=>$waf->template_wrappers('POupload','','spaced','radios') ] ) ?>
 			<?php
 			  $POfileLabel = 'If "Yes", please upload: the PO here';
 			  if (!empty($customer->POfiles)) {
@@ -87,7 +87,7 @@
 			<?= $this->Form->control('billpostcode',	[ 'label'=>'Post/Zip Code' ]) ?>
       <?= $this->Form->control('billdomcode',		[ 'type'=>'select', 'options'=>$countries, 'label'=>'Country', 'default'=>'GB' ] ) ?>
       <?php $VATflag_notes = '<div class="notes">(If "Yes", please enter the number in the box below. If "No", this form may be returned for verification before being actioned.)</div>'; ?>
-      <?= $this->Form->control('VATflag', [ 'type'=>'radio', 'class'=>'with-notes', 'options'=>$customer->yesnoOptions(), 'label'=>'Does the customer have an EU VAT registration number?', 'templates'=>$waf->template_wrappers('VATflag',$VATflag_notes) ] ) ?>
+      <?= $this->Form->control('VATflag', [ 'type'=>'radio', 'options'=>$customer->yesnoOptions(), 'label'=>'Does the customer have an EU VAT registration number?', 'templates'=>$waf->template_wrappers('VATflag',$VATflag_notes,'spaced','radios') ] ) ?>
       <div id="vatcode_wrapper" class="inline_wrapper">
 				<p>VAT Number</p>
 				<?= $this->Form->control('countrycode', [ 'label'=>false, 'class'=>'inline', 'size'=>'2', 'maxlength'=>'2' ]) ?>
@@ -96,10 +96,10 @@
 				<div class="notes">(e.g. FR - AB123456789 for a French company)</div>
       </div>
 
-      <?= $this->Form->input('PDFinvoice', [ 'type'=>'radio', 'class'=>'with-notes', 'options'=>$customer->yesnoOptions(), 'label'=>'Does the organisation accept emailed pdf invoices?', 'templates'=>$waf->template_wrappers('PDFinvoice',$customer->spacer()) ] ) ?>
+      <?= $this->Form->input('PDFinvoice', [ 'type'=>'radio', 'options'=>$customer->yesnoOptions(), 'label'=>'Does the organisation accept emailed pdf invoices?', 'templates'=>$waf->template_wrappers('PDFinvoice',$customer->spacer(),'spaced','radios') ] ) ?>
       <div id="pdfinvoice_wrapper">
         <?php $invoiceemail_notes = '<div class="notes">(NB: Normally a generic email address.)</div>'; ?>
-				<?= $this->Form->control('invoiceemail', [ 'label'=>'Email for Invoices', 'class'=>'with-notes', 'default'=>$customer->invoiceemail, 'templates'=>$waf->template_wrappers('invoiceemail',$invoiceemail_notes) ]) ?>
+				<?= $this->Form->control('invoiceemail', [ 'label'=>'Email for Invoices', 'default'=>$customer->invoiceemail, 'templates'=>$waf->template_wrappers('invoiceemail',$invoiceemail_notes) ]) ?>
 				<?= $this->Form->control('statementemail', [ 'label'=>'Email for Statements', 'default'=>$customer->statementemail]) ?>
       </div>
 
@@ -110,7 +110,7 @@
       <?= $this->Form->control('billmobile', [ 'label'=>'Mobile' ]) ?>
       <?= $this->Form->control('billfax', [ 'label'=>'Fax' ]) ?>
 
-      <?= $this->Form->control('billcopy', [ 'type'=>'radio', 'class'=>'with-notes', 'options'=>$customer->yesnoOptions(), 'value'=>$customer->billcopy, 'label'=>'Is the shipping address (for deliveries) the same as the billing address', 'templates'=>$waf->template_wrappers('billcopy',$customer->spacer()) ] ) ?>
+      <?= $this->Form->control('billcopy', [ 'type'=>'radio', 'options'=>$customer->yesnoOptions(), 'value'=>$customer->billcopy, 'label'=>'Is the shipping address (for deliveries) the same as the billing address', 'templates'=>$waf->template_wrappers('billcopy',$customer->spacer(),'spaced','radios') ] ) ?>
       <div id="shipping_wrapper">
         <h4>Shipping (Delivery) Address</h4>
 				<?= $this->Form->control('shipaddress1', [ 'label'=>'Line 1' ]) ?>
