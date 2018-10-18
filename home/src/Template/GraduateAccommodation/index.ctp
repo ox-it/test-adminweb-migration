@@ -48,7 +48,7 @@
       <?= $this->Form->control('subject', ['type'=>'text', 'label' => 'Subject']); ?>
       <?= $this->Form->control('supervisor', ['type'=>'text', 'label' => 'Supervisor']); ?>
       <?= $this->Form->control('oss_number', ['type'=>'text', 'label' => 'Student Number']); ?>
-      <?= $this->Form->control('degree_start', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Start Date of Degree Course (dd/mm/yyyy)']); ?>
+      <?= $this->Form->control('degree_start', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Start Date of Degree Course (dd/mm/yyyy)']); ?>
   		<?= $this->Form->control('term', ['type' => 'select', 'options' => $form::termOptions(), 'empty' => '-- Term --', 'label' => 'Expected Finish Term']); ?>
   		<?= $this->Form->control('term_year', ['type' => 'select', 'options' => $form::yearOptions(), 'empty' => '-- Year --', 'label' => 'Expected Finish Year']); ?>
     </fieldset>
@@ -74,7 +74,7 @@
       <?= $this->Form->control('partner_subject', ['type'=>'text', 'label' => 'Subject']); ?>
       <?= $this->Form->control('partner_supervisor', ['type'=>'text', 'label' => 'Supervisor']); ?>
       <?= $this->Form->control('partner_oss_number', ['type'=>'text', 'label' => 'Student Number']); ?>
-      <?= $this->Form->control('partner_degree_start', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Start Date of Degree Course (dd/mm/yyyy)']); ?>
+      <?= $this->Form->control('partner_degree_start', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Start Date of Degree Course (dd/mm/yyyy)']); ?>
   		<?= $this->Form->control('partner_term', ['type' => 'select', 'options' => $form::termOptions(), 'empty' => '-- Term --', 'label' => 'Expected Finish Term']); ?>
   		<?= $this->Form->control('partner_term_year', ['type' => 'select', 'options' => $form::yearOptions(), 'empty' => '-- Year --', 'label' => 'Expected Finish Year']); ?>
     </fieldset>
@@ -96,32 +96,32 @@
       <fieldset id="children">
         <h5>Children (if applicable)</h5>
 				<div id="expecting-child">
-					<?= $this->Form->control('expecting', ['type' => 'checkbox', 'value' => 'Expecting a child', 'label' => 'Expecting a Child', 'class'=>'with-notes']); ?>
+					<?= $this->Form->control('expecting', ['type' => 'checkbox', 'value' => 'Expecting a child', 'label' => 'Expecting a Child' ]); ?>
 					<p class="notes">Please tick this box if you are expecting a child.</p>
 				</div>
 				<div id="child-1">
 					<?= $this->Form->control('select_child_1', ['type' => 'select', 'options' => $form::genderOptions(), 'empty' => '-- Please Select --', 'label' => 'Child 1 Gender']); ?>
-					<?= $this->Form->control('child_dob_1', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
+					<?= $this->Form->control('child_dob_1', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
 				</div>
 				<div id="child-2">
 					<?= $this->Form->control('select_child_2', ['type' => 'select', 'options' => $form::genderOptions(), 'empty' => '-- Please Select --', 'label' => 'Child 2 Gender']); ?>
-					<?= $this->Form->control('child_dob_2', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
+					<?= $this->Form->control('child_dob_2', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
 				</div>
 				<div id="child-3">
 					<?= $this->Form->control('select_child_3', ['type' => 'select', 'options' => $form::genderOptions(), 'empty' => '-- Please Select --', 'label' => 'Child 3 Gender']); ?>
-					<?= $this->Form->control('child_dob_3', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
+					<?= $this->Form->control('child_dob_3', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
 				</div>
 				<div id="child-4">
 					<?= $this->Form->control('select_child_4', ['type' => 'select', 'options' => $form::genderOptions(), 'empty' => '-- Please Select --', 'label' => 'Child 4 Gender']); ?>
-					<?= $this->Form->control('child_dob_4', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
+					<?= $this->Form->control('child_dob_4', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
 				</div>
 				<div id="child-5">
 					<?= $this->Form->control('select_child_5', ['type' => 'select', 'options' => $form::genderOptions(), 'empty' => '-- Please Select --', 'label' => 'Child 5 Gender']); ?>
-					<?= $this->Form->control('child_dob_5', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
+					<?= $this->Form->control('child_dob_5', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
 				</div>
 				<div id="child-6">
 					<?= $this->Form->control('select_child_6', ['type' => 'select', 'options' => $form::genderOptions(), 'empty' => '-- Please Select --', 'label' => 'Child 6 Gender']); ?>
-					<?= $this->Form->control('child_dob_6', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
+					<?= $this->Form->control('child_dob_6', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date of Birth (dd/mm/yyyy)']); ?>
 				</div>
       </fieldset>
     </fieldset>
@@ -137,7 +137,7 @@
   		<?= $this->Form->control('acc_prefer_4', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'Second preference']); ?>
   		<p><strong>Please note that 3-bedroom properties are only for families with more than one child.</strong></p>
   		<p><i>Please note that unfortunately we cannot guarantee that you will receive an offer of accommodation.</i></p>
-      <?= $this->Form->control('tenancy_accept', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'class'=>'hasDatepicker', 'label' => 'Date accommodation is required from (dd/mm/yyyy)', 'class' => 'with-notes' ]); ?>
+      <?= $this->Form->control('tenancy_accept', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date accommodation is required from (dd/mm/yyyy)' ]); ?>
   		<p><i>(N.B. Tenancies can only start a maximum of one month before your course commences.)</i></p>
       <?= $this->Form->control('comments', ['type'=>'textarea', 'label' => 'Do you have any specific requirements that we should be aware of?', 'rows' => 2]); ?>
     </fieldset>
