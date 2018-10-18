@@ -16,8 +16,6 @@ class AADEventsController extends AppController
 
 	public function index()
 	{
-	  // For development only
-	  $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
     $oxfordID = empty($_SERVER['HTTP_WAF_WEBAUTH']) ? 'unknown' : $_SERVER['HTTP_WAF_WEBAUTH'];
 
 		$this->loadModel('AADEventsLocations');
@@ -76,22 +74,6 @@ class AADEventsController extends AppController
 		$this->set('person', $person);
 
 	}
-
-  /* Using render instead
-	public function success($personID)
-	{
-		// For development only
-	  if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'ouit0197';
-
-		$this->loadModel('AADEventsPeople');
-		$person = $this->AADEventsPeople->getByOxfordID();
-		$person->mismatch = (empty($person) || $person->personID!=$personID);
-		$this->set('person', $person);
-
-		$this->loadModel('AADEventsBookings');
-		$this->set('bookings', $this->AADEventsBookings->getByOxfordID());
-	}
-	//*/
 
 	private function emailConfirmation($person, $booked)
 	{
