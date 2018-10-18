@@ -69,7 +69,7 @@ class WafComponent extends Component
 
   public function postButtonToReferer($context, $text='Back', $strip_query=false) {
     $url = $strip_query ? $this->stripQuery($context->request->referer()) : $context->request->referer();
-    echo $context->Html->link($text, $url, ['class'=>'button']);
+    echo $context->Html->link($text, $url, ['class'=>'button btn']);
   }
 
   public function postLinkToReferer($context, $text='Back', $strip_query=false) {
