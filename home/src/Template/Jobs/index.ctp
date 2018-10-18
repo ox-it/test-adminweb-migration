@@ -12,7 +12,7 @@
 			<h2 style="margin: 1em 0 0 3px; ">
 			<?= $vacancy['shortDescription'] ?>
 			</h2>
-			<table><tbody>
+			<table class="table"><tbody>
 				<tr><td colspan="4" style="width: 100%;" class="orgGroupLocationText"><strong>
 				<?= $vacancy['orgGroupLocationText'] ?>
 				</strong></td></tr>
