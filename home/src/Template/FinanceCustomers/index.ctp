@@ -90,9 +90,9 @@
       <?= $this->Form->control('VATflag', [ 'type'=>'radio', 'options'=>$customer->yesnoOptions(), 'label'=>'Does the customer have an EU VAT registration number?', 'templates'=>$waf->template_wrappers('VATflag',$VATflag_notes,'spaced','radios') ] ) ?>
       <div id="vatcode_wrapper" class="inline_wrapper">
 				<p>VAT Number</p>
-				<?= $this->Form->control('countrycode', [ 'label'=>false, 'class'=>'inline', 'size'=>'2', 'maxlength'=>'2' ]) ?>
+				<?= $this->Form->control('countrycode', [ 'label'=>false, 'size'=>'2', 'maxlength'=>'2' ]) ?>
 				<div>-</div>
-				<?= $this->Form->control('custVAT', 		[ 'label'=>false, 'class'=>'inline', 'size'=>'13', 'maxlength'=>'13' ]) ?>
+				<?= $this->Form->control('custVAT', 		[ 'label'=>false, 'size'=>'13', 'maxlength'=>'13' ]) ?>
 				<div class="notes">(e.g. FR - AB123456789 for a French company)</div>
       </div>
 

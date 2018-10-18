@@ -57,6 +57,6 @@
 .web-app-wrapper tr.highlight td a{color:#4af}
 .web-app-wrapper tr.highlight td a:hover{color:#fee}
 .web-app-wrapper .error label,.web-app-wrapper .error label.error{color:#C3232D;font-weight:bold}
-.web-app-wrapper .error textarea,.web-app-wrapper .error input{background-color:#fee}
+.web-app-wrapper .error textarea,.web-app-wrapper .error input{background-color:#fee !important}
 .web-app-wrapper .error .error-message{color:#C3232D;font-size:0.8em;margin:0 0 0.5em}
 
