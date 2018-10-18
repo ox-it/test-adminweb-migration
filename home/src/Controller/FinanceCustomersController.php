@@ -49,17 +49,16 @@ class FinanceCustomersController extends AppController
 	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
     $css = str_replace('.web-app-wrapper ','',$file->read());
 		$email = new Email();
-  	$email
-  	  ->template('new_finance_customer')
-  	  ->viewVars(['customer' => $customer, 'waf' => $this->Waf, 'css'=>$css ])
-			->subject('New Customer Account')
-      ->from(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team'])
-      // TODO: Remove test email
-      ->to('al@cache.co.uk')
-			//->to($customer->email)
-      ->emailFormat('html')
-      ->attachments($customer->POfilepath)
-			->send();
+		$email->template('new_finance_customer');
+		$email->viewVars(['customer' => $customer, 'waf' => $this->Waf, 'css'=>$css ]);
+		$email->subject('New Customer Account');
+		$email->from(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team']);
+		// TODO: Remove test email
+		//$email->to('al@cache.co.uk');
+		$email->to($customer->email);
+		$email->emailFormat('html');
+		$email->attachments($customer->POfilepath);
+  	$email->send();
 	}
 
 }
