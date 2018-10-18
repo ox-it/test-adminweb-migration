@@ -8,6 +8,8 @@
 
 	<div class="waf-include">
 
+	  <?php echo '<textarea rows="10" style="line-height:1.1em">' . print_r($customer, true) . '</textarea>'; ?>
+
     <!-- Information -->
     <p>
       Welcome to the Accounts Receivable (AR) Customer Set-up form. We will endeavour to
