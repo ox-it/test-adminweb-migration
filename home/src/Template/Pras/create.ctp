@@ -67,14 +67,14 @@
 
     <div id="confirmation">
       <h4>Confirmation</h4>
-      <?= $this->Form->control('newStaffCharge', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Are new staff to be charged to the Entity?']); ?>
-      <?= $this->Form->control('existingStaffTransfer', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Are existing staff to be transferred to the Entity?']); ?>
+      <?= $this->Form->control('newStaffCharge', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Are new staff to be charged to the Entity?', 'templates'=>$waf->template_wrappers('newStaffCharge', '', 'spaced','radios') ]); ?>
+      <?= $this->Form->control('existingStaffTransfer', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Are existing staff to be transferred to the Entity?', 'templates'=>$waf->template_wrappers('existingStaffTransfer', '', 'spaced','radios') ]); ?>
       <?= $this->Form->control('contact', ['type'=>'text', 'label' => 'Contact name for personnel matters']); ?>
-      <?= $this->Form->control('studentLoad', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Will the Entity have a student load?']); ?>
-      <?= $this->Form->control('admitGraduates', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Will the unit have the power to admit graduate students?']); ?>
+      <?= $this->Form->control('studentLoad', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Will the Entity have a student load?', 'templates'=>$waf->template_wrappers('studentLoad', '', 'spaced','radios') ]); ?>
+      <?= $this->Form->control('admitGraduates', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Will the unit have the power to admit graduate students?', 'templates'=>$waf->template_wrappers('admitGraduates', '', 'spaced','radios') ]); ?>
       <?= $this->Form->control('coursesAwards', ['type'=>'textarea', 'label' => 'List any courses/awards to be associated with the Entity', 'rows' => 4]); ?>
-      <?= $this->Form->control('researchGrants', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Are any research grants to be charged to the Entity?']); ?>
-      <?= $this->Form->control('departmentalProjects', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Will the entity have any departmental projects?']); ?>
+      <?= $this->Form->control('researchGrants', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Are any research grants to be charged to the Entity?', 'templates'=>$waf->template_wrappers('researchGrants', '', 'spaced','radios') ]); ?>
+      <?= $this->Form->control('departmentalProjects', ['type'=>'radio', 'options' => $pras->yesNoOptions(), 'label' => 'Will the entity have any departmental projects?', 'templates'=>$waf->template_wrappers('departmentalProjects', '', 'spaced','radios') ]); ?>
       <?= $this->Form->control('domainName', ['type'=>'text', 'label' => ['text'=>'Does the Entity require a domain name? (if yes, please provide preferred domain name ending in <strong><em>ox.ac.uk</em></strong>)','escape' => false ]]); ?>
       <?= $this->Form->control('itSupport', ['type'=>'text', 'label' => 'Who will be responsible for IT support?']); ?>
       <?= $this->Form->control('physicalAddress', ['type'=>'textarea', 'label' => 'Will the new entity have dedicated physical space? (if yes, please provide address)', 'rows' => 4]); ?>
@@ -84,7 +84,7 @@
     <?php
       if ($data['entityType']!='cost-centre') {
         echo $this->Form->control('generalPurposesConfirmed', ['type'=>'checkbox', 'label' => 'Has this change been confirmed by the General Purposes Committee?', 'templates'=>$waf->template_wrappers('generalPurposesConfirmed', '', 'spaced') ]);
-        echo $this->Form->control('divisionalBoardConfirmed', ['type'=>'checkbox', 'label' => 'Has this change been confirmed by the relevant Divisional Board?', 'templates'=>$waf->template_wrappers('generalPurposesConfirmed', '', 'spaced') ]);
+        echo $this->Form->control('divisionalBoardConfirmed', ['type'=>'checkbox', 'label' => 'Has this change been confirmed by the relevant Divisional Board?', 'templates'=>$waf->template_wrappers('divisionalBoardConfirmed', '', 'spaced') ]);
       }
       echo $this->Form->input('changeDate', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Effective date of change (dd/mm/yyyy)']);
       echo $this->Form->control('approverName', ['label' => 'Approver Name']);
