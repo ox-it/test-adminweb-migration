@@ -36,6 +36,6 @@ class AppView extends View
      */
     public function initialize()
     {
-      $this->loadHelper('Form', [ 'templates' => 'waf_form' ]);
+      $this->loadHelper('Form', [ 'templates' => 'waf_form', 'errorClass' => null ]);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+  // Applied in /src/View/AppView.php
 	return [
 	  'button' => '<button{{attrs}} class="button btn">{{text}}</button>' . "\n",
 	  'checkbox' => '<input type="checkbox" name="{{name}}" value="{{value}}"{{attrs}}><span class="control"></span>' . "\n",
