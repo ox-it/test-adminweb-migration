@@ -27,6 +27,7 @@
 
     <!-- Form -->
 		<?= $this->Form->create($customer, [ 'type'=>'file', 'context'=>[ 'validator'=>'register' ], 'novalidate'=>true ]) ?>
+		<?php $this->Form->unlockField('POtemp'); ?>
 
 			<h4>
 				Your Details
