@@ -9,6 +9,8 @@
 	<div class="waf-include">
 
 	  <?php echo '<textarea rows="10" style="line-height:1.1em">' . print_r($customer, true) . '</textarea>'; ?>
+	  <?php echo '<textarea rows="10" style="line-height:1.1em">' . print_r($_POST, true) . '</textarea>'; ?>
+	  <?php echo '<textarea rows="10" style="line-height:1.1em">' . print_r($_FILES, true) . '</textarea>'; ?>
 
     <!-- Information -->
     <p>
