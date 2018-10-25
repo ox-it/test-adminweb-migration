@@ -65,21 +65,19 @@ class FinanceCustomersCustomersTable extends Table
 		$validator = new Validator();
 
 	  $require = ['forename','surname','email','phone','custname','category','accounttype','custtype','payterms','sendcon','transaction','POupload','billaddress1','billtown','billpostcode','billdomcode','VATflag','billcontact','billemail','billphone','billcopy'];
-		foreach($require as $r) $validator ->notEmpty($r);
+		//foreach($require as $r) $validator ->notEmpty($r);
 
-	  $conditionals = [ ['custtitle', 'category', 'P'], ['accountnum', 'accounttype', ['A','E']], ['invoiceemail','VATflag','Y'], ['shipaddress1','billcopy','N'], ['shiptown','billcopy','N'], ['shippostcode','billcopy','N'], ['shipdomcode','billcopy','N'] ];
+	  $conditionals = [ ['custtitle', 'category', 'P'], ['accountnum', 'accounttype', ['A','E']], ['custVAT','VATflag','Y'], ['countrycode','VATflag','Y'], ['invoiceemail','PDFinvoice','Y'], ['shipaddress1','billcopy','N'], ['shiptown','billcopy','N'], ['shippostcode','billcopy','N'], ['shipdomcode','billcopy','N'] ];
 		foreach($conditionals as $i=>$c) {
 			if (!is_array($c[2])) $c[2] = [$c[2]];
 		  //print 'CREATE: ' . $c[0] . ': ' . $c[1] . ' in ' . print_r($c[2],true) . '<br>';
 		  $validator->allowEmpty($c[0]);
-		  $validator->add($c[0], 'notEmpty', [
-				'rule' => 'notEmpty',
-				'on' => function ($context) use ($c) {
-					$result = (!empty($context['data'][$c[1]]) && in_array($context['data'][$c[1]], $c[2]));
-					//print 'CHECK: ' . $c[0] . ': ' . $c[1] . ' = ' . $context['data'][$c[1]] . ' in [' . implode(', ',$c[2]) . '] ' . ($result?'YES':'NO') . '<br>';
+			$validator ->notEmpty($c[0], null, function ($context) use ($c) {
+			    $value = !empty($context['data'][$c[1]]) ? $context['data'][$c[1]] : '';
+					$result = (!empty($value) && in_array($value, $c[2]));
+					//print 'CHECK: ' . $c[0] . ': ' . $c[1] . ' = ' . $value . ' in [' . implode(', ',$c[2]) . '] ' . ($result?'YES':'NO') . '<br>';
           return $result;
-				}
-			]);
+      });
     }
 
 		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
