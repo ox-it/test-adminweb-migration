@@ -65,7 +65,7 @@ class FinanceCustomersCustomersTable extends Table
 		$validator = new Validator();
 
 	  $require = ['forename','surname','email','phone','custname','category','accounttype','custtype','payterms','sendcon','transaction','POupload','billaddress1','billtown','billpostcode','billdomcode','VATflag','billcontact','billemail','billphone','billcopy'];
-		//foreach($require as $r) $validator ->notEmpty($r);
+		foreach($require as $r) $validator ->notEmpty($r);
 
 	  $conditionals = [ ['custtitle', 'category', 'P'], ['accountnum', 'accounttype', ['A','E']], ['custVAT','VATflag','Y'], ['countrycode','VATflag','Y'], ['invoiceemail','PDFinvoice','Y'], ['shipaddress1','billcopy','N'], ['shiptown','billcopy','N'], ['shippostcode','billcopy','N'], ['shipdomcode','billcopy','N'] ];
 		foreach($conditionals as $i=>$c) {
