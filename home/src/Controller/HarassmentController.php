@@ -51,7 +51,7 @@ class HarassmentController extends AppController
 	public function report($userID, $deptcode, $acyear)
 	{
 	  $submitted = $this->request->getData('submitted');
-		//$this->Flash->success('REPORT :: USER:' . $userID . ' DEPTCODE:'.$deptcode . ' ACYEAR:'.$acyear  . ' SUMITTED:'.$submitted );
+		$this->Flash->success('REPORT :: USER:' . $userID . ' DEPTCODE:'.$deptcode . ' ACYEAR:'.$acyear  . ' SUMITTED:'.$submitted );
 
 		$user = $this->getOxfordUserAndValidate();
 		$this->loadModel('HarassmentSurveys');
@@ -66,8 +66,9 @@ class HarassmentController extends AppController
 			if ($this->HarassmentSurveys->save($survey)) {
 				$this->Flash->success(__('Saved.'));
 				//$this->Flash->success('SURVEY: ' . print_r($survey,true));
-				//$this->Flash->success('DEPARTMENT: ' . print_r($departments,true));
+				$this->Flash->success('USER: ' . print_r($user,true));
 				//return $this->redirect(['action' => 'success', $survey->surveyID]);
+    		$this->set('user', $user);
     		$this->set('survey', $survey);
 				return $this->render('success');
 			} else {
@@ -126,7 +127,7 @@ class HarassmentController extends AppController
 	private function getOxfordUserAndValidate()
 	{
 	  // Removed the development OSS value
-		//if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
+		if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
 		// 'sloblock' - non existant
 		// 'alls0027' - inactive
 		// 'bioc0236' - single dept
