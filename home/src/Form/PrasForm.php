@@ -273,7 +273,7 @@ class PrasForm extends Form
       // Universal validation
 			$validator ->notEmpty('changeType');
   		$validator ->notEmpty(['changeDate','approverName','approverJobTitle','approverEmail']);
-  		$validator ->email('approveremail');
+  		$validator ->add('approverEmail', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 
 			// Conditional field validation ...
 			// ... if not Cost Centre

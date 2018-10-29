@@ -32,7 +32,7 @@
       <div class="column_wrapper">
 
 				<!--Beginning of the left column-->
-				<div id="left" style="flex:4">
+				<div id="left">
 					<h2 class="ag-secondary-header">
 						<a href="<?= $url ?>" class="subcontent" style="color:#FF9001;">
 							<?= (isset($accessibility['access_guide_contents'])?$accessibility['access_guide_contents']:'') ?>

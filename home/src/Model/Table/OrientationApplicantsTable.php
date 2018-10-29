@@ -2,9 +2,10 @@
 // src/Model/Table/OrientationApplicantsTable.php
 namespace App\Model\Table;
 
-use Cake\ORM\Table;
 use Cake\I18n\Time;
 use Cake\I18n\Date;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 class OrientationApplicantsTable extends Table
@@ -16,6 +17,7 @@ class OrientationApplicantsTable extends Table
 
 	public function initialize(array $config)
 	{
+    $this->addBehavior('Waf');  				// src/Model/Behavior/WafBehavior.php
 		$this->addBehavior('Timestamp');
 		$this->setTable('orientation_applicant');
 		$this->setPrimaryKey('ID');
@@ -24,6 +26,12 @@ class OrientationApplicantsTable extends Table
 		$this->belongsTo('OrientationDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 		$this->belongsTo('OrientationNationalites') ->setForeignKey('natcode') ->setBindingKey('natcode');
 	}
+
+	public function buildRules(RulesChecker $rules)
+  {
+    //return $this->wafRules($rules);
+			return $rules;
+  }
 
 	public function getByID($applicantID = null) {
 		$query = $this->find('all') ->where(['applicantID'=>$applicantID]) -> contain(['OrientationColleges','OrientationCountries','OrientationDepartments','OrientationNationalites']);
@@ -39,7 +47,9 @@ class OrientationApplicantsTable extends Table
 			'message' => 'The registration code is not valid'
 		]);
 		$validator ->notEmpty(['registration','firstname','surname','DOB','collcode','natcode','domcode','deptcode','course_type','degree','subject','email']);
-		$validator ->email('email');
+		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
+		$validator ->add('DOB', 'validateDateFormat', [ 'rule'=>[$this,'validateDateFormat'], 'message' => 'Please enter a valid date' ]);
+
 		foreach(['arrival_date','arrival_time','flight_num','flight_from'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['meet']) && $context['data']['meet']=='Y'); });
 		}

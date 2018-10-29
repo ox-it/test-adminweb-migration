@@ -40,7 +40,7 @@ class UASEventsPeopleTable extends Table
 		$validator = new Validator();
 		$validator ->notEmpty(['surname','forename','title','jobtitle','phone','email','email2','deptcode','collcode']);
 		$validator ->lengthBetween('phone', [5, 16], 'Please enter a valid phone number');
-		$validator ->equalToField('email','email2','The emails do not match');
+		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 		$validator ->equalToField('email2','email','The emails do not match');
 		return $validator;
 	}
