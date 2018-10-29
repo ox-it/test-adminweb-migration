@@ -69,7 +69,7 @@
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Harassement Form', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $waf->postButtonToReferer($this, 'Return to Harassement Start Page') ?>
     </p>
 
 	</div>
