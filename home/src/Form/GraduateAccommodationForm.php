@@ -87,6 +87,8 @@ class GraduateAccommodationForm extends Form
     $validator ->notEmpty('application_type');
 		$validator ->notEmpty(['title','surname','firstname','contact_number','preferred_email','nationality','college','degree','subject','term','term_year','acc_prefer_1','acc_prefer_2','tenancy_accept']);
 		$validator ->add('preferred_email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
+		$validator ->allowEmpty('partner_preferred_email');
+		$validator ->add('partner_preferred_email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 
 		// Date validation
 		$validator ->allowEmpty(['child_dob_1','child_dob_2','child_dob_3','child_dob_4','child_dob_5','child_dob_6']);

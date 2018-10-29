@@ -17,15 +17,28 @@ class HarassmentController extends AppController
 
 	public function index()
 	{
+		// Respond to GET parameters
+  	$action = $this->request->getQuery('a');
+		$userID = $this->request->getQuery('u');
+		$deptcode = $this->request->getQuery('d');
+		$acyear = $this->request->getQuery('y');
+  	if (!empty($action) && in_array($action,['report','confirm'])) {
+  	  return $this->$action($userID,$deptcode,$acyear);
+    }
+
+  	// Otherwise continue
 		$user = $this->getOxfordUserAndValidate();
 		if ($this->request->is(['post', 'put'])) {
 			$user = $this->HarassmentUsers->patchEntity($user, $this->request->getData());
       if (!empty($user->action)) {
+        return $this->redirect([ '?' => [ 'a'=>($user->action == 'report'?'report':'confirm'), 'u'=>$user->userID, 'd'=>$user->deptcode, 'y'=>$user->acyear ] ]);
+        /*
         if ($user->action == 'report') {
           return $this->redirect([ 'action' => 'report', $user->userID, $user->deptcode, $user->acyear ]);
         } else {
           return $this->redirect([ 'action' => 'confirm', $user->userID, $user->deptcode, $user->acyear ]);
         }
+        //*/
       }
 		}
 	}
@@ -37,18 +50,24 @@ class HarassmentController extends AppController
 		$survey = $this->HarassmentSurveys->newEntity(['personID'=>$userID, 'deptcode'=>$deptcode, 'year'=>$acyear]);
 
 		$this->loadModel('HarassmentDepartments');
-		$this->set('departments', $this->HarassmentDepartments->getSelectOptions());
+		$departments = $this->HarassmentDepartments->getSelectOptions();
+		$this->set('departments', $departments);
 
 		if ($this->request->is(['post', 'put'])) {
 			$survey = $this->HarassmentSurveys->patchEntity($survey, $this->request->getData(), ['validate'=>'report']);
 			if ($this->HarassmentSurveys->save($survey)) {
 				$this->Flash->success(__('Saved.'));
-				return $this->redirect(['action' => 'success', $survey->surveyID]);
+				$this->Flash->success('SURVEY: ' . print_r($survey,true));
+				$this->Flash->success('DEPARTMENT: ' . print_r($departments,true));
+				//return $this->redirect(['action' => 'success', $survey->surveyID]);
+    		$this->set('survey', $survey);
+				return $this->render('success');
 			} else {
 			  $this->Flash->error(__('Sorry. Your survey contains errors.'));
 			}
 		}
 		$this->set('survey', $survey);
+		$this->render('report');
 	}
 
 	public function confirm($userID, $deptcode, $acyear)
@@ -71,8 +90,10 @@ class HarassmentController extends AppController
 		  $this->HarassmentSurveys->save($nilreport);
   		$this->set('report', $nilreport);
 		}
+		$this->render('confirm');
 	}
 
+  /*
 	public function success($surveyID)
 	{
 		$user = $this->getOxfordUserAndValidate();
@@ -91,11 +112,12 @@ class HarassmentController extends AppController
 		$this->set('survey', $survey);
 		$this->set('waf', $this->Waf);
 	}
+	//*/
 
 	private function getOxfordUserAndValidate()
 	{
-	  // Removed the development OSS value
-		// if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
+	  // TODO: Remove the development OSS value
+		if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
 		// 'sloblock' - non existant
 		// 'alls0027' - inactive
 		// 'bioc0236' - single dept
