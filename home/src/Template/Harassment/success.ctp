@@ -14,7 +14,7 @@
     <p> Thank you for filling out the report.</p>
     <p> The following information has been recorded:</p>
 
-    <h4><?= h($user->name) ?> - <?= !empty($departments[$survey->deptcode]) ? $departments[$survey->deptcode] : 'Unknown department' ?></h4>
+    <h4><?= h($user->name) ?> - <?= !empty($departments[$survey->deptcode]) ? $departments[$survey->deptcode] : (!empty($user->harassment_departments[0]->deptalpha) ? $user->harassment_departments[0]->deptalpha :'Unknown department') ?></h4>
     <?= $waf->postValueWithLabel(
       ($survey->{'1adeptadviser'}=='Y'?'Harassment Adviser':'') .
       ($survey->{'1edeptadmin'}=='Y'?'Departmental Administrator / Personnel officer':''), 'Your Capacity') ?>
