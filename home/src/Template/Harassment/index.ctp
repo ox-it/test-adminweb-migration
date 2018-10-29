@@ -1,17 +1,10 @@
-<!-- File: src/Template/FinanceTravel/index.ctp -->
+<!-- File: src/Template/Harassment/index.ctp -->
 
 <?php
   $lastyear = date('Y') - 1;
   $years = range(2007,$lastyear);
   $yearOptions = [];
   foreach ($years as $year) $yearOptions[$year] = $year.'/'.substr($year+1,-2,2);
-
-  function template_wrappers($field, $notes='', $classes=[]) {
-    return [
-			'inputContainer'=>'<div id="'.$field.'_wrapper" class="input {{type}}{{required}} '.implode(' ',$classes).'">{{content}}'.$notes.'</div>',
-			'inputContainerError'=>'<div id="'.$field.'_wrapper" class="input {{type}}{{required}} '.implode(' ',$classes).' error">{{content}}{{error}}'.$notes.'</div>'
-    ];
-  }
 ?>
 
 <div class="row">
