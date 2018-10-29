@@ -6,8 +6,6 @@
 		Harassment Survey
 	</h3>
 
-	<?= $this->Html->script($this->name . '/script.js') ?>
-
 	<div class="waf-include">
 
     <!-- Information -->
@@ -25,6 +23,8 @@
     <!-- Form -->
 		<?= $this->Form->create($survey, [ 'type'=>'file', 'context'=>[ 'validator'=>'report' ], 'novalidate'=>true ]) ?>
 
+      <?= $this->Form->control('action', [ 'type'=>'hidden', 'value'=>'report' ]) ?>
+      <?= $this->Form->control('submitted', [ 'type'=>'hidden', 'value'=>1 ]) ?>
       <?= $this->Form->control('0nilreturn', [ 'type'=>'hidden', 'value'=>0 ]) ?>
 
 			<!-- The capacity the user was acting in -->
