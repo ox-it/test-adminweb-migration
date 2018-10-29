@@ -141,7 +141,7 @@
   	<?php endif; ?>
 
   	<h3>Conclusion</h3>
-    <?= $waf->postValueWithLabel($survey->compyear . (!empty($survey->compmonth)?' (' . $waf::monthFromNumber($survey->compmonth) . ')':''), 'Case closed') ?>
+    <?= $waf->postValueWithLabel($survey->compyear . (!empty($survey->compmonth)?' (' . $waf->monthFromNumber($survey->compmonth) . ')':''), 'Case closed') ?>
     <?php if ( $survey->{'9yessatisfiedeo'} + $survey->{'9notsatisfiedeo'} > 0 ) : ?>
     <p class="display-p">
       <?= $survey->{'9yessatisfiedeo'}==1 ? '<green>&#10003;</green> You were satisfied with the assistance received from the Equal Opportunities Office' : '' ?>
@@ -170,7 +170,7 @@
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Harassement Start Page', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $this->Html->link('Return to Harassement Start Page', ['action' => 'index'], ['class'=>'button btn']) ?>
     </p>
 
 	</div>
