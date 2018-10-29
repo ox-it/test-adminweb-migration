@@ -47,6 +47,7 @@ class GcpApplicantsTable extends Table
 
 	public function validationRegister($validator) {
     $validator ->notEmpty(['surname','forename','title','employer','position','email','phone','role']);
+		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
     foreach(['study','investigator', 'REC','project'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['employer']) && $context['data']['employer']=='O'); });
 		}
@@ -55,26 +56,13 @@ class GcpApplicantsTable extends Table
 
 	public function beforeSave($event, $entity, $options) {
 		if ($entity->isNew()) {
-
 			$entity->made_stamp = time();
-
-			//$entity->download_date = date('d/m/Y');
-			//$entity->download_time = date('H:i');
-			//$entity->download_stamp = time();
-
-			// Make CSV
-		  //$this->createCSVFile($entity);
-
-			// Send Email
-			// $email = $this->prepareEmailFields($entity);
-		  //$this->sendEmailConfirmation($entity);
-
 		}
 	}
 
 	protected function prepareEmailFields($entity)
 	{
-		// TODO: Create XML file & send in an email.
+
 		$type = $data['application_type'];
 		$isSingle=($data['application_type']==self::$single);
 		if ($isSingle){

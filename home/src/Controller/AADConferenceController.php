@@ -41,7 +41,7 @@ class AADConferenceController extends AppController
 		  $applicant->newUser = true;
 		}
 		if ($this->request->is('post')) {
-			$applicant = $this->AADConferenceApplicants->patchEntity($applicant, $this->request->getData());
+			$applicant = $this->AADConferenceApplicants->patchEntity($applicant, $this->request->getData(), ['validate'=>'register']);
 			$applicant->eventID = $eventID;
 			$applicant->statuscode = ($event->waiting) ? 'L' : 'A';
 			if ($this->AADConferenceApplicants->save($applicant)) {

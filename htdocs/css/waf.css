@@ -45,7 +45,8 @@
 .web-app-wrapper .inline_wrapper input,.web-app-wrapper .column_wrapper input{margin:0}
 .web-app-wrapper .column_wrapper .notes{color:#555;font-size:0.9em;margin:0 0 0 0.5em}
 .web-app-wrapper .column_wrapper{display:flex;align-items:flex-start}
-.web-app-wrapper .column_wrapper>*{flex:1}
+.web-app-wrapper .column_wrapper>*{flex:1;padding-right:2em}
+.web-app-wrapper .column_wrapper>*:last-child{padding-right:0}
 .web-app-wrapper .column_wrapper .column_wrapper{align-items:center}
 .web-app-wrapper .column_wrapper .column_wrapper.zero *{color:#aaa}
 .web-app-wrapper .column_wrapper .column_wrapper .form-type-header{padding:0 1em 0 0;line-height:1.2em;font-size:0.9em;font-weight:bold}
@@ -59,4 +60,5 @@
 .web-app-wrapper .error label,.web-app-wrapper .error label.error{color:#C3232D;font-weight:bold}
 .web-app-wrapper .error textarea,.web-app-wrapper .error input{background-color:#fee !important}
 .web-app-wrapper .error .error-message{color:#C3232D;font-size:0.8em;margin:0 0 0.5em}
+.web-app-wrapper .error .error-message li{color:#C3232D;font-size:0.8em;margin:0}
 

@@ -67,6 +67,12 @@ class FinanceCustomersCustomersTable extends Table
 	  $require = ['forename','surname','email','phone','custname','category','accounttype','custtype','payterms','sendcon','transaction','POupload','billaddress1','billtown','billpostcode','billdomcode','VATflag','billcontact','billemail','billphone','billcopy'];
 		foreach($require as $r) $validator ->notEmpty($r);
 
+    $validator ->allowEmpty(['invoiceemail','statementemail']);
+    $fields = ['email','invoiceemail','statementemail','billemail'];
+    foreach($fields as $field) {
+		  $validator ->add($field, 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
+		}
+
 	  $conditionals = [ ['custtitle', 'category', 'P'], ['accountnum', 'accounttype', ['A','E']], ['custVAT','VATflag','Y'], ['countrycode','VATflag','Y'], ['invoiceemail','PDFinvoice','Y'], ['shipaddress1','billcopy','N'], ['shiptown','billcopy','N'], ['shippostcode','billcopy','N'], ['shipdomcode','billcopy','N'] ];
 		foreach($conditionals as $i=>$c) {
 			if (!is_array($c[2])) $c[2] = [$c[2]];
@@ -80,7 +86,6 @@ class FinanceCustomersCustomersTable extends Table
       });
     }
 
-		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 		$validator ->add('creditcheck', 'mustCheck', [ 'rule'=>['comparison', '!=', 0], 'message'=>'Please agree to the credit check statement', 'allowEmpty' => false, 'required' => true, 'last' => true ]);
 
 		return $validator;

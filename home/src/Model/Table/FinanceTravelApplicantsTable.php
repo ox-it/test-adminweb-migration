@@ -21,6 +21,7 @@ class FinanceTravelApplicantsTable extends Table
 
 	public function initialize(array $config)
 	{
+    $this->addBehavior('Waf');  				// src/Model/Behavior/WafBehavior.php
 		$this->addBehavior('Timestamp');
 		$this->setTable('finance_travel_applicant');
 		$this->setPrimaryKey('applicantID');
@@ -49,6 +50,10 @@ class FinanceTravelApplicantsTable extends Table
 		$validator ->notEmpty(['surname','forename','title','email','deptcode']);
 		$validator ->allowEmpty('phone') ->add('phone', 'validValue', [ 'rule' => ['lengthBetween', 11, 16], 'message' => 'Please enter a valid phone number, including area code' ]);
 		$validator ->add('email', 'validValue', [ 'rule' => 'email', 'message' => 'Please enter a valid email address' ]);
+		foreach(['airdateout','airdateback','traindateout','traindateback','cardatestart','cardateend','hoteldatestart','hoteldateend'] as $target) {
+		  $validator ->allowEmpty($target);
+			$validator ->add($target, 'validateDateFormat', [ 'rule'=>[$this,'validateDateFormat'], 'message' => 'Please enter a valid date' ]);
+    }
 		foreach(['airportout','airportback','airdateout'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['air']) && $context['data']['air']=='Y'); });
 		}

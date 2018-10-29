@@ -39,27 +39,13 @@ class AADConferenceApplicantsTable extends Table
     {
       $validator = new Validator();
 
-      $validator
-				->requirePresence('jobtitle')
-				->notEmpty('jobtitle', 'Please complete this field');
+      $require = ['title','forname','surname','jobtitle','phone','email','email2'];
+  		foreach($require as $r) $validator ->notEmpty($r);
 
-      $validator
-				->lengthBetween('phone', [5, 16], 'Please enter a valid phone number');
+      $validator ->lengthBetween('phone', [5, 16], 'Please enter a valid phone number');
 
-      $validator
-				->requirePresence('email')
-				->notEmpty('email', 'Please enter a valid email address');
-
-      $validator
-				->requirePresence('managersurname')
-				->notEmpty('managersurname', 'Please complete this field');
-
-      $validator
-				->requirePresence('managerfirstname')
-				->notEmpty('managerfirstname', 'Please complete this field');
-
-      $validator->regex('manageremail', '/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+/i', 'Please enter a valid email', true);
-
+  		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
+  		$validator ->add('manageremail', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 
       return $validator;
     }

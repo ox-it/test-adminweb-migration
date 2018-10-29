@@ -86,6 +86,25 @@ class GraduateAccommodationForm extends Form
 	{
     $validator ->notEmpty('application_type');
 		$validator ->notEmpty(['title','surname','firstname','contact_number','preferred_email','nationality','college','degree','subject','term','term_year','acc_prefer_1','acc_prefer_2','tenancy_accept']);
+		$validator ->add('preferred_email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
+
+		// Date validation
+		$validator ->allowEmpty(['child_dob_1','child_dob_2','child_dob_3','child_dob_4','child_dob_5','child_dob_6']);
+		$format = 'd/m/Y';
+		$fields = ['degree_start','child_dob_1','child_dob_2','child_dob_3','child_dob_4','child_dob_5','child_dob_6','tenancy_accept'];
+		foreach($fields as $field) {
+			$validator->add($field, 'custom', [
+				'rule' => function ($value, $context) use ($format,$field) {
+					$m = [];
+					$date = $context['data'][$field];
+					preg_match("/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/", $date, $m);
+					if (empty($m) || count($m)!=4 || strlen($m[1])!=2 || strlen($m[2])!=2 || strlen($m[3])!=4) return false;
+					$t = mktime (0,0,0,$m[2],$m[1],$m[3]);
+					return ($date === date($format, $t));
+				},
+				'message' => 'This date is not valid'
+			]);
+		}
 
 		// Conditional validation
 		foreach(['partner_title','partner_lastname','partner_firstname','partner_relationship','partner_nationality','partner_preferred_email','partner_contact_no','partner_college','partner_degree','partner_subject','partner_degree_start'] as $target) {

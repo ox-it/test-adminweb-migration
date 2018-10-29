@@ -1,6 +1,6 @@
 <?php
-/**
- * Called from src/Template/Email/html/new_finance_travel_applicant.ctp
+/*\
+ * Called from src/Controller/FinanceTravelController.php
  * Receives $applicant, $agents, $waf
  */
 ?>
@@ -17,7 +17,7 @@
 	echo $waf->postValueWithLabel(!empty($applicant->reqemail) ? $applicant->reqemail : $applicant->email, 'Email');
 	echo $waf->postValueWithLabel(!empty($applicant->reqphone) ? $applicant->reqphone : $applicant->phone, 'Telephone');
 ?>
-
+<p>&nbsp;</p>
 
 <?php
   // Air Travel

@@ -35,20 +35,19 @@ class AADEventsPeopleTable extends Table
     return $person;
 	}
 
-    public function getByID($bookingID = null)
-    {
-      $booking = $this->get($bookingID);
-      return $booking;
-    }
+	public function getByID($bookingID = null)
+	{
+		$booking = $this->get($bookingID);
+		return $booking;
+	}
 
 	public function validationRegister()
 	{
 		$validator = new Validator();
 		$validator ->notEmpty(['surname','forename','title','jobtitle','phone','email','email2','deptcode']);
 		$validator ->lengthBetween('phone', [5, 16], 'Please enter a valid phone number');
-		$validator ->equalToField('email','email2','The emails do not match');
+		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 		$validator ->equalToField('email2','email','The emails do not match');
-		$validator ->email('email');
 		$validator->notEmpty('depttext', null, function ($context) { return (!empty($context['data']['deptcode']) && $context['data']['deptcode']=='00'); });
 		return $validator;
 	}
