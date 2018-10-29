@@ -14,11 +14,11 @@
     <p> Thank you for filling out the report.</p>
     <p> The following information has been recorded:</p>
 
-    <h4><?= h($user->name) ?> - <?= h($survey->harassment_department->deptalpha) ?></h4>
+    <h4><?= h($user->name) ?> - <?= !empty($departments[$survey->deptcode]) ? $departments[$survey->deptcode] : 'Unknown department' ?></h4>
     <?= $waf::postValueWithLabel(
       ($survey->{'1adeptadviser'}=='Y'?'Harassment Adviser':'') .
       ($survey->{'1edeptadmin'}=='Y'?'Departmental Administrator / Personnel officer':''), 'Your Capacity') ?>
-    <?= $waf::postValueWithLabel($survey->inqdept->deptalpha, 'Inquirer\'s Dept/College') ?>
+    <?= $waf::postValueWithLabel($survey->{'12inqdeptcode'}, 'Inquirer\'s Dept/College', $departments) ?>
 
     <!-- Inquirers (question 2.1) -->
     <h4>Inquirers:</h4>

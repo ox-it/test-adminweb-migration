@@ -44,7 +44,7 @@
 				</div> <!-- end of left div-->
 
 				<!--Beginning of the right column-->
-				<div id="right">
+				<div id="right" style="flex:3">
 
 				<!--start of first accordion-->
 				<div class="accord">
