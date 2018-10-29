@@ -15,29 +15,29 @@
     <p> The following information has been recorded:</p>
 
     <h4><?= h($user->name) ?> - <?= !empty($departments[$survey->deptcode]) ? $departments[$survey->deptcode] : 'Unknown department' ?></h4>
-    <?= $waf::postValueWithLabel(
+    <?= $waf->postValueWithLabel(
       ($survey->{'1adeptadviser'}=='Y'?'Harassment Adviser':'') .
       ($survey->{'1edeptadmin'}=='Y'?'Departmental Administrator / Personnel officer':''), 'Your Capacity') ?>
-    <?= $waf::postValueWithLabel($survey->{'12inqdeptcode'}, 'Inquirer\'s Dept/College', $departments) ?>
+    <?= $waf->postValueWithLabel($survey->{'12inqdeptcode'}, 'Inquirer\'s Dept/College', $departments) ?>
 
     <!-- Inquirers (question 2.1) -->
     <h4>Inquirers:</h4>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21aacm'}, 'Male academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21bacf'}, 'Female academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21cacrelm'}, 'Male academic-related staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21dacrelf'}, 'Female academic-related staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21enonacm'}, 'Male non-academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21fnonacf'}, 'Female non-academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21gugm'}, 'Male undergraduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21hugf'}, 'Female undergraduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21ipgm'}, 'Male graduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21jpgf'}, 'Female graduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21kotherm'}, 'Male '.$survey->{'21klotherdetails'} ) ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'21lotherf'}, 'Female '.$survey->{'21klotherdetails'} ) ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21aacm'}, 'Male academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21bacf'}, 'Female academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21cacrelm'}, 'Male academic-related staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21dacrelf'}, 'Female academic-related staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21enonacm'}, 'Male non-academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21fnonacf'}, 'Female non-academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21gugm'}, 'Male undergraduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21hugf'}, 'Female undergraduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21ipgm'}, 'Male graduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21jpgf'}, 'Female graduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21kotherm'}, 'Male '.$survey->{'21klotherdetails'} ) ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'21lotherf'}, 'Female '.$survey->{'21klotherdetails'} ) ?>
 
     <!-- Nature of inquiry (question 2.2) -->
     <h4>Nature of inquiry:</h4>
-    <?= $waf::postObjectFieldsAsList($survey, [
+    <?= $waf->postObjectFieldsAsList($survey, [
       '22aadvicegeninfo' => 'General information',
       '22badviceharassment' => 'Advice re: harassment experienced',
       '22cadvicecomplaint' => 'Advice re: complaint or possible complaint against inquirers',
@@ -47,7 +47,7 @@
 
 		<!-- Nature of behaviour (question 3) -->
 		<h4>Nature of behaviour:</h4>
-    <?= $waf::postObjectFieldsAsList($survey, [
+    <?= $waf->postObjectFieldsAsList($survey, [
       '3averbalabuse' => 'Verbal abuse, offensive remarks or threats',
       '3bwrittenabuse' => 'Written abuse, offensive remarks or threats',
       '3cimages' => 'Offensive electronic images',
@@ -61,7 +61,7 @@
 
 		<!-- Behaviour relating to (question 4) -->
 		<h4>Behaviour related to:</h4>
-    <?= $waf::postObjectFieldsAsList($survey, [
+    <?= $waf->postObjectFieldsAsList($survey, [
       '4arace' => 'Race',
       '4bgender' => 'Gender',
       '4csexualorientation' => 'Sexual Orientation',
@@ -74,18 +74,18 @@
 
 		<!-- People complained about (question 5) -->
 		<h4>Person(s) complained about:</h4>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5aaboutacm'}, 'Male academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5baboutacf'}, 'Female academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5caboutacrelm'}, 'Male academic-related staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5daboutacrelf'}, 'Female academic-related staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5eaboutnonacm'}, 'Male non-academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5faboutnonacf'}, 'Female non-academic staff') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5gaboutugm'}, 'Male undergraduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5haboutugf'}, 'Female undergraduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5iaboutpgm'}, 'Male graduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5jaboutpgf'}, 'Female graduate students') ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5kaboutotherm'}, 'Male '.$survey->{'5klaboutotherdetails'} ) ?>
-    <?= $waf::postValueWithLabelIfNotZero($survey->{'5laboutotherf'}, 'Female '.$survey->{'5klaboutotherdetails'} ) ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5aaboutacm'}, 'Male academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5baboutacf'}, 'Female academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5caboutacrelm'}, 'Male academic-related staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5daboutacrelf'}, 'Female academic-related staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5eaboutnonacm'}, 'Male non-academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5faboutnonacf'}, 'Female non-academic staff') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5gaboutugm'}, 'Male undergraduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5haboutugf'}, 'Female undergraduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5iaboutpgm'}, 'Male graduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5jaboutpgf'}, 'Female graduate students') ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5kaboutotherm'}, 'Male '.$survey->{'5klaboutotherdetails'} ) ?>
+    <?= $waf->postValueWithLabelIfNotZero($survey->{'5laboutotherf'}, 'Female '.$survey->{'5klaboutotherdetails'} ) ?>
 
     <!-- Same College/department? -->
     <p class="display-p">
@@ -97,18 +97,18 @@
     <?php if ( !empty($survey->{'61formalto'}) ) : ?>
       <!-- Formal complaint details (question 6) -->
       <h4>Formal complaint details</h4>
-      <?= $waf::postValueWithLabel($survey->{'61formalto'}, 'Formal complaint made to') ?>
-      <?= ($survey->{'62agrievance'}==1) ? $waf::postValueWithLabel( ($survey->{'62aupheld'}==1?'Upheld':'') . ($survey->{'62anotupheld'}==1?'Not upheld':''), 'Grievance procedure') : '' ?>
-      <?= ($survey->{'62bdisciplinary'}==1) ? $waf::postValueWithLabel( $survey->{'62bdisciplinaryaction'} , 'Disciplinary procedure') : '' ?>
-      <?= ($survey->{'62cformalother'}==1) ? $waf::postValueWithLabel( $survey->{'62cformalotherdetails'} , 'Other disciplinary procedure') : '' ?>
+      <?= $waf->postValueWithLabel($survey->{'61formalto'}, 'Formal complaint made to') ?>
+      <?= ($survey->{'62agrievance'}==1) ? $waf->postValueWithLabel( ($survey->{'62aupheld'}==1?'Upheld':'') . ($survey->{'62anotupheld'}==1?'Not upheld':''), 'Grievance procedure') : '' ?>
+      <?= ($survey->{'62bdisciplinary'}==1) ? $waf->postValueWithLabel( $survey->{'62bdisciplinaryaction'} , 'Disciplinary procedure') : '' ?>
+      <?= ($survey->{'62cformalother'}==1) ? $waf->postValueWithLabel( $survey->{'62cformalotherdetails'} , 'Other disciplinary procedure') : '' ?>
   	<?php endif; // !empty($survey->{'61formalto'}) ?>
 
     <?php if ( !empty($survey->{'71informalto'}) ) : ?>
       <!-- Informal complaint details (question 7) -->
       <h4>Informal complaint details</h4>
-      <?= $waf::postValueWithLabel($survey->{'71informalto'}, 'Formal complaint made to') ?>
+      <?= $waf->postValueWithLabel($survey->{'71informalto'}, 'Formal complaint made to') ?>
       <p class="display-p">Action(s) taken:</p>
-      <?= $waf::postObjectFieldsAsList($survey, [
+      <?= $waf->postObjectFieldsAsList($survey, [
         '72aadvice' => 'Advice given to complainant',
         '72binvestigation' => 'Gender',
         '72clowkey' => 'Sexual Orientation',
@@ -125,7 +125,7 @@
     <?php if ( $survey->{'81aapproachsubject'} + $survey->{'81bapproachthird'} + $survey->{'81cotheraction'} > 0 ) : ?>
       <!-- Other action taken (question 8) -->
       <h4>Other action taken by complainant</h4>
-      <?= $waf::postObjectFieldsAsList($survey, [
+      <?= $waf->postObjectFieldsAsList($survey, [
         '81aapproachsubject' => 'Approach by complainant to subject of complaint',
         '81bapproachthird' => 'Approach by complainant to a third party: &nbsp; ' . '<span class="display-notes">' . $survey->{'81bapproachthirddetails'} . '</span>',
         '81cotheraction' => 'Other action by complainant: &nbsp; ' . '<span class="display-notes">' . $survey->{'81cotheractiondetails'} . '</span>'
@@ -133,7 +133,7 @@
     <?php if ( $survey->{'82agenadvice'} + $survey->{'82badviceformal'} + $survey->{'82creferred'} > 0 ) : ?>
   	<?php endif; ?>
       <h4>Other action requested by complainant:</h4>
-      <?= $waf::postObjectFieldsAsList($survey, [
+      <?= $waf->postObjectFieldsAsList($survey, [
         '82agenadvice' => 'General advice and information requested',
         '82badviceformal' => 'Advice on bringing formal complaint requested',
         '82creferred' => 'Complaint referred elsewhere: &nbsp; ' . '<span class="display-notes">' . $survey->{'82creferreddetails'} . '</span>'
@@ -141,7 +141,7 @@
   	<?php endif; ?>
 
   	<h3>Conclusion</h3>
-    <?= $waf::postValueWithLabel($survey->compyear . (!empty($survey->compmonth)?' (' . $waf::monthFromNumber($survey->compmonth) . ')':''), 'Case closed') ?>
+    <?= $waf->postValueWithLabel($survey->compyear . (!empty($survey->compmonth)?' (' . $waf::monthFromNumber($survey->compmonth) . ')':''), 'Case closed') ?>
     <?php if ( $survey->{'9yessatisfiedeo'} + $survey->{'9notsatisfiedeo'} > 0 ) : ?>
     <p class="display-p">
       <?= $survey->{'9yessatisfiedeo'}==1 ? '<green>&#10003;</green> You were satisfied with the assistance received from the Equal Opportunities Office' : '' ?>
