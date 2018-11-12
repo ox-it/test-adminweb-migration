@@ -77,35 +77,20 @@ class AADEventsController extends AppController
 
 	private function emailConfirmation($person, $booked)
 	{
-	  $message  = "<p>Dear ".$person->title." ".$person->forename." ".$person->surname.",</p>\n";
-    $message .= "<p>Your event registration has been recorded. You are now confirmed to attend the following AAD events:</p>\n";
+		$file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
+    $css = str_replace('.web-app-wrapper ','',$file->read());
+		$email = new Email();
+		$email->template('new_aad_event_booking');
+		$email->viewVars(['person' => $person, 'booked' => $booked, 'waf' => $this->Waf, 'css'=>$css ]);
+  	$email->subject('AAD Event Registration');
+  	$email->from(['AcademicAdmin.Comms@admin.ox.ac.uk' => 'Academic Administration Division Communications']);
+    $email->to($person->email);
 
-    $message .= '<ul><li>' . implode("</li><li>\n", $booked) . "</li></ul>\n";
+		// TODO: Remove test email
+    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
 
-		$message .= "<p>To cancel a booking, please call the AAD Communications team on 284847 or email us at ";
-		$message .= '<a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a>.</p>' . "\n";
-		$message .= "<p>You may log back in to the AAD events registration form via the AAD Staff Events page ";
-		$message .= '(<a href="http://www.admin.ox.ac.uk/aad/communications/events/">http://www.admin.ox.ac.uk/aad/communications/events/</a>)' . "\n";
-		$message .= "to register for new events as they become available.</p>\n";
-
-		$message .= "<p>Kind Regards,</p>\n";
-		$message .= "<p><strong>Academic Administration Division Communications</strong>,<br>\n";
-		$message .= "University of Oxford,<br>\n";
-		$message .= "Examination Schools,<br>\n";
-		$message .= "75-81 High Street,<br>\n";
-		$message .= "Oxford<br>\n";
-		$message .= "OX1 4BG</p>\n";
-		$message .= "<p>Tel: 01865 (2)84847<br>\n";
-		$message .= 'Email: <a href="mailto:AcademicAdmin.Comms@admin.ox.ac.uk">AcademicAdmin.Comms@admin.ox.ac.uk</a><br>' . "\n";
-		$message .= 'Web: <a href="http://www.admin.ox.ac.uk/aad">www.admin.ox.ac.uk/aad</a></p>' . "\n";
-
-		// Send the email
-		$email = new Email('default');
-  	$email->from(['AcademicAdmin.Comms@admin.ox.ac.uk' => 'Academic Administration Division Communications'])
-			->to($person->email)
-			->subject('AAD Event Registration')
-			->emailFormat('html')
-			->send($message);
-	}
+		$email->emailFormat('html');
+  	$email->send();
+  }
 
 }
