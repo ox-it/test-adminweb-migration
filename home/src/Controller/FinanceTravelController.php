@@ -47,17 +47,18 @@ class FinanceTravelController extends AppController
 	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
     $css = str_replace('.web-app-wrapper ','',$file->read());
 		$email = new Email();
-  	$email
-  	  ->template('new_finance_travel_applicant')
-  	  ->viewVars(['applicant' => $applicant, 'agents' => $agents, 'waf' => $this->Waf, 'css'=>$css ])
-			->subject('Oxford University Travel Request')
-      ->from(['purchasing@admin.ox.ac.uk' => 'University of Oxford Purchasing Team'])
+  	$email->template('new_finance_travel_applicant');
+  	$email->viewVars(['applicant' => $applicant, 'agents' => $agents, 'waf' => $this->Waf, 'css'=>$css ]);
+		$email->subject('Oxford University Travel Request');
+    $email->from(['purchasing@admin.ox.ac.uk' => 'University of Oxford Purchasing Team']);
+		$email->to($to);
+
       // TODO: Remove test email
-      ->to('al@cache.co.uk')
-			//->to($to)
-			->replyTo(!empty($applicant->reqemail) ? $applicant->reqemail : $applicant->email)
-      ->emailFormat('html')
-			->send();
+    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+
+		$email->replyTo(!empty($applicant->reqemail) ? $applicant->reqemail : $applicant->email);
+    $email->emailFormat('html');
+		$email->send();
 	}
 
 }

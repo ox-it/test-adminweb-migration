@@ -1,7 +1,7 @@
 <?php
 /**
  * Called from src/Controller/FinanceCustomersController.php
- * Receives $customer
+ * Receives $customer, $countries
  */
 ?>
 
