@@ -52,10 +52,12 @@ class FinanceCustomersController extends AppController
 		$email->template('new_finance_customer');
 		$email->viewVars(['customer' => $customer, 'waf' => $this->Waf, 'css'=>$css ]);
 		$email->subject('New Customer Account');
-		$email->from(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team']);
+		$email->to(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team']);
+
 		// TODO: Remove test email
-		//$email->to('al@cache.co.uk');
-		$email->to($customer->email);
+    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+
+		$email->from($customer->email);
 		$email->emailFormat('html');
 		$email->attachments($customer->POfilepath);
   	$email->send();
