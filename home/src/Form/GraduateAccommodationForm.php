@@ -130,18 +130,6 @@ class GraduateAccommodationForm extends Form
 		} else {
 			$data['email_to'] = [ "couples.accommodation@admin.ox.ac.uk" => 'Couples Accommodation' ];
 		}
-
-		/*
-		$data['email_message'] = "<p>Please find attached is the XML file.</p>\n";
-    if (!empty($data['comments'])) {
-      $data['email_message'] .= "<p>Below are the extra comments provided by the user.</p>\n";
-      $data['email_message'] .= '<blockquote><p><em>'.str_replace("\n","<br>\n",$data['comments'])."</em></p></blockquote>\n";
-    }
-    if (!empty($data['expecting']) ){
-				$data['email_message'] .= '<p><strong>The applicant'.($data['single']?'':'s').' '.($data['single']?'is':'are').' also expecting a child.</strong></p>';
-		}
-		//*/
-
 		$data['noofchildren'] = (!empty($data['select_child_1'])?1:0) + (!empty($data['select_child_2'])?1:0) + (!empty($data['select_child_3'])?1:0) + (!empty($data['select_child_4'])?1:0) + (!empty($data['select_child_5'])?1:0) + (!empty($data['select_child_6'])?1:0);
 
 		$title = $data['title']!='Other' ? $data['title'] . ' ' : $data['title_other'];
@@ -158,9 +146,6 @@ class GraduateAccommodationForm extends Form
 		$xmlfile = new File(TMP . $xmlFilename, true);
 		$xmlfile->write($xml, 'w', true);
 		$data['xmlfile'] = TMP . $xmlFilename;
-
-		// Send Email
-		//$this->sendEmailConfirmation($data);
 
 		return $data;
 	}
@@ -355,17 +340,6 @@ class GraduateAccommodationForm extends Form
     $xmlObject = Xml::fromArray($xmlArray);
     $xmlString = $xmlObject->asXML();
     return $xmlString;
-	}
-
-	function sendEmailConfirmation($data)
-	{
-		$email = new Email('default');
-		$email->to($data['email_to']);
-  	$email->from(['graduate.accommodation@admin.ox.ac.uk' => 'Graduate Accommodation Form']);
-  	$email->subject($data['email_subject']);
-		$email->emailFormat('html');
-		$email->attachments($data['xmlfile']);
-		$email->send($data['email_message']);
 	}
 
 	function getTimeFromString($date_string,$format) {
