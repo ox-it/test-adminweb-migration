@@ -5,7 +5,7 @@
  */
 ?>
 
-<p>Please find attached is the XML file.</p>
+<p>Please find attached the XML file of the request submission.</p>
 
 <?php if (!empty($data['comments'])) : ?>
 
