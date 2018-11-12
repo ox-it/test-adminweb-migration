@@ -17,7 +17,8 @@ class FinanceCustomersController extends AppController
 	public function index()
 	{
 		$this->loadModel('FinanceCustomersCountries');
-		$this->set('countries', $this->FinanceCustomersCountries->getSelectOptions());
+		$countries = $this->FinanceCustomersCountries->getSelectOptions();
+		$this->set('countries', $countries);
 
 		$this->loadModel('FinanceCustomersDepartments');
 		$this->set('departments', $this->FinanceCustomersDepartments->getSelectOptions());
@@ -31,7 +32,7 @@ class FinanceCustomersController extends AppController
 			//$this->Flash->success(print_r($customer,true));
 			if (empty($customer->another)) {
 			  if ($this->FinanceCustomersCustomers->save($customer)) {
-			    $this->emailConfirmation($customer);
+			    $this->emailConfirmation($customer, $countries);
 					$this->Flash->success(__('Saved.'));
 					$this->set('customer', $customer);
 					$this->render('success');
@@ -44,13 +45,13 @@ class FinanceCustomersController extends AppController
 
 	}
 
-	private function emailConfirmation($customer)
+	private function emailConfirmation($customer, $countries)
 	{
 	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
     $css = str_replace('.web-app-wrapper ','',$file->read());
 		$email = new Email();
 		$email->template('new_finance_customer');
-		$email->viewVars(['customer' => $customer, 'waf' => $this->Waf, 'css'=>$css ]);
+		$email->viewVars(['customer' => $customer, 'countries'=>$countries, 'waf' => $this->Waf, 'css'=>$css ]);
 		$email->subject('New Customer Account');
 		$email->to(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team']);
 
