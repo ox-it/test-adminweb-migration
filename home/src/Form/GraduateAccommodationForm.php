@@ -8,7 +8,7 @@ use Cake\Filesystem\File;
 use Cake\Form\Form;
 use Cake\Form\Schema;
 use Cake\I18n\Date;
-use Cake\Mailer\Email;
+//use Cake\Mailer\Email;
 use Cake\Utility\Xml;
 use Cake\Utility\Exception\XmlException;
 use Cake\Validation\Validator;
@@ -123,24 +123,24 @@ class GraduateAccommodationForm extends Form
 
 	protected function _execute(array $data)
 	{
-		// TODO: Create XML file & send in an email.
 		$type = $data['application_type'];
-		$isSingle=($data['application_type']==self::$single);
-		if ($isSingle){
+		$data['single'] = ($data['application_type']==self::$single);
+		if ($data['single']){
 			$data['email_to'] = [ "singles.accommodation@admin.ox.ac.uk" => 'Singles Accommodation' ];
 		} else {
 			$data['email_to'] = [ "couples.accommodation@admin.ox.ac.uk" => 'Couples Accommodation' ];
 		}
+
+		/*
 		$data['email_message'] = "<p>Please find attached is the XML file.</p>\n";
     if (!empty($data['comments'])) {
       $data['email_message'] .= "<p>Below are the extra comments provided by the user.</p>\n";
       $data['email_message'] .= '<blockquote><p><em>'.str_replace("\n","<br>\n",$data['comments'])."</em></p></blockquote>\n";
     }
     if (!empty($data['expecting']) ){
-				$data['email_message'] .= '<p><strong>The applicant'.($isSingle?'':'s').' '.($isSingle?'is':'are').' also expecting a child.</strong></p>';
+				$data['email_message'] .= '<p><strong>The applicant'.($data['single']?'':'s').' '.($data['single']?'is':'are').' also expecting a child.</strong></p>';
 		}
-		// TODO: Remove test email
-		$data['email_to'] = [ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ];
+		//*/
 
 		$data['noofchildren'] = (!empty($data['select_child_1'])?1:0) + (!empty($data['select_child_2'])?1:0) + (!empty($data['select_child_3'])?1:0) + (!empty($data['select_child_4'])?1:0) + (!empty($data['select_child_5'])?1:0) + (!empty($data['select_child_6'])?1:0);
 
@@ -160,7 +160,7 @@ class GraduateAccommodationForm extends Form
 		$data['xmlfile'] = TMP . $xmlFilename;
 
 		// Send Email
-		$this->sendEmailConfirmation($data);
+		//$this->sendEmailConfirmation($data);
 
 		return $data;
 	}
