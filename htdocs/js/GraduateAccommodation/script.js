@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 	makeCondition('#degree', 'other', '#degree-other-wrapper', '#degree-other');
 	makeCondition('#partner-title', 'other', '#partner-title-other-wrapper', '#partner-title-other');
 	makeCondition('#partner-degree', 'other', '#partner-degree-other-wrapper', '#partner-degree-other');
+	makeCondition('#spouse-title', 'other', '#spouse-title-other-wrapper', '#spouse-title-other');
 
 	makeCondition('#select-child-1', ['male','female'], '#child-2', ['#child-dob-1','#select-child-2','#child-dob-2','#select-child-3','#child-dob-3','#select-child-4','#child-dob-4','#select-child-5','#child-dob-5','#select-child-6','#child-dob-6']);
 	makeCondition('#select-child-2', ['male','female'], '#child-3', ['#child-dob-2','#select-child-3','#child-dob-3','#select-child-4','#child-dob-4','#select-child-5','#child-dob-5','#select-child-6','#child-dob-6']);
