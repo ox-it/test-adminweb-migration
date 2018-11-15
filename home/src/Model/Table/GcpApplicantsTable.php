@@ -13,6 +13,7 @@ class GcpApplicantsTable extends Table
 {
 
   public static $single = 'Single';
+  public static $nl = "\n";
 
   public static function organisationsOptions() {
     return [ 'U'=>'University of Oxford', 'R'=>'Oxford University Hospitals NHS Trust', 'O'=>'Other' ];
@@ -36,13 +37,122 @@ class GcpApplicantsTable extends Table
 		$this->setPrimaryKey('applicantID');
 	}
 
+	public function accept($ids=[]) {
+	  $file = $this->getDownloadFile();
+	  if (empty($file)) return 'Unable to create output file';
+	  foreach ($ids as $id) {
+	    $applicant = $this->getByID($id);
+	    if ($applicant) {
+	      $applicant->download_date = date("d/m/Y", time());
+	      $applicant->download_time = date("H:i", time());
+	      $applicant->download_stamp = time();
+        $applicant->username = $this->createUsername($applicant);
+
+        $record = $applicant->username . ',';
+        $record .= $this->createPassword() . ',';
+        $record .= $applicant->forename . ',';
+        $record .= $applicant->surname . ',';
+        $record .= $applicant->email . ',0,0' . self::$nl;
+
+        $file->append($record);
+
+        $this->save($applicant);
+	    }
+	  }
+	  $file->close();
+	  return false;
+	}
+
+	private function createPassword($sample='qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890', $length=8) {
+  	$newString = str_shuffle(str_repeat($sample, $length));
+    return substr($newString, rand(0,strlen($newString)-$length), $length);
+	}
+
+	private function getDownloadFile() {
+  	$dir = new Folder(TMP . 'gcp', true);
+		$txtFilename = strtolower('gcp/' . date('Y_m_d') . '.txt');
+		$txtFile = new File(TMP . $txtFilename);
+		if (!$txtFile->exists()) {
+		  $ok = $txtFile->create();
+		  if (!$ok) return false;
+		  $txtFile->write('username,password,firstname,lastname,email,maildisplay,autosubscribe' . self::$nl);
+		}
+		return $txtFile;
+	}
+
+	private function createUsername($applicant) {
+	  $patterns = array('/\s+/','/-/');
+    $replacements = array('','');
+    $surname_fragment = substr(preg_replace($patterns,$replacements,$applicant['surname']),0,7);
+    $first_initial = substr(preg_replace($patterns,$replacements,$applicant['forename']),0,1);
+    $unique = true;
+    $suffix = 0;
+    $rootname = strtolower($surname_fragment.$first_initial);
+    do {
+      $username = $rootname . ($suffix==0 ? '' : $suffix);
+      $duplicate = $this->getByUsername($username);
+      if (!empty($duplicate->username) && $duplicate->username==$username) {
+        $suffix++;
+        $unique = false;
+      } else {
+        $unique = true;
+      }
+    } while (!$unique);
+    return $username;
+	}
+
+	public function reject($ids=[]) {
+	  foreach ($ids as $id) {
+	    $applicant = $this->getByID($id);
+	    if ($applicant) {
+        $applicant->download_date = "Rejected";
+        $this->save($applicant);
+	    }
+	  }
+	}
+
 	public function getByID($applicantID = null) {
 		$query = $this->find('all') ->where(['applicantID'=>$applicantID]);
     $applicant = $query->first();
-    $applicant->name = (!empty($applicant->title)?$applicant->title.' ':'') . (!empty($applicant->forename)?$applicant->forename.' ':'') . (!empty($applicant->surname)?$applicant->surname:'');
-    $orgs = self::organisationsOptions();
-    $applicant->organisation = !empty($orgs[$applicant->employer]) ? $orgs[$applicant->employer] : '';
+    if (!empty($applicant)) {
+			$applicant->name = (!empty($applicant->title)?$applicant->title.' ':'') . (!empty($applicant->forename)?$applicant->forename.' ':'') . (!empty($applicant->surname)?$applicant->surname:'');
+			$orgs = self::organisationsOptions();
+			$applicant->organisation = !empty($orgs[$applicant->employer]) ? $orgs[$applicant->employer] : '';
+    }
 		return $applicant;
+	}
+
+	public function getByUsername($username = null) {
+		$query = $this->find('all') ->where(['username'=>$username]);
+    $applicant = $query->first();
+    if (!empty($applicant)) {
+			$applicant->name = (!empty($applicant->title)?$applicant->title.' ':'') . (!empty($applicant->forename)?$applicant->forename.' ':'') . (!empty($applicant->surname)?$applicant->surname:'');
+			$orgs = self::organisationsOptions();
+			$applicant->organisation = !empty($orgs[$applicant->employer]) ? $orgs[$applicant->employer] : '';
+    }
+		return $applicant;
+	}
+
+	public function getAvailable() {
+		$query = $this->find('all') ->where([ 'download_date IS'=>null ]) ->order([ 'made_stamp' => 'ASC' ]);
+    $applicants = $query->all();
+		return $applicants;
+	}
+
+	public function getAccepted($search='') {
+	  $where = [ 'download_date IS NOT'=>NULL, 'download_date IS NOT'=>'Rejected' ];
+	  if (!empty($search)) $where['surname LIKE'] = $search . '%';
+		$query = $this->find('all') ->where($where) ->order([ 'made_stamp' => 'DESC' ]) ->limit(100);
+    $applicants = $query->all();
+		return $applicants;
+	}
+
+	public function getRejected($search='') {
+	  $where = [ 'download_date IS'=>'Rejected' ];
+	  if (!empty($search)) $where['surname LIKE'] = $search . '%';
+		$query = $this->find('all') ->where($where) ->order([ 'made_stamp' => 'DESC' ]) ->limit(100);
+    $applicants = $query->all();
+		return $applicants;
 	}
 
 	public function validationRegister($validator) {
@@ -58,61 +168,6 @@ class GcpApplicantsTable extends Table
 		if ($entity->isNew()) {
 			$entity->made_stamp = time();
 		}
-	}
-
-	protected function prepareEmailFields($entity)
-	{
-
-		$type = $data['application_type'];
-		$isSingle=($data['application_type']==self::$single);
-		if ($isSingle){
-			$data['email_to'] = [ "singles.accommodation@admin.ox.ac.uk" => 'Singles Accommodation' ];
-		} else {
-			$data['email_to'] = [ "couples.accommodation@admin.ox.ac.uk" => 'Couples Accommodation' ];
-		}
-		$data['email_message'] = "<p>Please find attached is the XML file.</p>\n";
-    if (!empty($data['comments'])) {
-      $data['email_message'] .= "<p>Below are the extra comments provided by the user.</p>\n";
-      $data['email_message'] .= '<blockquote><p><em>'.str_replace("\n","<br>\n",$data['comments'])."</em></p></blockquote>\n";
-    }
-    if (!empty($data['expecting']) ){
-				$data['email_message'] .= '<p><strong>The applicant'.($isSingle?'':'s').' '.($isSingle?'is':'are').' also expecting a child.</strong></p>';
-		}
-		// TODO: Remove test email
-		$data['email_to'] = [ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ];
-
-		$data['noofchildren'] = (!empty($data['select_child_1'])?1:0) + (!empty($data['select_child_2'])?1:0) + (!empty($data['select_child_3'])?1:0) + (!empty($data['select_child_4'])?1:0) + (!empty($data['select_child_5'])?1:0) + (!empty($data['select_child_6'])?1:0);
-
-		$title = $data['title']!='Other' ? $data['title'] . ' ' : $data['title_other'];
-		$data['name']  = $data['firstname'] . ' ' . $data['surname'] . (!empty($data['othernames']) ? ' (nee ' . $data['othernames'] . ')' : '');
-		$data['email_subject'] = 'New '.$type.' Application from ' . $data['name'];
-
-		// Make sure all values are present
-		$fields = $this->schema()->fields();
-		foreach ($fields as $f) if (!isset($data[$f])) $data[$f] = '';
-
-		// Get XML
-		$xml = $this->createXMLWithData($data);
-		$xmlFilename = strtolower($data['surname'] . '_' . $data['firstname']) . '_' . date('ymdhis') . '.xml';
-		$xmlfile = new File(TMP . $xmlFilename, true);
-		$xmlfile->write($xml, 'w', true);
-		$data['xmlfile'] = TMP . $xmlFilename;
-
-		// Send Email
-		$this->sendEmailConfirmation($data);
-
-		return $data;
-	}
-
-	function sendEmailConfirmation($data)
-	{
-		$email = new Email('default');
-		$email->to($data['email_to']);
-  	$email->from(['graduate.accommodation@admin.ox.ac.uk' => 'Graduate Accommodation Form']);
-  	$email->subject($data['email_subject']);
-		$email->emailFormat('html');
-		$email->attachments($data['xmlfile']);
-		$email->send($data['email_message']);
 	}
 
 }
