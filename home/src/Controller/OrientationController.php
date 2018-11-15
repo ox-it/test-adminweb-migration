@@ -14,12 +14,6 @@ class OrientationController extends AppController
   private static $REG_CODE = "OP2018";
   private static $meet_and_greet = false;
 
-
-
-	public static function defaultConnectionName() {
-			return 'orientation-test';
-	}
-
 	public function index()
 	{
 
@@ -44,7 +38,6 @@ class OrientationController extends AppController
 		  $this->request->data['REG_CODE'] = self::$REG_CODE;
 			$applicant = $this->OrientationApplicants->patchEntity($applicant, $this->request->getData(), ['validate'=>'register']);
 			if ($this->OrientationApplicants->save($applicant)) {
-				//$this->emailConfirmation($applicant);
 				$this->Flash->success(__('Saved.'));
 				$this->set('applicant', $applicant);
 				$this->render('confirm');
@@ -53,24 +46,6 @@ class OrientationController extends AppController
 			$this->Flash->error(__('Sorry. Your request contains errors.'));
 		}
 		$this->set('applicant', $applicant);
-	}
-
-	private function emailConfirmation($applicant)
-	{
-	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
-    $css = str_replace('.web-app-wrapper ','',$file->read());
-		$email = new Email();
-  	$email
-  	  ->template('new_orientation_applicant')
-  	  ->viewVars(['applicant' => $applicant, 'waf' => $this->Waf, 'css'=>$css ])
-			->subject('Oxford University Travel Request')
-      ->from(['purchasing@admin.ox.ac.uk' => 'University of Oxford Purchasing Team'])
-      // TODO: Remove test email
-      ->to('al@cache.co.uk')
-			//->to($to)
-			->replyTo(!empty($applicant->reqemail) ? $applicant->reqemail : $applicant->email)
-      ->emailFormat('html')
-			->send();
 	}
 
 }
