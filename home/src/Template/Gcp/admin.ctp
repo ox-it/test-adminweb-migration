@@ -25,8 +25,8 @@
 				</p>
 				<p>
 				  You can also see the
-					<?= $this->Html->link('Accepted Applications', ['?'=>['accepted'=>'']]) ?>, or see the
-			    <?= $this->Html->link('Rejected Applications', ['?'=>['rejects'=>'']]) ?>.
+				  <a href="?accepted">Accepted Applications</a>, or see the
+				  <a href="?rejects">Rejected Applications</a>.
 				</p>
 
 				<hr />
