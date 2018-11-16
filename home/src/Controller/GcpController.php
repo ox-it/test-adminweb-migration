@@ -143,8 +143,8 @@ class GcpController extends AppController
     $ip = $_SERVER['REMOTE_ADDR'];
 
     // List of IPs that can access admin pages
-    if ($ip=='169.254.214.100') return true;
-    if ($ip=='192.168.1.64') return true;
+    if (substr($ip,0,10)=='192.168.1.') return true;
+    if (substr($ip,0, 7)=='129.67.') return true;
     if ($ip=='129.67.249.144') return true;
 
     $this->Flash->error('Bad IP: ' . $ip);

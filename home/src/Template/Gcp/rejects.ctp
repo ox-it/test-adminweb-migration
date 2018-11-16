@@ -41,9 +41,9 @@
 				  <?php
 				    $letters = str_split('abcdefghijklmnopqrstuvwxyz');
 				    foreach ($letters as $l) {
-				      echo $this->Html->link(strtoupper($l), ['?'=>['rejects'=>$l]]) . ' | ';
+				      echo '<a href="?rejects='.$l.'">'.strtoupper($l).'</a> | ';
 				    }
-				    echo $this->Html->link('All', ['?'=>['rejects'=>'']]);
+				    echo '<a href="?rejects">All</a>';
 				  ?>
 				</p>
 
