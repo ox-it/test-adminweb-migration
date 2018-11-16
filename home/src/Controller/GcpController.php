@@ -145,17 +145,10 @@ class GcpController extends AppController
     // List of IPs that can access admin pages
     if ($ip=='169.254.214.100') return true;
     if ($ip=='192.168.1.64') return true;
+    if ($ip=='129.67.249.144') return true;
 
     $this->Flash->error('Bad IP: ' . $ip);
     return false;
   }
-
-  /* Do not allow direct access - use render instead
-	public function success($applicantID)
-	{
-		$this->loadModel('GcpApplicants');
-		$this->set('applicant', $this->GcpApplicants->getByID($applicantID));
-	}
-	//*/
 
 }
