@@ -24,11 +24,12 @@
 			<?php else : ?>
 
 				<!-- Submit -->
-				<?php
-					echo $this->Form->button(__('Accept Selected'), [ 'name'=>'accept', 'class'=>'btn button btn-primary' ]);
-					echo $waf->postButtonToReferer($this, 'Return to Admin Form', true);
-				?>
-
+				<p>
+					<?php
+						echo $this->Form->button(__('Accept Selected'), [ 'name'=>'accept', 'class'=>'btn button btn-primary' ]);
+						echo $waf->postButtonToReferer($this, 'Return to Admin Form', true);
+					?>
+				</p>
 				<p>
 					The following people below have been rejected. This list is limited to 100 entries,
 					but you can narrow the search by selecting a letter of the alphabet below
