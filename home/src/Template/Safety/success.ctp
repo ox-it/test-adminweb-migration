@@ -39,7 +39,11 @@
 			echo $waf->postValueWithLabel($applicant->jobtitle, 'Job Title');
 			echo $waf->postValueWithLabel($applicant->phone, 'Telephone');
 			echo $waf->postValueWithLabel($applicant->email, 'University Email');
-			echo $waf->postValueWithLabel($applicant->deptcode, 'Department/Faculty', $departments);
+			if ($applicant->deptcode!='00') {
+			  echo $waf->postValueWithLabel($applicant->deptcode, 'Department/Faculty', $departments);
+			} else {
+			  echo $waf->postValueWithLabel($applicant->depttext, 'Department/Faculty');
+			}
 			echo $waf->postValueWithLabel($applicant->collcode, 'College', $colleges);
     ?>
 

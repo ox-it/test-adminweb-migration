@@ -30,14 +30,12 @@
 
     <!-- Form -->
 		<?php
-				echo $this->Form->create($applicant, [
-          'context' => ['validator' => 'cancel']
-        ]);
+				echo $this->Form->create($applicant, [ 'context' => ['validator' => 'cancel'], 'novalidate' => true ]);
 		?>
 
 		<?php
 				echo $this->Form->control('email', ['label' => 'University Email', 'class' => 'with-notes']);
-				echo $this->Form->input('eventID', ['type' => 'select', 'options' => $options, 'empty' => '-- Please Select --', 'label' => 'Course']);
+				echo $this->Form->input('eventID', ['type' => 'select', 'options' => $options, 'empty' => '-- Please Select --', 'label' => 'Course Event']);
 				echo $this->Form->button(__('Cancel Booking'));
 				echo $this->Form->end();
 		?>
