@@ -7,7 +7,7 @@
 	</h3>
 	<p class="notes"><strong>Note:</strong> REG CODE and 'Meet & Greet' option is set in src/Controller/OrientationController.php</p>
 
-	<div class="waf-include">
+<div class="waf-include">
 
     <!-- Form --><?php // Create form with validation set in FinanceTravelApplicantsTable::validationRegister() ?>
 		<?= $this->Form->create($applicant, [ 'type'=>'file', 'context'=>[ 'validator'=>'register' ], 'novalidate' => true ]) ?>
@@ -68,5 +68,7 @@
 				echo $this->Form->end();
 		?>
 
-	</div>
+</div>
+<div id="optional"></div>
+
 </div>

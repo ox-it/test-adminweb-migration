@@ -48,32 +48,32 @@ $cakeDescription = 'WAF: Web-Application Framework';
 </head>
 <body class="home">
 
-	<header class="row">
-		<div class="header-image"><?= $this->Html->image('university.logo.svg') ?></div>
-		<div class="header-title">
-			<h1><?= $cakeDescription ?></h1>
-		</div>
-	</header>
+<header class="row">
+<div class="header-image"><?= $this->Html->image('university.logo.svg') ?></div>
+<div class="header-title">
+<h1><?= $cakeDescription ?></h1>
+</div>
+</header>
 
-	<div class="row" id="waf-infobar">
-		<div class="description">
-			&gt; <?= $this->name ?> &gt; <?= $this->template ?>
-		</div>
-	</div>
+<div class="row" id="waf-infobar">
+<div class="description">
+&gt; <?= $this->name ?> &gt; <?= $this->template ?>
+</div>
+</div>
 
-	<div class="row" id="waf-message">
-	  <?= $this->Flash->render() ?>
-	</div>
+<div class="row" id="waf-message">
+<?= $this->Flash->render() ?>
+</div>
 
-	<div class="container clearfix">
-	  <div class="web-app-wrapper"><?php // This is used to mimic the wrapper class in Mosaic ?>
-	  	<?= $this->Html->script($this->name . '/script.js') ?>
-			<?= $this->fetch('content') ?>
-		</div>
-	</div>
+<div class="container clearfix">
+<div class="web-app-wrapper"><?php // This is used to mimic the wrapper class in Mosaic ?>
+<?= $this->Html->script($this->name . '/script.js') ?>
+<?= $this->fetch('content') ?>
+</div>
+</div>
 
-	<footer>
-	</footer>
+<footer>
+</footer>
 
 </body>
 </html>
