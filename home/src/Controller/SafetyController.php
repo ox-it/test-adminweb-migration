@@ -8,10 +8,6 @@ use Cake\Datasource\ConnectionManager;
 class SafetyController extends AppController
 {
 
-	public static function defaultConnectionName() {
-			return 'safety-test';
-	}
-
 	public function index()
 	{
 	  // Respond to GET parameters
@@ -19,6 +15,8 @@ class SafetyController extends AppController
   	if (!empty($course)) return $this->course($course);
   	$book = $this->request->getQuery('book');
   	if (!empty($book)) return $this->book($book);
+  	$action = $this->request->getQuery('action');
+  	if (!empty($action) && $action=='cancel') return $this->cancel();
 
 		$this->loadModel('SafetyCourses');
     $courses = $this->SafetyCourses->getAllAlphabetically();
@@ -71,89 +69,43 @@ class SafetyController extends AppController
 				$this->render('success');
 				return;
 			}
-			$this->Flash->error(__('Unable to process your application.'));
+			$this->Flash->error(__('Unable to process your application. Please check the form for errors.'));
 		}
 		$this->set('applicant', $applicant);
 		$this->render('book');
 	}
 
-	public function success($applicantID = null)
+	public function cancel()
 	{
-			$this->loadModel('SafetyApplicants');
-      $applicant = $this->SafetyApplicants->getByID($applicantID);
-			$this->set(compact('applicant'));
+		$this->loadModel('SafetyEvents');
+		$events = $this->SafetyEvents->cancellableEvents();
+		$this->set('events', $events);
 
-			if (!empty($applicant->eventID)) {
-				$this->loadModel('SafetyEvents');
-				$event = $this->SafetyEvents->getByID($applicant->eventID);
-				$this->set(compact('event'));
-			}
-
-      if (!empty($event->courseID)) {
-			  $this->loadModel('SafetyCourses');
-			  $course = $this->SafetyCourses->get($event->courseID);
-			  $this->set(compact('course'));
-			}
-
-      if (!empty($applicant->deptcode)) {
-				$this->loadModel('SafetyDepartments');
-				$department = $this->SafetyDepartments->getByCode($applicant->deptcode);
-			  $this->set(compact('department'));
-			}
-
-      if (!empty($applicant->collcode)) {
-				$this->loadModel('SafetyColleges');
-				$college = $this->SafetyColleges->getByCode($applicant->collcode);
-			  $this->set(compact('college'));
-			}
-
-	}
-
-	public function cancel($eventID = null)
-	{
-			$this->loadModel('SafetyEvents');
-			$events = $this->SafetyEvents->cancellableEvents();
-			$this->set('events', $events);
-
-      $this->loadModel('SafetyApplicants');
-			$applicant = $this->SafetyApplicants->newEntity();
-      if ($this->request->is('post')) {
-        $applicant = $this->SafetyApplicants->patchEntity($applicant, $this->request->getData());
-				$eventID = $applicant->eventID;
-	      if (!empty($eventID)) {
-					$event = $this->SafetyEvents->getByID($eventID);
-					$this->set('event', $event);
+		$this->loadModel('SafetyApplicants');
+		$applicant = $this->SafetyApplicants->newEntity();
+		if ($this->request->is('post')) {
+			$applicant = $this->SafetyApplicants->patchEntity($applicant, $this->request->getData(), ['validate'=>'cancel']);
+			$eventID = $applicant->eventID;
+			if (!empty($eventID)) {
+				$event = $this->SafetyEvents->getByID($eventID);
+				$this->set('event', $event);
+				if (!empty($event->courseID)) {
+					$this->loadModel('SafetyCourses');
+					$course = $this->SafetyCourses->get($event->courseID);
+					$this->set(compact('course'));
 				}
-				$applicant->statuscode = 'X';
-				if ($this->SafetyApplicants->save($applicant)) {
-					$this->Flash->success(__('Your cancellation has been logged.'));
-					return $this->redirect(['action' => 'cancelled', $applicant->applicantID]);
-				}
-				$this->Flash->error(__('Unable to process your cancellation.'));
 			}
-			$this->set('applicant', $applicant);
-
+			$applicant->statuscode = 'X';
+			if ($this->SafetyApplicants->save($applicant)) {
+				$this->Flash->success(__('Your cancellation has been logged.'));
+				//return $this->redirect(['action' => 'cancelled', $applicant->applicantID]);
+    		$this->set('applicant', $applicant);
+				return $this->render('cancelled');
+			}
+			$this->Flash->error(__('Unable to process your cancellation. Please check the form for errors.'));
+		}
+		$this->set('applicant', $applicant);
+		$this->render('cancel');
 	}
-
-	public function cancelled($applicantID = null)
-	{
-			$this->loadModel('SafetyApplicants');
-      $applicant = $this->SafetyApplicants->getByID($applicantID);
-			$this->set(compact('applicant'));
-
-			if (!empty($applicant->eventID)) {
-				$this->loadModel('SafetyEvents');
-				$event = $this->SafetyEvents->getByID($applicant->eventID);
-				$this->set(compact('event'));
-			}
-
-      if (!empty($event->courseID)) {
-			  $this->loadModel('SafetyCourses');
-			  $course = $this->SafetyCourses->get($event->courseID);
-			  $this->set(compact('course'));
-			}
-
-	}
-
 
 }

@@ -27,24 +27,15 @@
     <p>&nbsp;</p>
     <p>The following information has been recorded:</p>
 
-		<p>
-		  <span class="label"><strong>University Email:</strong></span>
-		  <span class="value"><?= $applicant->email; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>Course:</strong></span>
-		  <span class="value"><?= $course->course; ?></span>
-    </p>
-
-		<p>
-		  <span class="label"><strong>Event Date:</strong></span>
-		  <span class="value"><?= date('l jS F', $event->startstamp) ?></span>
-    </p>
+    <?php
+			echo $waf->postValueWithLabel($applicant->email, 'University Email');
+			echo $waf->postValueWithLabel($course->course, 'Course');
+			echo $waf->postValueWithLabel(date('l jS F', $event->startstamp), 'Event Date');
+    ?>
 
     <p>&nbsp;</p>
     <p>
-      <?= $this->Html->link('Return to Course List', ['action' => 'index'], ['class'=>'button']) ?>
+      <?= $waf->postButtonToReferer($this, $text='Return to Course List', true) ?>
     </p>
 
 	</div>

@@ -35,13 +35,16 @@ class SafetyApplicantsTable extends Table
 			$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 			$validator ->add('manageremail', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
 
+			$validator->notEmpty('depttext', null, function ($context) { return (!empty($context['data']['deptcode']) && $context['data']['deptcode']=='00'); });
+
+
       return $validator;
     }
 
     public function validationCancel() {
       $validator = new Validator();
-      $validator ->requirePresence('email') ->notEmpty('email', 'Please enter a valid email address');
-      $validator ->requirePresence('courseID') ->notEmpty('courseID', 'Please select a course event');
+  		$validator ->notEmpty(['email', 'eventID']);
+			$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
       return $validator;
     }
 

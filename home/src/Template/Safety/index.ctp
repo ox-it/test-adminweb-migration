@@ -16,7 +16,7 @@
 
         <p>If, having booked a place, you find you are unable to attend your requested
         course, please fill in the
-        <?= $this->Html->link('cancellation form', ['action' => 'cancel']) ?>
+        <a href="?action=cancel">cancellation form</a>
         so that your place can be offered to another trainee. All courses are offered
         free of charge to University staff and students. However, departments will be
         charged a &pound;30 penalty fee if booked trainees fail to turn up on the day,
