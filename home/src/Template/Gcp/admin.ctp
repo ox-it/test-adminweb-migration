@@ -39,7 +39,7 @@
 					<div class="applicant column_wrapper">
 						<div class="control" style="flex-grow:0;text-align:center">
 							<?= $this->Form->control('app'.$i, [ 'type'=>'hidden', 'value'=>$applicant->applicantID ]) ?>
-							<?= $this->Form->control('selector'.$applicant->applicantID, [ 'type'=>'checkbox', 'label'=>false ]) ?>
+							<?= $this->Form->control('selector'.$applicant->applicantID, [ 'type'=>'checkbox', 'label'=>'' ]) ?>
 						</div>
 						<div class="info">
 							<p>
