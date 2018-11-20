@@ -25,8 +25,8 @@
 				</p>
 				<p>
 				  You can also see the
-				  <a href="?accepted">Accepted Applications</a>, or see the
-				  <a href="?rejects">Rejected Applications</a>.
+				  <a href="?accepted=">Accepted Applications</a>, or see the
+				  <a href="?rejects=">Rejected Applications</a>.
 				</p>
 
 				<hr />
