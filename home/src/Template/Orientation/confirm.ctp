@@ -2,7 +2,7 @@
 
 <div class="row">
   <?php //echo '<textarea rows="10" style="line-height:1.1em">' . print_r($applicant, true) . '</textarea>'; ?>
-	<div class="waf-include">
+<div class="waf-include">
 
 		<h3>
 		  Confirmation
@@ -40,5 +40,7 @@
       <?= $waf->postButtonToReferer($this, 'Return to Orientation Form') ?>
     </p>
 
-	</div>
+</div>
+<div id="optional"></div>
+
 </div>
