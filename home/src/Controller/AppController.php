@@ -58,7 +58,7 @@ class AppController extends Controller
 		$this->set('waf', $this->Waf);
 	}
 
-  // Allows easy access to any script file
+  // Allows easy access to a Controller's JS script file
 	public function script()
 	{
 	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/script.js');
@@ -66,6 +66,17 @@ class AppController extends Controller
     $response = $this->response;
     $response->body($script);
     $response = $response->withType('js');
+    return $response;
+	}
+
+  // Allows easy access to a Controller's CSS style file
+	public function style()
+	{
+	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . $this->name . '/style.css');
+    $css = $file->read();
+    $response = $this->response;
+    $response->body($css);
+    $response = $response->withType('css');
     return $response;
 	}
 

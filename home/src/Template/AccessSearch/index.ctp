@@ -13,7 +13,7 @@
 
 		<!-- Form -->
 		<?php
-			echo $this->Form->create($form, [ 'novalidate' => true ]);
+			echo $this->Form->create($form, [ 'action'=>false, 'novalidate' => true ]);
 		?>
 
     <?= $this->Form->control('keywords', ['type'=>'text', 'label' => false]); ?>
