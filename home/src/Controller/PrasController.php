@@ -44,6 +44,7 @@ class PrasController extends AppController
 						$this->Flash->success('Thank you for your submission.');
 						// To debug use this
   					//return $this->render($post['changeType']);
+  					$this->emailConfirmation($data);
 						return $this->render('success');
 					} else {
 						$this->Flash->error('Unknown error.');
@@ -60,6 +61,25 @@ class PrasController extends AppController
 			$this->Flash->error('Please select a change type.');
 		}
 		$this->set('pras', $pras);
+	}
+
+	private function emailConfirmation($data)
+	{
+	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
+    $css = str_replace('.web-app-wrapper ','',$file->read());
+    $type = !empty($data['changeType']) ? $data['changeType'] : 'UNKNOWN TYPE';
+		$email = new Email();
+		$email->template('new_pras_submission');
+		$email->viewVars(['data' => $data, 'waf' => $this->Waf, 'css'=>$css ]);
+  	$email->subject('Organisational Structure - ' . strtoupper($type));
+  	$email->from(['orgstructure@admin.ox.ac.uk' => 'Planning & Resource Allocation']);
+    $email->to(['orgstructure@admin.ox.ac.uk' => 'Planning & Resource Allocation']);
+
+		// TODO: Remove test email
+    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+
+		$email->emailFormat('html');
+  	$email->send();
 	}
 
   // Easy access to jQuery Menu Widget script file
