@@ -334,25 +334,8 @@ class PrasForm extends Form
       }
 
       if (!empty($data['stage']) && $data['stage']==2) {
-        // Send an email.
-    		// TODO: Remove test email
-        $email = [
-          'to' => ['al@cache.co.uk' => 'Al Pirrie'],
-          'from' => ['orgstructure@admin.ox.ac.uk' => 'Planning & Resource Allocation'],
-          'subject' => 'Organisational Structure - ' . strtoupper($data['changeType'])
-        ];
-        $message = '<p>A new submission has been received from the PRAS Organisational Structure Change Form</p>' . "\n";
-        $message .= '<p>&nbsp;</p>' . "\n";
-        foreach ($data as $k => $v) {
-          if (empty($v)) continue;
-          if (in_array($k, ['stage','entity','info','safeType'])) continue;
-          $message .= '<p>' . $k . ': <strong>' . $v . '</strong></p>' . "\n";
-        }
-        $message .= '<p>&nbsp;</p>' . "\n";
-        $message .= '<p>&nbsp;</p>' . "\n";
-        $email['message'] = $message;
-        $this->sendEmailConfirmation($email);
-        $data['email'] = $email;
+        // Nothing more - PrasController will send an email
+        // $data is passed to the email template.
       }
 
       return $data;
