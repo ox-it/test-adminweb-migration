@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\PrasForm;
 use Cake\Filesystem\File;
+use Cake\Mailer\Email;
 use Cake\Utility\Xml;
 use Cake\Utility\Exception\XmlException;
 
