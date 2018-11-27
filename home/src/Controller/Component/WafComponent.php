@@ -159,4 +159,9 @@ class WafComponent extends Component
     return false;
   }
 
+  public function camelToProperCase($input='') {
+    $parts = preg_split('/(?=[A-Z])/', $input, -1, PREG_SPLIT_NO_EMPTY);
+    return ucwords(implode(' ',$parts));
+  }
+
 }

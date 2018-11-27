@@ -13,7 +13,7 @@
 	foreach ($data as $k => $v) {
 		if (empty($v)) continue;
 		if (in_array($k, ['stage','entity','info','safeType'])) continue;
-		echo '<p>' . $k . ': <strong>' . $v . '</strong></p>' . "\n";
+		echo '<p>' . $waf->camelToProperCase($k) . ': <strong>' . $v . '</strong></p>' . "\n";
 	}
 ?>
 
