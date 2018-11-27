@@ -68,7 +68,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('Graduate Accommodation', ['controller' => 'GraduateAccommodation']) ?><br>
           <?= $this->Html->link('Systems Availability', ['controller' => 'SystemsAvailability']) ?><br>
           <?= $this->Html->link('Job Vacancies', ['controller' => 'Jobs']) ?><br>
-          <?= $this->Html->link('AAD Conference', ['controller' => 'AADConference']) ?><br>
+          <?= $this->Html->link('AAD Conference', ['controller' => 'AADConference']) ?> (Incomplete)<br>
           <?= $this->Html->link('AAD Events', ['controller' => 'AADEvents']) ?><br>
           <?= $this->Html->link('Finance Customers', ['controller' => 'FinanceCustomers']) ?><br>
           <?= $this->Html->link('Finance Travel', ['controller' => 'FinanceTravel']) ?><br>
