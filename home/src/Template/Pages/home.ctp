@@ -79,6 +79,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('TRAC', ['controller' => 'Trac']) ?><br>
           <?= $this->Html->link('UAS Events', ['controller' => 'UASEvents']) ?><br>
           <?= $this->Html->link('Access Search', ['controller' => 'AccessSearch']) ?><br>
+          <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?> (<?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?>)<br>
         </p>
     </div>
     <hr />
