@@ -26,6 +26,8 @@ ul{list-style-type:disc;margin:0 0 30px 0;padding-left:0.9375rem}
 li{margin-left:1.8em}
 li p{margin-bottom:0.25rem}
 ul li ul,ul li ul li{margin:0;padding:0}
+dl dt{width:9em;float:left;font-weight:bold}
+dl dt,dl dd{margin-bottom:2px}
 input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea
 {padding:0 0.2rem}
 input[align='right']{text-align:right}
@@ -94,7 +96,7 @@ table tr:nth-of-type(even){background:none}
 fieldset{border:none;padding:1.25rem;margin:1.125rem 0}
 fieldset legend{border-bottom:2px solid #1798A5;width:100%;line-height:2rem}
 .form button[type="submit"]{float:right;text-transform:uppercase;box-shadow:none}
-.form button:hover, .form button:focus{background:#BE840B;box-shadow:none}
+.form button:hover,.form button:focus{background:#BE840B;box-shadow:none}
 button{background:#966600}
 div.message{text-align:center;cursor:pointer;display:block;font-size:0.9rem;font-weight:normal;padding:10px 1.5rem;transition:height 300ms ease-out 0s;background-color:#a0d3e8;color:#222;top:15px;right:15px;z-index:999;overflow:hidden;line-height:1.2em}
 div.message:before{line-height:0px;font-size:20px;height:24px;width:24px;border-radius:15px;text-align:center;vertical-align:middle;display:inline-block;position:relative;left:-11px;background-color:#FFF;padding:13px 0 0 0;content:"i";color:#a0d3e8}
@@ -118,3 +120,10 @@ td.green{background-color:#039b0b;color:white}
 td.amber{background-color:#f89406;color:white}
 td.red{background-color:#b94a48;color:white}
 .label{color:#555;background:none;min-width:150px;text-align:left;padding:0;margin:0}
+.emergency-numbers{background-color:#be0f34}
+button.emergency-numbers:hover{background-color:#a00d2c}
+.contact-results{position:relative}
+.contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
+.contact-results .contact-close:after{display:inline-block;font:normal normal normal 14px/1 FontAwesome;content:"\f00d";margin-left:0.5em}
+.page-link{padding:1px 4px;margin:0}
+.page-link.isCurrent{color:#fff;background-color:#0071BC;}
