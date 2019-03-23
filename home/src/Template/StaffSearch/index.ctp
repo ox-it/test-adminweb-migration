@@ -69,10 +69,10 @@
 
 					<?php if (!empty($result['data']['pager_size'])) : ?>
   					<ul class="pagination page-links">
-  					  <li class="prev" href="#" style="display: inline-block;"><span>Prev</span></li>
+  					  <li class="prev"><span>Prev</span></li>
   					  <li class="link page-1 active"><span>1</span></li>
   					  <?php for ($i=1; $i<$result['data']['pager_size']; $i++) : ?>
-    					  <li class="link page-<?= $i+1 ?>" href="#"><span><?= $i+1 ?></span></li>
+    					  <li class="link page-<?= $i+1 ?>"><span><?= $i+1 ?></span></li>
   					  <?php endfor; ?>
   					  <li class="next" href="#"><span>Next</span></li>
   					</ul>
