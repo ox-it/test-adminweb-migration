@@ -1,5 +1,6 @@
 <!-- File: src/Template/StaffSearch/index.ctp -->
 
+<?= $this->Html->css($this->name . '/style.css') ?>
 
 <div class="row">
 

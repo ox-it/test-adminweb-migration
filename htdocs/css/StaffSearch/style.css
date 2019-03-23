@@ -1,3 +1,6 @@
 ul.contact-results-list{padding:0;list-style:none}
 button.emergency-numbers{background-color:#be0f34}
-
+button.emergency-numbers:hover{background-color:#a00d2c}
+.contact-results{position:relative}
+.contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
+.contact-results .contact-close:after{display:inline-block;font:normal normal normal 14px/1 FontAwesome;content:"\f00d";margin-left:0.5em}
