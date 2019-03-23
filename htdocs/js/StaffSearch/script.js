@@ -12,31 +12,31 @@ jQuery(document).ready(function($) {
       var $data = jQuery(this).find('.contact-results .contact-results-list li');
 
 			$pager.showpage = function(page) {
-	  	  $currentPage = $pager.find('.isCurrent');
-        $currentPage.removeClass('isCurrent');
+	  	  $currentPage = $pager.find('.active');
+        $currentPage.removeClass('active');
         $newPage = $pager.find('.page-'+page);
-        $newPage.addClass('isCurrent');
+        $newPage.addClass('active');
         $data.hide();
         jQuery('#'+id+'.contact-search-container .person-page-'+page).show();
         jQuery('#'+id+'.contact-search-container .currentPage').html(page);
   		};
 
-			$pager.find('.page-link').each(function(e) {
+			$pager.find('li.link').each(function(e) {
 				jQuery(this).click(function() {
-					$pager.showpage(jQuery(this).html());
+					$pager.showpage(jQuery(this).find('span').html());
 					return false;
 				});
 			});
 
-			$pager.find('.page-prev').click(function() {
-				var currentPage = parseInt($pager.find('.isCurrent').html());
+			$pager.find('li.prev').click(function() {
+				var currentPage = parseInt($pager.find('.active span').html());
 				if (currentPage>1) $pager.showpage(currentPage-1);
 				return false;
 			});
 
-			$pager.find('.page-next').click(function() {
-				var currentPage = parseInt($pager.find('.isCurrent').html());
-				if (currentPage<$pager.find('.page-link').length) $pager.showpage(currentPage+1);
+			$pager.find('li.next').click(function() {
+				var currentPage = parseInt($pager.find('.active span').html());
+				if (currentPage<$pager.find('li.link').length) $pager.showpage(currentPage+1);
 				return false;
 			});
 
