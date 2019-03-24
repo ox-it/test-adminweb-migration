@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
           this.persons = response.persons;
           //create results div if it doesn't already exist
           var $results = $('.contact-results', this.el);
-          $results.empty();
+          $results.empty().show();
           $results.prepend($('<span class="contact-close">Close</span>')).find('.contact-close').click(function() {
 						jQuery(this).parent().slideUp('slow');
 					});
