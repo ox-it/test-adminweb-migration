@@ -46,7 +46,7 @@ hr{border-bottom:1px solid #e7e7e7;border-top:0;margin:15px 0}
 ul.pagination li a,ul.pagination li span{color:#fff;background-color:#0071BC;padding:1px 3px;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 ul.pagination li a:hover,ul.pagination li span:hover{background-color:#d33d44}
 ul.pagination li.active a,ul.pagination li.active span{background-color:#d33d44;font-weight:bold}
-ul.pagination .disabled:hover a,ul.pagination .disabled:hover span{background:none}
+ul.pagination .disabled a,ul.pagination .disabled:hover a,ul.pagination .disabled span,ul.pagination .disabled:hover span{background:#ccc}
 .paginator{text-align:center}
 .paginator ul.pagination li{float:none;display:inline-block}
 .paginator p{text-align:right;color:rgba(0, 0 ,0 , 0.54)}
