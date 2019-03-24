@@ -38,4 +38,17 @@ class StaffSearchController extends AppController
 		$this->render('index');
 	}
 
+
+	// For old-times sake
+	public function jsonly($is_small=false)
+  {
+		$this->loadComponent('StaffSearch');
+		$this->set('api', $this->StaffSearch);
+	  $this->set('small', $is_small);
+    $form = new StaffSearchForm();
+		$this->set('form', $form);
+  }
+
+
+
 }

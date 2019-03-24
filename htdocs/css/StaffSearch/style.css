@@ -1,5 +1,8 @@
 ul.contact-results-list{padding:0;list-style:none}
+ul.contact-results-list li{padding:0;margin:0;list-style:none}
+#wrapper-main .paragraphs-item-form .webform-client-form button.emergency-numbers,
 button.emergency-numbers{background-color:#be0f34}
+#wrapper-main .paragraphs-item-form .webform-client-form button.emergency-numbers:hover,
 button.emergency-numbers:hover{background-color:#a00d2c}
 .contact-results{position:relative}
 .contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
