@@ -1,6 +1,7 @@
 <!-- File: src/Template/StaffSearch/index.ctp -->
 
 <?= $this->Html->css($this->name . '/style.css') ?>
+<?php if (empty($script)) echo $this->Html->script($this->name . '/jsonly.js'); ?>
 
 <div class="row">
 
@@ -10,7 +11,11 @@
 	<div class="waf-include">
 	  <div id="<?= 'cs'.$uid ?>" class="contact-search-container">
 
-			<?= $this->Html->script($this->name . '/jsonly.js') ?>
+      <?php if (!empty($script)) : ?>
+				<script>
+					<?= $script ?>
+				</script>
+      <?php endif; ?>
 
 			<!-- Form -->
 			<form id="<?= 'csf'.$uid ?>" class="staff_search_jsonly_contact_form" method="get">

@@ -52,56 +52,6 @@ jQuery(document).ready(function($) {
           this.prefill = params.prefill;
           this.url = params.url? params.url : '//api.m.ox.ac.uk/contact/search?';
           this.pageSize = params.pageSize ? params.pageSize : 10;
-
-          /*
-          var $form_container = $("<div class='contactsearch'></div>");
-          $form_container.append('<h2>Contact search</h2>');
-          var $form = $("<form class='staff_search_jsonly_contact_form' method='get'></form>");
-          var $name_details_container = $("<div class='form-item name-details'></div>");
-
-          var $lastname_container = $("<div class='lastname-container'></div>");
-          $lastname_container.append($("<label for='lastname' class='required'>Surname</label>"));
-          $lastname_container.append($("<input class='full' type='text' name='lastname' id='lastname' placeholder='E.g. Smith' value=''>"));
-
-          var $initial_container = $("<div class='initial-container'></div>");
-          $initial_container.append($("<label for='initial' class='optional'>Initial</label>"));
-          $initial_container.append($("<input class='full' type='text' name='initial' id='initial' placeholder='E.g. J' value=''>"));
-
-          $name_details_container.append($lastname_container).append($initial_container);
-
-          var $search_specifics = $("<div class='form-item search-specifics'></div>");
-          var $search_specifics_fieldset = $("<fieldset></fieldset>");
-          var $exact1_radio = $("<label for='exact1' class='radio'>Exact</label>");
-          $exact1_radio.prepend($("<input type='radio' name='exact' class='radio' value='true' id='exact1' checked='checked'>"));
-
-          var $exact2_radio = $("<label for='exact2' class='radio_second'>Approximate</label>");
-          $exact2_radio.prepend($("<input type='radio' name='exact' class='radio' value='false' id='exact2'>"));
-          $search_specifics_fieldset.append($exact1_radio).append($exact2_radio);
-          $search_specifics.append($search_specifics_fieldset);
-
-          var $submit_buttons = $("<div class='form-item'></div>");
-          var $emailButton = $("<input type='submit' name='find_email' alt='Find email address' value='Email'>");
-          $emailButton.data('medium', 'email');
-          var $phoneButton = $("<input type='submit' name='find_phone' alt='Find telephone nubmers' value='Phone'>");
-          $phoneButton.data('medium', 'phone');
-          $submit_buttons.append($emailButton).append($phoneButton);
-
-          //container for results
-          var $results = $("<div class='contact-results'></div>");
-
-          var $emergency = $('<div class="emergency-nums"></div>');
-          var $emergency_link = $('<a href="//www.admin.ox.ac.uk/ouss/contactus/" name="emergency_numbers" title="Emergency numbers" id="emergency_numbers">');
-          $emergency_link.append($('<span class="exclamation"></span>Emergency numbers</a>'));
-          $emergency.append($emergency_link);
-
-          $form.append($name_details_container).append($search_specifics).append($submit_buttons);
-          $form_container.append($form);
-
-          this.el.append($form_container);
-          this.el.append($results);
-          this.el.append($emergency);
-          //*/
-
           this.bind_events();
 
           if(params.prefill) {
@@ -153,6 +103,9 @@ jQuery(document).ready(function($) {
           //create results div if it doesn't already exist
           var $results = $('.contact-results', this.el);
           $results.empty();
+          $results.prepend($('<span class="contact-close">Close</span>')).find('.contact-close').click(function() {
+						jQuery(this).parent().slideUp('slow');
+					});
           var $resultsHeader = $("<div class='results-header'></div>");
           $results.append($resultsHeader);
           $resultsHeader.append($("<h2>Results</h2>"));

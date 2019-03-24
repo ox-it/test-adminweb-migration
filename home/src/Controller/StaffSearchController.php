@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Form\StaffSearchForm;
+use Cake\Filesystem\File;
 
 class StaffSearchController extends AppController
 {
@@ -38,17 +39,34 @@ class StaffSearchController extends AppController
 		$this->render('index');
 	}
 
-
 	// For old-times sake
-	public function jsonly($is_small=false)
+	public function jsonly()
   {
+  	$get_small = $this->request->getQuery('small');
+	  $small = empty($get_small) ? false : true;
+  	$get_inline = $this->request->getQuery('inline');
+	  $inline = empty($get_inline) ? false : true;
+
 		$this->loadComponent('StaffSearch');
 		$this->set('api', $this->StaffSearch);
-	  $this->set('small', $is_small);
+	  $this->set('small', $small);
     $form = new StaffSearchForm();
 		$this->set('form', $form);
+		if ($inline) {
+			$file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/jsonly.js');
+			$script = $file->read();
+			$this->set('script', $script);
+		}
   }
 
-
+  public function jsonlyscript()
+	{
+	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/jsonly.js');
+    $script = $file->read();
+    $response = $this->response;
+    $response->body($script);
+    $response = $response->withType('js');
+    return $response;
+	}
 
 }
