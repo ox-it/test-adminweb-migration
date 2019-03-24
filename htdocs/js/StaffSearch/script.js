@@ -2,9 +2,11 @@ jQuery(document).ready(function($) {
 	var close = '<span class="contact-close">Close</span>';
   jQuery('.contact-search-container').each(function(e) {
     var id = jQuery(this).attr('id');
-	  jQuery(this).find('.contact-results').prepend(close).find('.contact-close').click(function() {
-      jQuery(this).parent().slideUp('slow');
-    });
+    if (jQuery(this).find('.contact-results').html()!='') {
+			jQuery(this).find('.contact-results').prepend(close).find('.contact-close').click(function() {
+				jQuery(this).parent().slideUp('slow');
+			});
+    }
 
 		// Activate pager
 		var $pager = jQuery(this).find('.page-links');
