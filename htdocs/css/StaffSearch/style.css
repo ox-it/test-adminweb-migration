@@ -1,5 +1,6 @@
-ul.contact-results-list{padding:0;list-style:none}
-ul.contact-results-list li{padding:0;margin:0;list-style:none}
+ul.contact-results-list{padding:0;list-style:none;display:-ms-flex;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;order:2;width:100%}
+ul.contact-results-list li{padding:0;margin:0;list-style:none;display:flex;box-sizing:border-box;flex-direction:column;width:33%}
+ul.contact-results-list li .person_name{padding-top:1em;border-top:1px solid #e0ded9}
 #wrapper-main .paragraphs-item-form .webform-client-form button.emergency-numbers,
 button.emergency-numbers{background-color:#be0f34}
 #wrapper-main .paragraphs-item-form .webform-client-form button.emergency-numbers:hover,
@@ -7,6 +8,7 @@ button.emergency-numbers:hover{background-color:#c8193e}
 .contact-results{position:relative}
 .contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
 .contact-results .contact-close:after{display:inline-block;font:normal normal normal 14px/1 FontAwesome;content:"\f00d";margin-left:0.5em}
+.contact-results .pagination span{cursor:pointer}
 
 #wrapper-main .paragraphs-item-form form.staff_search_jsonly_contact_form:not(.form-search) input.form-control[type="text"]{border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px;border-color:#ccc;font-size:1rem;padding:10px 16px;height:3.1em}
 .staff_search_jsonly_contact_form .name-details::after{display:block;clear:both;height:0px;margin:0;padding:0}
