@@ -8,10 +8,10 @@ button.emergency-numbers:hover{background-color:#c8193e}
 .contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
 .contact-results .contact-close:after{display:inline-block;font:normal normal normal 14px/1 FontAwesome;content:"\f00d";margin-left:0.5em}
 
-.staff_search_jsonly_contact_form input[type="text"]{border-radius:8px;-webkit-border-radius:8px;-moz-border-radius: 8px;border-color:#ccc;font-size:1rem}
-.staff_search_jsonly_contact_form .name-details:first-child{width:77%;float:left;padding:0;margin:0}
-.staff_search_jsonly_contact_form .name-details:last-child{width:20%;float:left;padding:0;margin:0 0 0 3%}
+#wrapper-main .paragraphs-item-simple-feedback-form form .staff_search_jsonly_contact_form input[type="text"]{border-radius:8px;-webkit-border-radius:8px;-moz-border-radius: 8px;border-color:#ccc;font-size:1rem}
+.staff_search_jsonly_contact_form .name-details div:first-child{width:77%;float:left;padding:0;margin:0}
+.staff_search_jsonly_contact_form .name-details div:last-child{width:20%;float:left;padding:0;margin:0 0 0 3%}
 .staff_search_jsonly_contact_form button{text-transform:uppercase}
-.staff_search_jsonly_contact_form button:not(.emergency-numbers){background-color:#44687d;border:color:#44687d}
-.staff_search_jsonly_contact_form button:not(.emergency-numbers):hover{background-color:#4e7891;border:color:#4e7891}
+#wrapper-main .paragraphs-item-form .webform-client-form .staff_search_jsonly_contact_form button:not(.emergency-numbers){background-color:#44687d;border:color:#44687d}
+#wrapper-main .paragraphs-item-form .webform-client-form .staff_search_jsonly_contact_form button:not(.emergency-numbers):hover{background-color:#4e7891;border:color:#4e7891}
 
