@@ -7,7 +7,7 @@ button.emergency-numbers:hover{background-color:#c8193e}
 .contact-results{position:relative}
 .contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
 .contact-results .contact-close:after{display:inline-block;font:normal normal normal 14px/1 FontAwesome;content:"\f00d";margin-left:0.5em}
-// Client requested customisation
+
 .staff_search_jsonly_contact_form input[type="text"]{border-radius:8px;-webkit-border-radius:8px;-moz-border-radius: 8px;border-color:#ccc;font-size:1rem}
 .staff_search_jsonly_contact_form .name-details:first-child{width:77%;float:left;padding:0;margin:0}
 .staff_search_jsonly_contact_form .name-details:last-child{width:20%;float:left;padding:0;margin:0 0 0 3%}
