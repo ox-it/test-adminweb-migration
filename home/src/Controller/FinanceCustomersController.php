@@ -11,7 +11,7 @@ class FinanceCustomersController extends AppController
 {
 
 	public static function defaultConnectionName() {
-			return 'finance_customer-test';
+			return 'finance_customer';
 	}
 
 	public function index()

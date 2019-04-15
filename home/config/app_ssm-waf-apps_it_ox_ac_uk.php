@@ -331,7 +331,21 @@ return [
         'aad_events-test' => $waf_db_td,
 
         // Finanace Customers - Local MySQL
-        'finance_customers-test' => $waf_webapp_db_td, //$waf_db_td,
+        'finance_customers' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => 'webapp-db-td.nsms.ox.ac.uk',
+            'username' => 'site3003_2135',
+            'password' => 'kah5aesei1ohG5Ae',
+            'database' => 'fincustomer_dev',
+            'timezone' => 'UTC',
+            'flags' => [],
+            'cacheMetadata' => true,
+            'log' => false,
+            'url' => env('DATABASE_URL', null),
+            'prefix' => '',
+        ],
 
         // Finanace Travel - Local MySQL
         'finance_travel-test' => $waf_db_td,

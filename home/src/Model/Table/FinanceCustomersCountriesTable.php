@@ -10,13 +10,16 @@ class FinanceCustomersCountriesTable extends Table
 {
 
 	public static function defaultConnectionName() {
-		return 'finance_customers-test';
+		return 'finance_customers';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'country';
 		$this->addBehavior('Timestamp');
-		$this->setTable('finance_customer_country');
+		$this->setTable($table);
 		$this->setPrimaryKey('domcode');
 		$this->setDisplayField('domicile');
 	}

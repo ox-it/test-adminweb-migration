@@ -11,13 +11,16 @@ class FinanceCustomersCustomersTable extends Table
 {
 
 	public static function defaultConnectionName() {
-		return 'finance_customers-test';
+		return 'finance_customers';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'customer';
 		$this->addBehavior('Timestamp');
-		$this->setTable('finance_customer_customer');
+		$this->setTable($table);
 		$this->setPrimaryKey('customerID');
 		$this->belongsTo('FinanceCustomersCountries') ->setForeignKey(['billdomcode','shipdomcode']) ->setBindingKey('domcode');
 		$this->belongsTo('FinanceCustomersDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
