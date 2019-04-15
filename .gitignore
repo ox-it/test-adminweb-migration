@@ -10,6 +10,7 @@
 
 # CakePHP specific files #
 ##########################
+/home/config/app_almac_local.php
 /home/config/app.php
 /home/config/.env
 /logs/*

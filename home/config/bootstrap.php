@@ -77,7 +77,12 @@ try {
  * You can use a file like app_local.php to provide local overrides to your
  * shared configuration.
  */
-//Configure::load('app_local', 'default');
+try {
+    Configure::load('app_' . str_replace('.', '_', $_SERVER['SERVER_NAME']), 'default');
+} catch (\Exception $e) {
+    // Do nothing - just default to app.php
+    // exit($e->getMessage() . "\n");
+}
 
 /*
  * When debug = true the metadata cache should only last

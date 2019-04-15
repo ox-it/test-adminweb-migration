@@ -56,6 +56,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
     <div class="column" align="center">
         <h4>HELP!</h4>
         <p>It looks like the WAF is set up wrong. Contact <a href="waf@it.ox.ac.uk">waf@it.ox.ac.uk</a> for more help.</p>
+        <p>SERVER: <?= $_SERVER['SERVER_NAME']; ?></p>
     </div>
     <hr />
 </div>
@@ -79,7 +80,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('TRAC', ['controller' => 'Trac']) ?><br>
           <?= $this->Html->link('UAS Events', ['controller' => 'UASEvents']) ?><br>
           <?= $this->Html->link('Access Search', ['controller' => 'AccessSearch']) ?><br>
-          <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?> (<?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?>)<br>
+          <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?> [ <?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?> | <?= $this->Html->link('JS Only Version', ['controller' => 'StaffSearch', 'action' => 'jsonly']) ?> ]<br>
         </p>
     </div>
     <hr />
