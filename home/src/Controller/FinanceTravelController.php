@@ -11,7 +11,7 @@ class FinanceTravelController extends AppController
 {
 
 	public static function defaultConnectionName() {
-			return 'finance_travel-test';
+			return 'finance_travel';
 	}
 
 	public function index()

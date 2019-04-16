@@ -11,16 +11,18 @@ class FinanceTravelAgentsTable extends Table
 {
 
 	public static function defaultConnectionName() {
-		return 'finance_travel-test';
+		return 'finance_travel';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'agent';
 		$this->addBehavior('Timestamp');
-		$this->setTable('finance_travel_agent');
+		$this->setTable($table);
 		$this->setPrimaryKey('agentID');
 		$this->setDisplayField('agentname');
-
 		//$this->belongsTo('AADEventsColleges') ->setForeignKey('collcode') ->setBindingKey('collcode');
 		//$this->belongsTo('AADEventsDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 	}

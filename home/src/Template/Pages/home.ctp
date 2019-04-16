@@ -71,8 +71,12 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('Job Vacancies', ['controller' => 'Jobs']) ?><br>
           <?= $this->Html->link('AAD Conference', ['controller' => 'AADConference']) ?> (Incomplete)<br>
           <?= $this->Html->link('AAD Events', ['controller' => 'AADEvents']) ?><br>
-          <?= $this->Html->link('Finance Customers', ['controller' => 'FinanceCustomers']) ?><br>
-          <?= $this->Html->link('Finance Travel', ['controller' => 'FinanceTravel']) ?><br>
+          <?= $this->Html->link('Finance Customers', ['controller' => 'FinanceCustomers']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'FinanceCustomers', 'action' => 'css']) ?>
+            | <?= $this->Html->link('JS', ['controller' => 'FinanceCustomers', 'action' => 'script']) ?> }<br>
+          <?= $this->Html->link('Finance Travel', ['controller' => 'FinanceTravel']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'FinanceTravel', 'action' => 'css']) ?>
+            | <?= $this->Html->link('JS', ['controller' => 'FinanceTravel', 'action' => 'script']) ?> }<br>
           <?= $this->Html->link('Harassment', ['controller' => 'Harassment']) ?><br>
           <?= $this->Html->link('Orientation', ['controller' => 'Orientation']) ?><br>
           <?= $this->Html->link('GCP Online', ['controller' => 'Gcp']) ?><br>

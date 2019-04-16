@@ -16,14 +16,17 @@ class FinanceTravelApplicantsTable extends Table
 
 
 	public static function defaultConnectionName() {
-		return 'finance_travel-test';
+		return 'finance_travel';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'applicant';
     $this->addBehavior('Waf');  				// src/Model/Behavior/WafBehavior.php
 		$this->addBehavior('Timestamp');
-		$this->setTable('finance_travel_applicant');
+		$this->setTable($table);
 		$this->setPrimaryKey('applicantID');
 		$this->belongsTo('FinanceTravelDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 	}
