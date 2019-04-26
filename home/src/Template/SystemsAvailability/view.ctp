@@ -1,13 +1,14 @@
 <!-- File: src/Template/SystemsAvailability/view.ctp -->
 
 <div class="row">
-	<div class="waf-include">
 
-        <h3><?= $view->name ?></h3>
+  <h3><?= $view->name ?></h3>
+
+	<div class="waf-include">
 
         <?php if (!empty($systems) && count($systems)>0) { ?>
 
-				<table>
+				<table class="waf-systems-availability">
 					<thead>
 						<tr>
 							<th>Name</th>
