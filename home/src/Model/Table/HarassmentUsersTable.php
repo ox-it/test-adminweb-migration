@@ -23,7 +23,7 @@ class HarassmentUsersTable extends Table
 		$this->setTable($table);
 		$this->setPrimaryKey('userID');
 		$this->belongsToMany('HarassmentDepartments', [
-		  'joinTable' => 'harassment_user_dept',
+		  'joinTable' => $prefix . 'user_dept',
 		  'foreignKey' => 'userID',
 		  'targetForeignKey' => 'deptcode'
 		]);
