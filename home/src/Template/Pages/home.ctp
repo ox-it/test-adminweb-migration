@@ -55,8 +55,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
 <div class="row">
     <div class="column" align="center">
         <h4>HELP!</h4>
-        <p>It looks like the WAF is set up wrong. Contact <a href="waf@it.ox.ac.uk">waf@it.ox.ac.uk</a> for more help.</p>
-        <p>SERVER: <?= $_SERVER['SERVER_NAME']; ?></p>
+        <p>It looks like the <em><?= $_SERVER['SERVER_NAME']; ?></em> WAF is set up wrong. Contact <a href="waf@it.ox.ac.uk">waf@it.ox.ac.uk</a> for more help.</p>
     </div>
     <hr />
 </div>
@@ -73,18 +72,27 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('AAD Events', ['controller' => 'AADEvents']) ?><br>
           <?= $this->Html->link('Finance Customers', ['controller' => 'FinanceCustomers']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'FinanceCustomers', 'action' => 'css']) ?>
-            | <?= $this->Html->link('JS', ['controller' => 'FinanceCustomers', 'action' => 'script']) ?> }<br>
+            : <?= $this->Html->link('JS', ['controller' => 'FinanceCustomers', 'action' => 'script']) ?> }<br>
           <?= $this->Html->link('Finance Travel', ['controller' => 'FinanceTravel']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'FinanceTravel', 'action' => 'css']) ?>
-            | <?= $this->Html->link('JS', ['controller' => 'FinanceTravel', 'action' => 'script']) ?> }<br>
-          <?= $this->Html->link('Harassment', ['controller' => 'Harassment']) ?><br>
+            : <?= $this->Html->link('JS', ['controller' => 'FinanceTravel', 'action' => 'script']) ?> }<br>
+          <?= $this->Html->link('Harassment', ['controller' => 'Harassment']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'Harassment', 'action' => 'css']) ?>
+            : <?= $this->Html->link('JS', ['controller' => 'Harassment', 'action' => 'script']) ?> }<br>
           <?= $this->Html->link('Orientation', ['controller' => 'Orientation']) ?><br>
           <?= $this->Html->link('GCP Online', ['controller' => 'Gcp']) ?><br>
           <?= $this->Html->link('Safety', ['controller' => 'Safety']) ?><br>
           <?= $this->Html->link('TRAC', ['controller' => 'Trac']) ?><br>
           <?= $this->Html->link('UAS Events', ['controller' => 'UASEvents']) ?><br>
           <?= $this->Html->link('Access Search', ['controller' => 'AccessSearch']) ?><br>
-          <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?> [ <?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?> | <?= $this->Html->link('JS Only Version', ['controller' => 'StaffSearch', 'action' => 'jsonly']) ?> ]<br>
+          <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?>
+            | <?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'StaffSearch', 'action' => 'css']) ?>
+            : <?= $this->Html->link('JS', ['controller' => 'StaffSearch', 'action' => 'script']) ?> } &nbsp; &nbsp;
+           <?= $this->Html->link('JS Only Version', ['controller' => 'StaffSearch', 'action' => 'jsonly']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'StaffSearch', 'action' => 'css']) ?>
+            : <?= $this->Html->link('STYLE', ['controller' => 'StaffSearch', 'action' => 'style']) ?>
+            : <?= $this->Html->link('JS', ['controller' => 'StaffSearch', 'action' => 'jsonlyscript']) ?> }<br>
         </p>
     </div>
     <hr />

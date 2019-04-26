@@ -15,13 +15,16 @@ class HarassmentSurveysTable extends Table
   private $yesnoOptions = [ 'Y'=>'Yes', 'N'=>'No' ];
 
 	public static function defaultConnectionName() {
-		return 'harassment-test';
+		return 'harassment';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'survey';
 		$this->addBehavior('Timestamp');
-		$this->setTable('harassment_survey');
+		$this->setTable($table);
 		$this->setPrimaryKey('surveyID');
 		$this->hasOne('HarassmentUsers') ->setForeignKey('userID') ->setBindingKey('personID');
 		$this->hasOne('HarassmentDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');

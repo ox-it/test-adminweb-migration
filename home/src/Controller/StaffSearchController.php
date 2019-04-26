@@ -39,7 +39,7 @@ class StaffSearchController extends AppController
 		$this->render('index');
 	}
 
-	// For old-times sake
+	// For cacheable version - use jsonlyscript()
 	public function jsonly()
   {
   	$get_small = $this->request->getQuery('small');
