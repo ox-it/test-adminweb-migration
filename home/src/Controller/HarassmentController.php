@@ -12,7 +12,7 @@ class HarassmentController extends AppController
 {
 
 	public static function defaultConnectionName() {
-			return 'harassment-test';
+			return 'harassment';
 	}
 
 	public function index()

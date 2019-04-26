@@ -10,13 +10,16 @@ class HarassmentUsersDepartmentsTable extends Table
 {
 
 	public static function defaultConnectionName() {
-		return 'harassment-test';
+		return 'harassment';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'user_dept';
 		$this->addBehavior('Timestamp');
-		$this->setTable('harassment_user_dept');
+		$this->setTable($table);
 		$this->setPrimaryKey('user_deptID');
 		$this->belongsTo('HarassmentDepartments') ->setForeignKey('deptcode') ->setBindingKey('deptcode');
 	}

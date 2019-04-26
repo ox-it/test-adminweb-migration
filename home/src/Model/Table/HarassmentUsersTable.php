@@ -11,14 +11,16 @@ class HarassmentUsersTable extends Table
 {
 
 	public static function defaultConnectionName() {
-		return 'harassment-test';
+		return 'harassment';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'user';
 		$this->addBehavior('Timestamp');
-
-		$this->setTable('harassment_user');
+		$this->setTable($table);
 		$this->setPrimaryKey('userID');
 		$this->belongsToMany('HarassmentDepartments', [
 		  'joinTable' => 'harassment_user_dept',
