@@ -27,10 +27,11 @@
 								  <?php if (!empty($system->url)) echo '</a>'; ?>
 								</td>
 								<td class="<?= $system->level ?>"><strong><?= $system->levelName ?></strong>
-								  <span class="indicator indicator-red"></span>
-								  <span class="indicator indicator-amber"></span>
-								  <span class="indicator indicator-green"></span>
-								</td>
+								  <div class="indicators">
+										<span class="indicator indicator-red"></span>
+										<span class="indicator indicator-amber"></span>
+										<span class="indicator indicator-green"></span>
+								  </div>								</td>
 								<td><?= $system->text ?></td>
 								<td><?= $system->details ?></td>
 								<td><?= date('j M Y, H:i', $system->time) ?></td>

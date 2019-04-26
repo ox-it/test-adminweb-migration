@@ -30,4 +30,15 @@ class SystemsAvailabilityController extends AppController
 		$this->set(compact('systems'));
 	}
 
+	public function cols($viewID = null)
+	{
+		$this->loadModel('SystemsAvailabilityViews');
+    $view = $this->SystemsAvailabilityViews->get($viewID);
+		$this->set(compact('view'));
+
+		$this->loadModel('SystemsAvailabilitySystems');
+		$systems = $this->SystemsAvailabilitySystems->getSystemsForViewID($viewID);
+		$this->set(compact('systems'));
+	}
+
 }
