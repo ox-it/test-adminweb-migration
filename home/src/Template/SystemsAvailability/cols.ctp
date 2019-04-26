@@ -22,7 +22,7 @@
         </thead>
 
         <tbody>
-          <tr class="even">
+          <tr>
             <?php foreach ($systems as $system): ?>
             <td class="<?= $system->level ?>">
               <strong><?= $system->levelName ?></strong>
@@ -34,21 +34,21 @@
             </td>
             <?php endforeach; ?>
           </tr>
-          <tr class="odd">
+          <tr>
             <?php foreach ($systems as $system): ?>
             <td class="status">
               <?= $system->text ?>
             </td>
             <?php endforeach; ?>
           </tr>
-          <tr class="even">
+          <tr>
             <?php foreach ($systems as $system): ?>
             <td class="details">
               <?= $system->details ?>
             </td>
             <?php endforeach; ?>
           </tr>
-          <tr class="odd">
+          <tr>
             <?php foreach ($systems as $system): ?>
             <td class="updated">
               <?= date('j M Y, H:i', $system->time) ?>

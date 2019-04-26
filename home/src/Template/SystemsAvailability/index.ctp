@@ -9,7 +9,10 @@
 
 			<ul>
 			<?php foreach ($views as $view): ?>
-				<li><?= $this->Html->link($view->name, ['action' => 'view', $view->id]) ?></li>
+				<li>
+				  <?= $this->Html->link($view->name, ['action' => 'view', $view->id]) ?>
+				  (<?= $this->Html->link('cols', ['action' => 'cols', $view->id]) ?>)
+				</li>
 			<?php endforeach; ?>
 			</ul>
 
