@@ -10,17 +10,21 @@ class SystemsAvailabilityViewsTable extends Table
 {
 
 	public static function defaultConnectionName() {
-			return 'systems_availability-test';
+			return 'systems_availability';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'views';
+
 		$this->addBehavior('Timestamp');
-		$this->setTable('systems_availability_views');
+		$this->setTable($table);
 		$this->setPrimaryKey('id');
 		$this->belongsToMany('SystemsAvailabilitySystems',[
       'through' => 'SystemsAvailabilityRelations',
-      'joinTable' => 'systems_availability_relations',
+      'joinTable' => $prefix . 'relations',
       'foreignKey' => 'view_id',
       'targetForeignKey' => 'system_id'
     ]);

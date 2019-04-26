@@ -9,7 +9,7 @@ class SystemsAvailabilityController extends AppController
 {
 
 	public static function defaultConnectionName() {
-		return 'systems_availability-test';
+		return 'systems_availability';
 	}
 
 	public function index()
