@@ -3,16 +3,17 @@
 <div class="row">
 
   <h3><?= $view->name ?></h3>
+  <?php //echo '<textarea>' . print_r($view, true) . '</textarea>'; ?>
 
   <div class="waf-include">
 
     <?php if (!empty($systems) && count($systems)>0) { ?>
 
-      <table class="waf-systems-availability cols">
+      <table class="waf-systems-availability view-<?= $view->id ?> cols">
         <thead>
           <tr>
             <?php foreach ($systems as $system): ?>
-            <th>
+            <th class="<?= str_replace(' ','-',strtolower($system->name)) ?>">
               <?php if (!empty($system->url)) echo '<a href="'.$system->url.'">'; ?>
               <?= $system->name ?>
               <?php if (!empty($system->url)) echo '</a>'; ?>
@@ -24,7 +25,7 @@
         <tbody>
           <tr>
             <?php foreach ($systems as $system): ?>
-            <td class="<?= $system->level ?>">
+            <td class="<?= $system->level ?> system-<?= $system->id ?>">
               <strong><?= $system->levelName ?></strong>
               <div class="indicators">
                 <span class="indicator indicator-red"></span>
@@ -36,21 +37,21 @@
           </tr>
           <tr>
             <?php foreach ($systems as $system): ?>
-            <td class="status">
+            <td class="status system-<?= $system->id ?>">
               <?= $system->text ?>
             </td>
             <?php endforeach; ?>
           </tr>
           <tr>
             <?php foreach ($systems as $system): ?>
-            <td class="details">
+            <td class="details system-<?= $system->id ?>">
               <?= $system->details ?>
             </td>
             <?php endforeach; ?>
           </tr>
           <tr>
             <?php foreach ($systems as $system): ?>
-            <td class="updated">
+            <td class="updated system-<?= $system->id ?>">
               <?= date('j M Y, H:i', $system->time) ?>
             </td>
             <?php endforeach; ?>
