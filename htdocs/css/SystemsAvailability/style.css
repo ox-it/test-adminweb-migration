@@ -1,8 +1,8 @@
+#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.red  {background-color:#FF7067;color:#000}
+#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.amber{background-color:#FFC04E;color:#000}
+#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.green{background-color:#97E982;color:#000}
+#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form .waf-systems-availability .indicators{display:none}
 /*
-#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.red  {background-color:#b94a48;color:white}
-#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.amber{background-color:#f89406;color:white}
-#wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.green{background-color:#039b0b;color:white}
-*/
 #wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form .indicator{display:inline-block;width:16px;height:16px;border-radius:8px;border:2px solid #000;background-color:transparent}
 #wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form .indicator-red {border-color:#ED1C24}
 #wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form .indicator-amber{border-color:#FBB03B}
@@ -10,3 +10,4 @@
 #wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.red .indicator-red{background-color:#ED1C24}
 #wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.amber .indicator-amber{background-color:#FBB03B}
 #wrapper-main .web-app-wrapper.paragraphs-item-form .webform-client-form table td.green .indicator-green{background-color:#00D697}
+*/

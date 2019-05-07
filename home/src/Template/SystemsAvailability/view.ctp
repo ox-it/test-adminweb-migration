@@ -8,7 +8,7 @@
 
         <?php if (!empty($systems) && count($systems)>0) { ?>
 
-				<table class="waf-systems-availability">
+				<table class="waf-systems-availability view-<?= $view->id ?>">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -20,7 +20,7 @@
 					</thead>
 					<tbody>
   					<?php foreach ($systems as $system): ?>
-							<tr>
+							<tr class="system-<?= $system->id ?>">
 								<td>
 								  <?php if (!empty($system->url)) echo '<a href="'.$system->url.'">'; ?>
 								  <?= $system->name ?>
