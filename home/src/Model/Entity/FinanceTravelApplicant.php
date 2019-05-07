@@ -7,6 +7,11 @@ use Cake\ORM\Entity;
 class FinanceTravelApplicant extends Entity
 {
 
+  // Set default value
+  protected function _getAirreturn($airreturn) {
+      return empty($airreturn) ? 'Y' : $airreturn;
+  }
+
   public static function spacer() {
     return '<div class="spacer">&nbsp;</div>';
   }
