@@ -8,7 +8,7 @@
 
 	<div class="waf-include">
 
-    <!-- Information -->
+    <!-- Information
 	  <p>
 	    This is an online request for quotation form that will be sent to the University's preferred travel agent who will
 	    send you a quotation by email for the requested journey. If you wish to travel within the next 24 hours you are
@@ -28,7 +28,7 @@
 	  <p>
 	    If your journey involves multiple stages, please <a href="#agents">contact the travel agent directly</a>.
     </p>
-
+    -->
 
     <!-- Form --><?php // Create form with validation set in FinanceTravelApplicantsTable::validationRegister() ?>
 		<?= $this->Form->create($applicant, [ 'type'=>'file', 'context'=>[ 'validator'=>'register' ], 'novalidate' => true ]) ?>
