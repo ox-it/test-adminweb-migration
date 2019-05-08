@@ -188,7 +188,7 @@
 			<!-- Submit -->
       <p>&nbsp;</p>
 			<?= $this->Form->button(__('Submit Request')) ?>
-			<?= $this->Form->button('Clear From', [ 'type'=>'reset' ]) ?>
+			<?= $this->Form->button('Clear Form', [ 'type'=>'reset' ]) ?>
 
 		<?php
 				echo $this->Form->end();
