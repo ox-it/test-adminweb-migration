@@ -18,7 +18,7 @@
 	<div class="waf-include">
 
     <!-- Information -->
-    <p>Welcome to the Harrasment Survey reporting form.</p>
+    <p>Welcome to the Harassment Survey reporting form.</p>
     <?php if (count($user->harassment_departments)>1) : ?>
       <p>
         Please select the department, faculty or college you are reporting for and then press
