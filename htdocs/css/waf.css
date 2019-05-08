@@ -23,7 +23,7 @@
 .web-app-wrapper .radio > label[for]{font-weight:normal;display:inline}
 .web-app-wrapper .radios,.web-app-wrapper .input.radio,.web-app-wrapper .spaced{margin:0 0 1rem}
 .web-app-wrapper button+button,.web-app-wrapper button+.button{margin-left:20px}
-.web-app-wrapper .form-actions button,.web-app-wrapper .form-actions button+button,.web-app-wrapper .form-actions button+.button{margin-left:0;margin-right:20px}
+.web-app-wrapper .form-actions button,.web-app-wrapper .form-actions button+button,.web-app-wrapper .form-actions button+.button{margin:16px 20px 16px 0px}
 .web-app-wrapper button,.web-app-wrapper .button{padding:0.6rem 1.1rem 0.7rem 1.1rem;margin-top:16px;font-size:1.1em;font-weight:300}
 .web-app-wrapper .toggle{display:inline-block;border:1px solid #aaa;border-radius:5px;cursor:pointer;padding:2px 6px;margin:0 0 1em;font-size:0.8em;box-shadow:0 1px #eee}
 .web-app-wrapper .small_text{font-size:0.85em}
