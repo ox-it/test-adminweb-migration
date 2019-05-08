@@ -132,7 +132,7 @@
 			<!-- Submit -->
 			<?php
 					echo $this->Form->button(__('Submit Request'));
-					echo $this->Form->button('Clear From', [ 'type'=>'reset' ]);
+					echo $this->Form->button('Clear Form', [ 'type'=>'reset' ]);
 			?>
 
 			<!-- Travel Agent information -->
