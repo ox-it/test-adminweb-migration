@@ -225,7 +225,7 @@ class SystemsAvailabilitySystemsTable extends Table
 		  $system->levelName = $this->getNameOfLevel($system->level);
 		  $system->text = empty($data['text']) ? '' : $data['text'];
 		  $system->details = empty($data['details']) ? '' : $data['details'];
-		  $system->time = empty($data['time']) ? time() : $data['time'];
+		  $system->time = empty($data['time_changed']) ? (empty($data['time']) ? time() : $data['time']) : $data['time_changed'];
 		}
 		return $systems;
 	}
