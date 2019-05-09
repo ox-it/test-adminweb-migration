@@ -15,6 +15,8 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Controller\Exception\AuthSecurityException;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
 
@@ -29,66 +31,91 @@ use Cake\Filesystem\File;
 class AppController extends Controller
 {
 
-	/**
-	 * Initialization hook method.
-	 *
-	 * Use this method to add common initialization code like loading components.
-	 *
-	 * e.g. `$this->loadComponent('Security');`
-	 *
-	 * @return void
-	 */
-	public function initialize()
-	{
-		parent::initialize();
+  /**
+   * Initialization hook method.
+   *
+   * Use this method to add common initialization code like loading components.
+   *
+   * e.g. `$this->loadComponent('Security');`
+   *
+   * @return void
+   */
+  public function initialize()
+  {
+    parent::initialize();
 
-		$this->loadComponent('RequestHandler', [
-				'enableBeforeRedirect' => false,
-		]);
-		$this->loadComponent('Flash');
-		$this->loadComponent('Waf');
+    $this->loadComponent('RequestHandler', [
+        'enableBeforeRedirect' => false,
+    ]);
+    $this->loadComponent('Flash');
+    $this->loadComponent('Waf');
 
-		/*
-		 * Enable the following component for recommended CakePHP security settings.
-		 * see https://book.cakephp.org/3.0/en/controllers/components/security.html
-		 */
-		$this->loadComponent('Security');
+    /*
+     * Enable the following component for recommended CakePHP security settings.
+     * see https://book.cakephp.org/3.0/en/controllers/components/security.html
+     */
+    $this->loadComponent('Security');
 
-		// Always make WafComponent available to views
-		$this->set('waf', $this->Waf);
-	}
+    // Always make WafComponent available to views
+    $this->set('waf', $this->Waf);
+  }
+
+  // For custom timeout message
+  public function beforeFilter(Event $event)
+  {
+      parent::beforeFilter($event);
+      $this->Security->setConfig('blackHoleCallback', 'blackhole');
+  }
+
+  public function blackhole($type, $exception)
+  {
+
+      if ($type === 'auth' && $exception instanceof AuthSecurityException) {
+        if ($exception->getMessage() === 'Bad Request') {
+            $this->Flash->error("This form has timed out, please try resubmitting, or refresh the page and start again.");
+        }
+      }
+
+      elseif ($type === 'secure' && $exception instanceof SecurityException)  {
+        if ($exception->getMessage() === 'Request is not SSL and the action is required to be secure') {
+          $exception->setMessage(__('Please access the requested page through HTTPS'));
+        }
+        throw $exception;
+      }
+
+  }
 
   // Allows easy access to a Controller's JS script file
-	public function script()
-	{
-	  $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/script.js');
+  public function script()
+  {
+    $file = new File(WWW_ROOT . env('jsBaseUrl','js/') . $this->name . '/script.js');
     $script = $file->read();
     $response = $this->response;
     $response->body($script);
     $response = $response->withType('js');
     return $response;
-	}
+  }
 
   // Allows easy access to a Controller's CSS style file
-	public function style()
-	{
-	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . $this->name . '/style.css');
+  public function style()
+  {
+    $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . $this->name . '/style.css');
     $css = $file->read();
     $response = $this->response;
     $response->body($css);
     $response = $response->withType('css');
     return $response;
-	}
+  }
 
   // Allows easy access to the universal css file
-	public function css()
-	{
-	  $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
+  public function css()
+  {
+    $file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
     $css = $file->read();
     $response = $this->response;
     $response->body($css);
     $response = $response->withType('css');
     return $response;
-	}
+  }
 
 }
