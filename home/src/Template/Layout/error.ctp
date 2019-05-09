@@ -58,8 +58,10 @@ ERROR &gt; <?= $this->name ?> &gt; <?= $this->template ?>
 
 <div class="container clearfix">
 <div class="web-app-wrapper"><?php // This is used to mimic the wrapper class in Mosaic ?>
+<div class="row">
 <?= $this->Html->script($this->name . '/script.js') ?>
 <?= $this->fetch('content') ?>
+</div>
 </div>
 </div>
 
