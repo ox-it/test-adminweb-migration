@@ -5,7 +5,7 @@
  */
 ?>
 
-<p><em>A request for a new customer account has been recieved from:</em></p>
+<p><em>A request for a new customer account has been received from:</em></p>
 <p>&nbsp;</p>
 
 
