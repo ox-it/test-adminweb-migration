@@ -9,7 +9,7 @@ button.emergency-numbers{background-color:#be0f34}
 button.emergency-numbers:hover{background-color:#c8193e}
 .contact-results{position:relative}
 .contact-results .contact-close{position:absolute;top:0.5em;right:0.5em;cursor:pointer}
-.contact-results .contact-close:after{display:inline-block;font:normal normal normal 14px / 1 FontAwesome;font-family:'Font Awesome 5 Brands','Font Awesome 5 Free',FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;content:"\f00d";margin-left:0.5em}
+.contact-results .contact-close::after{display:inline-block;font:normal normal normal 14px / 1 FontAwesome;font-family:'Font Awesome 5 Brands','Font Awesome 5 Free','FontAwesome';font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;content:"\f00d";margin-left:0.5em}
 .contact-results .pagination span{cursor:pointer}
 
 #wrapper-main .paragraphs-item-form form.staff_search_jsonly_contact_form:not(.form-search) input.form-control[type="text"]{border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px;border-color:#ccc;font-size:1rem;padding:10px 16px;height:3.1em}
