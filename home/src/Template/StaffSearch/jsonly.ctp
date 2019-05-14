@@ -1,6 +1,8 @@
-<!-- File: src/Template/StaffSearch/index.ctp -->
+<!-- File: src/Template/StaffSearch/jsonly.ctp -->
 
 <?= $this->Html->css($this->name . '/style.css') ?>
+<?= $this->Html->css('//use.fontawesome.com/releases/v5.8.2/css/all.css') ?>
+
 <?php if (empty($script)) echo $this->Html->script($this->name . '/jsonly.js'); ?>
 
 <div class="row">

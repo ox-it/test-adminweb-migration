@@ -103,7 +103,7 @@ jQuery(document).ready(function($) {
           //create results div if it doesn't already exist
           var $results = $('.contact-results', this.el);
           $results.empty().show();
-          $results.prepend($('<span class="contact-close">Close</span>')).find('.contact-close').click(function() {
+          $results.prepend($('<span class="contact-close">Close<i class="fa fas fa-times"></i></span>')).find('.contact-close').click(function() {
 						jQuery(this).parent().slideUp('slow');
 					});
           var $resultsHeader = $("<div class='results-header'></div>");

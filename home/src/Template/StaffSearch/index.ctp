@@ -1,6 +1,7 @@
 <!-- File: src/Template/StaffSearch/index.ctp -->
 
 <?= $this->Html->css($this->name . '/style.css') ?>
+<?= $this->Html->css('//use.fontawesome.com/releases/v5.8.2/css/all.css') ?>
 
 <div class="row">
 

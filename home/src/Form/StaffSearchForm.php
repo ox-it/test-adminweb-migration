@@ -63,7 +63,7 @@ class StaffSearchForm extends Form
 
     if (($small&&isset($context)) || (!$small&&!isset($context))) return '';
     if (empty($context)) return '<a href="' . $url . '" name="emergency_numbers" title="' . $text . '" id="emergency_numbers"><span class="exclamation"></span>' . $text . '</a>';
-    return $context->Form->button($text, [ 'type'=>'button', 'onclick'=>"window.location.href='$url';", 'class' => 'emergency-numbers button btn' ]);
+    return $context->Form->button($text, [ 'type'=>'classbutton', 'onclick'=>"window.location.href='$url';", 'class' => 'emergency-numbers button btn' ]);
   }
 
 	protected function _buildSchema(Schema $schema) {

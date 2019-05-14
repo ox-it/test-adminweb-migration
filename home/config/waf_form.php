@@ -2,6 +2,7 @@
   // Applied in /src/View/AppView.php
 	return [
 	  'button' => '<button{{attrs}} class="button btn">{{text}}</button>' . "\n",
+	  'classbutton' => '<button{{attrs}}>{{text}}</button>' . "\n",
 	  'checkbox' => '<input type="checkbox" name="{{name}}" value="{{value}}"{{attrs}}><span class="control"></span>' . "\n",
 	  'checkboxWrapper' => '<div class="form-item form-item-submitted-checkbox-{{name}} form-type-checkbox checkbox">'."\n".'{{label}}'."\n".'</div>' . "\n",
 	  'fieldset' => '<fieldset{{attrs}}>'."\n".'<div class="panel-body">{{content}}</div>'."\n".'</fieldset>' . "\n",

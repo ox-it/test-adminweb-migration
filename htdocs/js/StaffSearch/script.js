@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-	var close = '<span class="contact-close">Close</span>';
+	var close = '<span class="contact-close">Close<i class="fa fas fa-times"></i></span>';
   jQuery('.contact-search-container').each(function(e) {
     var id = jQuery(this).attr('id');
     if (jQuery(this).find('.contact-results').html()!='') {

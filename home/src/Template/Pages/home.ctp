@@ -84,9 +84,11 @@ $cakeDescription = 'WAF: Web-Application Framework';
           <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?>
             | <?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'StaffSearch', 'action' => 'css']) ?>
+            : <?= $this->Html->link('FA', '//use.fontawesome.com/releases/v5.8.2/css/all.css', ['title' => 'Add if not already on page', 'target' => '_blank']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'StaffSearch', 'action' => 'script']) ?> } &nbsp; &nbsp;
            <?= $this->Html->link('JS Only Version', ['controller' => 'StaffSearch', 'action' => 'jsonly']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'StaffSearch', 'action' => 'css']) ?>
+            : <?= $this->Html->link('FA', '//use.fontawesome.com/releases/v5.8.2/css/all.css', ['title' => 'Add if not already on page', 'target' => '_blank']) ?>
             : <?= $this->Html->link('STYLE', ['controller' => 'StaffSearch', 'action' => 'style']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'StaffSearch', 'action' => 'jsonlyscript']) ?> }<br>
         </p>
