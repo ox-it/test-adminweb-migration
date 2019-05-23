@@ -177,7 +177,7 @@ jQuery(document).ready(function($) {
               $results.append($pageCounter.clone());
               $resultsHeader.append($pageCounter);
           }
-          $results.append($("<div class='details-incorrect'><a href='//www.ox.ac.uk/staff/working_at_oxford/how_do_I/update_my_details'>Contact details incorrect?</a></div>"));
+          $results.append($("<div class='details-incorrect'><a href='//staff.admin.ox.ac.uk/how-do-i/update-my-details-in-contact-search-on-the-staff-gateway'>Contact details incorrect?</a></div>"));
 
           this.currentPage = 0;
 

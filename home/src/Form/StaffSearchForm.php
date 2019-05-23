@@ -52,7 +52,7 @@ class StaffSearchForm extends Form
   }
 
   public static function incorrectDetailsHTML($small=false) {
-    $url = '//www.ox.ac.uk/staff/working_at_oxford/how_do_I/update_my_details';
+    $url = '//staff.admin.ox.ac.uk/how-do-i/update-my-details-in-contact-search-on-the-staff-gateway';
     $text = 'Contact details incorrect?';
     return '<a href="' . $url . '">' . $text . '</a>';
   }
