@@ -53,8 +53,8 @@ class FinanceTravelController extends AppController
     $email->from(['purchasing@admin.ox.ac.uk' => 'University of Oxford Purchasing Team']);
 		$email->to($to);
 
-      // TODO: Remove test email
-    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'chris.maidlow@it.ox.ac.uk' => 'Chris Maidlow' ]);
+    // DONE: Remove test email
+    //$email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'chris.maidlow@it.ox.ac.uk' => 'Chris Maidlow' ]);
 
 		$email->replyTo(!empty($applicant->reqemail) ? $applicant->reqemail : $applicant->email);
     $email->emailFormat('html');

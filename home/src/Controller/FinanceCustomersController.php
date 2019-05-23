@@ -55,8 +55,8 @@ class FinanceCustomersController extends AppController
 		$email->subject('New Customer Account');
 		$email->to(['ar.cust.setup@admin.ox.ac.uk' => 'Accounts Receivable (AR) Team']);
 
-		// TODO: Remove test email
-    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+		// DONE: Remove test email
+    //$email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
 
 		$email->from($customer->email);
 		$email->emailFormat('html');
