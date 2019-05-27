@@ -40,7 +40,7 @@ class TracController extends AppController
   private function getLatestSurveyOrInvalidate()
   {
     // DONE: Remove the development OSS value
-    // if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'sloblock';
+    // if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'orie1954';
     // 'sloblock' - non existant
     // 'phpc0364' - green - expired
     // 'orie1954' - green
