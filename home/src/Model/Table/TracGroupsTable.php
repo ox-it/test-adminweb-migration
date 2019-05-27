@@ -23,6 +23,7 @@ class TracGroupsTable extends Table
     $db_config = $config['connection']->config();
     $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
     $table = $prefix . 'group';
+    if (!empty($db_config['tables']) && is_array($db_config['tables']) && count($db_config['tables'])==2) $table = str_replace($table, $db_config['prefix'][0], $db_config['prefix'][1]);
     $this->addBehavior('Timestamp');
     $this->setTable($table);
     $this->setPrimaryKey('weekly_group');
