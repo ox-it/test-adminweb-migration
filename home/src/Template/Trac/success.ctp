@@ -2,7 +2,7 @@
 
 <div class="row">
 
-  <h3>University of Oxford - Academic Activity Survey :  GREEN</h3>
+  <h3>University of Oxford - Academic Activity Survey Submission</h3>
 
 	<?= $this->Html->script($this->name . '/script.js') ?>
 

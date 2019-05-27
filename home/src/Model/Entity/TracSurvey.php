@@ -42,18 +42,18 @@ class TracSurvey extends Entity
 
   public static function monthOptions() {
     return [
-			'1' =>'January',
-			'2' =>'February',
-			'3' =>'March',
-			'4' =>'April',
-			'5' =>'May',
-			'6' =>'June',
-			'7' =>'July',
-			'8' =>'August',
-			'9' =>'September',
-			'10' =>'October',
-			'11' =>'November',
-			'12' =>'December'
+      '1' =>'January',
+      '2' =>'February',
+      '3' =>'March',
+      '4' =>'April',
+      '5' =>'May',
+      '6' =>'June',
+      '7' =>'July',
+      '8' =>'August',
+      '9' =>'September',
+      '10' =>'October',
+      '11' =>'November',
+      '12' =>'December'
     ];
   }
 
@@ -62,7 +62,7 @@ class TracSurvey extends Entity
     return self::keyValueOptions(range($year-11, $year));
   }
 
-	private static function keyValueOptions($values) {
+  private static function keyValueOptions($values) {
     $result = [];
     foreach ($values as $val) $result[$val] = $val;
     return $result;
@@ -73,59 +73,59 @@ class TracSurvey extends Entity
   public static function hoursPercentage($form, $field, $label, $istotal=false) {
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <p>' . $label . '</p>
-				</div>
+        <div class="label_wrapper">
+          <p>' . $label . '</p>
+        </div>
         <div class="column_wrapper">
-			  ' . $form->Form->control($field.'_h', self::textNum($istotal, 6, 6)) . '<span class="notes">hours</span>
-				' . $form->Form->control($field.'_p', self::textNum(true, 6, 6)) . '<span class="notes">%</span>
-				</div>
-			</div>
+          <div class="column_item">' . $form->Form->control($field.'_h', self::textNum($istotal, 6, 6)) . '<span class="notes">hours</span></div>
+          <div class="column_item">' . $form->Form->control($field.'_p', self::textNum(true, 6, 6)) . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
   public static function prepHoursPercentage($form, $field, $label, $istotal=false) {
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <p>' . $label . '</p>
-				</div>
+        <div class="label_wrapper">
+          <p>' . $label . '</p>
+        </div>
         <div class="column_wrapper">
-			  ' . $form->Form->control($field.'a', self::textNum($istotal, 6, 6)) . '<span class="notes">hours</span>
-				' . $form->Form->control($field.'_perc', self::textNum(true, 6, 6)) . '<span class="notes">%</span>
-				</div>
-			</div>
+          <div class="column_item">' . $form->Form->control($field.'a', self::textNum($istotal, 6, 6)) . '<span class="notes">hours</span></div>
+          <div class="column_item">' . $form->Form->control($field.'_perc', self::textNum(true, 6, 6)) . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
   public static function daysHoursPercentageInput($form, $field, $label, $istotal=false) {
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <p>' . $label . '</p>
-				</div>
+        <div class="label_wrapper">
+          <p>' . $label . '</p>
+        </div>
         <div class="column_wrapper">
-			  ' . $form->Form->control($field.'_d', self::textNum($istotal, 4, 4)) . '<span class="notes">days</span>
-				' . $form->Form->control($field.'_h', self::textNum(true, 6, 6)) . '<span class="notes">hours</span>
-				' . $form->Form->control($field.'_p', self::textNum(true, 6, 6)) . '<span class="notes">%</span>
-				</div>
-			</div>
+          <div class="column_item">' . $form->Form->control($field.'_d', self::textNum($istotal, 4, 4)) . '<span class="notes">days</span></div>
+          <div class="column_item">' . $form->Form->control($field.'_h', self::textNum(true, 6, 6)) . '<span class="notes">hours</span></div>
+          <div class="column_item">' . $form->Form->control($field.'_p', self::textNum(true, 6, 6)) . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
   public static function contactPrepHoursPercentageInput($form, $field, $label, $istotal=false) {
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <p>' . $label . '</p>
-				</div>
+        <div class="label_wrapper">
+          <p>' . $label . '</p>
+        </div>
         <div class="column_wrapper">
-			  ' . $form->Form->control($field.'d', self::textNum($istotal, 5, 6)) . '<span class="notes">hours</span>
-			  ' . $form->Form->control($field.'a', self::textNum($istotal, 5, 6)) . '<span class="notes">hours</span>
-				' . $form->Form->control($field.'_hour', self::textNum(true, 6, 6)) . '<span class="notes">hours</span>
-				' . $form->Form->control($field.'_perc', self::textNum(true, 6, 6)) . '<span class="notes">%</span>
-				</div>
-			</div>
+          <div class="column_item">' . $form->Form->control($field.'d', self::textNum($istotal, 5, 6)) . '<span class="notes">hours</span></div>
+          <div class="column_item">' . $form->Form->control($field.'a', self::textNum($istotal, 5, 6)) . '<span class="notes">hours</span></div>
+          <div class="column_item">' . $form->Form->control($field.'_hour', self::textNum(true, 6, 6)) . '<span class="notes">hours</span></div>
+          <div class="column_item">' . $form->Form->control($field.'_perc', self::textNum(true, 6, 6)) . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
@@ -140,15 +140,15 @@ class TracSurvey extends Entity
     $max = 37.5 * (!empty($this->work_factor) ? $this->work_factor : 1.0);
     if (!empty($value) && $value!=0) echo '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <div>' . $label . '</div>
-				</div>
+        <div class="label_wrapper">
+          <div>' . $label . '</div>
+        </div>
         <div class="column_wrapper'.($value==0?' zero':'').'">
-			    <div>' . round($value / 7.5, 2) . '<span class="notes">days</span></div>
-				  <div>' . round($value, 2) . '<span class="notes">hours</span></div>
-				  <div>' . round(100*($value/$max),1) . '<span class="notes">%</span></div>
-				</div>
-			</div>
+          <div>' . round($value / 7.5, 2) . '<span class="notes">days</span></div>
+          <div>' . round($value, 2) . '<span class="notes">hours</span></div>
+          <div>' . round(100*($value/$max),1) . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
@@ -158,16 +158,16 @@ class TracSurvey extends Entity
     $a = empty($this->{$field.'a'}) ? 0.0 : round($this->{$field.'a'},2);
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <div>' . $label . '</div>
-				</div>
+        <div class="label_wrapper">
+          <div>' . $label . '</div>
+        </div>
         <div class="column_wrapper'.(($d+$a)==0?' zero':'').'">
-			    <div>' . $d . '<span class="notes">hours</span></div>
-			    <div>' . $a . '<span class="notes">hours</span></div>
-				  <div>' . round($d+$a,2) . '<span class="notes">hours</span></div>
-				  <div>' . round((100*($d+$a))/$max,1) . '<span class="notes">%</span></div>
-				</div>
-			</div>
+          <div>' . $d . '<span class="notes">hours</span></div>
+          <div>' . $a . '<span class="notes">hours</span></div>
+          <div>' . round($d+$a,2) . '<span class="notes">hours</span></div>
+          <div>' . round((100*($d+$a))/$max,1) . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
@@ -177,16 +177,16 @@ class TracSurvey extends Entity
     $p = round((100*$h)/$max,1);
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <div>' . $label . '</div>
-				</div>
+        <div class="label_wrapper">
+          <div>' . $label . '</div>
+        </div>
         <div class="column_wrapper'.($h==0?' zero':'').'">
-			    <div>&nbsp;</div>
-			    <div>' . $h . '<span class="notes">hours</span></div>
-			    <div>&nbsp;</div>
-				  <div>' . $p . '<span class="notes">%</span></div>
-				</div>
-			</div>
+          <div>&nbsp;</div>
+          <div>' . $h . '<span class="notes">hours</span></div>
+          <div>&nbsp;</div>
+          <div>' . $p . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
@@ -196,14 +196,14 @@ class TracSurvey extends Entity
     $p = round((100*$h)/$max,1);
     return '
       <div class="row_item column_wrapper'.($istotal?' total':'').'">
-				<div class="label_wrapper">
-				  <div>' . $label . '</div>
-				</div>
+        <div class="label_wrapper">
+          <div>' . $label . '</div>
+        </div>
         <div class="column_wrapper'.($h==0?' zero':'').'">
-			    <div>' . $h . '<span class="notes">hours</span></div>
-				  <div>' . $p . '<span class="notes">%</span></div>
-				</div>
-			</div>
+          <div>' . $h . '<span class="notes">hours</span></div>
+          <div>' . $p . '<span class="notes">%</span></div>
+        </div>
+      </div>
     ';
   }
 
