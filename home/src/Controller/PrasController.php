@@ -76,8 +76,15 @@ class PrasController extends AppController
   	$email->from(['orgstructure@admin.ox.ac.uk' => 'Planning & Resource Allocation']);
     $email->to(['orgstructure@admin.ox.ac.uk' => 'Planning & Resource Allocation']);
 
-		// TODO: Remove test email
-    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+		// Test emails
+		if (!empty($_SERVER['SERVER_NAME'])) {
+		  if ($_SERVER['SERVER_NAME']=='almac.local') {
+        $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie' ]);
+      }
+		  if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
+        $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'caroline.beadle@it.ox.ac.uk' => 'Caroline Beadle', 'chris.maidlow@it.ox.ac.uk' => 'Chris Maidlow' ]);
+      }
+    }
 
 		$email->emailFormat('html');
   	$email->send();
