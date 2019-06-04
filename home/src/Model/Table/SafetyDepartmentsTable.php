@@ -9,29 +9,32 @@ use Cake\I18n\Date;
 class SafetyDepartmentsTable extends Table
 {
 
-	public static function defaultConnectionName() {
-		return 'safety-test';
-	}
+  public static function defaultConnectionName() {
+    return 'safety';
+  }
 
-	public function initialize(array $config)
-	{
-			$this->addBehavior('Timestamp');
-			$this->setTable('safety_department');
-			$this->setPrimaryKey('deptcode');
-			$this->setDisplayField('deptalpha');
-	}
+  public function initialize(array $config)
+  {
+      $db_config = $config['connection']->config();
+      $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+      $table = $prefix . 'department';
+      $this->setTable($table);
+      $this->addBehavior('Timestamp');
+      $this->setPrimaryKey('deptcode');
+      $this->setDisplayField('deptalpha');
+  }
 
-	public function getByCode($deptcode = null) {
-		$department = $this->get($deptcode);
-		return $department;
-	}
+  public function getByCode($deptcode = null) {
+    $department = $this->get($deptcode);
+    return $department;
+  }
 
-	public function getSelectOptions() {
-		$query = $this->find('all', [ 'order' => [ 'SafetyDepartments.deptalpha' => 'ASC' ] ]);
-		$query = $this->findList($query, []);
-		$departments = $query->toArray();
-		$departments['00'] = '-- Not Listed --';
-		return $departments;
-	}
+  public function getSelectOptions() {
+    $query = $this->find('all', [ 'order' => [ 'SafetyDepartments.deptalpha' => 'ASC' ] ]);
+    $query = $this->findList($query, []);
+    $departments = $query->toArray();
+    $departments['00'] = '-- Not Listed --';
+    return $departments;
+  }
 
 }

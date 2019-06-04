@@ -9,14 +9,17 @@ use Cake\I18n\Date;
 class SafetyCollegesTable extends Table
 {
 
-		public static function defaultConnectionName() {
-			return 'safety-test';
-		}
+    public static function defaultConnectionName() {
+      return 'safety';
+    }
 
     public function initialize(array $config)
     {
+        $db_config = $config['connection']->config();
+        $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+        $table = $prefix . 'college';
+        $this->setTable($table);
         $this->addBehavior('Timestamp');
-        $this->setTable('safety_college');
         $this->setPrimaryKey('collcode');
         $this->setDisplayField('college');
     }
