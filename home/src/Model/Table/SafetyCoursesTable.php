@@ -7,14 +7,17 @@ use Cake\ORM\Table;
 class SafetyCoursesTable extends Table
 {
 
-		public static function defaultConnectionName() {
-			return 'safety-test';
-		}
+    public static function defaultConnectionName() {
+      return 'safety';
+    }
 
     public function initialize(array $config)
     {
+        $db_config = $config['connection']->config();
+        $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+        $table = $prefix . 'course';
+        $this->setTable($table);
         $this->addBehavior('Timestamp');
-        $this->setTable('safety_course');
         $this->setPrimaryKey('courseID');
         $this->hasMany('SafetyEvents')->setForeignKey('eventID');
     }
@@ -31,10 +34,10 @@ class SafetyCoursesTable extends Table
       $course = $query->first();
 
       if (!empty($course->description)) {
-				// Clean up the any \r \n
-				$from = array('\\r', '\\n');
-				$to   = array(''   , ''   );
-				$course->description = str_replace($from, $to, $course->description);
+        // Clean up the any \r \n
+        $from = array('\\r', '\\n');
+        $to   = array(''   , ''   );
+        $course->description = str_replace($from, $to, $course->description);
       }
 
       return $course;
