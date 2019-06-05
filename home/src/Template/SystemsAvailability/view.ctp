@@ -1,4 +1,5 @@
 <!-- File: src/Template/SystemsAvailability/view.ctp -->
+<?php date_default_timezone_set('Europe/London'); ?>
 
 <div class="row">
 
