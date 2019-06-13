@@ -60,36 +60,47 @@ $cakeDescription = 'WAF: Web-Application Framework';
     <div class="column" align="center">
         <h4>Apps</h4>
         <p>
+
           <?= $this->Html->link('PRAS', ['controller' => 'Pras']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'Pras', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JQUERY-MENU', ['controller' => 'Pras', 'action' => 'jquerymenu'], ['title' => 'JavaScript']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'Pras', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
-          <?= $this->Html->link('Graduate Accommodation', ['controller' => 'GraduateAccommodation']) ?><br>
+
+          <?= $this->Html->link('Graduate Accommodation', ['controller' => 'GraduateAccommodation']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'GraduateAccommodation', 'action' => 'css'], ['title' => 'CSS']) ?>
+            : <?= $this->Html->link('JS', ['controller' => 'GraduateAccommodation', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
+
           <?= $this->Html->link('Systems Availability', ['controller' => 'SystemsAvailability']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'SystemsAvailability', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('STYLE', ['controller' => 'SystemsAvailability', 'action' => 'style'], ['title' => 'CSS']) ?> }<br>
-          <?= $this->Html->link('Job Vacancies', ['controller' => 'Jobs']) ?><br>
-          <?= $this->Html->link('AAD Conference', ['controller' => 'AADConference']) ?> (Incomplete)<br>
-          <?= $this->Html->link('AAD Events', ['controller' => 'AADEvents']) ?><br>
+
+          <?= $this->Html->link('Job Vacancies', ['controller' => 'Jobs']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'Jobs', 'action' => 'css'], ['title' => 'CSS']) ?> }<br>
+
           <?= $this->Html->link('Finance Customers', ['controller' => 'FinanceCustomers']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'FinanceCustomers', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'FinanceCustomers', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
+
           <?= $this->Html->link('Finance Travel', ['controller' => 'FinanceTravel']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'FinanceTravel', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'FinanceTravel', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
+
           <?= $this->Html->link('Harassment', ['controller' => 'Harassment']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'Harassment', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'Harassment', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
-          <?= $this->Html->link('Orientation', ['controller' => 'Orientation']) ?><br>
-          <?= $this->Html->link('GCP Online', ['controller' => 'Gcp']) ?><br>
+
+          <?= $this->Html->link('GCP Online', ['controller' => 'Gcp']) ?>
+            { <?= $this->Html->link('CSS', ['controller' => 'Gcp', 'action' => 'css'], ['title' => 'CSS']) ?>
+            : <?= $this->Html->link('JS', ['controller' => 'Gcp', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
+
           <?= $this->Html->link('Safety', ['controller' => 'Safety']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'Safety', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'Safety', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
+
           <?= $this->Html->link('TRAC', ['controller' => 'Trac']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'Trac', 'action' => 'css'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'Trac', 'action' => 'script'], ['title' => 'JavaScript']) ?> }<br>
-          <?= $this->Html->link('UAS Events', ['controller' => 'UASEvents']) ?><br>
-          <?= $this->Html->link('Access Search', ['controller' => 'AccessSearch']) ?><br>
+
           <?= $this->Html->link('Staff Search', ['controller' => 'StaffSearch']) ?>
             | <?= $this->Html->link('Small Version', ['controller' => 'StaffSearch', 'action' => 'small']) ?>
             { <?= $this->Html->link('CSS', ['controller' => 'StaffSearch', 'action' => 'css'], ['title' => 'CSS']) ?>
@@ -100,6 +111,19 @@ $cakeDescription = 'WAF: Web-Application Framework';
             : <?= $this->Html->link('FA', '//use.fontawesome.com/releases/v5.8.2/css/all.css', ['title' => 'Add to CSS if not already on page', 'target' => '_blank']) ?>
             : <?= $this->Html->link('STYLE', ['controller' => 'StaffSearch', 'action' => 'style'], ['title' => 'CSS']) ?>
             : <?= $this->Html->link('JS', ['controller' => 'StaffSearch', 'action' => 'jsonlyscript'], ['title' => 'JavaScript']) ?> }<br>
+
+        </p>
+
+    <hr />
+
+        <p>
+
+          <span class="not-in-use"><?= $this->Html->link('AAD Conference', ['controller' => 'AADConference']) ?> (Incomplete)</span><br>
+          <span class="not-in-use"><?= $this->Html->link('Orientation', ['controller' => 'Orientation']) ?></span><br>
+          <span class="not-in-use"><?= $this->Html->link('AAD Events', ['controller' => 'AADEvents']) ?></span><br>
+          <span class="not-in-use"><?= $this->Html->link('UAS Events', ['controller' => 'UASEvents']) ?><span><br>
+          <span class="not-in-use"><?= $this->Html->link('Access Search', ['controller' => 'AccessSearch']) ?></span><br>
+
         </p>
     </div>
     <hr />

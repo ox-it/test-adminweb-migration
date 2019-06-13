@@ -27,13 +27,16 @@ class GcpApplicantsTable extends Table
 
 
 	public static function defaultConnectionName() {
-		return 'gcp-test';
+		return 'gcp';
 	}
 
 	public function initialize(array $config)
 	{
+	  $db_config = $config['connection']->config();
+	  $prefix = empty($db_config['prefix']) ? '' : $db_config['prefix'];
+	  $table = $prefix . 'applicant';
 		$this->addBehavior('Timestamp');
-		$this->setTable('gcp_applicant');
+		$this->setTable($table);
 		$this->setPrimaryKey('applicantID');
 	}
 
