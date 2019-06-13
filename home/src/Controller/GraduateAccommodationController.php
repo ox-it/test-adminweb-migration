@@ -41,8 +41,15 @@ class GraduateAccommodationController extends AppController
   	$email->from(['graduate.accommodation@admin.ox.ac.uk' => 'Graduate Accommodation Form']);
     $email->to($data['email_to']);
 
-		// TODO: Remove test email
-    $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+		// Test emails
+		if (!empty($_SERVER['SERVER_NAME'])) {
+		  if ($_SERVER['SERVER_NAME']=='almac.local') {
+        $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'al@cache.co.uk' => 'Al' ]);
+      }
+		  if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
+        $email->to([ "al.pirrie@it.ox.ac.uk" => 'Al Pirrie', 'caroline.beadle@it.ox.ac.uk' => 'Caroline Beadle', 'chris.maidlow@it.ox.ac.uk' => 'Chris Maidlow' ]);
+      }
+    }
 
 		$email->emailFormat('html');
 		$email->attachments($data['xmlfile']);
