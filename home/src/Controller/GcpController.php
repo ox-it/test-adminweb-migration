@@ -32,7 +32,7 @@ class GcpController extends AppController
 	public function admin()
 	{
 	  // Admin IP security
-	  if (!$this->check_ip()) return $this->render('noaccess');
+	  if (!$this->check_secure()) return $this->render('noaccess');
 
 	  // Respond to GET parameters
   	$accepted = $this->request->getQuery('accepted');
@@ -138,16 +138,30 @@ class GcpController extends AppController
 		$this->render('rejects');
 	}
 
-  private function check_ip()
+  private function check_secure()
   {
     $ip = $_SERVER['REMOTE_ADDR'];
 
-    // List of IPs that can access admin pages
-    if (substr($ip,0,10)=='192.168.1.') return true;
-    if (substr($ip,0, 7)=='129.67.') return true;
-    if ($ip=='129.67.249.144') return true;
+    // List of Test IPs that can access admin pages
+    if (!empty($_SERVER['SERVER_NAME'])) {
+		  if ($_SERVER['SERVER_NAME']=='almac.local') {
+        if (substr($ip,0,10)=='192.168.1.') return true;
+      }
+		  if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
+				if (substr($ip,0,10)=='192.168.1.') return true;
+				if (substr($ip,0, 7)=='129.67.') return true;
+				if ($ip=='129.67.249.144') return true;
+      }
+    }
 
-    $this->Flash->error('Bad IP: ' . $ip);
+    if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
+		  return false;
+		} else {
+		  $sso = $_SERVER['HTTP_WAF_WEBAUTH'];
+		  if ($sso=='ouit0197') return true;
+		}
+
+    $this->Flash->error('Bad Access: ' . $ip);
     return false;
   }
 
