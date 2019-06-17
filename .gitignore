@@ -16,6 +16,12 @@
 /logs/*
 /home/tmp/*
 
+# Included files                          #
+# On LIVE these are updated by cron jobs, #
+# so we do not want to overwrite them     #
+###########################################
+/home/includes/*
+
 # OS generated files #
 ######################
 .DS_Store
