@@ -75,7 +75,7 @@ class JobsForm extends Form
 
 			$file = new File(ROOT . '/includes/jobs-feed.xml');
       $contents = $file->read();
-      $contents = mb_convert_encoding($contents, 'UTF-8', 'ISO-8859-1');
+      //$contents = mb_convert_encoding($contents, 'UTF-8', 'ISO-8859-1');
       $contents = str_replace(self::$replace[0], self::$replace[1], $contents);
 
 			return $contents;
