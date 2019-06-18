@@ -14,9 +14,8 @@
 		</p>
 
     <p>&nbsp;</p>
-    <p>
-      <?= $waf->postButtonToReferer($this, 'Start Again') ?>
-    </p>
+
+    <?= $waf->postButtonToReferer($this, 'Start Again') ?>
 
 	</div>
 </div>
