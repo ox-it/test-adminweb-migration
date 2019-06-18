@@ -161,7 +161,7 @@ class GcpController extends AppController
 		  if ($sso=='ouit0197') return true;
 		}
 
-    $this->Flash->error('Bad Access: ' . $ip);
+    //$this->Flash->error('Bad Access: ' . $ip);
     return false;
   }
 
