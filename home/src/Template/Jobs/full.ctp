@@ -59,13 +59,26 @@
 					  <?= $vacancy['jobDescription'] ?>
 					</td>
 				</tr>
+				<?php if (!empty($vacancy['documentLink']) && is_array($vacancy['documentLink']) && count($vacancy['documentLink'])>0) : ?>
+				<?php if (isset($vacancy['documentLink']['documentURL'])) $vacancy['documentLink'] = array($vacancy['documentLink']); ?>
+				<tr>
+					<td style="width: 20%;">
+						Documents:
+					</td>
+					<td colspan="3" style="width: 80%;" class="documentLinks">
+						<?php foreach($vacancy['documentLink'] as $link) : if (!empty($link['documentURL'])) : ?>
+						<?= $this->Html->link(empty($link['documentName'])?$link['documentURL']:$link['documentName'], $link['documentURL'], ['class' => 'file', 'target' => '_blank']);?><br>
+						<?php endif; endforeach; ?>
+					</td>
+				</tr>
+				<?php endif; ?>
 			</tbody></table>
 			<hr>
 
     <?php } ?>
     </ul>
 
-		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
+		<?php print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
 		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($file,true) . '</textarea>'; ?>
 
 	  </div>
