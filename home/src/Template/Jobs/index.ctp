@@ -1,7 +1,9 @@
 <!-- File: src/Template/Jobs/index.ctp -->
 
 <div class="row">
+
 	<div class="waf-include">
+
 	  <div id="job-vacancies-app">
 
     <hr>
@@ -63,7 +65,6 @@
 			<hr>
 
     <?php } ?>
-    </ul>
 
 		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
 		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($file,true) . '</textarea>'; ?>
