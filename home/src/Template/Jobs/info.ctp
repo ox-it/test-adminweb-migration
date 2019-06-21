@@ -56,6 +56,11 @@
 						<?php endif; ?>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="4" style="width: 100%;" class="jobDescription">
+					  <?= $vacancy['jobDescription'] ?>
+					</td>
+				</tr>
 			</tbody></table>
 			<hr>
 
