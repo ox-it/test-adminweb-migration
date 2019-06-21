@@ -39,17 +39,23 @@ class TracController extends AppController
 
   private function getLatestSurveyOrInvalidate()
   {
-    // DONE: Remove the development OSS value
-    // if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'orie1954';
-    // 'sloblock' - non existant
-    // 'phpc0364' - green - expired
-    // 'orie1954' - green
-    // 'sjoh0487' - blue
-    // 'bras2682' - blue - expired - empty
-    // 'corp0382' - blue - expired
+    // Local Test SSO
+		if (!empty($_SERVER['SERVER_NAME'])) {
+		  if ($_SERVER['SERVER_NAME']=='almac.local') {
+				if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'orie1954';
+				// 'sloblock' - non existant
+				// 'phpc0364' - green - expired
+				// 'orie1954' - green
+				// 'sjoh0487' - blue
+				// 'bras2682' - blue - expired - empty
+				// 'corp0382' - blue - expired
+      }
+    }
 
     if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
-      // TODO: Force Oxford SSO Login
+      // Ensure Oxford SSO Login
+      $this->render('nosso');
+      return null;
     }
 
     $this->loadModel('TracSurveys');

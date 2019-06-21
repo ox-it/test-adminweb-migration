@@ -150,7 +150,7 @@
 
 		<!-- Return Link -->
 		<p>&nbsp;</p>
-		<?= $this->Html->link('Return to TRAC Form', ['action' => 'index'], ['class'=>'button']) ?>
+		<?= $waf->postButtonToReferer($this, 'Return to TRAC Form') ?>
 
 	</div>
 	</div>
