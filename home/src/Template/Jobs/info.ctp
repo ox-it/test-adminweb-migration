@@ -1,12 +1,40 @@
-<!-- File: src/Template/Jobs/index.ctp -->
+<!-- File: src/Template/Jobs/info.ctp -->
+
+<?php
+
+  $pager = '';
+  if (!empty($feed['pager'])) {
+    $page = $feed['pager']['page'];
+    $pages = $feed['pager']['pages'];
+    $pager .= "\n";
+    $pager .= '    <div class="jobs-pager">'."\n";
+    $pager .= '    <ul class="pager pagination">'."\n";
+    if ($pages>1) $pager .= '<li class="first"><a title="Go to first page" href="?page=0">« first</a></li>';
+    if ($page!=0 && $pages>1) $pager .= '<li class="previous"><a title="Go to previous page" href="?page='.($page-1).'">‹ previous</a></li>';
+    for ($p=0; $p<$pages; $p++) {
+      $pager .= '    <li class="link page_'.$p.($p==$page?' active current':'').'">'."\n";
+      if ($p!=$page) $pager .= '      <a title="Go to page '.($p+1).'" href="?page='.$p.'">';
+      $pager  .= ($p+1);
+      if ($p!=$page) $pager .= '</a>'."\n";
+      $pager .= '    </li>'."\n";
+    }
+    if ($page!=($pages-1) && $pages>1) $pager .= '<li class="next"><a title="Go to next page" href="?page='.($page+1).'">next ›</a></li>';
+    if ($pages>1) $pager .= '<li class="last"><a title="Go to last page" href="?page='.($pages-1).'">last »</a></li>';
+    $pager .= '    </ul>'."\n";
+    $pager .= '    </div>'."\n".'    <hr>'."\n"."\n";
+  }
+
+?>
 
 <div class="row">
+
+	<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
 
 	<div class="waf-include">
 
 	  <div id="job-vacancies-app">
-
     <hr>
+    <?= $pager ?>
     <?php foreach ($feed['currentVacancies']['vacancy'] as $vacancy) { ?>
 
       <?php $grade = explode(':', $vacancy['gradeAndSalaryText']); ?>
@@ -65,8 +93,8 @@
 			<hr>
 
     <?php } ?>
+		<?= $pager ?>
 
-		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($feed,true) . '</textarea>'; ?>
 		<?php //print '<textarea rows="5" style="line-height:1.2em;font-size:11px">' . print_r($file,true) . '</textarea>'; ?>
 
 	  </div>

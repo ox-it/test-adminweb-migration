@@ -31,7 +31,7 @@ class JobsForm extends Form
     return $contents;
   }
 
-  function getJobsFeedArray() {
+  function getJobsFeedArray($page=0, $limit=50) {
     static $feed;
     if (is_array($feed)) return $feed;
     $feedxml = $this->getJobsFeedContents();
@@ -41,6 +41,45 @@ class JobsForm extends Form
       throw new InternalErrorException();
     }
     $feed = Xml::toArray($xml);
+
+    // Only one vacancy - unlikely!
+    if (isset($feed['currentVacancies']['vacancy']['recruitmentId'])) {
+      $feed['currentVacancies']['vacancy'] = array($feed['currentVacancies']['vacancy']);
+      return $feed;
+    }
+
+    foreach($feed['currentVacancies']['vacancy'] as $k => &$a) {
+      $closes = empty($a['recruitmentClosesDate']) ? (
+        empty($a['externalCloseDate']) ? (
+          empty($a['externalCloseDateTime']) ? $a['endDate'] : $a['externalCloseDateTime']
+        ) : $a['externalCloseDate']
+      ) : $a['recruitmentClosesDate'];
+      $a['closes'] = $closes;
+    }
+
+    $feed['currentVacancies']['vacancy'] = array_filter($feed['currentVacancies']['vacancy'], function($a) {
+        return !empty($a['closes']);
+    });
+
+    usort($feed['currentVacancies']['vacancy'], function($a, $b) {
+      return (strtotime($a['closes'])) - (strtotime($b['closes']));
+    });
+
+    $total = count($feed['currentVacancies']['vacancy']);
+    if (count($feed['currentVacancies']['vacancy']) > $limit) {
+      if (($page * $limit) > $total) $page = 0;
+      $offset = $page * $limit;
+      $feed['currentVacancies']['vacancy'] = array_splice($feed['currentVacancies']['vacancy'], $offset, $limit);
+      $feed['pager'] = array(
+        'offset' => $offset,
+        'page' => $page,
+        'limit' => $limit,
+        'count' => count($feed['currentVacancies']['vacancy']),
+        'pages' => ceil($total / $limit),
+        'total' => $total
+      );
+    }
+
     return $feed;
   }
 
