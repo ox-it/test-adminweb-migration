@@ -8,9 +8,9 @@
     $pages = $feed['pager']['pages'];
     $pager .= "\n";
     $pager .= '    <div class="jobs-pager">'."\n";
-    $pager .= '    <ul class="pager pagination">'."\n";
-    if ($pages>1) $pager .= '<li class="first'.($page==0?' disabled':'').'"><a title="Go to first page" href="?page=0">« first</a></li>';
-    if ($pages>1) $pager .= '<li class="previous'.($page==0?' disabled':'').'"><a title="Go to previous page" href="?page='.($page-1).'">‹ previous</a></li>';
+    $pager .= '    <ul class="pagination">'."\n";
+    if ($pages>1) $pager .= '<li class="pager-first'.($page==0?' disabled':'').'"><a title="Go to first page" href="?page=0">first</a></li>';
+    if ($pages>1) $pager .= '<li class="prev'.($page==0?' disabled':'').'"><a title="Go to previous page" href="?page='.($page-1).'">previous</a></li>';
     for ($p=0; $p<$pages; $p++) {
       $pager .= '    <li class="link page_'.$p.($p==$page?' active current':'').'">'."\n";
       $pager .= ($p==$page) ? '<span>' : '      <a title="Go to page '.($p+1).'" href="?page='.$p.'">';
@@ -18,8 +18,8 @@
       $pager .= (($p==$page) ? '</span>' : '</a>') ."\n";
       $pager .= '    </li>'."\n";
     }
-    if ($pages>1) $pager .= '<li class="next'.($page==($pages-1)?' disabled':'').'"><a title="Go to next page" href="?page='.($page+1).'">next ›</a></li>';
-    if ($pages>1) $pager .= '<li class="last'.($page==($pages-1)?' disabled':'').'"><a title="Go to last page" href="?page='.($pages-1).'">last »</a></li>';
+    if ($pages>1) $pager .= '<li class="next'.($page==($pages-1)?' disabled':'').'"><a title="Go to next page" href="?page='.($page+1).'">next</a></li>';
+    if ($pages>1) $pager .= '<li class="pager-last'.($page==($pages-1)?' disabled':'').'"><a title="Go to last page" href="?page='.($pages-1).'">last</a></li>';
     $pager .= '    </ul>'."\n";
     $pager .= '    </div>'."\n".'    <hr>'."\n"."\n";
   }
