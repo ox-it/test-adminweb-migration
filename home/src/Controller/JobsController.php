@@ -10,22 +10,16 @@ class JobsController extends AppController
 
 	public function index()
 	{
+    // Respond to GET parameters
+    $page = $this->request->getQuery('page');
+    if (empty($page)) $page=0;
+    $this->set('page', empty($page) ? 0 : $page);
+
     $jobs = new JobsForm();
     $this->set('file', $jobs->getJobsFeedContents());
-    $this->set('feed', $jobs->getJobsFeedArray());
-		if ($this->request->is('post')) {
-			if ($jobs->execute($this->request->getData())) {
-				$this->Flash->success('Thank you for your submission.');
-			} else {
-				$this->Flash->error('There was a problem submitting your form.');
-			}
-		}
+    $this->set('feed', $jobs->getJobsFeedArray($page));
 		$this->set('jobs', $jobs);
-	}
-
-	public function view($jobID = null)
-	{
-
+		$this->render('info');
 	}
 
 }
