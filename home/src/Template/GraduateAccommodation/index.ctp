@@ -10,6 +10,7 @@
 	<h3>Accommodation Request Form</h3>
 	<p>Data Protection Act 1998: The information contained on this form is processed in accordance with the provisions of the Data Protection Act 1998. The information will be held for the purposes of maintaining a waiting list for those requiring graduate accommodation.</p>
 	<p>If you have any problems submitting this application form, please contact us at <a href="mailto:graduate.accommodation@admin.ox.ac.uk">graduate.accommodation@admin.ox.ac.uk</a>.</p>
+	<h4>Scope</h4>
 
 	<div class="waf-include">
 
@@ -18,7 +19,6 @@
 			echo $this->Form->create($form, [ 'novalidate' => true ]);
 		?>
 
-		<h4>Scope</h4>
 		<?= $this->Form->input('application_type', ['type' => 'select', 'options' => $form::applicationOptions(), 'empty' => '-- Please Select --', 'label' => 'Select the Application Type you wish to apply for']); ?>
 
     <fieldset id="applicant1">
