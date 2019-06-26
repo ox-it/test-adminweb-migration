@@ -6,11 +6,12 @@
 	<?php //if (!empty($form->errors())) echo '<p>ERRORS</p><textarea rows="5" style="font-size:0.6em;line-height:1.1em">' . print_r($form->errors(), true) . '</textarea>'; ?>
 	<?php // echo '<textarea rows="5" style="font-size:0.6em;line-height:1.1em">' . print_r($form, true) . '</textarea>'; ?>
 
-	<div class="waf-include">
+  <!-- Title and info moved outside WAF on request -->
+	<h3>Accommodation Request Form</h3>
+	<p>Data Protection Act 1998: The information contained on this form is processed in accordance with the provisions of the Data Protection Act 1998. The information will be held for the purposes of maintaining a waiting list for those requiring graduate accommodation.</p>
+	<p>If you have any problems submitting this application form, please contact us at <a href="mailto:graduate.accommodation@admin.ox.ac.uk">graduate.accommodation@admin.ox.ac.uk</a>.</p>
 
-		<h3>Accommodation Request Form</h3>
-    <p>Data Protection Act 1998: The information contained on this form is processed in accordance with the provisions of the Data Protection Act 1998. The information will be held for the purposes of maintaining a waiting list for those requiring graduate accommodation.</p>
-    <p>If you have any problems submitting this application form, please contact us at <a href="mailto:graduate.accommodation@admin.ox.ac.uk">graduate.accommodation@admin.ox.ac.uk</a>.</p>
+	<div class="waf-include">
 
 		<!-- Form -->
 		<?php
