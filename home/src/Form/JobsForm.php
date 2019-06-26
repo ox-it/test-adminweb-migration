@@ -57,9 +57,12 @@ class JobsForm extends Form
       $a['closes'] = $closes;
     }
 
+    // Remove jobs without expiry
+    /*
     $feed['currentVacancies']['vacancy'] = array_filter($feed['currentVacancies']['vacancy'], function($a) {
         return !empty($a['closes']);
     });
+    //*/
 
     usort($feed['currentVacancies']['vacancy'], function($a, $b) {
       // Closing date ordering
