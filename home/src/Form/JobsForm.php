@@ -62,7 +62,10 @@ class JobsForm extends Form
     });
 
     usort($feed['currentVacancies']['vacancy'], function($a, $b) {
-      return (strtotime($a['closes'])) - (strtotime($b['closes']));
+      // Closing date ordering
+      //return (strtotime($a['closes'])) - (strtotime($b['closes']));
+      // Job Title ordering
+      return strcmp ( strtolower($a['shortDescription']), strtolower($b['shortDescription']) );
     });
 
     $total = count($feed['currentVacancies']['vacancy']);
