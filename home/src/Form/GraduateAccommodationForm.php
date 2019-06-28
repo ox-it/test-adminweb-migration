@@ -46,7 +46,7 @@ class GraduateAccommodationForm extends Form
   }
 
   public static function accommodationOptions() {
-    return self::keyValueOptions([ 'Double Studio','One Bed Flat','Two Bed Flat','Three Bed Flat','Two Bed House','Three Bed House' ]);
+    return self::keyValueOptions([ 'Room',  'Ensuite', 'Bedsit', 'Double Studio','One Bed Flat','Two Bed Flat','Three Bed Flat','Two Bed House','Three Bed House' ]);
   }
 
   public static function termOptions() {
