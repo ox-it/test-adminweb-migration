@@ -72,7 +72,7 @@ function updateSectionNumbers() {
 function updateAccommodationTypes() {
   var type = jQuery('#application-type').val();
   var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
-  var include_types = (type=='Single') ? [0,1,2,3,4,5,6,8] : [4,5,6,7,8,9];
+  var include_types = (type=='Single') ? [0,1,2,3,4] : [4,5,6,7,8,9];
   var options = '<option value="-1">-- Please Select --</option>';
   for (var i=0;i<include_types.length;i++) {
     var index = include_types[i];
@@ -89,8 +89,8 @@ function updatePreferences(source,target) {
   var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
   var type_index = acc_type.indexOf(type);
   var type_options = [
-    /*Room*/ ['STH|Summertown House', 'CPG|Court Place Gardens', '147WS|147 Walton Street', 'JSL|32a Jack Straws Lane'],
-    /*Ensuite*/ ['CM|Castle Mill'],
+    /*Room*/ ['STH|Summertown House', 'CPG|Court Place Gardens', '147WS|147 Walton Street', '25WS|25 Wellington Square', 'JSL|32a Jack Straws Lane'],
+    /*Ensuite*/ ['CM|Castle Mill', 'CC|Cavalier Court'],
     /*Bedsit*/ ['STH|Summertown House'],
     /*Single Studio*/ ['CM|Castle Mill', 'STH|Summertown House'],
     /*Double Studio*/ ['ABC|Alan Bullock Close', 'CM|Castle Mill', 'STH|Summertown House'],
