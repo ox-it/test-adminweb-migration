@@ -50,7 +50,7 @@ $cakeDescription = 'WAF: Web-Application Framework';
   <div class="waf-include">
     <div class="column" align="center">
         <h4>NOTICE!</h4>
-        <p>The <em><?= $_SERVER['SERVER_NAME']; ?></em> WAF may be set up wrong. Contact <a href="sm-wet-team@maillist.ox.ac.uk ">sm-wet-team@maillist.ox.ac.uk </a> for more help.</p>
+        <p>The <em><?= $_SERVER['SERVER_NAME']; ?></em> WAF may be set up wrong. Contact <a href="ssm-wet-team@maillist.ox.ac.uk ">sm-wet-team@maillist.ox.ac.uk </a> for more help.</p>
     </div>
   </div>
   <hr />
