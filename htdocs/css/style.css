@@ -57,7 +57,7 @@ label{font-weight:bold}
 .description{background:#eee;padding: 0 0.9375rem}
 select[multiple]{min-height:150px;background:none}
 input[type=checkbox],input[type=radio],.error input[type="checkbox"],.error input[type="radio"]{margin:0 0.5em 0.2em 0}
-.date select,.time select,.datetime select{display:inline;width:auto;margin-right:10px}
+.date select,.time select,.datetime select{display:inline;width:auto;margin-right:10px;padding-right: 2rem}
 .view h2{color:#6F6F6F}
 .view .columns.strings{border-radius:3px;box-shadow:1px 2px 4px rgba(0, 0, 0, 0.24);margin-right:0.7rem}
 .view .numbers{background-color:#B7E3EC;color:#FFF;border-radius:3px;box-shadow:1px 2px 4px rgba(0, 0, 0, 0.24);margin-right:0.7rem}

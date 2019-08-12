@@ -15,6 +15,16 @@ jQuery(document).ready(function($) {
   // Date picker
 	//$('#degree-start,#partner-degree-start,#child-dob-1,#child-dob-2,#child-dob-3,#child-dob-4,#child-dob-5,#child-dob-6,#tenancy-accept').datepicker({ dateFormat: "dd/mm/yy" });
 
+    $('input.form-radio[name="2_supporting"]').change(function(e){
+		var text = $('#2-other').data('text');
+		if($(e.target).val() === '2') {
+			$('#2-other').prop('disabled', false).val(text);
+		}
+		else {
+			$('#2-other').data('text', $('#2-other').val());
+			$('#2-other').prop('disabled', true).val('');
+		}
+	});
 });
 
 /*

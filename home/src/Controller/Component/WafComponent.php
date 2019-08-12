@@ -15,11 +15,33 @@ class WafComponent extends Component
     ];
   }
 
+  public static function postLabelWithoutValueIfNotZero($value, $label='') {
+      if (!empty($value) && $value!=0) echo '
+  			<p class="display-p">
+  				<span class="'.(empty($label)?'':'display-label').'">'.($label==' '?'&nbsp;':h($label)).(empty($label)?'':':').'</span>
+  				<span class="display-end"></span>
+  			</p>
+  ';
+  }
+
+
   public static function postValueWithLabel($value, $label='', $lookup=null) {
     if (isset($lookup)) {
       if (!is_array($lookup) && is_object($lookup) && method_exists($lookup, 'toArray')) $lookup = $lookup->toArray();
       if (!empty($lookup[$value])) $value = $lookup[$value];
     }
+	if($label == 'You are representing') { 
+		if($value == '0') {
+			$value = 'The complainant';
+		}
+		elseif ($value == '1') {
+			$value = 'The alleged Harasser';
+		}
+		elseif ($value == '2') {
+			$value = 'Other';
+		}
+		
+	}
     if (!empty($value)) echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.($label==' '?'&nbsp;':h($label)).(empty(trim($label))||empty(trim($value))?'':':').'</span>
@@ -29,14 +51,14 @@ class WafComponent extends Component
 ';
   }
 
-  public function postValueWithLabelIfNotZero($value, $label='') {
-    if (!empty($value) && $value!=0) echo '
+  public static function postValueWithLabelIfNotZero($value, $label='') {
+    if (!empty($value) && $value!==0) { echo '
 			<p class="display-p">
 				<span class="'.(empty($label)?'':'display-label').'">'.($label==' '?'&nbsp;':h($label)).(empty($label)?'':':').'</span>
 				<span class="display-value">'.h($value).'</span>
 				<span class="display-end"></span>
-			</p>
-';
+			</p>';
+		}
   }
 
   public function postHeadersWithLabel($headers=[],$label='') {
