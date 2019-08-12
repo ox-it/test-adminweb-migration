@@ -81,6 +81,15 @@ class HarassmentSurvey extends Entity
     ';
   }
 
+  public static function maleFemaleOtherUnknownTextNums($form, $m, $f, $o, $u, $label, $tab='', $size=1, $maxlength=3) {
+    $row = '<tr><th scope="row">'.$label.'</th>';
+    $row .= '<td>'.$form->Form->control($m, self::textNum($tab, $size, $maxlength)).'</td>';
+    $row .= '<td>'.$form->Form->control($f, self::textNum($tab, $size, $maxlength)).'</td>';
+    $row .= '<td>'.$form->Form->control($o, self::textNum($tab, $size, $maxlength)).'</td>';
+    $row .= '<td>'.$form->Form->control($u, self::textNum($tab, $size, $maxlength)).'</td>';
+    $row .= '</tr>';
+    return $row;     
+  }
 
 
 }
