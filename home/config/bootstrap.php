@@ -203,5 +203,5 @@ Type::build('timestamp')
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
-
+Cake\I18n\FrozenDate::setToStringFormat('dd/MM/yyyy');
 Plugin::load('Josegonzalez/Upload');

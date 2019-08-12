@@ -17,4 +17,5 @@
 		'radio' => '<input class="form-radio" type="radio" name="{{name}}" value="{{value}}"{{attrs}}><span class="control"></span>' . "\n",
     'radioWrapper' => '<div class="form-item form-type-radio radio">'."\n".'{{label}}'."\n".'</div>' . "\n",
     'textarea' => '<textarea class="form-control form-textarea" name="{{name}}"{{attrs}}>{{value}}</textarea>' . "\n",
+    'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}'
 	];

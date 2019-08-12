@@ -127,7 +127,7 @@ class HarassmentController extends AppController
 	private function getOxfordUserAndValidate()
 	{
 	  // Removed the development OSS value
-		//if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'bioc0236';
+		// if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) $_SERVER['HTTP_WAF_WEBAUTH'] = 'clme1428';
 		// 'sloblock' - non existant
 		// 'alls0027' - inactive
 		// 'bioc0236' - single dept
@@ -157,7 +157,7 @@ class HarassmentController extends AppController
   	$email->from(['AcademicAdmin.Comms@admin.ox.ac.uk' => 'Academic Administration Division Communications']);
 		//$email->to($person->email);
 		// TODO: Remove test email
-		$email->to(['al@cache.co.uk'=>'Al Pirrie', 'al.pirrie@it.ox.ac.uk'=>'Al Pirrie']);
+		$email->to(['samuel.press@it.ox.ac.uk'=>'Sam Press']);
 		$email->subject('AAD Event Registration');
 		$email->emailFormat('html');
 		$email->send($message);
