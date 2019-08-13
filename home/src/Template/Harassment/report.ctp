@@ -113,7 +113,6 @@
   <?= $this->Form->button(__('Submit Request')) ?>
   <?= $this->Form->button('Clear Form', [ 'type'=>'reset' ]) ?>
   <?php echo $this->Form->end(); ?>
->>>>>>> 18de2ad005379e5e96c0ef8b074ba3074d3590f3
 
 	</div>
 </div>
