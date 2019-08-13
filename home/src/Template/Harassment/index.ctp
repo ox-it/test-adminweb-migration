@@ -9,16 +9,14 @@
 
 <div class="row">
 
-	<h3>
-		Harassment Survey
-	</h3>
+	<h3>Harassment Advisor Survey</h3>
 
 	<?= $this->Html->script($this->name . '/script.js') ?>
 
 	<div class="waf-include">
 
     <!-- Information -->
-    <p>Welcome to the Harassment Survey reporting form.</p>
+    <p>Welcome to the Harassment Advisor Survey reporting form.</p>
     <?php if (count($user->harassment_departments)>1) : ?>
       <p>
         Please select the department, faculty or college you are reporting for and then press

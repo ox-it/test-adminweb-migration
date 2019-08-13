@@ -8,7 +8,7 @@
     ?>
 
   		<h3>Unknown User<?= empty($_SERVER['HTTP_WAF_WEBAUTH']) ?  '' : ' : ' . $_SERVER['HTTP_WAF_WEBAUTH'] ?></h3>
-      <p><strong>You are not currently registered to use the Harassment Survey system.</strong></p>
+      <p><strong>You are not currently registered to use the Harassment Advisor Survey system.</strong></p>
       <p>
         If you need access to this system, please
     <?php
@@ -17,7 +17,7 @@
 
   		<h3>Unauthorised</h3>
       <p>
-        <strong>Your access to the Harassment Survey system has expired,
+        <strong>Your access to the Harassment Advisor Survey system has expired,
         or you have tried to access a resource outside the range of your valid permissions.</strong>
       </p>
       <p>

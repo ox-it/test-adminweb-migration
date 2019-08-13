@@ -2,7 +2,7 @@
 
 <div class="row">
 
-	<h3>Harassment Survey</h3>
+	<h3>Harassment Advisor Survey</h3>
     
 	<div class="waf-include">
       <p><?php echo $user['name']; ?></p>
@@ -37,7 +37,7 @@
    	
    <?= $this->Form->control('3_complainant_department', ['type'=>'select', 'options'=>$departments, 'empty'=>'-- Please Select --', 'label'=>'3. If known, please confirm the complainant(s) department, faculty or college:']); ?>
          
-   <label class="gapabove">4. Is the complainant:</strong></label>
+   <label class="gapabove">4. Is the complainant: (please indicate the number of individuals in each applicable box)</label>
    <table>
      <tbody>
        <tr><td></td><th scope="col">Male</th><th scope="col">Female</th><th scope="col">Other</th><th scope="col">Unknown</th></tr>
@@ -80,7 +80,7 @@
    <?= $this->Form->control('7_accused_dept', ['type'=>'select', 'options'=>$departments, 'empty'=>'-- Please Select --', 'label'=>'7. If known, please confirm the department, faculty or college that the person(s) complained about belongs to:']); ?>
             
    <!-- People complained about (number of male, female, unknown & other enquirers in each category) -->
-  <label class="gapabove">8. Was the person(s) complained about:</label>
+  <label class="gapabove">8. Was the person(s) complained about: (please indicate the number of individuals in each applicable box)</label>
   <table>
     <tbody>
       <tr><td></td><th scope="col">Male</th><th scope="col">Female</th><th scope="col">Other</th><th scope="col">Unknown</th></tr>
