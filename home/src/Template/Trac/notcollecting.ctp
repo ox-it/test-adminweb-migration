@@ -50,7 +50,7 @@
 					<p>&nbsp;</p>
 					<h3>A. TEACHING (by teaching method)<sup>*</sup></h3>
 
-					<h4>Undergraduate Teaching</h4>
+					<h4>Teaching for Undergraduates</h4>
 					<?= $waf->postHeadersWithLabel(['Direct Contact Hours','Preparation &amp; Assessment','Hours Worked','% of Total'],'&nbsp;') ?>
 					<?= $survey->postContactPrepHoursPercentageWithLabel('a01', 'A01: Lectures (including demonstrations in lectures)') ?>
 					<?= $survey->postContactPrepHoursPercentageWithLabel('a02', 'A02: Tutorials') ?>
@@ -62,7 +62,7 @@
 					<?= $survey->postPrepHoursPercentageWithLabel('a58', 'A58: Assessment, examining, admissions, student welfare and other support for UG teaching (college)') ?>
 					<hr class="line" />
 
-					<h4>Postgraduate Teaching</h4>
+					<h4>Teaching for PGTs</h4>
 					<?= $waf->postHeadersWithLabel(['Direct Contact Hours','Preparation &amp; Assessment','Hours Worked','% of Total'],'&nbsp;') ?>
 					<?= $survey->postContactPrepHoursPercentageWithLabel('a21', 'A21: Lectures (including demonstrations in lectures)') ?>
 					<?= $survey->postContactPrepHoursPercentageWithLabel('a22', 'A22: Tutorials') ?>
@@ -74,7 +74,7 @@
 					<?= $survey->postPrepHoursPercentageWithLabel('a78', 'A78: Assessment, examining, admissions, student welfare and other support for PG teaching (college)') ?>
 					<hr class="line" />
 
-					<h4>Postgraduate Researchers Teaching</h4>
+					<h4>Teaching for PGRs</h4>
 					<?= $waf->postValueWithLabel($survey->a_pgr, 'Number of PGR students you are currently supervising and co-supervising, (0.5 for co-supervised students)') ?>
 					<?= $waf->postHeadersWithLabel(['Direct Contact Hours','Preparation &amp; Assessment','Hours Worked','% of Total'],'&nbsp;') ?>
 					<?= $survey->postContactPrepHoursPercentageWithLabel('b17', 'B17: Supervision of PGR students') ?>
@@ -92,7 +92,7 @@
 
 
 					<p>&nbsp;</p>
-					<h3>B. RESEARCH (by teaching method)<sup>*</sup></h3>
+					<h3>B. Research<sup>*</sup></h3>
 
 					<h4>Publicly Funded Research</h4>
 					<?= $survey->postHoursPercentageWithLabel('b11', 'B1.1: University research where there is no external sponsor') ?>
@@ -102,7 +102,7 @@
 					<?= $survey->postHoursPercentageWithLabel('b1t', 'Total direct time spent on Publicly Funded Research', true) ?>
 
 					<h4>Non-Publicly Funded Research</h4>
-					<?= $survey->postHoursPercentageWithLabel('b21', 'B2.1: College funded research (Not CUF)') ?>
+					<?= $survey->postHoursPercentageWithLabel('b21', 'B2.1: College-funded research (research sponsored by specific college funding)') ?>
 					<?= $survey->postHoursPercentageWithLabel('b22', 'B2.2: UK-based charities') ?>
 					<?= $survey->postHoursPercentageWithLabel('b23', 'B2.3: UK industry, commerce and public corporations') ?>
 					<?= $survey->postHoursPercentageWithLabel('b24', 'B2.4: Other sources (UK)') ?>
@@ -111,7 +111,7 @@
 					<?= $survey->postHoursPercentageWithLabel('b2t', 'Total direct time spent on Non-Publicly Funded Research', true) ?>
 
 					<h4>Research Support</h4>
-					<?= $survey->postHoursPercentageWithLabel('b31', 'B3.1: Total time spent on support for research') ?>
+					<?= $survey->postHoursPercentageWithLabel('b31', 'B3.1: Time spent on support activities for research') ?>
 
 					<h4>Total</h4>
 					<?= $survey->postHoursPercentageWithLabel('bt', 'Total time spent on Research', true) ?>
@@ -125,7 +125,7 @@
 					<?= $survey->postHoursPercentageWithLabel('c3', 'C3: Services for the General Public') ?>
 					<?= $survey->postHoursPercentageWithLabel('c4', 'C4: Other professional work') ?>
 					<?= $survey->postHoursPercentageWithLabel('c5', 'C5: Public Service (e.g. Jury Service, School Governors, Magistrates etc.)') ?>
-					<?= $survey->postHoursPercentageWithLabel('c6', 'C6: Support for above activities') ?>
+					<?= $survey->postHoursPercentageWithLabel('c6', 'C6: Other activities without an identifiable income stream') ?>
 					<?= $survey->postHoursPercentageWithLabel('ct', 'Total spent on Other Activities', true) ?>
 
 

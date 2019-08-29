@@ -100,7 +100,7 @@
 
 
 			<div id="teaching">
-			  <h4>Undergraduate Teaching</h4>
+			  <h4>Teaching for Undergraduates</h4>
 				<p><strong>Enter the hours<strong><sup>**</sup></strong> spent on each activity:</strong></p>
 				<div class="column_wrapper">
 					<div class="label_wrapper"><p>&nbsp;</p></div>
@@ -121,7 +121,7 @@
 				<?= $survey::prepHoursPercentage($this, 'a58', 'A58: Assessment, examining, admissions, student welfare and other support for UG teaching (college)') ?>
   			<hr class="line" />
 
-			  <h4>Postgraduate Teaching</h4>
+			  <h4>Teaching for PGTs</h4>
 				<p><strong>Enter the hours<strong><sup>**</sup></strong> spent on each activity:</strong></p>
 				<div class="column_wrapper">
 					<div class="label_wrapper"><p>&nbsp;</p></div>
@@ -142,7 +142,7 @@
 				<?= $survey::prepHoursPercentage($this, 'a78', 'A78: Assessment, examining, admissions, student welfare and other support for PG teaching (college)') ?>
   			<hr class="line" />
 
-			  <h4>Postgraduate Researchers Teaching</h4>
+			  <h4>Teaching for PGRs</h4>
   			<?= $this->Form->input('a_pgr', [ 'label'=>'Number of PGR students you are currently supervising and co-supervising, (0.5 for co-supervised students)', 'size'=>4, 'maxlength'=>3, 'templates'=>$waf->template_wrappers('a_pgr','',['inline_wrapper']) ]) ?>
 				<p><strong>Enter the hours<strong><sup>**</sup></strong> spent on each activity:</strong></p>
 				<div class="column_wrapper">
@@ -178,7 +178,7 @@
 
 
       <p>&nbsp;</p>
-			<h3>B. RESEARCH (by teaching method)<sup>*</sup></h3>
+			<h3>B. Research<sup>*</sup></h3>
       <div id="note2" class="waf-expandable">
         <p>
           <strong>Publicly-funded and non-publicly-funded research</strong><br />
@@ -244,7 +244,7 @@
 
 			  <h4>Non-Publicly Funded Research</h4>
 				<p><strong>Enter the hours<strong><sup>**</sup></strong> spent on each activity:</strong></p>
-				<?= $survey::hoursPercentage($this, 'b21', 'B2.1: College funded research (Not CUF)') ?>
+				<?= $survey::hoursPercentage($this, 'b21', 'B2.1: College-funded research (research sponsored by specific college funding)') ?>
 				<?= $survey::hoursPercentage($this, 'b22', 'B2.2: UK-based charities') ?>
 				<?= $survey::hoursPercentage($this, 'b23', 'B2.3: UK industry, commerce and public corporations') ?>
 				<?= $survey::hoursPercentage($this, 'b24', 'B2.4: Other sources (UK)') ?>
@@ -253,7 +253,7 @@
 				<?= $survey::hoursPercentage($this, 'b2t', 'Total direct time spent on Non-Publicly Funded Research', true) ?>
 
 			  <h4>Research Support</h4>
-				<?= $survey::hoursPercentage($this, 'b31', 'B3.1: Total time spent on support for research') ?>
+				<?= $survey::hoursPercentage($this, 'b31', 'B3.1: Time spent on support activities for research') ?>
 
 			  <h4>Total</h4>
 				<?= $survey::hoursPercentage($this, 'bt', 'Total time spent on Research', true) ?>
@@ -301,7 +301,7 @@
 				<?= $survey::hoursPercentage($this, 'c3', 'C3: Services for the General Public') ?>
 				<?= $survey::hoursPercentage($this, 'c4', 'C4: Other professional work') ?>
 				<?= $survey::hoursPercentage($this, 'c5', 'C5: Public Service (e.g. Jury Service, School Governors, Magistrates etc.)') ?>
-				<?= $survey::hoursPercentage($this, 'c6', 'C6: Support for above activities') ?>
+				<?= $survey::hoursPercentage($this, 'c6', 'C6: Other activities without an identifiable income stream') ?>
 				<?= $survey::hoursPercentage($this, 'ct', 'Total spent on Other Activities', true) ?>
 			</div>
 
