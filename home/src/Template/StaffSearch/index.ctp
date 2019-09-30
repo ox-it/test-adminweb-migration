@@ -20,8 +20,8 @@
 		?>
 
     <div class="form-item name-details">
-      <?= $this->Form->control('lastname', ['type'=>'text', 'label' => $form->lastnameLabel($small), 'placeholder' => $form->lastnamePlaceholder($small)]); ?>
-      <?= $this->Form->control('initial', ['type'=>'text', 'label' => $form->initialLabel($small), 'placeholder' => $form->initialPlaceholder($small)]); ?>
+      <?= $this->Form->control('lastname', ['type'=>'text', 'aria-labelledby' => 'surname', 'label' => $form->lastnameLabel($small), 'placeholder' => $form->lastnamePlaceholder($small)]); ?>
+      <?= $this->Form->control('initial', ['type'=>'text', 'aria-labelledby' => 'initial', 'label' => $form->initialLabel($small), 'placeholder' => $form->initialPlaceholder($small)]); ?>
     </div>
 
     <div class="form-item search-specifics">

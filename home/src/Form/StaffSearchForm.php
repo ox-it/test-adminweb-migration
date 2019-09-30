@@ -58,7 +58,7 @@ class StaffSearchForm extends Form
   }
 
   public static function emergencyContactHTML($small=false, $context=null) {
-    $url = '//www.admin.ox.ac.uk/ouss/contactus/';
+    $url = '//estates.admin.ox.ac.uk/emergency-contacts/';
     $text = 'Emergency numbers';
 
     if (($small&&isset($context)) || (!$small&&!isset($context))) return '';
