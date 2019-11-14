@@ -138,7 +138,7 @@
 				<?= $this->Form->control('acc_prefer_2', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'First preference']); ?>
 				<?= $this->Form->control('acc_prefer_3', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'Accommodation Type']); ?>
 				<?= $this->Form->control('acc_prefer_4', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'Second preference']); ?>
-				<p><strong>Please note that 3-bedroom properties are only for families with more than one child only.</strong></p>
+				<p><strong>Please note that 3-bedroom properties are for families with more than one child only</strong></p>
 				<p><i>Please note that unfortunately we cannot guarantee that you will receive an offer of accommodation.</i></p>
 				<?= $this->Form->control('tenancy_accept', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date accommodation is required from (dd/mm/yyyy)' ]); ?>
 				<p><i>(N.B. Tenancies can only start a maximum of one month before your course commences.)</i></p>
