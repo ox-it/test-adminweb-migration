@@ -87,6 +87,7 @@
       <?= $survey::maleFemaleOtherUnknownTextNums($this, '8_college_staff_male', '8_college_staff_female', '8_college_staff_other', '8_college_staff_unknown','College staff') ?>
       <?= $survey::maleFemaleOtherUnknownTextNums($this, '8_undergraduate_student_male', '8_undergraduate_student_female', '8_undergraduate_student_other', '8_undergraduate_student_unknown','Undergraduate Student') ?>
       <?= $survey::maleFemaleOtherUnknownTextNums($this, '8_graduate_student_male', '8_graduate_student_female', '8_graduate_student_other', '8_graduate_student_unknown','Graduate Student') ?>
+	  <?= $survey::maleFemaleOtherUnknownTextNums($this, '8_student_unknown_male', '8_student_unknown_female', '8_student_unknown_other', '8student_unknown_unknown','Student (status unknow)') ?>
       <?= $survey::maleFemaleOtherUnknownTextNums($this, '8_unknown_male', '8_unknown_female', '8_unknown_other', '8_unknown_unknown','Unknown') ?>
       <?= $survey::maleFemaleOtherUnknownTextNums($this, '8_other_male', '8_other_female', '8_other_other', '8_other_unknown','Other') ?>
     </tbody>
