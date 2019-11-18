@@ -3,7 +3,6 @@
 <div class="row">
 
 	<h3>Harassment Advisor Survey</h3>
-    
 	<div class="waf-include">
       <p><?php echo $user['name']; ?></p>
       <p>Please complete this form once for each person seeking advice.</p>
@@ -20,7 +19,7 @@
     <?= $this->Form->control('action', [ 'type'=>'hidden', 'value'=>'report' ]) ?>
     <?= $this->Form->control('submitted', [ 'type'=>'hidden', 'value'=>1 ]) ?>
     <?= $this->Form->control('0nilreturn', [ 'type'=>'hidden', 'value'=>0 ]) ?>
-        <?= $this->Form->control('personID', ['type'=>'hidden', 'value'=>$user->id]) ?>    
+        <?= $this->Form->control('personID', ['type'=>'hidden', 'value'=>$user['userID']]) ?>    
 	<?php echo $this->Form->input('1_date_of_first_meeting', ['required' => true, 'maxYear' => date("Y"), 'type' => 'date','div' => false, 'label' => false, 'wrapInput' => false, 'label' => '1. Date of the first meeting with the person you are supporting:']); ?>
 	<!-- <label class="gapabove"></strong></label> -->
 	<?= $this->Form->label('2_supporting', 'Are you supporting: ') ?>
