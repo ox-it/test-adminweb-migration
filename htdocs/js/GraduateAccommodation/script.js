@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
 	makeCondition('#application-type-joint', ['joint'], ['#applicant1', '#accommodation','#buttons', '#family', '#applicant2'], '');
 	makeCondition('#application-type-couple-family ', ['couple/family'], ['#applicant1','#accommodation','#buttons', '#spouse', '#family'], '');
 
-	makeCondition('#title', ['other'], '#title-other-wrapper', '#title-other');
+	makeCondition('#title', 'other', '#title-other-wrapper', '#title-other');
 	makeCondition('#degree', 'other', '#degree-other-wrapper', '#degree-other');
 	makeCondition('#partner-title', 'other', '#partner-title-other-wrapper', '#partner-title-other');
 	makeCondition('#partner-degree', 'other', '#partner-degree-other-wrapper', '#partner-degree-other');
@@ -39,7 +39,6 @@ jQuery(document).ready(function($) {
  * If target is set, its value is set to '' when wrapper(s) is/are hidden.
  */
 function makeCondition(watch, value, wrapper, target) {
-console.log(watch);
 	var form_elements = ['#applicant1','#accommodation','#buttons', '#family', '#applicant2', '#spouse'];
 	
 	if (!Array.isArray(value)) value = [value];
