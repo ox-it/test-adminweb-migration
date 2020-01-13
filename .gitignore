@@ -1,3 +1,6 @@
+# js apps in separate repo
+/htdocs/js-apps/
+
 # NSMS Folders #
 ##########################
 /cgi
