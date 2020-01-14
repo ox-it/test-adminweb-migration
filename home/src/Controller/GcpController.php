@@ -150,7 +150,8 @@ class GcpController extends AppController
 		  if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
 				if (substr($ip,0,10)=='192.168.1.') return true;
 				if (substr($ip,0, 7)=='129.67.') return true;
-				if ($ip=='129.67.249.144') return true;
+				// Finlay's PC
+				if ($ip=='163.1.124.150') return true;
       }
     }
 
