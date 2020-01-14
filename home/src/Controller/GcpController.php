@@ -151,19 +151,24 @@ class GcpController extends AppController
 				if (substr($ip,0,10)=='192.168.1.') return true;
 				if (substr($ip,0, 7)=='129.67.') return true;
 				// Finlay's PC
-				if ($ip=='163.1.124.150') return true;
+                $authorised_ips_on_test = [
+                    '163.1.124.150', // Finlay Birnie
+                    '163.1.125.85' // Linda Covill
+                ];
+				if (in_array($ip, $authorised_ips_on_test)) return true;
+              
       }
     }
       
     $authorised_on_live = [
-        # Research Support staff
-        'admn2434', # Karl Shepherd
-        'admn4354', # Mark Crossley
-        'immd0345', # Ronja Bahadori
-        'phpc0487', # Karen Melham
-        # IT Services
-        'pubh0164', # Finlay Birnie
-        'clme1428' # Sam Press
+        // Research Support staff
+        'admn2434', // Karl Shepherd
+        'admn4354', // Mark Crossley
+        'immd0345', // Ronja Bahadori
+        'phpc0487', // Karen Melham
+        // IT Services
+        'pubh0164', // Finlay Birnie
+        'clme1428' // Sam Press
     ];
 
     if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
