@@ -59,4 +59,5 @@ nbproject/*
 .vscode
 # Sass preprocessor
 .sass-cache/
-home/vendor/*
+/home/vendor/*
+/home/composer.lock
