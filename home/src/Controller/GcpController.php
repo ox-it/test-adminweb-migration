@@ -154,12 +154,23 @@ class GcpController extends AppController
 				if ($ip=='163.1.124.150') return true;
       }
     }
+      
+    $authorised_on_live = [
+        # Research Support staff
+        'admn2434', # Karl Shepherd
+        'admn4354', # Mark Crossley
+        'immd0345', # Ronja Bahadori
+        'phpc0487', # Karen Melham
+        # IT Services
+        'pubh0164', # Finlay Birnie
+        'clme1428' # Sam Press
+    ];
 
     if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
 		  return false;
 		} else {
 		  $sso = $_SERVER['HTTP_WAF_WEBAUTH'];
-		  if ($sso=='ouit0197') return true;
+		  if (in_array($sso, $authorised_on_live)) return true;
 		}
 
     //$this->Flash->error('Bad Access: ' . $ip);
