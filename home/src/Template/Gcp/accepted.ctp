@@ -31,7 +31,7 @@
 					?>
         </p>
 				<p>
-					The following people below have been rejected. This list is limited to 100 entries,
+					The following people below have been accepted. This list is limited to 100 entries,
 					but you can narrow the search by selecting a letter of the alphabet below
 					to list only applicants with surnames starting with that letter.
 				</p>
