@@ -209,7 +209,7 @@ class GcpController extends AppController
 			// Finlay's PC
             $authorised_ips_on_test = [
                 '163.1.124.150', // Finlay Birnie
-                '163.1.125.85' // Linda Covill
+                '163.1.125.85', // Linda Covill
 		'163.1.124.97' // Brendan Donnelly
             ];
 			if (in_array($ip, $authorised_ips_on_test)) return true;
