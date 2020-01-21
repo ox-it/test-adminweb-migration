@@ -36,15 +36,19 @@ class GcpController extends AppController
 	  if (!$this->check_secure()) return $this->render('noaccess');
 
 	  // Respond to GET parameters
-  	$accepted = $this->request->getQuery('accepted');
-  	if (isset($accepted)) return $this->accepted($accepted);
-  	$rejects = $this->request->getQuery('rejects');
-  	if (isset($rejects)) return $this->rejects($rejects);
+  	  $accepted = $this->request->getQuery('accepted');
+  	  if (isset($accepted)) return $this->accepted($accepted);
+  	  $rejects = $this->request->getQuery('rejects');
+  	  if (isset($rejects)) return $this->rejects($rejects);
+	  $downloads = $this->request->getQuery('downloads');
+	  if (isset($downloads)) return $this->downloads($downloads);
+	  $download = $this->request->getQuery('download');
+	  if (isset($download)) return $this->download($download);
 
 	  $admin = new GcpAdminForm();
-  	$this->set('admin', $admin);
+  	  $this->set('admin', $admin);
 
-		$this->loadModel('GcpApplicants');
+	  	$this->loadModel('GcpApplicants');
 		$applicants = $this->GcpApplicants->getAvailable();
 		$this->set('applicants', $applicants);
 
@@ -140,10 +144,54 @@ class GcpController extends AppController
 	}
 
 	// Administrative functionality - keep behind security!
-	private function downloads() {
-		$dir = new Folder(ROOT . DS . 'protected-files' . DS . 'gcp');
+	// display a list of txt files, 1 per day, with accepted applicant info
+	// each entry in the list is a link to download the file
+	private function downloads($page = 0) {
+	    $dir = new Folder(ROOT . DS . 'protected-files' . DS . 'gcp');
+	    // get all the text files generated when applications are accepted
+	    $files = $dir->find('.*\.txt', true);
+	    // reverse the array order, because they come sorted in ascending order, which is oldest first
+	    $files = array_reverse($files);
+	    $total = count($files);
+	    // amount of links to display per page in the pagination
+	    $limit = 25;
+	    if (($page * limit) > $total) $page = 0;
+	    $offset = $page * $limit;
+	    // the current page of file names
+	    $pagedFiles = array_splice($files, $offset, $limit);
+	    $pager = array(
+		'offset' => $offset,
+		'page' => $page,
+		'limit' => $limit,
+		'count' => count($pagedFiles),
+		'pages' => ceil($total / $limit),
+		'total' => $total
+	    );
+	    $this->set([
+		'files' => $pagedFiles,
+		'passedPager' => $pager,
+	    ]);
+	    // render src/Templates/Gcp/downloads.ctp
+	    $this->render('downloads');
+	}
+
+	// download a txt file with approved applicant information
+	private function download($filename = '') {
+	    $protected_files_dir = ROOT . DS . 'protected-files' . DS . 'gcp';
+	    if ($filename) {
+		// check if the filename matches any of the filename from the folder
+		$dir = new Folder($protected_files_dir);
 		$files = $dir->find('.*\.txt');
-		$this->render('downloads');
+		if (in_array($filename, $files)) {
+		    // set response to be a file download of the txt file
+		    $this->response->file(
+			$protected_files_dir . DS . $filename,
+			array('download' => true, 'name' => $filename)
+		    );
+		}
+		// this is necessary to stop cake trying to render a view instead of the file download
+		return $this->response;
+	    }
 	}
 
   private function check_secure()
