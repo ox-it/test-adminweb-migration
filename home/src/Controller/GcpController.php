@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Form\GcpAdminForm;
 
 use Cake\Datasource\ConnectionManager;
+use Cake\Filesystem\Folder;
 
 class GcpController extends AppController
 {
@@ -138,28 +139,34 @@ class GcpController extends AppController
 		$this->render('rejects');
 	}
 
+	// Administrative functionality - keep behind security!
+	private function downloads() {
+		$dir = new Folder(ROOT . DS . 'protected-files' . DS . 'gcp');
+		$files = $dir->find('.*\.txt');
+		$this->render('downloads');
+	}
+
   private function check_secure()
   {
     $ip = $_SERVER['REMOTE_ADDR'];
 
     // List of Test IPs that can access admin pages
     if (!empty($_SERVER['SERVER_NAME'])) {
-		  if ($_SERVER['SERVER_NAME']=='almac.local') {
-        if (substr($ip,0,10)=='192.168.1.') return true;
-      }
-		  if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
-				if (substr($ip,0,10)=='192.168.1.') return true;
-				if (substr($ip,0, 7)=='129.67.') return true;
-				// Finlay's PC
-                $authorised_ips_on_test = [
-                    '163.1.124.150', // Finlay Birnie
-                    '163.1.125.85' // Linda Covill
-                ];
-				if (in_array($ip, $authorised_ips_on_test)) return true;
-              
-      }
+        if ($_SERVER['SERVER_NAME']=='almac.local') {
+            if (substr($ip,0,10)=='192.168.1.') return true;
+        }
+        if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
+			if (substr($ip,0,10)=='192.168.1.') return true;
+			if (substr($ip,0, 7)=='129.67.') return true;
+			// Finlay's PC
+            $authorised_ips_on_test = [
+                '163.1.124.150', // Finlay Birnie
+                '163.1.125.85' // Linda Covill
+            ];
+			if (in_array($ip, $authorised_ips_on_test)) return true;
+        }
     }
-      
+
     $authorised_on_live = [
         // Research Support staff
         'admn2434', // Karl Shepherd

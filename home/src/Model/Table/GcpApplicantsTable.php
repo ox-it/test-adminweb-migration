@@ -72,9 +72,9 @@ class GcpApplicantsTable extends Table
 	}
 
 	private function getDownloadFile() {
-  	$dir = new Folder(TMP . 'gcp', true);
-		$txtFilename = strtolower('gcp/' . date('Y_m_d') . '.txt');
-		$txtFile = new File(TMP . $txtFilename);
+  	    $dirPath = ROOT . DS . 'protected-files' . DS . 'gcp' . DS;
+		$txtFilename = strtolower(date('Y_m_d') . '.txt');
+		$txtFile = new File($dir . $txtFilename);
 		if (!$txtFile->exists()) {
 		  $ok = $txtFile->create();
 		  if (!$ok) return false;
