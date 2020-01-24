@@ -161,7 +161,7 @@ class GcpApplicantsTable extends Table
 	public function validationRegister($validator) {
     $validator ->notEmpty(['surname','forename','title','employer','position','email','phone','role']);
 		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
-    foreach(['study','investigator', 'REC','project'] as $target) {
+    foreach(['study','investigator', 'REC'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['employer']) && $context['data']['employer']=='O'); });
 		}
 		return $validator;
