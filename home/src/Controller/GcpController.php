@@ -225,7 +225,9 @@ class GcpController extends AppController
         'phpc0487', // Karen Melham
         // IT Services
         'pubh0164', // Finlay Birnie
-        'clme1428' // Sam Press
+        'clme1428', // Sam Press
+        'ouit0694', // Brendan Donnelly
+        'wolf1154'  // Linda Covill
     ];
 
     if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
