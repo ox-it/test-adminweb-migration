@@ -30,7 +30,7 @@ class GraduateAccommodationController extends AppController
 	}
 
 	private function emailConfirmation($data)
-	{//print_r($data);die;
+	{
 		$file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
 		$css = str_replace('.web-app-wrapper ','',$file->read());
 		$email = new Email();
