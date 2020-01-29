@@ -18,9 +18,9 @@ jQuery(document).ready(function($) {
 	makeCondition('#select-child-5', ['male','female'], '#child-6', ['#child-dob-5','#select-child-6','#child-dob-6']);
 	makeCondition('#select-child-6', ['male','female'], '', '#child-dob-6');
 
-	jQuery("input[name='application_type']").change(function() { updateSectionNumbers(); updateAccommodationTypes(); });
-	jQuery('#acc-prefer-1').change(function() { updatePreferences('#acc-prefer-1','#acc-prefer-2'); });
-	jQuery('#acc-prefer-3').change(function() { updatePreferences('#acc-prefer-3','#acc-prefer-4'); });
+	jQuery("input[name='application_type']").change(function(e) { updateSectionNumbers(); updateAccommodationTypes(e); });
+	jQuery('#acc-prefer-1').change(function() { updatePreferences('#acc-prefer-1','#acc-prefer-2'); }).trigger('change');
+	jQuery('#acc-prefer-3').change(function() { updatePreferences('#acc-prefer-3','#acc-prefer-4'); }).trigger('change');
 
 	// Date picker
 	jQuery('#degree-start,#partner-degree-start,#child-dob-1,#child-dob-2,#child-dob-3,#child-dob-4,#child-dob-5,#child-dob-6,#tenancy-accept').datepicker({ dateFormat: "dd/mm/yy" });
@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
 	jQuery('label[for="application-type-couple-family"]').append(': Apply for accommodation suitable for a couple / family (where only one adult occupant is a full-time graduate student of the University of Oxford)');
 
 	updateSectionNumbers();
-
+	
 });
 
 /*
@@ -92,8 +92,8 @@ function updateSectionNumbers() {
 	});
 }
 
-function updateAccommodationTypes() {
-	var type = jQuery('#application-type').val();
+function updateAccommodationTypes(event) {
+	var type = event.target.value;
 	var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
 	var include_types = (type=='Single') ? [0,1,2,3,4] : [4,5,6,7,8,9];
 	var options = '<option value="-1">-- Please Select --</option>';
@@ -114,7 +114,9 @@ function updatePreferences(source,target) {
 	var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
 	var type_index = acc_type.indexOf(type);
 	var type_options = [
-		/*Room*/ ['STH|Summertown House'],
+		/*Room*/ ['STH|Summertown House','147WS|147 Walton Street','CPG|Court Place Gardens'],
+		/* Ensuite */ ['CM|Castle Mill'],
+		/* Bedsit */ ['STH|Summertown House'],
 		/*Single Studio*/ ['CM|Castle Mill', 'STH|Summertown House'],
 		/*Double Studio*/ ['ABC|Alan Bullock Close', 'CM|Castle Mill', 'STH|Summertown House'],
 		/*One Bed Flat*/ ['STH|Summertown House', 'CM|Castle Mill', '25WS|25 Wellington Square'],
@@ -126,10 +128,15 @@ function updatePreferences(source,target) {
 	var include_types = type_options[type_index];
 	var options = '<option value="-1">-- Please Select --</option>';
   
-	for (var i=0;i<include_types.length;i++) {
-		var option = include_types[i];
-		var parts = option.split("|");
-		options += '<option value="'+ parts[0] + '">' + parts[1] + '</option>';
+	if (typeof include_types !== 'undefined') {
+		for (var i=0;i<include_types.length;i++) {
+			var option = include_types[i];
+			var parts = option.split("|");
+			options += '<option value="'+ parts[0] + '">' + parts[1] + '</option>';
+		}
+		jQuery(target).html(options);
+	} else {
+		jQuery(target).html('');
 	}
-	jQuery(target).html(options);
+	
 }

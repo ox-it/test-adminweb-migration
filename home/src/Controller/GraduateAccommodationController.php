@@ -30,23 +30,25 @@ class GraduateAccommodationController extends AppController
 	}
 
 	private function emailConfirmation($data)
-	{
+	{//print_r($data);die;
 		$file = new File(WWW_ROOT . env('cssBaseUrl','css/') . 'waf.css');
 		$css = str_replace('.web-app-wrapper ','',$file->read());
 		$email = new Email();
 		$email->template('new_graduate_accomodation_applicant');
 		$email->viewVars(['data' => $data, 'waf' => $this->Waf, 'css'=>$css ]);
 		$email->subject($data['email_subject']);
-		$email->from(['graduate.accommodation@admin.ox.ac.uk' => 'Graduate Accommodation Form']);
+		$email->from([$data['preferred_email'] => 'Accommodation Applicant']);
 		$email->to($data['email_to']);
 
 		// Test emails
 		if (!empty($_SERVER['SERVER_NAME'])) {
 			if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
-				$email->to([ "samuel.press@it.ox.ac.uk" => 'Sam' ]);
+				$email->to([ "samuel.press@it.ox.ac.uk"]);
 			}
+		}else {
+			echo 'sam';
 		}
-
+		
 		$email->emailFormat('html');
 		$email->attachments($data['xmlfile']);
 		$email->send();

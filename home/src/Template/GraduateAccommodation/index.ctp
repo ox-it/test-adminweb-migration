@@ -135,9 +135,9 @@
 				<p>Further information about University properties can be viewed on our website at <a href="https://gradaccommodation.admin.ox.ac.uk/accommodation/" target="_blank">https://gradaccommodation.admin.ox.ac.uk/accommodation</a></p>
 
 				<?= $this->Form->control('acc_prefer_1', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'Accommodation Type']); ?>
-				<?= $this->Form->control('acc_prefer_2', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'First preference']); ?>
+				<?= $this->Form->control('acc_prefer_2', ['type' => 'select', 'options' => [], 'empty' => '-- Please Select --', 'label' => 'First preference']); ?>
 				<?= $this->Form->control('acc_prefer_3', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'Accommodation Type']); ?>
-				<?= $this->Form->control('acc_prefer_4', ['type' => 'select', 'options' => $form::accommodationOptions(), 'empty' => '-- Please Select --', 'label' => 'Second preference']); ?>
+				<?= $this->Form->control('acc_prefer_4', ['type' => 'select', 'options' => [], 'empty' => '-- Please Select --', 'label' => 'Second preference']); ?>
 				<p><strong>Please note that 3-bedroom properties are for families with more than one child only</strong></p>
 				<p><i>Please note that unfortunately we cannot guarantee that you will receive an offer of accommodation.</i></p>
 				<?= $this->Form->control('tenancy_accept', ['type' => 'text','div' => false, 'label' => false, 'wrapInput' => false, 'label' => 'Date accommodation is required from (dd/mm/yyyy)' ]); ?>
