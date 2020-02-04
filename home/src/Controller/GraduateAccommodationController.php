@@ -45,10 +45,8 @@ class GraduateAccommodationController extends AppController
 			if ($_SERVER['SERVER_NAME']=='waf-td.nsms.ox.ac.uk') {
 				$email->to([ "samuel.press@it.ox.ac.uk"]);
 			}
-		}else {
-			echo 'sam';
 		}
-		
+
 		$email->emailFormat('html');
 		$email->attachments($data['xmlfile']);
 		$email->send();
