@@ -72,9 +72,9 @@ class GcpApplicantsTable extends Table
 	}
 
 	private function getDownloadFile() {
-  	$dir = new Folder(TMP . 'gcp', true);
-		$txtFilename = strtolower('gcp/' . date('Y_m_d') . '.txt');
-		$txtFile = new File(TMP . $txtFilename);
+  	    $dirPath = ROOT . DS . 'protected-files' . DS . 'gcp' . DS;
+		$txtFilename = strtolower(date('Y_m_d') . '.txt');
+		$txtFile = new File($dirPath . $txtFilename);
 		if (!$txtFile->exists()) {
 		  $ok = $txtFile->create();
 		  if (!$ok) return false;
@@ -161,7 +161,7 @@ class GcpApplicantsTable extends Table
 	public function validationRegister($validator) {
     $validator ->notEmpty(['surname','forename','title','employer','position','email','phone','role']);
 		$validator ->add('email', 'validFormat', [ 'rule'=>'email', 'message' => 'Please enter a valid email' ]);
-    foreach(['study','investigator', 'REC','project'] as $target) {
+    foreach(['study','investigator', 'REC'] as $target) {
 		  $validator->notEmpty($target, null, function ($context) { return (!empty($context['data']['employer']) && $context['data']['employer']=='O'); });
 		}
 		return $validator;
