@@ -126,7 +126,7 @@ function updateAccommodationTypes(event) {
 	var type = event.target.value;
 	var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
 	var include_types = (type=='Single') ? [0,1,2,3,4] : [4,5,6,7,8,9];
-	var options = '<option value="" disabled></option>';
+	var options = '<option value="" selected>-- Please Select --</option>';
 
 	for (var i=0;i<include_types.length;i++) {
 		var index = include_types[i];
@@ -156,7 +156,7 @@ function updatePreferences(source,target) {
 		/*Three Bed House*/ ['CPG|Court Place Gardens']
 	];
 	var include_types = type_options[type_index];
-	var options = '<option value="">-- Please Select --</option>';
+	var options = '<option value="" selected>-- Please Select --</option>';
   
 	if (typeof include_types !== 'undefined') {
 		for (var i=0;i<include_types.length;i++) {
