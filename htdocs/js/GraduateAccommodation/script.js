@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 	makeCondition('#select-child-5', ['male','female'], '#child-6', ['#child-dob-5','#select-child-6','#child-dob-6']);
 	makeCondition('#select-child-6', ['male','female'], '', '#child-dob-6');
 
-	jQuery("input[name='application_type']").change(function(e) { updateSectionNumbers(); updateAccommodationTypes(e); });
+	jQuery("input[name='application_type']").change(function(e) { requiredFields(); updateSectionNumbers(); updateAccommodationTypes(e); });
 	jQuery('#acc-prefer-1').change(function() { updatePreferences('#acc-prefer-1','#acc-prefer-2'); }).trigger('change');
 	jQuery('#acc-prefer-3').change(function() { updatePreferences('#acc-prefer-3','#acc-prefer-4'); }).trigger('change');
 
@@ -30,8 +30,38 @@ jQuery(document).ready(function($) {
 	jQuery('label[for="application-type-couple-family"]').append(': Apply for accommodation suitable for a couple / family (where only one adult occupant is a full-time graduate student of the University of Oxford)');
 
 	updateSectionNumbers();
+	requiredFields();
 	
 });
+
+
+/*
+* Make sure the correct fileds are marked as required depending on application type.
+*/
+function requiredFields() {
+	var application_type = jQuery("input[name='application_type']:checked").val();
+	var requiredAll = ['#title','#surname','#firstname','#contact-number','#preferred-email','#nationality','#college','#degree','#subject','#term','#term-year','#acc-prefer-1','#acc-prefer-2','#tenancy-accept'];
+	var requiredJoint = ['#partner-title','#partner-lastname','#partner-firstname','#partner-relationship','#partner-nationality','#partner-preferred-email','#partner-contact-no','#partner-college','#partner-degree','#partner-subject','#partner-degree-start'];
+	var requiredFamily = ['#spouse-title','#spouse-firstname','#spouse-lastname','#spouse-relationship','#spouse-nationality'];
+	
+	jQuery('div.required').removeClass('required');
+	
+	jQuery(requiredAll).each(function(i,v) {
+		jQuery(v).closest('div').addClass('required');
+	});
+	
+	if (typeof application_type !== 'undefined' && application_type === 'Joint') {
+		jQuery(requiredJoint).each(function(i,v){
+			jQuery(v).closest('div').addClass('required');
+		});
+	}
+	else if (typeof application_type !== 'undefined' && application_type === 'Couple/Family') {
+		jQuery(requiredFamily).each(function(i,v){
+			jQuery(v).closest('div').addClass('required');
+		});
+	}
+	
+}
 
 /*
  * When watch == value (or one of value, if array)
@@ -45,8 +75,8 @@ function makeCondition(watch, value, wrapper, target) {
 	
 	jQuery(watch).change(function() {
 		if(watch.lastIndexOf('#application-type', 0)=== 0) { 
-                    displayElements(form_elements, false);
-                }
+			displayElements(form_elements, false);
+		}
 		if (value.indexOf(jQuery(this).val().toLowerCase())!=-1) {
 			displayElements(wrapper,true);
 		}
@@ -57,14 +87,14 @@ function makeCondition(watch, value, wrapper, target) {
 			}
 		}
 	});
-  
+
 	if (jQuery(watch).prop('type') === 'radio' && jQuery(watch).prop("checked") === true) {
 		displayElements(form_elements, false);
 		displayElements(wrapper,true);
 	}
 	else if (jQuery("input[name='application_type']:checked").length === 0 || jQuery(watch).val()==undefined || value.indexOf(jQuery(watch).val().toLowerCase())==-1) {
 		displayElements(wrapper,false);
-	} 
+	}
 }
 
 function displayElements(elements,show) {
@@ -96,7 +126,7 @@ function updateAccommodationTypes(event) {
 	var type = event.target.value;
 	var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
 	var include_types = (type=='Single') ? [0,1,2,3,4] : [4,5,6,7,8,9];
-	var options = '<option value="-1">-- Please Select --</option>';
+	var options = '<option value="" disabled></option>';
 
 	for (var i=0;i<include_types.length;i++) {
 		var index = include_types[i];
@@ -126,7 +156,7 @@ function updatePreferences(source,target) {
 		/*Three Bed House*/ ['CPG|Court Place Gardens']
 	];
 	var include_types = type_options[type_index];
-	var options = '<option value="-1">-- Please Select --</option>';
+	var options = '<option value="">-- Please Select --</option>';
   
 	if (typeof include_types !== 'undefined') {
 		for (var i=0;i<include_types.length;i++) {
