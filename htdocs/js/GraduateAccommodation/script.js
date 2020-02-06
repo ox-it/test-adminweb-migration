@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
 */
 function requiredFields() {
 	var application_type = jQuery("input[name='application_type']:checked").val();
-	var requiredAll = ['#title','#surname','#firstname','#contact-number','#preferred-email','#nationality','#college','#degree','#subject','#term','#term-year','#acc-prefer-1','#acc-prefer-2','#tenancy-accept'];
+	var requiredAll = ['#degree-start', '#title','#surname','#firstname','#contact-number','#preferred-email','#nationality','#college','#degree','#subject','#term','#term-year','#acc-prefer-1','#acc-prefer-2','#tenancy-accept'];
 	var requiredJoint = ['#partner-title','#partner-lastname','#partner-firstname','#partner-relationship','#partner-nationality','#partner-preferred-email','#partner-contact-no','#partner-college','#partner-degree','#partner-subject','#partner-degree-start'];
 	var requiredFamily = ['#spouse-title','#spouse-firstname','#spouse-lastname','#spouse-relationship','#spouse-nationality'];
 	
