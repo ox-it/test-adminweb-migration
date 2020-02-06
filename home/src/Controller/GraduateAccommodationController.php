@@ -37,7 +37,7 @@ class GraduateAccommodationController extends AppController
 		$email->template('new_graduate_accomodation_applicant');
 		$email->viewVars(['data' => $data, 'waf' => $this->Waf, 'css'=>$css ]);
 		$email->subject($data['email_subject']);
-		$email->from([$data['preferred_email'] => 'Accommodation Applicant']);
+		$email->from([$data['preferred_email'] => $data['firstname'] . ' ' . $data['surname'] ]);
 		$email->to($data['email_to']);
 
 		// Test emails
