@@ -145,7 +145,7 @@ function updatePreferences(source,target) {
 	var type_index = acc_type.indexOf(type);
 	var type_options = [
 		/*Room*/ ['STH|Summertown House','147WS|147 Walton Street','CPG|Court Place Gardens'],
-		/* Ensuite */ ['CM|Castle Mill'],
+		/* Ensuite */ ['CM|Castle Mill','JSL|Jack Straws Lane','CC|Cavalier Court'],
 		/* Bedsit */ ['STH|Summertown House'],
 		/*Single Studio*/ ['CM|Castle Mill', 'STH|Summertown House'],
 		/*Double Studio*/ ['ABC|Alan Bullock Close', 'CM|Castle Mill', 'STH|Summertown House'],
