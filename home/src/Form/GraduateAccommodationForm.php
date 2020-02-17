@@ -182,7 +182,7 @@ class GraduateAccommodationForm extends Form
 						'Email' => $data['preferred_email'],
 						'Nationality' => $data['nationality'],
 						'OSSNumber' => $data['oss_number'],
-						'Degree-start-date' => date( $dateFormat, strtotime($data['degree_start'])),
+						'Degree-start-date' => self::getTimeFromString($data['degree_start'], $dateFormat),
 						'End-term' => $data['term'],
 						'End-year' => $data['term_year'],
 					),
