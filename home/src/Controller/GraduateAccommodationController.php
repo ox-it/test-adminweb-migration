@@ -39,7 +39,7 @@ class GraduateAccommodationController extends AppController
 		$email->subject($data['email_subject']);
 		$email->from([$data['preferred_email'] => $data['firstname'] . ' ' . $data['surname'] ]);
 		$email->to($data['email_to']);
-                $email->returnPath('-f'.$data['preferred_email']);
+                $email->returnPath($data['preferred_email']);
                 $email->replyTo($data['preferred_email']);
 		// Test emails
 		if (!empty($_SERVER['SERVER_NAME'])) {
