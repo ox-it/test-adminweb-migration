@@ -19,6 +19,7 @@ jQuery(document).ready(function($) {
 	makeCondition('#select-child-6', ['male','female'], '', '#child-dob-6');
 
 	jQuery("input[name='application_type']").change(function(e) { requiredFields(); updateSectionNumbers(); updateAccommodationTypes(e); });
+	jQuery("input[name='application_type']:checked").trigger('change')
 	jQuery('#acc-prefer-1').change(function() { updatePreferences('#acc-prefer-1','#acc-prefer-2'); }).trigger('change');
 	jQuery('#acc-prefer-3').change(function() { updatePreferences('#acc-prefer-3','#acc-prefer-4'); }).trigger('change');
 
@@ -32,8 +33,63 @@ jQuery(document).ready(function($) {
 	updateSectionNumbers();
 	requiredFields();
 	
+	jQuery('button', '#buttons').click(function(e) {
+		var form = jQuery(e.target).closest('form').attr('action');
+		var action = jQuery(e.target).closest('form').attr('action').split('?')[0];
+		var submitted_accomm_prefs = ['#acc-prefer-1', '#acc-prefer-2', '#acc-prefer-3', '#acc-prefer-4'];
+		var query_string = '?';
+		var params = [];
+		
+		jQuery(submitted_accomm_prefs).each(function(i, v){
+			var option = jQuery('option:selected', v).val();
+			var param = ''
+			
+			if (typeof option !== 'undefined' && option !== '') {
+				param = v.replace('#', '');
+				params.push(param.concat('=').concat(encodeURI(option)));
+			}
+		});
+		
+		if (params.length > 0) {
+			query_string = query_string.concat(params.join('&'));
+		}
+		
+		if(query_string !== '?') {
+			jQuery(e.target).closest('form').attr('action', action.concat(query_string));
+		}
+	});
+	
+	if(jQuery('.error.message').length > 0) {
+		useQueryVariables();
+	}
+	
+	
 });
 
+
+/*
+* Select lists with options that depend on application type aren't repopulated on error, so we help them out a bit.
+*/
+function useQueryVariables() {
+	
+	var query_string = window.location.search.substring(1); //query string without the ?
+	var params = query_string.split('&');
+	
+	jQuery(params).each(function(i, v) {
+		var parts = v.split('=');
+		var id, value;
+		
+		if (parts.length === 2) {
+			id = '#'.concat(parts[0]);
+			value = parts[1];
+		}
+		
+		if (typeof id !== 'undefined' && typeof value !== 'undefined') {
+			jQuery(id).val(decodeURI(value)).trigger('change');
+		}
+		
+	});
+}
 
 /*
 * Make sure the correct fileds are marked as required depending on application type.
@@ -124,19 +180,22 @@ function updateSectionNumbers() {
 
 function updateAccommodationTypes(event) {
 	var type = event.target.value;
+	var is_selected = jQuery(event.target).prop('checked');
 	var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
 	var include_types = (type=='Single') ? [0,1,2,3] : [4,5,6,7,8,9];
 	var options = '<option value="" selected>-- Please Select --</option>';
 
-	for (var i=0;i<include_types.length;i++) {
-		var index = include_types[i];
-		options += '<option value="'+ acc_type[index] + '">' + acc_type[index] + '</option>';
-	}
+	if(is_selected) {
+		for (var i=0;i<include_types.length;i++) {
+			var index = include_types[i];
+			options += '<option value="'+ acc_type[index] + '">' + acc_type[index] + '</option>';
+		}
 	
-	jQuery('#acc-prefer-1').html(options);
-	jQuery('#acc-prefer-2').html('');
-	jQuery('#acc-prefer-3').html(options);
-	jQuery('#acc-prefer-4').html('');
+		jQuery('#acc-prefer-1').html(options);
+		jQuery('#acc-prefer-2').html('');
+		jQuery('#acc-prefer-3').html(options);
+		jQuery('#acc-prefer-4').html('');
+	}
 }
 
 function updatePreferences(source,target) {
