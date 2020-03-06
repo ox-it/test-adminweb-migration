@@ -44,6 +44,38 @@ use Cake\Mailer\Email;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
 
+$cor_list = [
+	'visualtest.web.ox.ac.uk', 'ci-visualtest.web.ox.ac.uk', 'demo-visualtest.web.ox.ac.uk', 'dev-visualtest.web.ox.ac.uk', 'devaccept-visualtest.web.ox.ac.uk', 'test-visualtest.web.ox.ac.uk', 'local-visualtest.web.ox.ac.uk',
+	'staff.web.ox.ac.uk', 'ci-staff.web.ox.ac.uk', 'demo-staff.web.ox.ac.uk', 'dev-staff.web.ox.ac.uk', 'devaccept-staff.web.ox.ac.uk', 'test-staff.web.ox.ac.uk', 'local-staff.web.ox.ac.uk',
+	'staff.admin.ox.ac.uk',
+	'estates.web.ox.ac.uk', 'ci-estates.web.ox.ac.uk', 'demo-estates.web.ox.ac.uk', 'dev-estates.web.ox.ac.uk', 'devaccept-estates.web.ox.ac.uk', 'test-estates.web.ox.ac.uk', 'local-estates.web.ox.ac.uk',
+	'estates.admin.ox.ac.uk',
+	'academic.web.ox.ac.uk', 'ci-academic.web.ox.ac.uk', 'demo-academic.web.ox.ac.uk', 'dev-academic.web.ox.ac.uk', 'devaccept-academic.web.ox.ac.uk', 'test-academic.web.ox.ac.uk', 'local-academic.web.ox.ac.uk',
+	'academic.admin.ox.ac.uk',
+	'skills.web.ox.ac.uk', 'ci-skills.web.ox.ac.uk', 'demo-skills.web.ox.ac.uk', 'dev-skills.web.ox.ac.uk', 'devaccept-skills.web.ox.ac.uk', 'test-skills.web.ox.ac.uk', 'local-skills.web.ox.ac.uk',
+	'skills.it.ox.ac.uk',
+	'pod.web.ox.ac.uk', 'ci-pod.web.ox.ac.uk', 'demo-pod.web.ox.ac.uk', 'dev-pod.web.ox.ac.uk', 'devaccept-pod.web.ox.ac.uk', 'test-pod.web.ox.ac.uk', 'local-pod.web.ox.ac.uk',
+	'pod.admin.ox.ac.uk',
+	'finance.web.ox.ac.uk', 'ci-finance.web.ox.ac.uk', 'demo-finance.web.ox.ac.uk', 'dev-finance.web.ox.ac.uk', 'devaccept-finance.web.ox.ac.uk', 'test-finance.web.ox.ac.uk', 'local-finance.web.ox.ac.uk',
+	'finance.admin.ox.ac.uk',
+];
+
+$http_referer = $_SERVER['HTTP_REFERER'];
+
+if (isset($http_referer)) {
+	$referer = str_replace('https://', '', $http_referer);
+	$referer = strtok($referer, '/');
+
+	if (in_array($referer, $cor_list)) {
+	    header('Access-Control-Allow-Origin: https://'.$referer);
+	    header('Access-Control-Allow-Methods: POST, GET, PUT, PATCH, DELETE, OPTIONS');
+	    header('Access-Control-Allow-Headers: https://'.$referer);
+	    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+	      exit(0);
+	    }
+	}
+}
+
 /**
  * Uncomment block of code below if you want to use `.env` file during development.
  * You should copy `config/.env.default to `config/.env` and set/modify the
