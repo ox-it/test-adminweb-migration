@@ -58,6 +58,8 @@ $cor_list = [
 	'pod.admin.ox.ac.uk',
 	'finance.web.ox.ac.uk', 'ci-finance.web.ox.ac.uk', 'demo-finance.web.ox.ac.uk', 'dev-finance.web.ox.ac.uk', 'devaccept-finance.web.ox.ac.uk', 'test-finance.web.ox.ac.uk', 'local-finance.web.ox.ac.uk',
 	'finance.admin.ox.ac.uk',
+	'it.web.ox.ac.uk', 'ci-it.web.ox.ac.uk', 'demo-it.web.ox.ac.uk', 'dev-it.web.ox.ac.uk', 'devaccept-it.web.ox.ac.uk', 'test-it.web.ox.ac.uk', 'local-it.web.ox.ac.uk',
+        'www.it.ox.ac.uk', 'it.ox.ac.uk'
 ];
 
 $http_referer = $_SERVER['HTTP_REFERER'];
