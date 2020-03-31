@@ -23,7 +23,7 @@
 <?php
 	echo $waf->postValueWithLabel((!empty($customer->custtitle)?$customer->custtitle.' ':'') . $customer->custname, 'Customer Name');
 	echo $waf->postValueWithLabel($customer->accounttype, 'Account Type', $customer->accounttypeOptions());
-	echo $waf->postValueWithLabel($customer->acountnum, 'Account Number');
+	echo $waf->postValueWithLabel($customer->accountnum, 'Account Number');
 	echo $waf->postValueWithLabel($customer->custparent, 'Parent Company');
 	echo $waf->postValueWithLabel($customer->custURL, 'Company Website');
 	echo $waf->postValueWithLabel($customer->category, 'Category', $customer->categoryOptions());
@@ -79,7 +79,7 @@
 
 <h4>Shipping Details</h4>
 <?php
-	if (!empty($customer->billcopy) && $customer->billcopy=='Y') {
+	if (!empty($customer->billcopy) && $customer->billcopy=='N') {
 		echo $waf->postValueWithLabel($customer->shipaddress1, 'Address');
 		echo $waf->postValueWithLabel($customer->shipaddress2, ' ');
 		echo $waf->postValueWithLabel($customer->shipaddress3, ' ');
