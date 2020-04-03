@@ -203,7 +203,7 @@ function updatePreferences(source,target) {
 	var acc_type = [ "Room",  "Ensuite", "Bedsit", "Single Studio", "Double Studio", "One Bed Flat", "Two Bed Flat", "Three Bed Flat", "Two Bed House", "Three Bed House" ];
 	var type_index = acc_type.indexOf(type);
 	var type_options = [
-		/*Room*/ ['STH|Summertown House','147WS|147 Walton Street','CPG|Court Place Gardens'],
+		/*Room*/ ['STH|Summertown House','147WS|147 Walton Street','CPG|Court Place Gardens','25WS|25 Wellington Square'],
 		/* Ensuite */ ['CM|Castle Mill','JSL|Jack Straws Lane','CC|Cavalier Court'],
 		/* Bedsit */ ['STH|Summertown House'],
 		/*Single Studio*/ ['CM|Castle Mill', 'STH|Summertown House'],
