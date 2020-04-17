@@ -167,9 +167,12 @@ class GcpController extends AppController
 		'pages' => ceil($total / $limit),
 		'total' => $total
 	    );
+	    // get host name to use absolute links
+	    $host = $this->request->host();
 	    $this->set([
 		'files' => $pagedFiles,
 		'passedPager' => $pager,
+		'host' => $host,
 	    ]);
 	    // render src/Templates/Gcp/downloads.ctp
 	    $this->render('downloads');
@@ -211,7 +214,8 @@ class GcpController extends AppController
                 '163.1.124.150', // Finlay Birnie
                 '163.1.125.85', // Linda Covill
 		'163.1.124.97', // Brendan Donnelly
-		'129.67.140.41' // Karl Shepherd
+		'129.67.140.41', // Karl Shepherd
+		'163.1.125.159', // Sam
             ];
 			if (in_array($ip, $authorised_ips_on_test)) return true;
         }
@@ -231,11 +235,23 @@ class GcpController extends AppController
     ];
 
     if (empty($_SERVER['HTTP_WAF_WEBAUTH'])) {
-		  return false;
-		} else {
-		  $sso = $_SERVER['HTTP_WAF_WEBAUTH'];
-		  if (in_array($sso, $authorised_on_live)) return true;
-		}
+	// referer check
+        // if you came from these places it is okay
+        $embed_sites = [
+            'https://dev-researchsupport.web.ox.ac.uk/ctrg/training/online/registration/admin', // dev
+        ];
+        $referer = $this->referer();
+        $cameFromGoodPlace = false;
+        foreach ($embed_sites as $embed_site) {
+            if (substr($referer, 0, strlen($embed_site)) === $embed_site) {
+                $cameFromGoodPlace = true;
+            }
+        }
+        return $cameFromGoodPlace;
+    } else {
+        $sso = $_SERVER['HTTP_WAF_WEBAUTH'];
+        if (in_array($sso, $authorised_on_live)) return true;
+    }
 
     //$this->Flash->error('Bad Access: ' . $ip);
     return false;

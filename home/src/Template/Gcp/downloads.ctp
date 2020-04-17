@@ -35,7 +35,7 @@
         <ul>
             <?php if ($files) { ?>
 	        <?php foreach ($files as $i=>$file) { ?>
-                    <p><a href="?download=<?= $file ?>"><?= $file ?></a></p>
+                    <p><a href="https://<?= $host ?>/gcp/admin?download=<?= $file ?>"><?= $file ?></a></p>
 	        <?php } ?>
             <?php } ?>
         </ul>
