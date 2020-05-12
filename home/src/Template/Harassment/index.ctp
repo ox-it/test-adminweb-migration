@@ -67,6 +67,9 @@
 			<?php
 					echo $this->Form->button(__('Submit Report'), [ 'name'=>'action', 'value'=>'report' ]);
 					echo $this->Form->button('No Reports', [ 'name'=>'action', 'value'=>'noreport' ]);
+					if(isset($user->is_admin) && $user->is_admin) {
+                        echo $this->Form->button('Admin', [ 'name'=>'action', 'value'=>'admin' ]);
+                    }
 			?>
 
 		<?php

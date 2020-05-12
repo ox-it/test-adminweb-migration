@@ -31,10 +31,10 @@ class HarassmentUsersTable extends Table
 
 	public function getByOxfordID()
 	{
-    $oxfordID = !empty($_SERVER['HTTP_WAF_WEBAUTH']) ? trim($_SERVER['HTTP_WAF_WEBAUTH']) : 'notgiven';
-    $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]) -> contain(['HarassmentDepartments']);
-    $user = $query->first();
-    return $user;
+        //$oxfordID = !empty($_SERVER['HTTP_WAF_WEBAUTH']) ? trim($_SERVER['HTTP_WAF_WEBAUTH']) : 'notgiven';
+        $query = $this->find('all') ->where(['oxfordID'=>$oxfordID]) -> contain(['HarassmentDepartments']);
+        $user = $query->first();
+        return $user;
 	}
 
 	public function validationRegister()
