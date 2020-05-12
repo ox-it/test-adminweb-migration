@@ -239,6 +239,8 @@ class GcpController extends AppController
         // if you came from these places it is okay
         $embed_sites = [
             'https://dev-researchsupport.web.ox.ac.uk/ctrg/training/online/registration/admin', // dev
+            'https://researchsupport.admin.ox.ac.uk/ctrg/training/online/registration/admin', // live
+            'https://researchsupport.web.ox.ac.uk/ctrg/training/online/registration/admin', // live .web domain
         ];
         $referer = $this->referer();
         $cameFromGoodPlace = false;
