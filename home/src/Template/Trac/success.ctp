@@ -7,6 +7,7 @@
 	<?= $this->Html->script($this->name . '/script.js') ?>
 
 	<div class="waf-include">
+  <?= $this->Html->css($this->name . '/style.css') ?>
   <div class="<?= $survey->group_colour ?>">
 
 	  <!-- Information -->

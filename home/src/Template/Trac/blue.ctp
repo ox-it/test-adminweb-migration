@@ -1,10 +1,13 @@
 <!-- File: src/Template/Trac/blue.ctp -->
 
+<?= $this->Html->css($this->name . '/style.css') ?>
+
 <div class="row">
 
   <h3>University of Oxford - Academic Activity Survey :  BLUE</h3>
 
 	<div class="waf-include">
+  <?= $this->Html->css($this->name . '/style.css') ?>
   <div class="<?= $survey->group_colour ?>">
 
 	  <!-- Information -->

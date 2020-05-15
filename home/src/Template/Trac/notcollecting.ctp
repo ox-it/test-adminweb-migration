@@ -4,8 +4,8 @@
 
   <h3>Academic Activity Survey</h3>
 
-	<div class="waf-include">
-
+    <div class="waf-include">
+      <?= $this->Html->css($this->name . '/style.css') ?>
       <div align="right"><strong>Week ref. <?= $survey->weekly_group ?> - <?= strtoupper($survey->group_colour) ?> form</strong></div>
       <p><strong>You are not currently under collection.</strong></p>
 
