@@ -57,7 +57,7 @@
 .web-app-wrapper .row_item{border-top:1px dotted #eee;padding:5px 0 0 0}
 .web-app-wrapper .row_item.total{border-top:2px solid #ddd;border-bottom:2px solid #ddd}
 .web-app-wrapper .row_item>*{margin-bottom:5px}
-.web-app-wrapper .label_wrapper>*{color:#555;margin:0;padding-right:1em;fomt-weight:300}
+.web-app-wrapper .label_wrapper>*{color:#555;margin:0;padding-right:1em;font-weight:300}
 .web-app-wrapper tr.highlight td{background-color:#262;color:#fff}
 .web-app-wrapper tr.highlight td a{color:#4af}
 .web-app-wrapper tr.highlight td a:hover{color:#fee}
