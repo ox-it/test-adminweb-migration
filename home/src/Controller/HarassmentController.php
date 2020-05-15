@@ -256,6 +256,15 @@ class HarassmentController extends AppController
         $this->render('admin_departments');
     }
 
+    public function admin($userID)
+	            {
+			                    if (!$this->check_secure()) return $this->render('noaccess');
+					                    $user = $this->getOxfordUserAndValidate();
+
+					                    $this->render('admin');
+
+							            }
+
 	public function report($userID, $deptcode, $acyear)
 	{
 	    $submitted = $this->request->getData('submitted');
@@ -375,8 +384,8 @@ class HarassmentController extends AppController
     {
         $this->loadModel('HarassmentUsers');
         $user = $this->HarassmentUsers->getByOxfordID();
-
-        if ($user->admin == 1) {
+	
+	if ($user->admin == 1) {
             return true;
         } else {
             return false;
