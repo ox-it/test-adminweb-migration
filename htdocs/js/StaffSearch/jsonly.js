@@ -114,46 +114,52 @@ jQuery(document).ready(function($) {
           var $list = $("<ul class='contact-results-list'></ul>");
           $results.append($list);
 
-          //populate table
-          for(var i=0; i<response.persons.length; i++) {
+          if (response.persons.length > 0) {
+              //populate table
+              for(var i=0; i<response.persons.length; i++) {
 
-              var person = response.persons[i];
-              var $entry = $("<li id='person_" + (i+1) + "' class='person_entry'></li>");
+                  var person = response.persons[i];
+                  var $entry = $("<li id='person_" + (i+1) + "' class='person_entry'></li>");
 
-              $list.append($entry);
-              //name
-              var $name = $("<div id='name-" + (i+1) + "' class='person_name'></div>");
-              $name.append($("<h3>" + person.name + "</h3>"));
-              $entry.append($name);
+                  $list.append($entry);
+                  //name
+                  var $name = $("<div id='name-" + (i+1) + "' class='person_name'></div>");
+                  $name.append($("<h3>" + person.name + "</h3>"));
+                  $entry.append($name);
 
-              //container for unit and email, to keep those together on RHS
-              var $person_details = $("<div class=details></div>");
-              $entry.append($person_details);
-              //unit
-              var unitText = person.unit ? person.unit : "    ";
-              var $unit = $("<div id='unit-" + (i+1) + "' class='person_unit'></div>");
-              $unit.text(unitText);
-              $person_details.append($unit);
-              //email
-              if(person.email) {
-                  var $email = $("<div id='email-" + (i+1) + "' class='person_email'></div>");
-                  $email.append($("<a href='mailto:" + person.email + "'>" + person.email + "</a>"));
-                  $person_details.append($email);
-              }
-              //phone
-              if(person.external_tel || person.internal_tel) {
-                  var $phone = $("<div id='phone-" + (i+1) + "' class='person_phone'></div>");
-                  var $phone_list = $("<dl></dl>");
-                  $phone.append($phone_list);
-                  if(person.internal_tel) {
-                      $phone_list.append($("<dt>Internal</dt><dd>" + person.internal_tel + "</dd>"));
+                  //container for unit and email, to keep those together on RHS
+                  var $person_details = $("<div class=details></div>");
+                  $entry.append($person_details);
+                  //unit
+                  var unitText = person.unit ? person.unit : "    ";
+                  var $unit = $("<div id='unit-" + (i+1) + "' class='person_unit'></div>");
+                  $unit.text(unitText);
+                  $person_details.append($unit);
+                  //email
+                  if(person.email) {
+                      var $email = $("<div id='email-" + (i+1) + "' class='person_email'></div>");
+                      $email.append($("<a href='mailto:" + person.email + "'>" + person.email + "</a>"));
+                      $person_details.append($email);
                   }
-                  if(person.external_tel) {
-                      $phone_list.append($("<dt>External</dt><dd>" + person.external_tel + "</dd>"));
+                  //phone
+                  if(person.external_tel || person.internal_tel) {
+                      var $phone = $("<div id='phone-" + (i+1) + "' class='person_phone'></div>");
+                      var $phone_list = $("<dl></dl>");
+                      $phone.append($phone_list);
+                      if(person.internal_tel) {
+                          $phone_list.append($("<dt>Internal</dt><dd>" + person.internal_tel + "</dd>"));
+                      }
+                      if(person.external_tel) {
+                          $phone_list.append($("<dt>External</dt><dd>" + person.external_tel + "</dd>"));
+                      }
+                      $entry.append($phone);
                   }
-                  $entry.append($phone);
               }
+          } else {
+              // put not found message
+              $list.append("<div class='contact-results-none'><p>No results found</p></div>");
           }
+
 
           this.numPages = Math.ceil(this.persons.length / this.pageSize);
 
