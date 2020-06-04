@@ -71,6 +71,10 @@ class StaffSearchComponent extends Component
 
 		  $query = array();
 		  $query['q'] = (!empty($name)) ? urlencode( implode(' ', $name) ) : '';
+			// we need to URL encode the string of course
+			// but the mobile oxford API expects initial and surname separated by space e.g. 'f birnie'
+			// URL encoding the string puts a + instead of a space so replace it
+			$query['q'] = str_replace('+',' ',$query['q']);
 
 		  if (!empty($fields['medium']))  $query['medium'] = $fields['medium'];
 		  if (!empty($fields['match']))   $query['match'] = $fields['match'];
