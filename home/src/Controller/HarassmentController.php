@@ -15,6 +15,42 @@ class HarassmentController extends AppController
 		return 'harassment';
 	}
 
+    public function download_report($report_year)
+    {
+        if (!$this->check_secure()) return $this->render('noaccess');
+        
+        $this->loadModel('HarassmentSurveys');
+        $this->loadModel('HarassmentUsers');
+        $surveys = $this->HarassmentSurveys->find('all')
+        ->select($this->HarassmentSurveys)
+        ->select(['cd.deptalpha', 'ad.deptalpha'])
+        ->select(['u.name'])    
+        ->join([
+            'u' => [
+                'table' => 'harassment_user',
+                'type' => 'left',
+                'foreignKey' => false,
+                'conditions' => 'HarassmentSurveys.personID=u.userID'
+            ],
+            'cd'=> [
+                'table' => 'harassment_department',
+                'type' => 'left',
+                'foreignKey' => false,
+                'conditions' => 'HarassmentSurveys.3_complainant_department=cd.deptcode'
+            ],
+            'ad'=> [
+                'table' => 'harassment_department',
+                'type' => 'left',
+                'foreignKey' => false,
+                'conditions' => 'HarassmentSurveys.7_accused_dept=ad.deptcode'
+            ]
+        ]);
+
+        $this->set('surveys', $surveys);
+        $this->render('admin_surveys');
+        
+    }
+
 	public function index()
 	{
 		// Respond to GET parameters
